@@ -1,0 +1,33 @@
+/**
+ * List-posts
+ *
+ * @uses .List-posts
+ */
+.List-posts {
+	
+	/**
+	 * Footer
+	 *
+	 * @uses .List-posts-footer
+	 */
+	&-footer {
+		@include padding( 
+			top ( $grid-gutter-width * 2 ) 
+			bottom ( $grid-gutter-width * 3 )
+		);
+	}
+	
+
+	/**
+	 * List-posts-container
+	 */
+	&-container {
+		@extend %Transition-ease;
+		
+		opacity: 1;
+
+		&.is-loading {
+			opacity: .3;
+		}
+	}
+}

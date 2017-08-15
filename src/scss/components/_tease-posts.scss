@@ -1,0 +1,55 @@
+/**
+ * Tease-posts
+ *
+ * @uses .Tease-posts
+ */
+.Tease-posts {
+	@extend %Pointer-events-none;
+	
+	&:hover .Tease-post {
+		
+		&:hover {
+
+			.Tease-post-header {
+				opacity: 1;
+				visibility: visible;
+			}
+
+			&::before {
+				background: {
+					color: rgba( the_color( black ), .3 );
+				}
+				
+			}
+		}		
+
+		&:not(:hover) {
+			
+			.Tease-post-header {
+				opacity: 0;
+				visibility: hidden;
+			}
+
+			&::before {
+
+				background: {
+					color: rgba( the_color( white ), .6 );
+				}
+			}
+		}
+	}
+
+
+	&-row {
+
+		@extend .clearfix;
+		@include margin( bottom $grid-gutter-width );
+	}
+
+	&-footer {
+		@include padding( 
+			top ( $grid-gutter-width * 2 ) 
+			bottom ( $grid-gutter-width * 3 )
+		);
+	}
+}

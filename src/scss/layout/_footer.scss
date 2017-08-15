@@ -1,0 +1,136 @@
+/**
+ * Footer
+ *
+ * @uses .Footer
+ */
+.Footer {
+	@include padding( top 55px bottom 44px );
+	
+	/**
+	 * Copyright
+	 *
+	 * @uses .Footer-copyright
+	 */
+	&-copyright {
+		$font-size: 12;
+		$color: the_color( blue, light-grayish );
+
+		@extend .text-xs-center;
+		@extend %font-title;
+
+		color: $color;
+		font: {
+			size: ( $font-size * 1px );
+		}
+		line-height: ( 33 / $font-size );
+
+		i {
+			@extend %font-semibold;
+
+			font-style: normal;
+		}
+
+		span:first-child {
+			@include margin( right 37px );
+		}
+
+		span:nth-child( 2 ) {
+			@include margin( right 22px );
+		}
+		
+		span:nth-child( 3 ) {}
+
+		span:nth-child( 4 ) {
+			@include margin( left 22px );
+		}
+
+		a {
+			@extend %Transition-ease;
+
+			&:hover {
+				color: shade( $color, 30% );
+			}
+		}
+	}
+	
+
+	/**
+	 * Logo
+	 *
+	 * @uses .Footer-logo
+	 */
+	&-logo {
+
+		a {
+			@include margin( top 50px );
+			@extend %display-xs-block;
+			
+			&:hover {}
+		}
+		img {
+			@extend %display-xs-inline-block, %vertical-align-middle;
+		}
+	}
+
+
+	/**
+	 * Button
+	 *
+	 * @uses .Footer-button
+	 */
+	&-button {
+		$size: 32;
+		
+		@extend %display-xs-inline-block, %vertical-align-middle;
+		@include size( ( $size * 1px ) );
+		@include margin( top 23px );
+
+		&:hover {
+			svg {
+				fill: the_color( orange, very-soft-01 );
+			}
+		}
+
+		svg {
+			@extend %Transition-ease;
+			
+			fill: the_color( blue, light-grayish );
+		}
+	}
+
+
+	/**
+	 * Socials
+	 *
+	 * @uses .Footer-socials
+	 */
+	&-socials {
+		@extend .list-unstyled;
+		@extend %margin-xs-0;
+
+		&__item {
+			@extend %vertical-align-middle;
+			@include size( $grid-gutter-width );
+			@include margin( top 0 left auto bottom 0 );
+
+			a {
+				@extend %display-xs-block;
+
+				&:hover {
+					svg {
+						fill: the_color( orange, very-soft-01 );
+					}
+				}
+			}
+
+			svg {
+				@extend %display-xs-inline-block, %vertical-align-middle, %Transition-ease;
+
+				max-width: $grid-gutter-width;
+				max-height: $grid-gutter-width;
+
+				fill: the_color( blue, light-grayish );
+			}
+		}
+	}
+}

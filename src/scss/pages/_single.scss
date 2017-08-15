@@ -1,0 +1,252 @@
+/**
+ * Single
+ *
+ * @uses 	.Single
+ * @author 	Jérémy Levron <levronjeremy@19h47.fr>
+ */
+.Single {
+	@extend %position-xs-relative;
+
+	/**
+	 * Header
+	 *
+	 * @uses .Single-header
+	 */
+	&-header {
+		@include absolute( top 0 right 0 left 0 );
+	
+		color: the_color( white );
+		z-index: 10;
+	}
+
+
+	/**
+	 * Introduction
+	 *
+	 * @uses .Single-introduction
+	 */
+	&-introduction {
+		@extend %position-xs-relative;
+
+		height: 100vh;
+		max-height: 821px;
+
+		background: {
+			attachment: fixed;
+			position: center;
+			size: cover;
+		}
+
+		// img {
+		// 	@extend %Position-absolute-center;
+		// 	@include size( 100% );
+
+		// 	object-fit: cover;
+		// }
+	}
+
+	
+	/**
+	 * Article
+	 *
+	 * @uses .Single-article
+	 */
+	&-article {
+		@extend %position-xs-relative;
+		@include padding( 
+			top 48px 
+			right percentage( 182 / 1029 )
+			left percentage( 107 / 1029 )
+		);
+
+		top: -93px;
+		background: {
+			color: the_color( white );
+		}
+
+		/**
+		 * Preview
+		 *
+		 * @uses .Single-article .preview
+		 */
+		.preview {
+			$font-size: 20;
+			$line-height: 33;
+
+			@extend %font-title, %font-bold;
+			
+			color: the_color( gray, very-dark );
+			font: {
+				size: ( $font-size * 1px );
+			}
+			line-height: ( $line-height / $font-size );
+		}
+
+
+		/**
+		 * Date
+		 *
+		 * @uses .Single-article .date
+		 */
+		.date {
+			$font-size: 13;
+			$line-height: 80.86;
+
+			@extend %font-semibold, %margin-xs-0, %font-title;
+			
+			color: the_color( blue, light-grayish );
+			font: {
+				size: ( $font-size * 1px );
+			}
+			// line-height: ( $line-height / $font-size );
+		}
+
+
+		/**
+		 * Title
+		 *
+		 * @uses .Single-article .title
+		 */
+		.title {
+			
+			$font-size: 40;
+			$line-height: 48;
+			
+			@extend %font-body, %margin-xs-0;
+			@include letter-spacing( 20 );
+
+			font: {
+				size: ( $font-size * 1px );
+			}
+			line-height: ( $line-height / $font-size );
+		}
+
+
+		/**
+		 * Content
+		 *
+		 * @uses .single-article .content
+		 */
+		.content {
+			color: the_color( gray, very-dark-01 );
+
+			h3,
+			strong,
+			b {
+				@extend %font-bold;
+			}
+
+			p {
+				@include letter-spacing( 15 );
+			}
+
+			h3 {
+				$font-size: 20; 
+				$line-height: 33;
+
+				color: the_color( gray, very-dark );
+				font: {
+					size: ( $font-size * 1px );
+				}
+				line-height: ( $line-height / $font-size );
+			}
+
+			strong,
+			b {
+				color: the_color( orange, very-soft-01 );
+			}
+
+			img {
+				max-width: 100%;
+				height: auto;
+			}
+		}
+
+		.rich-content-link {
+			@extend %display-xs-inline-block, %position-xs-relative, %Cursor-pointer;
+
+			&:hover span {
+				background: {
+					image: url( '#{ map-get( $directories, svg ) }marker-stroke-orange.svg' );
+				}
+			}
+
+			span {
+				@extend %Position-absolute-center, %display-xs-inline-block, %Transition-ease, %Pointer-events-none;
+
+				background: {
+					image: url( '#{ map-get( $directories, svg ) }marker-stroke-blue.svg' );
+					position: center;
+					size: 100% 100%;
+				}
+				content: '';
+
+				z-index: 10;
+
+			}
+
+			i {
+				@extend %position-xs-relative, %font-style-normal;
+
+				z-index: 20;
+
+				b, strong {
+					color: the_color( gray, very-dark-01 );
+				}
+			}
+		}
+	}	
+
+
+	/**
+	 * Breadcrumb
+	 *
+	 * @uses .Single-breadcrumb
+	 */
+	&-breadcrumb {
+		@extend %font-title, %font-medium;
+		@include font( 13, 25 );
+		@include padding( top $grid-gutter-width bottom $grid-gutter-width );
+
+		&__items {
+			@extend %list-unstyled, %margin-xs-0;
+
+		}
+		&__item {
+			@include margin( top 1em bottom 1em );
+
+			color: the_color( orange, grayish );
+
+			svg {
+				@extend %display-xs-inline-block;
+				@include margin( right 9px );
+
+				max-width: 9px;
+				max-height: 5px;
+				fill: currentColor;
+			}
+
+			&:first-child {
+				svg {
+					@extend %Transition-ease;
+
+					max-height: 2px;
+					transform: translate3d( 0, 0, 0 );
+				}
+
+				&:hover {
+					svg {
+						transform: translate3d( ( $grid-gutter-width / -4 ), 0, 0 );
+					}
+				}
+			}
+
+			&.title {
+
+				@extend %font-semibold;
+
+				color: the_color( orange, mostly-desaturated-dark );
+			}
+		}
+	}
+}

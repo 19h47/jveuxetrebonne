@@ -1,0 +1,89 @@
+{#
+    
+    /**
+     * Sticky post
+     * 
+     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     */
+    
+#}
+
+{% for post in posts %}
+
+    <article id="Sticky-post-{{ post.ID }}" class="Sticky-post row">
+
+        <div class="col-xs-12 col-md-6 col-md-offset-1">
+
+            <img class="thumbnail img-full" src="{{ post.thumbnail.src | tojpg | resize( 635, 550 ) }}" alt="" />
+
+        </div>
+
+        <div class="col-xs-12 col-md-5">        
+            
+            <header class="Sticky-post-header">
+                
+                {% spaceless %}
+                    
+                {# Date #}
+                <p class="date">
+                    {{- pll__( 'Le' ) -}}&nbsp;{{- post.date -}}
+                </p>
+                
+                <span class="color-blue-light-grayish display-xs-inline-block font-title">&nbsp;&bull;&nbsp;</span>
+
+                {# Category #}
+                <p class="category lowercase">
+                    <em>{{- post.terms('category') | join(', ') -}}</em>
+                </p>
+
+                {% endspaceless %}
+
+                {# Title #}
+                <h2 class="title">{{- post.post_title -}}</h2>
+
+            </header>
+
+            
+            {# Preview #}
+            <p class="preview">{{- post.get_field( 'preview' ) -}}</p>
+
+            
+            {# Excerpt #}
+            <p class="excerpt">{{- post.post_excerpt -}}</p>
+
+
+            {# Read more #}
+            <a class="permalink Link-readmore" href="{{ post.link }}">
+                {{- pll__( 'Lire la suite' ) -}}
+            </a>
+            
+            {# Footer #}
+            {% if post.get_field( 'gallery' ) %}
+            <footer class="Sticky-post-footer js-slider-sticky-container">
+                <div class="Sticky-post-footer__inner">
+                    
+                    <ul class="Sticky-post-footer__gallery js-slider-sticky">
+                        {% for image in post.get_field( 'gallery' ) %}
+                            <li class="Sticky-post-footer__gallery__item">
+                                <img src="{{ TimberImage(image) }}" />
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <button class="Sticky-post-footer__gallery__button js-slider-sticky-next" type="button" >
+                        
+                        <svg class="Icon next">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ theme.link }}/dist/svg/icons.svg#next"></use>
+                        </svg>
+                        
+                    </button>
+
+                </div>
+            </footer>
+            {% endif %}
+
+        </div>
+
+    </article>
+
+{% endfor %}

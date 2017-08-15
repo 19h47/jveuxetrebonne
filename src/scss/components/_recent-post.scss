@@ -1,0 +1,54 @@
+/**
+ * Tease post
+ *
+ * @uses .Tease-post
+ */
+.Tease-post {
+
+	/**
+	 * Category
+	 * 
+	 * @uses .Tease-post .category
+	 */
+	.category {}
+
+	
+	/**
+	 * Date
+	 *
+	 * @uses .Tease-post .date
+	 */
+	.date {}
+
+
+	/**
+	 * Excerpt
+	 * 
+	 * @uses .Tease-post .excerpt
+	 */
+	.excerpt {}
+
+
+	/**
+	 * Title
+	 * 
+	 * @uses .Tease-post .title
+	 */
+	.title {}
+
+
+	/**
+	 * Thumbnail
+	 * 
+	 * @uses .Tease-post .thumbnail
+	 */
+	.thumbnail {}
+
+
+	/**
+	 * Permalink
+	 * 
+	 * @uses .Tease-post .permalink
+	 */
+	.permalink {}
+}

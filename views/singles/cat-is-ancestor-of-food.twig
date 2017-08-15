@@ -1,0 +1,67 @@
+{#
+	/**
+	 * /views/singles/food
+	 */
+#}
+
+{% extends 'singles/index.twig' %}
+
+{% block content %}
+	
+	{{ parent() }}
+
+	{{ post.person_number ? '<p>Nombre de personne : ' ~ post.person_number ~ '</p>' }}
+	{{ post.preparation_time ? '<p>Temps de préparation : ' ~ post.preparation_time ~ '</p>' }}
+	{{ post.cooking_time ? '<p>Temps de cuisson : ' ~ post.cooking_time ~ ' minutes</p>' }}
+	
+
+	{# Collection #}
+	{% for collection in post.get_field( 'collection' ) %}
+		
+		{# Description #}
+		{{ 
+			collection.description 
+				? '<p>' ~ collection.description ~ '</p>'
+				: '<p>'  ~ pll__( 'Tu as besoin de...' ) ~ '</p>'
+		}}
+		
+
+		{% if collection.ingredients %}
+			
+			<ul>
+			{# Ingredients #}
+			{% for item in collection.ingredients %}
+
+				<li>{{ item.ingredient }}</li>
+
+			{% endfor %}
+			</ul>
+
+		{% endif %}
+
+		
+		{% if collection.steps %}
+			
+			<ul>
+			{# Steps #}
+			{% for step in collection.steps %}
+
+				<li>{{ step.description }}</li>
+
+			{% endfor %}
+			</ul>	
+
+		{% endif %}
+
+	{% endfor %}
+
+
+	{% for comment in post.comments %}
+        
+        <div class="comment-{{comment.ID}} comment-order-{{loop.index}}">
+            <p>{{comment.author.name}} said:</p>
+            <p>{{comment.content}}</p>
+        </div>
+    {% endfor %}
+
+{% endblock %}

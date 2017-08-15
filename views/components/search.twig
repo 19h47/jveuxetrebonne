@@ -1,0 +1,98 @@
+{# 
+	views/components/search
+ #}
+<div class="Search js-search">
+
+	<button class="close js-search-button">
+		<svg class="">
+		   <use xlink:href="{{ theme.link }}/dist/svg/icons#close"></use>
+		</svg>
+	</button>
+
+	<div class="display-xs-table w-xs-100 h-xs-100">
+		<div class="display-xs-table-cell vertical-align-middle">
+			<div class="l-container">
+				<div class="row">
+					<div class="col-xs-12">
+
+						<div class="Search-inner">
+							{# <h2 class="title">{{- pll__(' dis moi ce que tu recherches' ) -}}</h2> #}
+							<input 
+								class="js-search-input input" 
+								type="text" 
+								placeholder="{{- pll__('dis moi ce que tu recherches' ) -}}"
+								autofocus
+							>
+
+							<div class="position-xs-relative">
+							
+								{% set informations_label = pll__( 'Chargement' ) %}
+								{% set informations_length = informations_label | length %}
+								{% set informations_array = informations_label | split( '' ) %}
+
+								<div class="loader">
+									{% spaceless %}
+										{% for character in pll__( 'Chargement' ) | split('') %}
+											<span style="animation-delay: {{ loop.index / loop.length }}s">
+												{{- character -}}
+											</span>
+										{% endfor %}
+									{% endspaceless %}
+								</div>
+								
+								<div 
+									class="informations js-search-informations" 
+									data-total="false"
+									data-success="{{- pll__( 'article%s correspond%s à votre recherche' ) -}}"
+									data-error="{{- pll__( 'Aucun résultat trouvé pour votre recherche 😔') -}}"
+								>
+									<span>Recherche par catégorie, titre d’article, date, etc</span>
+									<span></span>
+									<span></span>
+								</div>
+
+							</div>
+							
+
+						</div>
+
+					</div>
+				</div>
+
+				<div class="js-search-suggest suggest row"></div>
+
+			</div>
+		</div>
+	</div>
+
+
+	{# Template #}
+	<script id="suggest" type="x-tmpl-mustache">
+		{% verbatim %}
+			<div class="col-xs-4">
+				<article class="List-post">
+					
+					<a class="link" href="{{ link }}">		
+						<img class="thumbnail" src="{{ thumbnail }}">
+					</a>
+
+					<div class="List-post-meta">
+					
+						<p class="date">{{ date }}</p><!--
+					 
+					 --><span class="display-xs-inline-block">&nbsp;&bull;&nbsp;</span><!--
+					 
+					 --><em class="categories">{{ categories}}</em>
+						
+						<a class="link" href="{{ link }}" title="{{ title }}">
+							<h3 class="title">{{ title }}</h3>
+						</a>
+					
+					</div>
+					
+				</article>
+			</div>
+		{% endverbatim %}
+	</script>
+
+</div>

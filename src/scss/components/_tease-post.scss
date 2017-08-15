@@ -1,0 +1,208 @@
+/**
+ * Tease post
+ *
+ * @uses .Tease-post
+ */
+.Tease-post {
+	$this: &;
+	
+	$header: (
+		font: (
+			size: 15,
+			weight: map-get( map-get( $font, weights ), semibold )
+		),
+		line-height: 80.1,
+		color: the_color( blue, light-grayish )
+	);
+
+	@extend %position-xs-relative, %Pointer-events-auto;
+
+	animation: {
+		name: fade-in-down;
+		duration: .3s;
+		timing-function: ease-in;
+	}
+	opacity: 1;
+	transform: translateY( 0 );
+
+	@mixin meta-style() {
+
+		@extend %display-xs-inline-block, %font-title, %margin-xs-0, %font-semibold;
+		@include letter-spacing( 20 );
+
+		// line-height: map-get( $header, line-height ) / map-get( map-get( $header, font ), size );
+	}
+	
+
+	&::before {
+		@extend %Position-absolute-center, %Transition-ease, %display-xs-block, %Pointer-events-none;
+			
+		content: '';
+
+		z-index: 10;
+	}
+
+
+	a {
+		@extend %display-xs-block, %overflow-hidden, %position-xs-relative;
+		@include size( 100% );
+
+		&:hover {
+			.thumbnail {
+				transform: scale( 1.1 );
+			}
+		}
+	}
+
+	
+	/**
+	 * Inner
+	 *
+	 * @uses .Tease-post-inner
+	 */
+	&-inner { @extend %Position-absolute-center; }
+
+	
+	/**
+	 * Header
+	 *
+	 * @uses .Tease-post-header
+	 */
+	&-header {
+		@extend %text-xs-center;
+		@include absolute( top 50% right 0 left 0 );
+		@include padding( 
+			right $grid-gutter-width / 2
+			left $grid-gutter-width / 2
+		);
+
+		transform: translate3d( 0, -50%, 0 );
+		
+		opacity: 0;
+		visibility: hidden;
+		
+		color: the_color( white );
+		z-index: 20;
+	}
+
+
+	/**
+	 * Thumbnail
+	 *
+	 * @uses .Tease-post .thumbnail
+	 */
+	.thumbnail {
+		@extend %Position-absolute-center, %Transition-ease;
+		@include size( 100% );
+
+		object-fit: cover;
+		object-position: 50% 50%;
+	}
+
+
+	/**
+	 * Title
+	 *
+	 * @uses .Tease-post .title
+	 */
+	.title {
+		$font-size: 38;
+
+		@extend %font-bold, %font-title, %margin-xs-0, %Transition-ease;
+
+		font: {
+			size: ( $font-size / $base-font-size ) * 1em;
+		}
+		// line-height: map-get( $header, line-height ) / $font-size;
+	}
+
+	
+	/**
+	 * Date
+	 *
+	 * @uses .Tease-post .date
+	 */
+	.date { @include meta-style; }
+	
+
+	/**
+	 * Category
+	 *
+	 * @uses .Tease-post .category
+	 */
+	.category { @include meta-style; }
+	
+
+	/**
+	 * Grids
+	 *
+	 * @type map
+	 */
+	$grids: (
+		01: (
+			class: 'first',
+			width: percentage( 817 / $container-width-without-outer-gutter-unitless ),
+			height: 666px,
+			margin: (
+				right: $grid-gutter-width
+			),
+		),
+		02: (
+			class: 'second',
+			width: percentage( 393 / $container-width-without-outer-gutter-unitless ),
+			height: 319px,
+		),
+		03: (
+			class: 'third',
+			width: percentage( 393 / $container-width-without-outer-gutter-unitless ),
+			height: 317px,
+			margin: (
+				top: $grid-gutter-width
+			),
+		),
+		04: (
+			class: 'fourth',
+			width: 393px,
+			height: 524px,
+			margin: (
+				right: $grid-gutter-width
+			),
+		),
+		05: (
+			class: 'fifth',
+			width: 817px,
+			height: 524px,
+		)
+	);
+	
+	@each $grid, $key in $grids {
+		// @warn $key;
+		
+		&#{ $this }--#{ map-get( $key, class ) } {
+			float: left;
+			
+			// Sizes
+			@include size( 
+				map-get( $key, width ),
+				map-get( $key, height )
+			);
+
+			// Margins
+			@if map-has-key( $key, margin ) {
+				// Stock possible property
+				$properties: top right bottom left;
+				
+				@each $property in $properties {
+					// Stock value
+					$value: nth( map-get( map-get( $key, margin ), $property ), 1 );
+				
+					@if map-has-key( map-get( $key, margin ), $property ) {
+
+						margin-#{ $property }: $value;
+					}	
+				}
+			}
+			
+		}
+	}
+}

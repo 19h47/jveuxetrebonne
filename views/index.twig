@@ -1,0 +1,27 @@
+{#
+	/**
+	 * /views/index
+	 */
+#}
+
+{# Header #}
+{% include 'header/base.twig' %}
+
+<main class="l-wrapper">
+
+	{# Content #}
+	{% block content %}
+		
+		{% include 'components/search.twig' %}
+
+	{% endblock %}
+
+	{% include 'partials/footer.twig' %}
+
+
+</main>
+
+{% include 'partials/contact.twig' %}
+
+{# Footer #}
+{% include 'footer/base.twig' %}

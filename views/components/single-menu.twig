@@ -1,0 +1,67 @@
+<div class="Single-menu js-single-menu">
+
+    <button class="Single-menu__close js-single-menu-button">
+        <svg class="">
+           <use xlink:href="{{ theme.link }}/dist/svg/icons#close"></use>
+        </svg>
+    </button>
+
+    <div class="display-xs-table w-xs-100 h-xs-100 w-xs-100">
+        <div class="display-xs-table-cell text-xs-center vertical-align-middle h-xs-100 w-xs-100">
+            
+
+            <div class="Single-menu__background">
+                <div class="l-container h-xs-100">
+                    <div class="display-xs-table w-xs-100 h-xs-100">
+                        <div class="display-xs-table-cell text-xs-center vertical-align-middle h-xs-100">
+                        
+                            <div class="row">
+                                <div class="col-xs-offset-3 col-xs-6">
+                                    <div class="Single-menu__thumbnail">
+                                        {% for item in menu.get_items %}
+
+                                            {% set thumbnail = function( 'get_field', 'thumbnail', 'term_' ~ item.object_id ) %}
+                                            <img
+                                                class="js-single-menu-thumbnail" 
+                                                src="{{ thumbnail.url }}" 
+                                                width="{{ thumbnail.width }}"
+                                                height="{{ thumbnail.height }}"
+                                                alt="{{ thumbnail.alt }}"
+                                                data-id="{{ item.object_id }}"
+                                            >
+
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="l-container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="Single-menu__items">
+                        
+                            {% for item in menu.get_items %}
+
+                                    <li class="Single-menu__item has-stroke-marker js-single-menu-item {{ item.class }}{{ item.current ? ' is-current' }}" style="animation-delay: {{ loop.index / loop.length }}s">
+
+                                        <a class="" target="{{ item.target }}" href="{{ item.link }}" data-id="{{ item.object_id }}">
+                                            <span>{{ item.title }}</span>
+                                        </a>
+                                        
+
+                                    </li>
+
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+/**
+ * Instagram post
+ *
+ * @uses .Instagram-post
+ */
+.Instagram-post {
+	@extend %float-xs-left;
+	@include padding(
+		left $grid-gutter-width / 2
+		right $grid-gutter-width / 2
+	);
+
+	width: percentage( ( $container-width-unitless / 6 ) / $container-width-unitless );
+	
+	a { @extend %display-xs-block; }
+
+
+	/**
+	 * Thumbnail
+	 *
+	 * @uses .Instagram-post .thumbnail
+	 */
+	.thumbnail {
+		$opacity: .15;
+
+		@extend %display-xs-inline-block, %vertical-align-middle;
+		@include size( 100%, auto );
+		
+		box-shadow: 
+			0px 
+			( $grid-gutter-width / 10 ) 
+			( $grid-gutter-width / 2 ) 
+			0px 
+			rgba( the_color( red, bright ), $opacity )
+		; 
+	}
+}

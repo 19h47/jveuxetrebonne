@@ -1,0 +1,94 @@
+{
+  "name": "jveuxetrebonne",
+  "version": "1.0.0",
+  "description": "J'veux être bonne website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jérémy Levron <levronjeremy@19h47.fr> (http://www.19h47.fr)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/19h47/jveuxetrebonne.git"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "aos": "^2.1.1",
+    "barba.js": "^1.0.0",
+    "browserify": "^14.1.0",
+    "browserify-shim": "^3.8.14",
+    "feature.js": "^1.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-csso": "^3.0.0",
+    "gulp-merge-media-queries": "^0.2.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-svgmin": "^1.2.3",
+    "gulp-svgstore": "^6.1.0",
+    "gulp-uglify": "^2.1.2",
+    "gulp-util": "^3.0.8",
+    "hogan.js": "^3.0.2",
+    "instafeed.js": "^1.4.1",
+    "mustache": "^2.3.0",
+    "polyfill-nodelist-foreach": "^1.0.1",
+    "promise-polyfill": "^6.0.2",
+    "rellax": "^1.0.0",
+    "require-dir": "^0.3.1",
+    "slick-carousel": "^1.7.1",
+    "sprintf-js": "^1.1.1",
+    "sticky-kit": "git+https://github.com/leafo/sticky-kit.git",
+    "svgo": "^0.7.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "vinyl-transform": "^1.0.0"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "jquery": "global:$",
+    "barba.enhanced.js": {
+      "depends": [
+        "barba.js"
+      ]
+    },
+    "gsap.plugins.DrawSVGPlugin": "DrawSVGPlugin",
+    "gsap.easing.CustomEase": "CustomEase"
+  },
+  "dependencies": {
+    "bootstrap-sass": "latest",
+    "breakpoint-sass": "^2.7.1",
+    "breakpoint-slicer": "^2.0.0",
+    "corejs-typeahead": "^1.1.1",
+    "dom-classes": "^1.0.0",
+    "dom-css": "^2.1.0",
+    "dom-select": "^1.0.0",
+    "dom-style": "^1.0.0",
+    "ress": "^1.2.2"
+  },
+  "browser": {
+    "TweenMax": "./src/js/vendors/gsap/uncompressed/TweenMax.js",
+    "jquery": "http://code.jquery.com/jquery-3.1.1.min.js",
+    "barba.enhanced.js": "./src/js/vendors/barba.enhanced.js",
+    "gsap.plugins.DrawSVGPlugin": "./src/js/vendors/gsap/uncompressed/plugins/DrawSVGPlugin.js",
+    "gsap.easing.CustomEase": "./src/js/vendors/gsap/uncompressed/easing/CustomEase.js",
+    "slick-carousel": "./node_modules/slick-carousel/slick/slick.js"
+  },
+  "bugs": {
+    "url": "https://github.com/19h47/jveuxetrebonne/issues"
+  },
+  "keywords": [
+    "Timber",
+    "WordPress",
+    "Twig",
+    "Sass"
+  ],
+  "homepage": "https://github.com/19h47/jveuxetrebonne#getting-started"
+}

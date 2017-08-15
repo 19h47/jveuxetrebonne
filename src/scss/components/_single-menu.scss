@@ -1,0 +1,182 @@
+/**
+ * Single menu
+ *
+ * @uses .Single-menu
+ */
+.Single-menu {
+	$this: &;
+
+	@extend %Position-fixed-center, %overflow-scroll, %Transition-ease;
+
+	background: {
+		color: the_color( white );
+	}
+	opacity: 0;
+	visibility: hidden;
+	z-index: 40;
+
+	@at-root .#{ map-get( $state-classes, single-menu-open ) } & {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	&.is-hover {
+		
+		#{ $this }__item:not(:hover) {
+			opacity: .07;
+		}
+	}
+
+	&__items {
+		@extend %list-unstyled, %margin-xs-0;
+
+		color: the_color( gray, very-dark );
+	}
+
+
+	&__background {
+		@extend %Position-absolute-center;
+	}
+	
+
+	/**
+	 * Item
+	 *
+	 * @uses .Single-menu__item
+	 */
+	&__item {
+		$font-size: 60;
+		$line-height: 41.94;
+
+		@extend %display-xs-inline-block, %font-title, %font-semibold, %Transition-ease;
+		@include margin( 
+			top 0
+			right ( ( ( 30 * 100 ) / $psd-width-unitless ) * 1vw ) 
+			bottom 0
+			left ( ( ( 30 * 100 ) / $psd-width-unitless ) * 1vw ) 
+		);
+		
+		font: {
+			size: ( $font-size * 1px );
+		}
+		line-height: ( $line-height / $font-size );
+
+		animation: {
+			name: fade-in-down;
+			duration: .3s;
+			timing-function: ease-in;
+			play-state: paused;
+			fill-mode: backwards;
+		}
+		// opacity: 0;
+		// transform: translateY( ( $grid-gutter-width * -1 ) );
+		
+		@at-root .#{ map-get( $state-classes, single-menu-open ) } & {
+			animation: {
+				play-state: running;
+			}
+		}
+
+		a {
+			@include padding( top 10px right 10px bottom 10px left 10px );
+		}
+
+		/**
+		 * Stroke marker
+		 *
+		 * @uses .Menu .item.--has-stroke-marker
+		 */
+		&.has-stroke-marker {
+			a {
+				@extend %position-xs-relative, %Transition-ease;
+
+				&::before {
+					@extend %Position-absolute-center, %display-xs-inline-block, %Transition-ease, %Pointer-events-none;
+
+					background: {
+						image: url( '#{ map-get( $directories, svg ) }marker-stroke.svg' );
+						position: center;
+						size: 100% 100%;
+					}
+					content: '';
+
+					opacity: 0;
+					transform: translate3d( ( ( $grid-gutter-width / 4 ) * -1 ), 0, 0 );
+
+					z-index: 10;
+				}
+
+				span {
+					@extend %position-xs-relative;
+
+					z-index: 20;
+				}
+
+
+				&:hover {
+					
+					color: the_color( white );
+
+					&::before {
+						transform: translate3d( 0, 0, 0 );
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+
+	&__thumbnail {
+		$height: 403;
+		@extend %position-xs-relative;
+
+		height: ( $height * 1px );
+		max-height: ( ( $height * 100 ) / 900 ) * 1vh;
+		
+		
+		img {
+			@extend %Position-absolute-center, %display-xs-inline-block, %Transition-ease;
+			@include size( 100% );
+
+			object-fit: cover;
+
+			opacity: 0;
+			transform: translate3d( ( $grid-gutter-width * -1 ), 0, 0 );
+	
+			&.is-active {
+				transform: translate3d( 0, 0, 0 );
+				opacity: 1;
+			}
+		}
+
+	}
+
+
+	&__button {}
+
+
+	/**
+	 * Close
+	 *
+	 * @uses .Search .close
+	 */
+	&__close {
+		$size: 23;
+
+		@include absolute( top 0 right 0 );
+		@include margin( 
+			top percentage( 63 / $psd-width-unitless )
+			right percentage( 100 / $psd-width-unitless ) 
+		);
+		@include size( $size * 1px );
+
+		z-index: 10;
+
+		svg {
+			max-width: $size * 1px;
+			max-height: $size * 1px;
+
+			fill: the_color( gray, very-dark );
+		}
+	}
+}

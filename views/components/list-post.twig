@@ -1,0 +1,42 @@
+{#
+    
+    /**
+     * components/list-post
+     * 
+     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     */
+    
+#}
+
+<article class="List-post js-load-more-post">
+	
+	<a class="link" href="{{ post.link }}">		
+		<img class="thumbnail" src="{{ post.thumbnail }}">
+	</a>
+	
+
+	{% spaceless %}
+		
+	<div class="List-post-meta">
+		
+		{# Date #}
+		<p class="date">{{ post.date }}</p>
+	 	
+
+	 
+	 	<span class="display-xs-inline-block">&nbsp;&bull;&nbsp;</span>
+	 	
+		
+		{# Categories #}
+	 	<em class="categories">{{ post.categories | join( ', ' ) | replace( post.name, '' ) }}</em>
+		
+
+		{# Link #}
+		<a class="link" href="{{ post.link }}" title="{{ post.title }}">
+			<h3 class="title">{{ post.title }}</h3>
+		</a>
+	
+	</div>
+	{% endspaceless %}
+	
+</article>

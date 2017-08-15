@@ -1,0 +1,46 @@
+{#
+	/**
+	 * /views/partials/contact
+	 */
+#}
+
+<div class="Contact">
+
+	<div class="display-xs-table w-xs-100 h-xs-100">
+		<div class="display-xs-table-cell vertical-align-middle h-xs-100">
+			<div class="l-container">
+				<div class="row">
+					
+					<div class="col-xs-12 col-md-10 col-md-offset-1">
+						<div class="Contact-wrapper">
+							<h2 class="title">
+								{{- pll__( 'Ça te plaît ?' ) -}}
+							</h2>
+							<p class="catch-phrase">
+								{{- pll__( 'Abonne-toi et reçois les dernières actualités directement dans ta boîte mail.' ) -}}
+							</p>
+
+							<form class="Contact-form" action="">
+								{% spaceless %}
+									
+								<input class="input" type="text" placeholder="Votre adresse email" />
+								<button class="button" type="submit">
+									<svg class="button__decor">
+									   <use xlink:href="{{ theme.link }}/dist/svg/icons#paper-plane"></use>
+									</svg>
+									<span class="button__label">
+										{{- pll__( 'Allez viens, on est bien !' ) -}}
+									</span>
+								</button>
+
+								{% endspaceless %}
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

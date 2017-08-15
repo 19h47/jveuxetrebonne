@@ -1,0 +1,63 @@
+{#
+	/**
+	 * /views/pages/front-page
+	 */
+#}
+{% extends 'index.twig' %}
+
+{% block content %}
+	
+	{{ parent() }}
+	<div class="Front-page-header">
+		<div class="l-container">
+			<div class="row">
+				<div class="col-xs-12 col-md-1">
+					<div class="Header-logo">
+						{% include 'components/header-logo.twig' %}
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-10 col-md-offset-1">
+					<ul class="Menu" role="navigation">
+						{% 
+							include 'components/menu.twig' 
+							with { 
+								'menu' : menu.categories,
+								'language': true,
+								'search': true,
+								'layout': {
+									'desktop': true
+								}
+							} 
+						%}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div> 	
+	
+	<div class="l-container">
+		<div class="Sticky-posts">
+			{{ sticky_post }}
+		</div>
+	</div>
+
+	<h2 class="Heading Heading--marquee">
+		<span>{{- pll__( 'Découvrir les articles') -}}</span>
+	</h2>
+
+	
+	<div class="l-container">
+		
+		{% 
+			include 'partials/load-more.twig'
+			with {
+				'post_template_name': 'tease',
+				'load_more_label': pll__( "Charger plus d'article" )
+			}
+		%}
+
+	</div>
+
+	{% include 'partials/instagram.twig' %}
+
+{% endblock %}

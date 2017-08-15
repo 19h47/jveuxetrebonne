@@ -1,0 +1,41 @@
+{#
+    
+    /**
+     * partials/instagram
+     * 
+     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     */
+    
+#}
+
+<div class="Instagram-posts">
+	<div class="l-container">
+
+		{# Header #}
+		<header class="Instagram-posts-header">
+
+			{# Title #}
+			<h2 class="title">
+				{{- pll__( 'mes aventures' ) -}}
+			</h2>
+
+			{# Catchphrase #}
+			<div class="catchphrase">
+				{{- pll__( 'Suis-moi sur Instagram !') -}}
+			</div>
+		</header>
+
+
+		{# Container #}
+		<div id="js-instagram" class="Instagram-posts-container row"></div>
+		
+
+		{# Footer #}
+		<footer class="Instagram-posts-footer">
+			<a class="Link-readmore" href="{{ contact.socials.instagram.url }}">
+				{{- pll__( 'Voir plus de publications' ) -}}
+			</a>
+		</footer>
+
+	</div>
+</div>

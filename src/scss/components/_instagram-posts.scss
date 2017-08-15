@@ -1,0 +1,87 @@
+/**
+ * Instagram
+ *
+ * @uses .Instagram-posts
+ */
+.Instagram-posts {
+	@include padding( top 20px bottom 48px );
+	
+	background: linear-gradient(
+		33deg, 
+		the_color( orange, light-grayish-01 ) 0%,
+		the_color( orange, light-grayish-02 ) 100%
+	);
+
+	color: the_color( white );
+
+	
+	/**
+	 * Header
+	 *
+	 * @uses .Instagram-posts-header
+	 */
+	&-header { @extend %text-xs-center; }
+	
+
+	/**
+	 * Container
+	 *
+	 * @uses .Instagram-posts-container
+	 */
+	&-container {
+		$padding: 48;
+		
+		@include padding( 
+			top $padding * 1px 
+			bottom $padding * 1px 
+		);
+	}
+
+
+	/**
+	 * Footer
+	 *
+	 * @uses .Instagram-posts-footer
+	 */
+	&-footer { @extend %text-xs-center; }
+	
+
+	/**
+	 * Title
+	 * 
+	 * @uses .Instagram-posts-header .title
+	 */
+	.title {
+		$font-size: 45;
+		$line-height: 80;
+
+		@extend %font-bold, %margin-xs-0;
+		@include letter-spacing( 15 );
+		
+		color: rgba( the_color( white ), .55 );
+		font: {
+			size: ( $font-size / $base-font-size ) * 1em;
+		}
+		line-height: $line-height / $font-size;
+	}
+	
+
+	/**
+	 * Catchphrase
+	 * 
+	 * @uses .Instagram-posts-header .catchphrase
+	 */
+	.catchphrase {
+		$font-size: 15;
+		$line-height: 69.99;
+
+		@extend %font-semibold, %font-title;
+		@include margin( top -25px bottom -15px );
+		
+		color: the_color( orange, very-soft-01 );
+		font: {
+			size: ( $font-size / $base-font-size ) * 1em;
+		}
+		// line-height: $line-height / $font-size;
+	}
+}

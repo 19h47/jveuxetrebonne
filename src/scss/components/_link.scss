@@ -1,0 +1,23 @@
+/**
+ * Link
+ *
+ * @uses .Link
+ */
+.Link {
+	
+
+	/**
+	 * Readmore
+	 *
+	 * @uses .Link-readmore
+	 */
+	&-readmore {
+		@extend %Pointer-events-auto;
+		
+		color: currentColor;
+		font: {
+			family: map-get( map-get( $font, families ), title );
+			weight: map-get( map-get( $font, weights ), bold );
+		}
+	}
+}

@@ -1,0 +1,77 @@
+{#
+    
+    /**
+     * /views/components/tease-post
+     *
+     * @package WordPress
+     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     */
+    
+#}
+
+{% if ( loop.index ) % 5 == 1 %}
+    {% set width, height, class = 817, 866, 'first' %}
+{% endif %}
+
+
+{% if ( loop.index ) % 5 == 2 %}
+    {% set width, height, class = 393, 319, 'second' %}
+{% endif %}
+
+
+{% if ( loop.index ) % 5 == 3 %}
+    {% set width, height, class = 393, 315, 'third' %}
+{% endif %}
+
+{% if ( loop.index ) % 5 == 4 %}
+    {% set width, height, class = 393, 315, 'fourth' %}
+{% endif %}
+
+{% if ( loop.index ) % 5 == 0 %}
+    {% set width, height, class = 393, 315, 'fifth' %}
+{% endif %}
+
+
+<article id="Tease-post-{{ post.ID }}"class="Tease-post Tease-post--{{ class }} js-load-more-post" data-index="{{ loop.index }}">
+    <a href="{{ post.link }}">
+
+        <div class="Tease-post-inner">
+    	   
+            {# Header #}
+            <header class="Tease-post-header">
+                
+                <div class="Tease-post-header__meta">
+                    {% spaceless %}
+                    
+                	{# Date #}
+                    <p class="date">
+                        {{- pll__( 'Publié le' ) -}}&nbsp;{{- post.date|date( 'd.m.Y' ) -}}
+                    </p>
+
+                    <span class="display-xs-inline-block font-title">&nbsp;&bull;&nbsp;</span>
+
+                    {# Category #}
+                    <p class="category">
+                        <em class="lowercase">{{- post.terms( 'category' ) | join(', ') -}}</em>
+                    </p>
+
+                    {% endspaceless %}
+                </div>
+
+                {# Title #}
+                <h2 class="title">{{- post.title -}}</h2>
+            </header>
+
+            {# Thumbnail #}
+            <img 
+                class="thumbnail" 
+                src="{{ post.thumbnail.src | tojpg | resize( width, height ) }}" 
+                alt="" 
+                width="{{ width }}"
+                height="{{ height }}"
+            />
+        
+        </div>
+
+    </a>    
+</article>

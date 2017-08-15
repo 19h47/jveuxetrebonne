@@ -1,0 +1,96 @@
+{#
+	/**
+	 * /views/pages/category
+	 */
+#}
+{% extends 'index.twig' %}
+
+{% block content %}
+	
+	{{ parent() }}
+		
+	<div class="Category-header l-container">
+		<div class="row">
+			<div class="col-xs-12 col-md-1">
+				<div class="Header-logo">
+					{% include 'components/header-logo.twig' %}
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-10 col-md-offset-1">
+				<ul class="Menu" role="navigation">
+					{% 
+						include 'components/menu.twig' 
+						with { 
+							'menu' : menu.categories,
+							'language': true,
+							'search': true,
+							'layout': {
+								'desktop': true
+							}
+						} 
+					%}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	{# {{ category.children|print_r}} #}
+	{% if category.children %}
+		
+		<div class="Category-list-childs js-filter">
+			<div class="l-container">
+				<div class="row">
+
+					{% for category in category.children %}
+						{# {{ category|print_r }} #}
+						<div class="col-xs-2">
+
+							<button 
+								class="Category-list-child js-filters-button" 
+								style="animation-delay: {{ loop.index / loop.length }}s" 
+								data-tag="{{ category.term_id }}" data-count="{{ category.count }}"
+								data-post-per-page="9"
+								data-description="{{ category.description is empty ? category.name : category.description }}"
+							>
+								<div class="thumbnail">
+									<img 
+										src="{{ Image( category.thumbnail.id ).src|resize( 183, 183) }}" 
+										alt="{{ category.thumbnail.alt }}" 
+										width="{{ category.thumbnail.width }}" 
+										height="{{ category.thumbnail.height }}" 
+									/>
+								</div>
+								<h2 class="title" data-term-id="{{ category.term_id }}" data-description="{{ category.description is empty ? category.name : category.description }}">
+									{{ category.name }}
+								</h2>
+							</button>
+						</div>
+					{% endfor %}
+
+				</div>
+			</div>
+		</div>	
+
+	{% endif %}
+	
+
+	<h2 class="Heading Heading--marquee js-heading">
+		<span>{{- category.description is empty ? category.name : category.description -}}</span>
+	</h2>
+
+	
+	<div class="l-container">
+		
+		{% 
+			include 'partials/load-more.twig'
+			with {
+				'post_template_name': 'list',
+				'load_more_label': pll__( "Afficher plus d'article" )
+			}
+		%}
+
+	</div>
+
+	{% include 'partials/instagram.twig' %}
+
+{% endblock %}

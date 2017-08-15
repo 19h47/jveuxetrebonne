@@ -1,0 +1,193 @@
+{#
+	/**
+	 * /views/singles/index
+	 */
+#}
+
+{% extends 'index.twig' %}
+
+{% block content %}
+
+	{{ parent() }}
+	<div class="Single-header">
+		<div class="l-container">
+			<div class="row">
+				<div class="col-xs-12 col-md-1">
+					<div class="Header-logo">
+						{%
+							include 'components/header-logo.twig'
+						%}
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-10 col-md-offset-1">
+					<ul class="Menu" role="navigation">
+						{% 
+							include 'components/menu.twig' 
+							with { 
+								'menu' : menu.categories,
+								'language': true,
+								'search': true,
+								'layout': {
+									'desktop': false,
+									'single': true
+								}
+							} 
+						%}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div> 		
+
+	
+	<div class="Single-introduction" style="background-image: url('{{ TimberImage( post.thumbnail ).src }}');">
+		{# <img src="{{ TimberImage( post.thumbnail ).src }}"> #}
+	</div>	
+
+	<div class="l-container js-sticky-container">
+		<div class="row">
+			
+			<aside class="Single-aside col-xs-2 position-xs-static">
+			
+				{# {{ post|print_r}} #}
+
+				{# Breadcrumb #}
+				<div class="Single-breadcrumb">
+					<ul class="Single-breadcrumb__items">
+						<li class="Single-breadcrumb__item">
+							{% spaceless %}
+								
+							<a href="{{- site.url -}}">
+								<svg role="img">
+									<use xlink:href="{{- theme.link -}}/dist/svg/icons.svg#list-style-type-dash"/>
+								</svg>
+								{{- pll__( 'Accueil' ) -}}
+							</a>
+
+							{% endspaceless %}
+						</li>
+						<li class="Single-breadcrumb__item">
+
+							{% spaceless %}
+
+							<svg role="img">
+								<use xlink:href="{{- theme.link -}}/dist/svg/icons.svg#list-style-type"/>
+							</svg>
+							<span class="display-xs-inline-block">
+								{% for category in categories %}
+										{{- category.name -}}
+										{{- not loop.last ? ', ' -}}
+								{% endfor %}
+							</span>
+							{% endspaceless %}
+
+						</li>
+						<li class="Single-breadcrumb__item title">
+							<svg role="img">
+								<use xlink:href="{{- theme.link -}}/dist/svg/icons.svg#list-style-type"/>
+							</svg>
+							{{- post.title -}}
+						</li>
+					</ul>
+				</div>
+
+				{% if post.get_field( 'rich_content' ) %}
+					<div class="Slider-rich-content js-slider-rich-content">
+						<ul class="Slider-rich-content__items js-slider-rich-content-container">
+						
+							{% for rich_content in post.get_field( 'rich_content' ) %}
+								<li class="Slider-rich-content__item" data-id="{{ rich_content.id }}">
+									
+									{% if rich_content.img %}
+									<img 
+										class="img"
+										src="{{ TimberImage( rich_content.img ).src }}"
+										width="{{ TimberImage( rich_content.img ).width }}"
+										height="{{ TimberImage( rich_content.img ).height }}"
+										alt="{{ TimberImage( rich_content.img ).alt }}"
+									>
+									{% endif %}
+									
+									<h3 class="title">
+										{{ rich_content.title | raw }}
+									</h3>
+
+									<div class="content">
+										{{ rich_content.content }}
+									</div>
+
+									{% if rich_content.link %}
+										<a class="link" href="{{ rich_content.link }}" target="_blank">
+											{{ rich_content.label ? rich_content.label : pll__( 'Découvrir' ) }}
+										</a>
+									{% endif %}
+
+								</li>
+							{% endfor %}
+
+						</ul>
+
+						{% if post.get_field( 'rich_content' )|length > 1 %}
+
+							<div class="Slider-rich-content__progressbar js-slider-rich-content-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+
+							<div class="Slider-rich-content__navigation">
+
+	        					<button class="previous js-slider-rich-content-previous"></button>
+	        					<button class="next js-slider-rich-content-next"></button>
+
+	        					<span class="count">
+	    							<i class="count-inner js-slider-rich-content-count" data-count="1">
+	    								/{{ post.get_field( 'rich_content' )|length }}
+	    							</i>
+	    						</span>
+	        				</div>
+						{% endif %}
+					</div>
+				{% endif %}
+			</aside>
+
+			<div class="col-xs-10">
+
+				<article class="Single-article">
+
+					{# {{ post|print_r}} #}
+					<h1 class="title">{{ post.title }}</h1>
+
+					{# Date #}
+					<p class="date">
+
+						{{- pll__( 'Publié le' ) -}}&nbsp;{{ post.post_date | date( 'd\.m\.Y' ) }}
+					</p>
+					
+					{# Preview #}
+					{% if post.get_field( 'preview' ) %}
+					<p class="preview">
+						{{ post.get_field( 'preview' ) | nl2br }}
+					</p>
+					{% endif %}
+
+					{# Content #}
+					<div class="content js-single-content">
+						{{ post.content }}
+					</div>
+
+				</article> 
+			</div>
+		</div>
+	</div>	
+
+
+	{# Comment count #}
+	{% if post.comment_count > 2 and post.comment_status == 'open' %} 
+		
+		<p>{{ post.comment_count ~ '&nbsp;' ~ pll__( 'commentaires' ) }}</p>
+
+	{% else %}
+		
+		<p>{{ post.comment_count ~ '&nbsp;' ~ pll__( 'commentaire' ) }}</p>
+
+	{% endif %}
+
+
+{% endblock %}

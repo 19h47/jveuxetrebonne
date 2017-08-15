@@ -1,0 +1,82 @@
+{#
+    
+    /**
+     * /views/components/menu
+     * 
+     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     */
+    
+#}
+
+{% spaceless %}
+
+{# Item single #}
+{% if layout.single %}{% include 'components/single-menu.twig' %}{% endif %}
+        
+    
+{# Item #}
+{% for item in menu.get_items if layout.desktop %}
+
+    {# {{ item | print_r }} #}
+    <li class="item has-stroke-marker {{ item.class }}{{ item.current ? ' is-current' }}">
+
+        <a class="" target="{{ item.target }}" href="{{ item.link }}">
+            <span>{{ item.title }}</span>
+        </a>
+
+	</li>
+
+{% endfor %}
+
+
+{# Single button #}
+{% if layout.single %}
+
+<li class="menu-item-button item">
+    <button class="js-single-menu-button">
+        <svg class="Icon magnifying-glass">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ theme.link }}/dist/svg/icons.svg#hamburger"></use>
+        </svg>
+    </button>
+</li> 
+
+{% endif %}
+
+
+{# Language #}
+{% if language %}
+
+    {% set languages = pll_the_languages( { 'raw': true } ) %}
+
+    {% for lang in languages if not lang.current_lang %}
+        
+        <li class="item menu-item-lang {{ lang.classes | join(' ') }}">
+            <a href="{{ lang.url }}">
+                <span class="en">EN</span>
+                &nbsp;•&nbsp;
+                <span class="fr">FR</span>
+            </a>
+        </li>
+
+    {% endfor %}
+
+{% endif %}
+
+
+{# Search #}
+{% if search %}
+
+<li class="item menu-item-search">
+    
+    <button class="menu-item-search__button js-search-button">
+        <svg class="Icon magnifying-glass">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ theme.link }}/dist/svg/icons.svg#magnifying-glass"></use>
+        </svg>
+    </button>
+
+</li>
+
+{% endif %}
+
+
+{% endspaceless %}
