@@ -167,9 +167,14 @@
 	 * @uses .Sticky-post .thumbnail
 	 */
 	.thumbnail {
+		@extend %display-xs-block;
 		width: 100%;
 		max-width: 100%;
 		box-shadow: 1px 3px ( $grid-gutter-width / 2 ) 0px rgba( the_color( gray, very-dark ), 0.15); 
+
+		img {
+			@extend %display-xs-inline-block, %vertical-align-middle;
+		}
 		
 		@include from( 'md' ) {
 			@include margin( left #{ $grid-gutter-width * -1 } );
