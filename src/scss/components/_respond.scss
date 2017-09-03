@@ -1,0 +1,97 @@
+/**
+ * Respond
+ *
+ * @uses .Respond
+ */
+.Respond {
+	@include margin( right auto bottom 38px left auto );
+	// @include font( 16, 80 );
+	width: percentage( 1090 / $container-width-without-outer-gutter-unitless );
+
+	font: {
+		size: ( $base-font-size / 16 ) * 1em;
+	}
+	
+	.email,
+	.author,
+	.url,
+	.comment {
+		@extend %font-title, %font-medium;
+		@include reset-placeholder( the_color( white ) );
+
+		border: {
+			bottom: {
+				color: the_color( white );
+				style: solid;
+				width: 1px;
+			}
+		}
+		color: the_color( white );
+		outline: none;
+	}
+
+
+	.comment,
+	.email, 
+	.author,
+	.url {
+		@include margin( top ( $grid-gutter-width / 2 ) );
+		@include padding( 
+			top ( $grid-gutter-width / 2 )
+			bottom ( $grid-gutter-width / 2 )
+		);
+	}
+	
+	.email {
+		@include margin( 
+			right ( $grid-gutter-width / 2 ) 
+		);
+	}
+
+	.url {
+		@include margin(
+			left ( $grid-gutter-width / 2 ) 
+		);
+	}
+
+	.email,
+	.url { width: calc( 50% - #{ $grid-gutter-width / 2 } ); }
+	
+	.comment,
+	.author { @extend %w-xs-100; }
+
+	.comment {
+		height: ( $grid-gutter-width * 2 );
+		resize: none;
+	}
+
+	.submit,
+	.cancel {
+		@extend %display-xs-inline-block, %font-semibold, %font-title;
+		@include font( 13, 33 );
+		
+		color: the_color( white );
+		width: calc( 50% - #{ $grid-gutter-width / 2 } );
+	}
+
+	.submit {
+		button {
+			@extend .Link-readmore, .Link-marker, .Link-marker--orange-soft;
+			@include margin( top ( $grid-gutter-width / 2 ) left $grid-gutter-width );
+
+			&:hover { &::before { opacity: .25!important; } }
+		}
+	}
+
+	.cancel {
+		@extend %text-xs-right;
+		
+		// p { @include margin( top ( $grid-gutter-width / 2 ) right $grid-gutter-width ); }
+		
+		a {
+			@extend .Link-readmore, .Link-marker, .Link-marker--orange-soft;
+
+			&:hover { &::before { opacity: .25!important; } }
+		}
+	}
+}
