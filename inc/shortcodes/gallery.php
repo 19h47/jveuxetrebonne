@@ -57,7 +57,6 @@ function slider_shortcode( $output, $attr ) {
     $context['post'] = array();
     $context['post']['gallery'] = array();
 
-    $i = 1;
     
     foreach ( $attachments as $id => $attachment ) {
 
