@@ -1,4 +1,15 @@
+{#
+    
+    /**
+     * partials/slider-post
+     * 
+     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     */
+    
+#}
+
 <div class="Slider-post js-slider-post">
+    
     <ul class="Slider-post__items js-slider-post-container">
         {% for image in post.gallery %}
        
@@ -11,23 +22,22 @@
 
     {% if post.gallery|length > 1 %}
 
-    <div class="Slider-post__progressbar js-slider-post-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+	    <div class="Slider-post__progressbar js-slider-post-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+		
+	    {# Navigation #}
+	    <div class="Slider-post__navigation">
 
-    {# Navigation #}
-    <div class="Slider-post__navigation">
+	    	<button class="previous js-slider-post-previous"></button>
+	    	<button class="next js-slider-post-next"></button>
 
-    	<button class="previous js-slider-post-previous"></button>
-    	<button class="next js-slider-post-next"></button>
+	    	<span class="count">
+	    		<i class="count-inner js-slider-post-count" data-count="1">
+	    			/{{ post.gallery|length }}
+	    		</i>
+	    	</span>
 
-    	<span class="count">
-    		<i class="count-inner js-slider-post-count" data-count="1">
-    			/{{ post.gallery|length }}
-    		</i>
-    	</span>
-
-    </div>
+	    </div>
 
 	{% endif %}
-
 
 </div>
