@@ -73,7 +73,10 @@ SliderRichContent.prototype = {
                         .css('background-size', calc + '% 100%')
                         .attr('aria-valuenow', calc );
 
-                    slider.count[0].dataset.count = current + 1;
+                    if (slider.count[0]) {
+
+                        slider.count[0].dataset.count = current + 1;
+                    }
                 })
 
 
