@@ -7,6 +7,10 @@
 .Single {
 	@extend %position-xs-relative;
 
+	.l-wrapper {
+		overflow-x: hidden;
+	}
+
 	/**
 	 * Header
 	 *
@@ -169,6 +173,8 @@
 				background: {
 					image: url( '#{ map-get( $directories, svg ) }marker-stroke-orange.svg' );
 				}
+				
+				transform: translate3d( 5px, -3px, 0 );
 			}
 
 			span {
@@ -180,6 +186,7 @@
 					size: 100% 100%;
 				}
 				content: '';
+				transition: transform .3s ease-in-out;
 
 				z-index: 10;
 
@@ -195,6 +202,139 @@
 				}
 			}
 		}
+
+		.image-content-link {
+			$animation-duration: 1.15s;
+			$this: &;
+			@extend %position-xs-relative;
+
+			z-index: 25;
+
+			.letters {
+				@extend %position-xs-relative, %Cursor-pointer;
+			}
+
+			i {
+				@extend %display-xs-inline-block, %Transition-ease;
+
+				animation: {
+					direction: alternate;
+					duration: .7s;
+					iteration-count: infinite;
+					name: wave;
+					timing-function: ease-in-out;
+					play-state: running;
+				}
+			}
+
+			.image {
+				
+				@include padding( top 2em bottom 2em );
+				@include absolute( left 0 bottom 100% );
+				@extend %overflow-hidden, %display-xs-inline-block;
+			
+				visibility: hidden;
+
+				img {
+					@extend %display-xs-inline-block, %vertical-align-middle;
+					@extend %Transition-ease;
+					max-width: none;
+					
+					opacity: 0;
+				}
+
+				&::after {
+					@extend %display-xs-block;
+					@include absolute( top 0 right 0 bottom 0 left 0 );
+					@include margin( top 2em bottom 2em );
+
+					background: { color: the_color( orange, light-grayish-01 ); }
+					content: '';
+
+					animation-duration: $animation-duration;
+					transform-origin: right center;
+					transform: translateX( 0% ) scaleY( 1 ) scaleX( 0 );
+				}
+			}
+
+			&::before {
+				@extend %Position-fixed-center, %display-xs-block, %Pointer-events-none, %Transition-ease;
+
+				background: { color: rgba( the_color( white ), .9 ) }
+				content: '';
+
+				opacity: 0;
+				visibility: hidden;
+			}
+
+			&:hover {
+
+				i {
+					animation: none;
+				}
+
+				.image img {
+					transition-delay: ( $animation-duration / 2 );
+				}
+				
+				.image,
+				.image img,
+				&::before {
+					opacity: 1;
+					visibility: visible;
+				}
+
+				.image {
+
+					&::after {
+						animation-name: filler;
+						animation-iteration-count: 1;
+						animation-timing-function: cubic-bezier( 0.81, 0.15, 0.26, 0.99 );
+					    animation-fill-mode: forwards;
+					}
+				}
+			}
+		}
+
+		.aside {
+			@include absolute( top 0 right 0 );
+			@include margin( top ( $grid-gutter-width * 4 ) );
+
+			width: percentage( 76 / 1029 );
+
+			&-socials {
+				@extend .list-unstyled;
+				@extend %margin-xs-0;
+
+				&__item {
+					@extend %vertical-align-middle;
+					@include size( $grid-gutter-width );
+					@include margin( 
+						top ( $grid-gutter-width  / 2 )
+						bottom ( $grid-gutter-width  / 2 )
+					);
+
+					a {
+						@extend %display-xs-block;
+
+						&:hover {
+							svg {
+								fill: the_color( orange, very-soft-01 );
+							}
+						}
+					}
+
+					svg {
+						@extend %display-xs-inline-block, %vertical-align-middle, %Transition-ease;
+
+						max-width: $grid-gutter-width;
+						max-height: $grid-gutter-width;
+
+						fill: the_color( blue, light-grayish );
+					}
+				}
+			}
+		}
 	}	
 
 
@@ -204,12 +344,41 @@
 	 * @uses .Single-breadcrumb
 	 */
 	&-breadcrumb {
-		@extend %font-title, %font-medium;
+		@extend %font-title, %font-medium, %position-xs-relative;
 		@include font( 13, 25 );
 		@include padding( top $grid-gutter-width bottom $grid-gutter-width );
+		
+		&::before {
+			@extend %display-xs-block;
+			@include absolute( 
+				top 0 
+				right ( percentage( $grid-gutter-width-unitless / 182 ) * -1 )
+				bottom 0
+				left ( percentage(  100 / 182 ) * -1 )
+			);
+
+			content: '';
+			background: 
+		        linear-gradient(
+		        	-135deg, 
+		        	rgba( the_color( orange, light-grayish-03 ), 1 ) 0%,
+		        	rgba( the_color( orange, very-soft-05 ), 1 ) 100%
+		        );
+		    border: {
+		    	bottom: {
+		    		color: rgba( the_color( orange, dark-grayish ), .15 );
+		    		style: solid;
+		    		width: 1px;
+		    	}
+		    }
+		    z-index: 5;
+
+		}
 
 		&__items {
-			@extend %list-unstyled, %margin-xs-0;
+			@extend %list-unstyled, %margin-xs-0, %position-xs-relative;
+
+			z-index: 9;
 
 		}
 		&__item {
@@ -249,4 +418,20 @@
 			}
 		}
 	}
+
+	
+	/**
+	 * Aside
+	 *
+	 * @uses .Single-aside
+	 */
+	&-aside {}
+
+
+	/**
+	 * Relationship posts
+	 *
+	 * @uses .Single .Relationship-posts
+	 */
+	.Relationship-posts { @include margin( top ( $grid-gutter-width * -2 ) ); }
 }

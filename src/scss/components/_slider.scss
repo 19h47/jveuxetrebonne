@@ -137,7 +137,25 @@
 	 */
 	&-rich-content {
 
-		&__items { @extend %list-unstyled, %margin-xs-0; }
+		&__items { 
+			@extend %list-unstyled, %margin-xs-0, %position-xs-relative; 
+			
+			&::before {
+				@include absolute( 
+					top 0 
+					right ( percentage( $grid-gutter-width-unitless / 182 ) * -1 )
+					bottom 0
+					left ( percentage(  100 / 182 ) * -1 )
+				);
+			    background: 
+			        linear-gradient(
+			        	135deg, 
+			        	rgba( the_color( orange, very-soft-05 ), 1 ) 0%,
+			        	rgba( the_color( orange, light-grayish-03 ), 1 ) 100%
+			        );
+				content: '';
+			}
+		}
 
 		&__item {
 			@include margin( top 0 bottom 40px );
@@ -178,11 +196,18 @@
 				@include font( 13.27, 23.68 );
 
 				color: the_color( orange, mostly-desaturated-dark );
+
+				&::before {
+					&:hover {
+						opacity: .3!important;
+					}
+				}
 			}
 		}
 
 		&__progressbar {
-			@extend %Transition-ease;
+			@extend %Transition-ease, %position-xs-relative;
+			left: percentage( 100 / 182 ) * -1;
 
 			height: 7px;
 			background: {
@@ -190,6 +215,8 @@
 				size: 0 100%;
 				image: linear-gradient( to right, the_color( orange, very-soft-04 ), the_color( orange, very-soft-04 ) );
 			}
+
+			width: percentage( 312 / 182 );
 		}
 
 		&__navigation {
@@ -238,5 +265,68 @@
 				}
 			}
 		}
+	}
+
+
+	/**
+	 * Slider category videos
+	 *
+	 * @uses .Slider-category-videos
+	 */
+	&-category-videos {
+		@extend %position-xs-relative;
+		@include padding( top 70px bottom 70px );
+
+
+		&::before {
+			@extend %display-xs-block;
+			@include absolute( top 0 right 0 left 0 );
+			@include size( 100%, 348px );
+			
+			background: 
+			    linear-gradient(
+			    	33deg, 
+			    	rgba( the_color( orange, very-soft ), 1 ) 0%,
+			    	rgba( the_color( orange, light-grayish-01 ), 1 ) 100%
+			    ); 
+			content: '';
+
+		}
+
+		.items {
+			@extend %list-unstyled, %margin-xs-0, %padding-xs-0;
+		}
+		.item {
+			@extend %margin-xs-0;
+
+			// width: percentage( ( 818 + $grid-gutter-width-unitless ) / $container-width-without-outer-gutter-unitless ); 
+		}
+
+
+		.List-post {
+			@include margin( bottom 0 );
+		}
+		
+		/**
+		 * Slider category videos
+		 * 
+		 * @uses .Slider-category-videos .List-post-category-videos
+		 */
+		.List-post-category-videos {
+			// @extend %display-xs-inline-block;
+			@include margin( 
+				right percentage( 135 / 876 ) 
+				left percentage( 135 / 876 ) 
+			);
+
+			// @include margin( 
+			// 	right auto
+			// 	left auto
+			// );
+			
+			// max-width: percentage( 608 / $container-width-without-outer-gutter-unitless );
+
+		}
+
 	}
 }
