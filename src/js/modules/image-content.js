@@ -31,6 +31,9 @@ function ImageContent() {
 
 ImageContent.prototype = {
 
+    /**
+     * ImageContent.init
+     */
     init: function() {
         console.log(this.$elements);
 
