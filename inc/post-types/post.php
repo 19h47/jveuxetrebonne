@@ -43,6 +43,9 @@ class Post {
         add_action( 'wp_ajax_nopriv_ajax_load_posts', array( $this, 'ajax_load_posts' ) );
 		add_action( 'wp_ajax_ajax_load_posts', array( $this, 'ajax_load_posts' ) ); 
 
+		add_action( 'wp_ajax_nopriv_ajax_load_recipes', array( $this, 'ajax_load_recipes' ) );
+		add_action( 'wp_ajax_ajax_load_recipes', array( $this, 'ajax_load_recipes' ) ); 
+
 		// Rest Api 
 		
 		add_action( 'rest_api_init', array( $this, 'rest_api_register_routes' ) );
@@ -142,13 +145,39 @@ class Post {
 			'cat' 					=> (int) $tag,
 			'offset'            	=> (int) $offset,
 			'ignore_sticky_posts' 	=> 1,
-			'post__not_in' 			=> $sticky,
+			'post__not_in' 			=> array( $sticky ),
 		);
 		// var_dump($args);
 
 		$context = Timber::get_context();
 		$context['posts'] = Timber::get_posts($args);
 		Timber::render( "components/${ post_template }-posts.twig", $context );
+		wp_die();
+	}
+
+
+	/**
+	 * Load recipes with AJAX request.	 
+	 */
+	public function ajax_load_recipes() {
+		
+		$id = isset( $_GET['id'] ) ? $_GET['id'] : 0;
+
+		if ( $id === 0 ) {
+			return;
+		}
+
+		$args = array(
+			'post_type'	=> 'post',
+			'p'         => $id,
+		);
+		// var_dump($args);
+
+		$context = Timber::get_context();
+		$context['post'] = Timber::get_post($args);
+
+		Timber::render( "partials/recipe.twig", $context );
+
 		wp_die();
 	}
 
@@ -181,10 +210,10 @@ class Post {
 		}
 
 		$results = get_posts( array(
-			'post_type'     => 'post',
-			'post_status'   => 'publish',
-			'posts_per_page'=> -1,
-			's'             => $request['term'],
+			'post_type'     	=> 'post',
+			'post_status'   	=> 'publish',
+			'posts_per_page'	=> -1,
+			's'             	=> $request['term'],
 		) );
 
 		if ( empty( $results ) ) {
