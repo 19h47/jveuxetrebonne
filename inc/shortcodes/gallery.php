@@ -47,53 +47,30 @@ function slider_shortcode( $output, $attr ) {
     foreach ( $_attachments as $key => $val ) {
         $attachments[$val->ID] = $_attachments[$key];
     }
+
     if ( empty( $attachments ) ) {
         return '';
     }   
-    $output = "<div class=\"Slider-post js-slider-post\">";
-    $output .= "<ul class=\"Slider-post__items js-slider-post-container\">";
     
+    $context = Timber::get_context();
+
+    $context['post'] = array();
+    $context['post']['gallery'] = array();
+
     $i = 1;
     
-    foreach ($attachments as $id => $attachment) {
-        $img = wp_get_attachment_image_src( $id, 'large' );
-        $alt = get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true);
+    foreach ( $attachments as $id => $attachment ) {
 
-        if ( empty( $alt )) {
-            $alt = $attachment->post_title;
-        }
-
-        if ( empty( $alt )) {
-            $alt = $attachment->post_excerpt;
-        }
-        
-        $output .= "<li class=\"Slider-post__item\">";
-        $output .= "<img class=\"Slider-post__img\" src=\"{$img[0]}\" alt=\"{$alt}\">\n";
-        $output .= "</li>";
-
-        $i++;
+        array_push( $context['post']['gallery'], $attachment->ID ); 
     }
- 
-    $output .= "</ul>";
+
 
     $count_attachments = count( $attachments );
     // Progression
     if ( $count_attachments > 1 ) {
-        $output .= "<div class=\"Slider-post__progressbar js-slider-post-progressbar\" role=\"progressbar\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>";
 
-        // Navigation
-        $output .="<div class=\"Slider-post__navigation\">";
-
-        $output .= "<button class=\"previous js-slider-post-previous\"></button>";
-        $output .= "<button class=\"next js-slider-post-next\"></button>";
-
-        $output .= "<span class=\"count\"><i class=\"count-inner js-slider-post-count\" data-count=\"1\">/{$count_attachments}</i></span>";
-
-        $output .= "</div>";
+        $context['post']['count_attachments'] = $count_attachments;
     }
 
-
-    $output .= "</div>";
- 
-    return $output;
+    return Timber::compile( "partials/slider-post.twig", $context );
 }
