@@ -1,0 +1,88 @@
+/**
+ * Comment
+ *
+ * @uses 	.Comment
+ * @author 	Jérémy Levron
+ */
+.Comment {
+	@extend .background-white;
+	@include margin( right auto bottom 38px left auto );
+	@include padding( 
+		top percentage( 36 / 1088 ) 
+		right percentage( 36 / 1088 ) 
+		bottom percentage( 36 / 1088 ) 
+		left percentage( 36 / 1088 ) 
+	);
+
+	box-shadow: -1px 3px 15px 0px rgba( the_color( orange, very-soft-01 ), .25 ); 
+	width: percentage( 1088 / $container-width-without-outer-gutter-unitless );
+	
+	&-list {
+		@extend %list-unstyled;
+	}
+
+	.author {
+		@extend %font-semibold, %margin-xs-0;
+		// @include font( 16, 69.99 );
+		
+		font: {
+			size: ( 16 / $base-font-size ) * 1em;
+		}
+		color: the_color( orange, very-soft-01 );
+	}
+
+
+	.date {
+		@include margin( top 0 );
+		@extend %font-title, %font-regular;
+		// @include font( 12, 80 );
+		
+		font: {
+			size: ( 12 / $base-font-size ) * 1em;
+		}
+		color: the_color( blue, light-grayish );
+	}
+
+
+	.content {
+		@extend %font-title;
+		@include font( 13, 22, 15 );
+	}
+
+
+	.avatar {
+		@extend %display-xs-inline-block, %vertical-align-middle;
+		@include size( $grid-gutter-width * 2 );
+		box-shadow: -1px 3px 15px 0px rgba( the_color( red, bright ), .15 ); 
+	}
+
+
+	.reply {
+		@include margin( bottom 0 );
+
+		a {
+			@extend .Link-readmore, .Link-marker, .Link-marker--orange-soft;
+			@extend %font-title, %font-semibold;
+			@include font( 13, 33 );
+
+			color: the_color( orange, very-soft-01 );
+
+			&:hover {
+				&::before {
+					opacity: .25!important;
+				}
+			}
+		}
+	}
+
+
+	.inner {
+		@include padding( left 39px );
+		@extend %display-xs-inline-block, %vertical-align-top;
+
+		width: calc( 100% - 60px );
+	}
+
+
+	.aside { @extend %display-xs-inline-block, %vertical-align-top; }
+}
