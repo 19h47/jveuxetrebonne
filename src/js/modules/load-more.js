@@ -133,13 +133,15 @@ LoadMore.prototype = {
 
 
 	/**
-	 * Projects.append
+	 * LoadMore.replace
 	 */
 	replace: function(html) {
 		if (!html) {
         	return;
     	}
+
     	$(this.heading).find('span').html(this.description);
+    	
     	this.container.innerHTML = html;
 	},
 
