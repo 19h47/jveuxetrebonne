@@ -5,22 +5,55 @@
  * @author 	Jérémy Levron
  */
 .Comment {
+	$parent-size: 1088;
 	@extend .background-white;
 	@include margin( right auto bottom 38px left auto );
 	@include padding( 
-		top percentage( 36 / 1088 ) 
-		right percentage( 36 / 1088 ) 
-		bottom percentage( 36 / 1088 ) 
-		left percentage( 36 / 1088 ) 
+		top percentage( 36 / $parent-size ) 
+		right percentage( 36 / $parent-size ) 
+		bottom percentage( 36 / $parent-size ) 
+		left percentage( 36 / $parent-size ) 
 	);
 
 	box-shadow: -1px 3px 15px 0px rgba( the_color( orange, very-soft-01 ), .25 ); 
-	width: percentage( 1088 / $container-width-without-outer-gutter-unitless );
+	width: percentage( $parent-size / $container-width-without-outer-gutter-unitless );
 	
-	&-list {
-		@extend %list-unstyled;
+
+	/**
+	 * Comment list
+	 *
+	 * @uses .Comment-list
+	 */
+	&-list { @extend %list-unstyled; }
+	
+	
+	/**
+	 * Comment inner
+	 *
+	 * @uses .Comment-inner
+	 */
+	&-inner {
+		@include padding( left 39px );
+		@extend %display-xs-inline-block, %vertical-align-top;
+		
+		// Don't forget to interpolate in CSS calc built in function
+		width: calc( 100% - #{ $grid-gutter-width * 2 } );
 	}
 
+
+	/**
+	 * Comment aside
+	 *
+	 * @uses .Comment-aside
+	 */
+	&-aside { @extend %display-xs-inline-block, %vertical-align-top; }
+
+
+	/**
+	 * Author
+	 *
+	 * @uses .Comment .author
+	 */
 	.author {
 		@extend %font-semibold, %margin-xs-0;
 		// @include font( 16, 69.99 );
@@ -31,7 +64,12 @@
 		color: the_color( orange, very-soft-01 );
 	}
 
-
+	
+	/**
+	 * Date
+	 *
+	 * @uses .Comment .date
+	 */
 	.date {
 		@include margin( top 0 );
 		@extend %font-title, %font-regular;
@@ -43,20 +81,35 @@
 		color: the_color( blue, light-grayish );
 	}
 
-
+	
+	/**
+	 * Content
+	 *
+	 * @uses .Comment .content
+	 */
 	.content {
 		@extend %font-title;
 		@include font( 13, 22, 15 );
 	}
 
-
+	
+	/**
+	 * Avatar
+	 *
+	 * @uses .Comment .avatar
+	 */
 	.avatar {
 		@extend %display-xs-inline-block, %vertical-align-middle;
 		@include size( $grid-gutter-width * 2 );
 		box-shadow: -1px 3px 15px 0px rgba( the_color( red, bright ), .15 ); 
 	}
 
-
+	
+	/**
+	 * Reply
+	 *
+	 * @uses .Comment .reply
+	 */
 	.reply {
 		@include margin( bottom 0 );
 
@@ -74,15 +127,4 @@
 			}
 		}
 	}
-
-
-	.inner {
-		@include padding( left 39px );
-		@extend %display-xs-inline-block, %vertical-align-top;
-
-		width: calc( 100% - 60px );
-	}
-
-
-	.aside { @extend %display-xs-inline-block, %vertical-align-top; }
 }

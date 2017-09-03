@@ -1,0 +1,43 @@
+{#
+    
+    /**
+     * /views/components/comment
+     *
+     * @package WordPress
+     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     */
+    
+#}
+<article class="Comment{{ comment.comment_type ? ' ' ~ comment.comment_type }}" id="comment-{{ comment.id }}">
+	{% spaceless %}
+		
+	<aside class="Comment-aside">
+		{{ get_avatar( comment, 60 ) }}
+	</aside>
+
+	<div class="Comment-inner">
+
+		<h4 class="author">
+		    {{- fn( 'get_comment_author_link', comment.id ) -}}
+		</h4>
+
+		<p class="date">
+			{{- pll__( 'le' ) -}}&nbsp;
+			{{- comment.comment_date|date('d F Y') -}}&nbsp;
+			{{- pll__( 'à' ) -}}&nbsp;
+			{{- comment.comment_date|date( 'G' ) -}}
+			{{- pll__( 'h' ) -}}
+			{{- comment.comment.date|date( 'i' ) -}}
+		</p>
+
+		<p class="content">
+			{{ comment.comment_content }}
+		</p>
+		
+		<p class="reply">
+		 	{{ comment.reply_link( pll__( 'Répondre' ) ) }}
+		</p>
+	</div>
+
+	{% endspaceless %}
+</article>
