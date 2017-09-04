@@ -92,6 +92,8 @@ LoadMore.prototype = {
 				this.posts_per_page = el.dataset.postPerPage;
 				this.description = el.dataset.description;
 
+				$(this.heading).find('span').html('Loading');
+
 				this.load()
 			    	// then replace result to the container
 			    	.then(this.replace.bind(this))
@@ -139,7 +141,7 @@ LoadMore.prototype = {
 		if (!html) {
         	return;
     	}
-
+		
     	$(this.heading).find('span').html(this.description);
     	
     	this.container.innerHTML = html;
