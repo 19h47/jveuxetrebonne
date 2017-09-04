@@ -5,6 +5,16 @@
  */
 .Footer {
 	@include padding( top 55px bottom 44px );
+
+	@at-root .About & {
+		border: {
+			top: {
+				color: the_color( blue, light-grayish );
+				style: solid;
+				width: 1px;
+			}
+		}
+	}
 	
 	/**
 	 * Copyright
