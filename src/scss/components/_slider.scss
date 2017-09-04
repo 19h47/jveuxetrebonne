@@ -89,7 +89,7 @@
 				@include size( 27px );
 
 				background: {
-					image: url( '#{ map-get( $directories, svg ) }arraw-right.svg' );
+					image: url( '#{ map-get( $directories, svg ) }arrow-right.svg' );
 					position: center;
 					size: 100%;
 				}
@@ -101,7 +101,7 @@
 				@include size( 27px );
 
 				background: {
-					image: url( '#{ map-get( $directories, svg ) }arraw-left.svg' );
+					image: url( '#{ map-get( $directories, svg ) }arrow-left.svg' );
 					position: center;
 					size: 100%;
 				}
@@ -229,7 +229,7 @@
 				@include size( 27px );
 
 				background: {
-					image: url( '#{ map-get( $directories, svg ) }arraw-right.svg' );
+					image: url( '#{ map-get( $directories, svg ) }arrow-right.svg' );
 					position: center;
 					size: 100%;
 				}
@@ -241,7 +241,7 @@
 				@include size( 27px );
 
 				background: {
-					image: url( '#{ map-get( $directories, svg ) }arraw-left.svg' );
+					image: url( '#{ map-get( $directories, svg ) }arrow-left.svg' );
 					position: center;
 					size: 100%;
 				}
@@ -290,22 +290,11 @@
 			    	rgba( the_color( orange, light-grayish-01 ), 1 ) 100%
 			    ); 
 			content: '';
-
 		}
 
-		.items {
-			@extend %list-unstyled, %margin-xs-0, %padding-xs-0;
-		}
-		.item {
-			@extend %margin-xs-0;
-
-			// width: percentage( ( 818 + $grid-gutter-width-unitless ) / $container-width-without-outer-gutter-unitless ); 
-		}
-
-
-		.List-post {
-			@include margin( bottom 0 );
-		}
+		.items { @extend %list-unstyled, %margin-xs-0, %padding-xs-0; }
+		.item { @extend %margin-xs-0; }
+		.List-post { @include margin( bottom 0 ); }
 		
 		/**
 		 * Slider category videos
@@ -325,7 +314,46 @@
 			// );
 			
 			// max-width: percentage( 608 / $container-width-without-outer-gutter-unitless );
+		}
 
+
+		.next {
+			@include absolute( top 0 right 0 );
+			@include margin( right percentage( 282 / $psd-width-unitless ) );
+
+			background: { 
+				image: url( '#{ map-get( $directories, svg ) }arrow-right-white.svg' );
+			}
+		}
+			
+
+		.previous {
+			@include absolute( top 0 left 0 );
+			@include margin( left percentage( 282 / $psd-width-unitless ) );
+
+			background: { 
+				image: url( '#{ map-get( $directories, svg ) }arrow-left-white.svg' );
+			}
+		}
+
+
+		.next,
+		.previous {
+
+			@include margin( top 224px );
+			@extend %display-xs-inline-block, %vertical-align-middle, %Cursor-pointer, %Transition-ease;
+			@include size( 27px );
+
+			background: {
+				position: center;
+				size: 100%;
+			}
+			opacity: 1;
+
+			&.slick-disabled {
+				@extend %Cursor-auto;
+				opacity: 0;
+			}
 		}
 
 	}
