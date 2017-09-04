@@ -48,7 +48,7 @@
 		@include absolute( top 0 left calc( 100% - #{ ( 27 / 2 ) * 1px } ) );
 
 		background: { 
-			image: url( '#{ map-get( $directories, svg ) }arraw-right.svg' );
+			image: url( '#{ map-get( $directories, svg ) }arrow-right.svg' );
 		}
 	}
 		
@@ -57,7 +57,7 @@
 		@include absolute( top 0 right calc( 100% - #{ ( 27 / 2 ) * 1px } ) );
 
 		background: { 
-			image: url( '#{ map-get( $directories, svg ) }arraw-left.svg' );
+			image: url( '#{ map-get( $directories, svg ) }arrow-left.svg' );
 		}
 	}
 
