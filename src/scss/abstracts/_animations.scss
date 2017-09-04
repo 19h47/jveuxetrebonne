@@ -3,9 +3,9 @@
  */
 
 @keyframes marquee {
-	0% { transform: translate3d( 0, 0, 0 ); }
+	0% { transform: translateX( 0 ); }
 	
-	100% { transform: translate3d( -100%, 0, 0 ); }
+	100% { transform: translateX( -100% ); }
 }
 
 
@@ -79,4 +79,16 @@
 @keyframes wave {
   	from { transform : translateY( 0 ); }
   	to { transform : translateY( -10% ); }
+}
+
+
+
+@keyframes heartbeat {
+  	
+  	0% { transform: scale( .75 ); }
+	20% { transform: scale( 1 ); }
+	40% { transform: scale( .75 ); }
+	60% { transform: scale( 1 ); }
+	80% { transform: scale( .75 ); }
+	100% { transform: scale( .75 ); }
 }

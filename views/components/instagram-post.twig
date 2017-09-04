@@ -1,5 +1,6 @@
 <div id="Instagram-post-{{model.id}}" class="Instagram-post">
-    <a class="" href="{{model.link}}" data-like="{{model.likes.count}}">
+    <a class="" href="{{model.link}}">
+        
         
         <img 
             class="thumbnail" 
@@ -8,6 +9,8 @@
             width="{{model.images.standard_resolution.width}}" 
             height="{{model.images.standard_resolution.height}}" 
         />
+
+        <span class="count">{{model.likes.count}}</span>
 
     </a>
 </div>

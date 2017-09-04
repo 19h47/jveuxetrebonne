@@ -4,15 +4,90 @@
  * @uses .Instagram-post
  */
 .Instagram-post {
-	@extend %float-xs-left;
+	$opacity: .15;
+	@extend %float-xs-left, %position-xs-relative;
 	@include padding(
 		left $grid-gutter-width / 2
 		right $grid-gutter-width / 2
 	);
 
 	width: percentage( ( $container-width-unitless / 6 ) / $container-width-unitless );
+
+	&::after {
+		@extend %display-xs-block;
+		@include padding( top 100% );
+
+		content: '';
+
+	}
 	
-	a { @extend %display-xs-block; }
+	a {
+		@extend %Position-absolute-center;
+		@extend %display-xs-block; 
+
+		@include margin(
+			left $grid-gutter-width / 2
+			right $grid-gutter-width / 2
+		);
+
+		&::after {
+			@extend %Position-absolute-center, %display-xs-block, %Transition-ease;
+
+			background: {
+				color: rgba( the_color( gray, very-dark ), $opacity * 3 );
+			}
+			content: '';
+
+			opacity: 0;
+			visibility: hidden;
+		}
+
+		&:hover {
+			.count,
+			&::after {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+
+
+	/**
+	 * Count
+	 *
+	 * @uses .Instagram .count
+	 */
+	.count {
+		@extend %font-bold, %font-title, %Transition-ease;
+		@include absolute( top 50% right 0 left 0 );
+		@extend %text-xs-center;
+
+		transform: translate3d( 0, -50%, 0 );
+		z-index: 1;
+
+		opacity: 0;
+		visibility: hidden;
+
+		&::before {
+			@extend %display-xs-inline-block;
+			@include size( $grid-gutter-width / 2 );
+			@include margin( right $grid-gutter-width / 3 );
+
+			background: {
+				image: url( '#{ map-get( $directories, svg ) }heart.svg' );
+				position: center;
+				size: 100%;
+			}
+			content: '';
+
+			animation: {
+				name: heartbeat; 
+				duration: 2s;
+				iteration-count: infinite;
+			}
+		}
+
+	}
 
 
 	/**
@@ -21,10 +96,11 @@
 	 * @uses .Instagram-post .thumbnail
 	 */
 	.thumbnail {
-		$opacity: .15;
 
 		@extend %display-xs-inline-block, %vertical-align-middle;
-		@include size( 100%, auto );
+		@include size( 100% );
+
+		object-fit: cover;
 		
 		box-shadow: 
 			0px 
