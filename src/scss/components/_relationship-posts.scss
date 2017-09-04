@@ -1,0 +1,83 @@
+/**
+ * Relationship posts
+ *
+ * @uses .Relationship-posts
+ */
+.Relationship-posts {
+	overflow-x: hidden;
+
+	&__inner {
+		@extend %position-xs-relative;
+		@include margin(
+			right percentage( 53 / $container-width-without-outer-gutter-unitless )
+			left percentage( 188 / $container-width-without-outer-gutter-unitless )
+		);
+
+		.slick-list {
+			overflow: visible;
+		}
+	}
+	
+	/**
+	 * Items
+	 *
+	 * @uses .items
+	 */
+	.items { @extend %list-unstyled, %margin-xs-0; }
+
+	
+	/**
+	 * Item
+	 *
+	 * @uses .item
+	 */
+	.item { @extend %margin-xs-0; }
+
+
+	.List-post {}
+
+	.List-post-relationship {
+		@include margin( 
+			right percentage( 53 / 500 ) 
+			left percentage( 53 / 500 ) 
+		);
+	}
+
+
+	.next {
+		@include absolute( top 0 left calc( 100% - #{ ( 27 / 2 ) * 1px } ) );
+
+		background: { 
+			image: url( '#{ map-get( $directories, svg ) }arraw-right.svg' );
+		}
+	}
+		
+
+	.previous {
+		@include absolute( top 0 right calc( 100% - #{ ( 27 / 2 ) * 1px } ) );
+
+		background: { 
+			image: url( '#{ map-get( $directories, svg ) }arraw-left.svg' );
+		}
+	}
+
+
+	.next,
+	.previous {
+
+		@include margin( top 123px );
+		@extend %display-xs-inline-block, %vertical-align-middle, %Cursor-pointer, %Transition-ease;
+		@include size( 27px );
+
+		background: {
+			position: center;
+			size: 100%;
+		}
+		opacity: 1;
+
+		&.slick-disabled {
+			@extend %Cursor-auto;
+			opacity: 0;
+		}
+	}
+}
