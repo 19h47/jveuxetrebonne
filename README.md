@@ -50,8 +50,12 @@ With the help of the [ACF plugin](https://www.advancedcustomfields.com/), `rich_
 
 #### How to use it
 
+In content:
+
 ```
 [rich_content id="some_id"]Some content[/rich_content]
 ```
+
+Then fill the __ACF__ field. You must put the same _id_ to link them.
 
 ![Rich content](/img/png/rich-content.png)
