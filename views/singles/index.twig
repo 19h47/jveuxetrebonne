@@ -9,6 +9,7 @@
 {% block content %}
 
 	{{ parent() }}
+	
 	<div class="Single-header">
 		<div class="l-container">
 			<div class="row">
@@ -117,8 +118,8 @@
 									</div>
 
 									{% if rich_content.link %}
-										<a class="link" href="{{ rich_content.link }}" target="_blank">
-											{{ rich_content.label ? rich_content.label : pll__( 'Découvrir' ) }}
+										<a class="link Link-readmore Link-marker Link-marker--white" href="{{ rich_content.link }}" target="_blank">
+											<span>{{ rich_content.label ? rich_content.label : pll__( 'Découvrir' ) }}</span>
 										</a>
 									{% endif %}
 
@@ -142,6 +143,7 @@
 	    							</i>
 	    						</span>
 	        				</div>
+
 						{% endif %}
 					</div>
 				{% endif %}
@@ -149,10 +151,11 @@
 
 			<div class="col-xs-10">
 
-				<article class="Single-article">
+				<article class="Single-article js-single-content">
 
 					{# {{ post|print_r}} #}
 					<h1 class="title">{{ post.title }}</h1>
+
 
 					{# Date #}
 					<p class="date">
@@ -160,6 +163,7 @@
 						{{- pll__( 'Publié le' ) -}}&nbsp;{{ post.post_date | date( 'd\.m\.Y' ) }}
 					</p>
 					
+
 					{# Preview #}
 					{% if post.get_field( 'preview' ) %}
 					<p class="preview">
@@ -167,27 +171,63 @@
 					</p>
 					{% endif %}
 
+
 					{# Content #}
-					<div class="content js-single-content">
+					{% if post.content %}
+					<div class="content">
 						{{ post.content }}
 					</div>
+					{% endif %}
+
+					
+					{# Recipe #}
+					{% block recipe %}{% endblock %}
+						
+
+					{# Aside #}
+					<aside class="aside">
+						<ul class="aside-socials">
+							{% for share in contact.shares %}
+								<li class="aside-socials__item">
+									<a href="{{ share.url }}" title="{{ share.name }}">
+										<svg class="{{ share.slug }}" role="img">
+											<use xlink:href="{{ theme.link }}/dist/svg/icons.svg#{{ share.slug }}"/>
+										</svg>
+									</a>
+								</li>
+							{% endfor %}
+						</ul>
+						<span class="aside-bull">&bull;</span>
+
+						<div class="aside-subscribe">
+							<a href="">{{ pll__( 'Abonne-toi' ) }}</a>
+						</div>
+					</aside>
 
 				</article> 
+
 			</div>
 		</div>
-	</div>	
+	</div>
 
 
-	{# Comment count #}
-	{% if post.comment_count > 2 and post.comment_status == 'open' %} 
-		
-		<p>{{ post.comment_count ~ '&nbsp;' ~ pll__( 'commentaires' ) }}</p>
+	<h2 class="Heading Heading--marquee">
+		<span>{{- pll__( 'Tu aimeras peut-être aussi') -}}</span>
+	</h2>
 
-	{% else %}
-		
-		<p>{{ post.comment_count ~ '&nbsp;' ~ pll__( 'commentaire' ) }}</p>
+	<div class="Relationship-posts">
+		<div class="l-container">
+			<div class="Relationship-posts__inner">
+				<ul class="items js-relationship-posts">
+					{{ relationship_post }}
+				</ul>
+			</div>
+		</div>
+	</div>
 
-	{% endif %}
+
+	{% include 'partials/comments.twig' %}	
+	
 
 
 {% endblock %}
