@@ -20,7 +20,7 @@ gulp
 
 ## Shortcodes
 
-The theme comes with two shortcodes `image_content` and `rich_content`. The theme alse uses and customises the `gallery` built in shortcode from WordPress but with much improvement, very much.
+The theme comes with two shortcodes `image_content` and `rich_content`. The theme also uses and customises the `gallery` built in shortcode from WordPress but with much improvement, very much.
 
 ### `image_content`
 
