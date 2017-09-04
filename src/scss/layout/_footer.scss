@@ -119,7 +119,7 @@
 		@extend %margin-xs-0;
 
 		&__item {
-			@extend %vertical-align-middle;
+			// @extend %vertical-align-middle;
 			@include size( $grid-gutter-width );
 			@include margin( top 0 left auto bottom 0 );
 
