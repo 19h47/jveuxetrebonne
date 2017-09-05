@@ -168,8 +168,12 @@
 	 */
 	.thumbnail {
 		@extend %display-xs-block;
-		width: 100%;
-		max-width: 100%;
+	    @include margin( 
+			right ( $grid-gutter-width-mobile * -1 ) 
+			left ( $grid-gutter-width-mobile * -1 ) 
+		);
+
+		width: calc( 100% + 46px);
 		box-shadow: 1px 3px ( $grid-gutter-width / 2 ) 0px rgba( the_color( gray, very-dark ), 0.15); 
 
 		img {
@@ -180,7 +184,6 @@
 			@include margin( left #{ $grid-gutter-width * -1 } );
 
 			width: calc( 100% + #{ $grid-gutter-width } );
-			max-width: none;
 		}
 	}
 

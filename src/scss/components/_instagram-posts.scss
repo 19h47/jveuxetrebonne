@@ -56,13 +56,9 @@
 		$line-height: 80;
 
 		@extend %font-bold, %margin-xs-0;
-		@include letter-spacing( 15 );
+		@include font( $font-size, $line-height, 15 );
 		
 		color: rgba( the_color( white ), .55 );
-		font: {
-			size: ( $font-size / $base-font-size ) * 1em;
-		}
-		line-height: $line-height / $font-size;
 	}
 	
 

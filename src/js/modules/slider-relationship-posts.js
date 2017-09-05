@@ -28,9 +28,16 @@ SliderRelationshipPosts.prototype = {
             prevArrow: $slider.find('.js-relationship-posts-previous'),
             // centerMode: true,
             // centerPadding: ( 53 * 100 ) / 1440 + '%',
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            infinite: false,
+            mobileFirst: true,
+            
+            responsive: [{
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    infinite: false,
+                }
+            }]
         });
     }
 }

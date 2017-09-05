@@ -5,45 +5,58 @@
  */
 .Tease-posts {
 	@extend %Pointer-events-none;
+
+	@include from( 'md' ) {
 	
-	&:hover .Tease-post {
-		
-		&:hover {
-
-			.Tease-post-header {
-				opacity: 1;
-				visibility: visible;
-			}
-
-			&::before {
-				background: {
-					color: rgba( the_color( black ), .3 );
-				}
-				
-			}
-		}		
-
-		&:not(:hover) {
+		&:hover .Tease-post {
 			
-			.Tease-post-header {
-				opacity: 0;
-				visibility: hidden;
-			}
+			&:hover {
 
-			&::before {
+				.Tease-post-header {
+					opacity: 1;
+					visibility: visible;
+				}
 
-				background: {
-					color: rgba( the_color( white ), .6 );
+				&::before {
+					background: {
+						color: rgba( the_color( black ), .3 );
+					}
+				}
+			}		
+
+			&:not(:hover) {
+				
+				.Tease-post-header {
+					opacity: 0;
+					visibility: hidden;
+				}
+
+				&::before {
+
+					background: {
+						color: rgba( the_color( white ), .6 );
+					}
 				}
 			}
 		}
 	}
 
-
 	&-row {
+		
+		@include from( 'md' ) {
 
-		@extend .clearfix;
-		@include margin( bottom $grid-gutter-width );
+			@include margin( bottom $grid-gutter-width );
+		    
+		    &::before,
+		    &::after { 
+		        display: table;
+		        content: " ";
+		    }
+
+		    &::after {
+		        clear: both;
+		    }
+		}
 	}
 
 	&-footer {

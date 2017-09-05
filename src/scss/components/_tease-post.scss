@@ -30,12 +30,30 @@
 		@extend %display-xs-inline-block, %font-title, %margin-xs-0, %font-semibold;
 		@include letter-spacing( 20 );
 
+		font-size: 18px;
+
+		@include from( 'md' ) {
+			font-size: 15px;
+		}
+
 		// line-height: map-get( $header, line-height ) / map-get( map-get( $header, font ), size );
+	}
+
+	@include between( 'xs', 'sm' ) {
+		&::before {
+			background: {
+				color: rgba( the_color( black ), .3 );
+			}
+		}
 	}
 	
 
 	&::before {
-		@extend %Position-absolute-center, %Transition-ease, %display-xs-block, %Pointer-events-none;
+		@extend 
+			%Position-absolute-center, 
+			%Transition-ease, 
+			%display-xs-block, 
+			%Pointer-events-none;
 			
 		content: '';
 
@@ -77,12 +95,13 @@
 		);
 
 		transform: translate3d( 0, -50%, 0 );
-		
-		opacity: 0;
-		visibility: hidden;
-		
 		color: the_color( white );
 		z-index: 20;
+
+		@include from( 'md' ) {
+			opacity: 0;
+			visibility: hidden;
+		}
 	}
 
 
@@ -109,9 +128,11 @@
 		$font-size: 38;
 
 		@extend %font-bold, %font-title, %margin-xs-0, %Transition-ease;
+		
+		font: { size: ( 30 / $base-font-size ) * 1em; }
 
-		font: {
-			size: ( $font-size / $base-font-size ) * 1em;
+		@include from( 'md' ) {
+			font: { size: ( $font-size / $base-font-size ) * 1em; }
 		}
 		// line-height: map-get( $header, line-height ) / $font-size;
 	}
@@ -178,31 +199,44 @@
 	@each $grid, $key in $grids {
 		// @warn $key;
 		
+		@include from( 'md' ) {
+
+		}
+		
 		&#{ $this }--#{ map-get( $key, class ) } {
-			float: left;
 			
-			// Sizes
-			@include size( 
-				map-get( $key, width ),
-				map-get( $key, height )
-			);
+			@include size( 100%, 359px );
+			
+			@include between( 'xs', 'sm' ) {
+				@include margin( bottom 38px );
+			}
 
-			// Margins
-			@if map-has-key( $key, margin ) {
-				// Stock possible property
-				$properties: top right bottom left;
-				
-				@each $property in $properties {
-					// Stock value
-					$value: nth( map-get( map-get( $key, margin ), $property ), 1 );
-				
-					@if map-has-key( map-get( $key, margin ), $property ) {
+			@include from( 'md' ) {
 
-						margin-#{ $property }: $value;
-					}	
+				float: left;
+				
+				// Sizes
+				@include size( 
+					map-get( $key, width ),
+					map-get( $key, height )
+				);
+	
+				// Margins
+				@if map-has-key( $key, margin ) {
+					// Stock possible property
+					$properties: top right bottom left;
+					
+					@each $property in $properties {
+						// Stock value
+						$value: nth( map-get( map-get( $key, margin ), $property ), 1 );
+					
+						@if map-has-key( map-get( $key, margin ), $property ) {
+
+							margin-#{ $property }: $value;
+						}	
+					}
 				}
 			}
-			
 		}
 	}
 }

@@ -4,7 +4,9 @@
  * @uses .List-post
  */
 .List-post {
-	@include margin( bottom 70px );
+	@include margin( bottom 40px );
+
+	@include from( 'md' ) { @include margin( bottom 70px ); }
 	
 	animation: {
 		name: fade-in-down;

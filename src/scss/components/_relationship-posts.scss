@@ -4,17 +4,28 @@
  * @uses .Relationship-posts
  */
 .Relationship-posts {
-	overflow-x: hidden;
+
+	@include from( 'md' ) {
+
+		overflow-x: hidden;
+	}
 
 	&__inner {
-		@extend %position-xs-relative;
-		@include margin(
-			right percentage( 53 / $container-width-without-outer-gutter-unitless )
-			left percentage( 188 / $container-width-without-outer-gutter-unitless )
-		);
+		@extend %position-xs-relative, %text-xs-center, %text-md-left;
 
-		.slick-list {
-			overflow: visible;
+		@include margin( bottom 56px );
+		
+		@include from( 'md' ) {
+	
+			@include margin(
+				right percentage( 53 / $container-width-without-outer-gutter-unitless )
+				bottom 0
+				left percentage( 188 / $container-width-without-outer-gutter-unitless )
+			);
+
+			.slick-list {
+				overflow: visible;
+			}
 		}
 	}
 	
@@ -37,37 +48,52 @@
 	.List-post {}
 
 	.List-post-relationship {
-		@include margin( 
-			right percentage( 53 / 500 ) 
-			left percentage( 53 / 500 ) 
-		);
+
+		@include from( 'md' ) {
+
+			@include margin( 
+				right percentage( 53 / 500 ) 
+				left percentage( 53 / 500 ) 
+			);
+		}
 	}
 
 
 	.next {
-		@include absolute( top 0 left calc( 100% - #{ ( 27 / 2 ) * 1px } ) );
+		@include margin( left 20px );
 
 		background: { 
 			image: url( '#{ map-get( $directories, svg ) }arrow-right.svg' );
 		}
+
+		@include from( 'md' ) {
+			@include margin( left 0 );
+			@include absolute( top 0 left calc( 100% - #{ ( 27 / 2 ) * 1px } ) );
+		}
+
 	}
 		
 
 	.previous {
-		@include absolute( top 0 right calc( 100% - #{ ( 27 / 2 ) * 1px } ) );
+		@include margin( right 20px );
 
 		background: { 
 			image: url( '#{ map-get( $directories, svg ) }arrow-left.svg' );
 		}
+
+		@include from( 'md' ) {
+			@include margin( right 0 );
+			@include absolute( top 0 right calc( 100% - #{ ( 27 / 2 ) * 1px } ) );
+		}
+
 	}
 
 
 	.next,
 	.previous {
 
-		@include margin( top 123px );
 		@extend %display-xs-inline-block, %vertical-align-middle, %Cursor-pointer, %Transition-ease;
-		@include size( 27px );
+		@include size( 44px );
 
 		background: {
 			position: center;
@@ -75,9 +101,16 @@
 		}
 		opacity: 1;
 
-		&.slick-disabled {
-			@extend %Cursor-auto;
-			opacity: 0;
+		@include from( 'md' ) {
+			
+			@include size( 27px );
+			@include margin( top 123px );
+
+			&.slick-disabled {
+				cursor: auto;
+				opacity: 0;
+			}
 		}
+
 	}
 }
