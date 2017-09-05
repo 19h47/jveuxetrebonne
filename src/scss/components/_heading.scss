@@ -7,10 +7,17 @@
 	@extend %margin-xs-0;
 	
 	font: {
-		size: ( $font-size / $base-font-size ) * 1em;
+		size: ( 60 / $base-font-size ) * 1em;
 		family: map-get( map-get( $font, families ), title );
 		weight: map-get( map-get( $font, weights ), semibold );
 	}
+
+	@include from( 'md' ) { 
+		font: { 
+			size: ( $font-size / $base-font-size ) * 1em; 
+		} 
+	}
+
 	// line-height: ( 69.99 / $font-size );
 	color: rgba( the_color( orange, light-grayish-01 ), .5 );
 
