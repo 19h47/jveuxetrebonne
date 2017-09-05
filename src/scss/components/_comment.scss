@@ -7,16 +7,27 @@
 .Comment {
 	$parent-size: 1088;
 	@extend .background-white;
-	@include margin( right auto bottom 38px left auto );
+	@include margin( bottom 38px );
 	@include padding( 
 		top percentage( 36 / $parent-size ) 
-		right percentage( 36 / $parent-size ) 
+		right 30px
 		bottom percentage( 36 / $parent-size ) 
-		left percentage( 36 / $parent-size ) 
+		left 30px
 	);
 
 	box-shadow: -1px 3px 15px 0px rgba( the_color( orange, very-soft-01 ), .25 ); 
-	width: percentage( $parent-size / $container-width-without-outer-gutter-unitless );
+
+	@include from( 'md' ) {
+		@include margin( right auto left auto );
+		@include padding( 
+			top percentage( 36 / $parent-size ) 
+			right percentage( 36 / $parent-size ) 
+			bottom percentage( 36 / $parent-size ) 
+			left percentage( 36 / $parent-size ) 
+		);
+		
+		width: percentage( $parent-size / $container-width-without-outer-gutter-unitless );
+	}
 	
 
 	/**
@@ -33,11 +44,14 @@
 	 * @uses .Comment-inner
 	 */
 	&-inner {
-		@include padding( left 39px );
 		@extend %display-xs-inline-block, %vertical-align-top;
 		
-		// Don't forget to interpolate in CSS calc built in function
-		width: calc( 100% - #{ $grid-gutter-width * 2 } );
+		@include from( 'md' ) {
+			@include padding( left 39px );
+
+			// Don't forget to interpolate in CSS calc built in function
+			width: calc( 100% - #{ $grid-gutter-width * 2 } );
+		}
 	}
 
 
@@ -59,9 +73,11 @@
 		// @include font( 16, 69.99 );
 		
 		font: {
-			size: ( 16 / $base-font-size ) * 1em;
+			size: ( 18 / $base-font-size ) * 1em;
 		}
 		color: the_color( orange, very-soft-01 );
+
+		@include from( 'md' ) { font-size: ( 16 / $base-font-size ) * 1em; }
 	}
 
 	
@@ -76,9 +92,11 @@
 		// @include font( 12, 80 );
 		
 		font: {
-			size: ( 12 / $base-font-size ) * 1em;
+			size: ( 15 / $base-font-size ) * 1em;
 		}
 		color: the_color( blue, light-grayish );
+
+		@include from( 'md' ) { font-size: ( 12 / $base-font-size ) * 1em; }
 	}
 
 	
@@ -89,7 +107,11 @@
 	 */
 	.content {
 		@extend %font-title;
-		@include font( 13, 22, 15 );
+		@include font( 16, 22, 15 );
+
+		@include from( 'md' ) {
+			@include font( 13, 22, 15 );
+		}
 	}
 
 	
@@ -116,9 +138,13 @@
 		a {
 			@extend .Link-readmore, .Link-marker, .Link-marker--orange-soft;
 			@extend %font-title, %font-semibold;
-			@include font( 13, 33 );
+			@include font( 18, 33 );
 
 			color: the_color( orange, very-soft-01 );
+
+			@include from( 'md' ) {
+				@include font( 13, 33 );
+			}
 
 			&:hover {
 				&::before {
