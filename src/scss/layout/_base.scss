@@ -9,14 +9,21 @@
 	 */
 	&-container {
 		@extend %position-xs-relative;
-		
 		@include padding( 
-			right $grid-outer-gutter-width 
-			left $grid-outer-gutter-width
+			right $grid-gutter-width-mobile
+			left $grid-gutter-width-mobile
 		);
 		@include margin( top 0 right auto bottom 0 left auto );
 		
 		max-width: $container-width;
+
+		@include from( 'md' ) {
+			
+			@include padding( 
+				right $grid-outer-gutter-width 
+				left $grid-outer-gutter-width
+			);
+		}
 	}
 
 	
@@ -32,5 +39,21 @@
 		}
 		box-shadow: 0px 0px $grid-gutter-width 0px rgba( the_color( black ), .1 );
 		z-index: 20;
+	}
+}
+
+@include between( 'xs', 'sm' ) {
+	.row {
+		@include margin( 
+			right ( $grid-gutter-width-mobile * -1 )
+			left ( $grid-gutter-width-mobile * -1 )
+		);
+	}
+
+	*[class^="col-"] {
+		@include padding( 
+			right $grid-gutter-width-mobile
+			left $grid-gutter-width-mobile
+		);
 	}
 }
