@@ -4,12 +4,15 @@
  * @uses .Respond
  */
 .Respond {
-	@include margin( right auto bottom 38px left auto );
 	// @include font( 16, 80 );
-	width: percentage( 1090 / $container-width-without-outer-gutter-unitless );
 
 	font: {
 		size: ( $base-font-size / 16 ) * 1em;
+	}
+	
+	@include from( 'md' ) { 
+		@include margin( right auto bottom 38px left auto );
+		width: percentage( 1090 / $container-width-without-outer-gutter-unitless );
 	}
 	
 	.email,
@@ -43,19 +46,31 @@
 	}
 	
 	.email {
-		@include margin( 
-			right ( $grid-gutter-width / 2 ) 
-		);
+		@include from( 'md' ) {
+
+			@include margin( 
+				right ( $grid-gutter-width / 2 ) 
+			);
+		}
 	}
 
 	.url {
-		@include margin(
-			left ( $grid-gutter-width / 2 ) 
-		);
+		@include from( 'md' ) {
+
+			@include margin(
+				left ( $grid-gutter-width / 2 ) 
+			);
+		}
 	}
 
 	.email,
-	.url { width: calc( 50% - #{ $grid-gutter-width / 2 } ); }
+	.url { 
+		width: 100%;
+
+		@include from( 'md' ) {
+			width: calc( 50% - #{ $grid-gutter-width / 2 } ); 
+		}
+	}
 	
 	.comment,
 	.author { @extend %w-xs-100; }
