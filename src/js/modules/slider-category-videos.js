@@ -26,8 +26,15 @@ SliderCategoryVideos.prototype = {
             // arrows: false,
             nextArrow: $slider.find('.js-slider-category-videos-next'),
             prevArrow: $slider.find('.js-slider-category-videos-previous'),
-            centerMode: true,
-            centerPadding: ( 282 * 100 ) / 1440 + '%'
+            mobileFirst: true,
+            
+            responsive: [{
+                breakpoint: 992,
+                settings: {
+                    centerMode: true,
+                    centerPadding: ( 282 * 100 ) / 1440 + '%',
+                }
+            }]
         });
     }
 }
