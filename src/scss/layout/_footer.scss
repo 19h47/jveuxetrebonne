@@ -27,12 +27,14 @@
 
 		@extend .text-xs-center;
 		@extend %font-title;
+		@include font( 15, 21 );
 
 		color: $color;
-		font: {
-			size: ( $font-size * 1px );
+
+		@include from( 'md' ) {
+			@include font( $font-size, 33 );
+
 		}
-		line-height: ( 33 / $font-size );
 
 		i {
 			@extend %font-semibold;
@@ -41,7 +43,9 @@
 		}
 
 		span:first-child {
-			@include margin( right 37px );
+			@extend %display-xs-block, %display-md-inline;
+
+			@include from( 'md' ) { @include margin( right 37px ); }
 		}
 
 		span:nth-child( 2 ) {
@@ -116,12 +120,14 @@
 	 */
 	&-socials {
 		@extend .list-unstyled;
-		@extend %margin-xs-0;
+		@extend %margin-xs-0, %text-xs-center;
 
 		&__item {
-			// @extend %vertical-align-middle;
-			@include size( $grid-gutter-width );
+			@extend %display-xs-inline-block, %display-md-block, %vertical-align-middle;
+			@include size( $grid-gutter-width * 2 );
 			@include margin( top 0 left auto bottom 0 );
+
+			@include from( 'md' ) { @include size( $grid-gutter-width ); }
 
 			a {
 				@extend %display-xs-block;
@@ -136,8 +142,13 @@
 			svg {
 				@extend %display-xs-inline-block, %vertical-align-middle, %Transition-ease;
 
-				max-width: $grid-gutter-width;
-				max-height: $grid-gutter-width;
+				max-width: $grid-gutter-width * 2;
+				max-height: $grid-gutter-width * 2;
+
+				@include from( 'md' ) {
+					max-width: $grid-gutter-width;
+					max-height: $grid-gutter-width;
+				}
 
 				fill: the_color( blue, light-grayish );
 			}
