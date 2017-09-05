@@ -48,7 +48,7 @@
 	<div class="l-container js-sticky-container">
 		<div class="row">
 			
-			<aside class="Single-aside col-xs-2 position-xs-static">
+			<aside class="Single-aside hidden-xs hidden-md col-xs-2 position-xs-static">
 			
 				{# {{ post|print_r}} #}
 
@@ -149,7 +149,7 @@
 				{% endif %}
 			</aside>
 
-			<div class="col-xs-10">
+			<div class="col-xs-12 col-md-10">
 
 				<article class="Single-article js-single-content">
 
@@ -185,7 +185,7 @@
 						
 
 					{# Aside #}
-					<aside class="aside">
+					<aside class="aside hidden-xs hidden-md">
 						<ul class="aside-socials">
 							{% for share in contact.shares %}
 								<li class="aside-socials__item">
@@ -222,8 +222,12 @@
 					{{ relationship_post }}
 				</ul>
 				
+				{% spaceless %}
+					
 				<button class="previous js-relationship-posts-previous"></button>
 				<button class="next js-relationship-posts-next"></button>
+				
+				{% endspaceless %}
 
 			</div>
 		</div>
