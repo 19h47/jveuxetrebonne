@@ -14,8 +14,21 @@
 	 */
 	&-post {
 		$this: &;
+		
+		@include margin( 
+			top 2em 
+			right ( $grid-gutter-width-mobile * -1 )
+			bottom 2em 
+			left ( $grid-gutter-width-mobile * -1 )
+		);
 
-		@include margin( top 2em bottom 2em );
+		width: calc( 100% + #{ ( $grid-gutter-width-mobile * 2 ) } );
+
+		@include from( 'md' ) { 
+			@include margin( right 0 left 0 );
+
+			width: auto; 
+		}
 
 		&__items { @extend %list-unstyled, %margin-xs-0; }
 
@@ -80,8 +93,16 @@
 		}
 
 		&__navigation {
-			@include margin( top 25px );
+			@include margin( 
+				top 25px 
+				right $grid-gutter-width-mobile
+				left $grid-gutter-width-mobile
+			);
 			@extend %text-xs-right;
+
+			@include from( 'md' ) {
+				@include margin( right 0 left 0 );
+			}
 
 			.next {
 				@extend %display-xs-inline-block, %vertical-align-middle;
