@@ -1,0 +1,61 @@
+/**
+ * Page about
+ *
+ * @uses .Page-about
+ */
+.About {
+
+	/**
+	 * Header
+	 *
+	 * @uses .About-header
+	 */
+	&-header {
+		@include margin( bottom 90px );
+	}
+
+
+	/**
+	 * Sticky post
+	 *
+	 * @uses .Sticky-post
+	 */
+	.Sticky-post {
+		@include margin( top ( $grid-gutter-width * -2 ) );
+
+		.Sticky-post-header { @include margin( top $grid-gutter-width * 2 ); }
+		.excerpt { @include margin( bottom 40px ); }
+	}
+
+
+	/**
+	 * Description
+	 *
+	 * @uses .About-description
+	 */
+	&-description {
+
+		&-inner {
+			@include margin( 
+				top 100px
+				right percentage( 76 / $container-width-without-outer-gutter-unitless ) 
+				left percentage( 76 / $container-width-without-outer-gutter-unitless ) 
+			);
+
+			h3 {
+				@extend .color-gray-very-dark;
+				@extend %font-title, %font-bold;
+				@include font( 20, 33 );
+			}
+
+			p {
+				@extend .color-gray-very-dark-01;
+				@include font( 16, 29, 15 );
+			}
+		}
+
+		&-footer {
+			@include margin( top 50px );
+		}
+	}
+}

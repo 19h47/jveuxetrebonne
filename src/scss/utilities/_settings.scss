@@ -11,7 +11,7 @@
  * @author 	Jérémy Levron 	<levronjeremy@19h47.fr>
  */
 $import-utilities-vertical-alignments: true;
-$vertical-alignment-values: 'middle' 'bottom';
+$vertical-alignment-values: 'middle' 'bottom' 'top';
 
 
 /**
@@ -30,7 +30,7 @@ $import-utilities-colors: true;
  * @author 	Jérémy Levron 	<levronjeremy@19h47.fr>
  */
 $import-utilities-displays: true;
-$display-values: 'none' 'block' 'inline-block' 'table' 'table-cell';
+$display-values: 'none' 'block' 'inline-block' 'table' 'table-cell' 'inline';
 
 
 /**

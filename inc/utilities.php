@@ -107,3 +107,50 @@ function get_boundary_post_for_type( $type = null, $in_same_term = false, $exclu
     return get_posts( $query_args );
 }
 endif;
+
+
+if ( ! function_exists( 'youtube_id' ) ) :
+/**
+ * Get YouTube ID from URL.
+ * https://gist.github.com/MarioRicalde/1163103
+ * @param  string $url YouTube URL
+ * @return string      Video ID
+ */
+function youtube_id( $url ) {
+    // Regular Expression (the magic).
+    $regexp = '/^https?:\/\/(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?(?=.*v=([\w\-]+))(?:\S+)?|([\w\-]+))$/i';
+          
+    // Match a URL.
+    preg_match( $regexp, $url, $matches );
+    
+    // Remove empty values from the array (regexp shit).
+    $matches = array_filter( $matches, function( $var ) {
+        return $var !== '';
+    } );
+    
+    // If we have 2 elements in array, it means we got a valid url!
+    // $matches[1] is the youtube ID!
+    if ( count( $matches ) === 2 ) {
+        return $matches[1];
+    }
+    return null;
+}
+endif;
+
+
+/**
+ * String split unicode
+ * 
+ * @see  http://php.net/manual/fr/function.str-split.php
+ */
+function str_split_unicode( $str, $l = 0 ) {
+    if ($l > 0) {
+        $ret = array();
+        $len = mb_strlen($str, "UTF-8");
+        for ($i = 0; $i < $len; $i += $l) {
+            $ret[] = mb_substr($str, $i, $l, "UTF-8");
+        }
+        return $ret;
+    }
+    return preg_split("//u", $str, -1, PREG_SPLIT_NO_EMPTY);
+}

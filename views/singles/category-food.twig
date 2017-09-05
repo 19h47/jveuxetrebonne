@@ -1,0 +1,41 @@
+{#
+	/**
+	 * /views/singles/category-food
+	 */
+#}
+
+{% extends 'singles/index.twig' %}
+
+{# {% block content %} #}
+	
+	{# {{ parent() }} #}
+
+
+	{% block recipe %}
+
+		<header class="Recipe-header Recipe-header--category-food">
+			<h2>{{- pll__( 'La recette pas à pas' ) -}}</h2>
+			<a class="Link-readmore Link-marker Link-marker--blue" href="">
+				<span>{{- pll__( 'Imprimer' ) -}}</span>
+			</a>
+		</header>
+		
+		<div class="Recipe-child js-recipes">
+			<ul class="items js-recipes-buttons">
+				{% for child_recipe in post.get_field( 'child_recipes' ) %}
+					
+					<li class="item">
+						<button class="js-recipes-button{{ loop.index == 1 ? ' is-active' }}" data-id="{{ child_recipe.id }}">
+							<span>{{- child_recipe.title -}}</span>
+						</button>
+					</li>
+
+				{% endfor %}
+			</ul>
+
+			<div class="js-recipes-container"></div>
+		</div>
+
+	{% endblock %}
+
+{# {% endblock %} #}

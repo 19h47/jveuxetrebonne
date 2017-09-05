@@ -1,0 +1,53 @@
+{#
+    
+    /**
+     * partials/comments
+     * 
+     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     */
+    
+#}
+
+<div class="Comments">
+		
+	<div class="l-container">
+		
+		<header class="Comments-header">
+			{% if post.comments|length > 0 %}
+			<h3 class="title">{{- pll__( 'réduire' ) -}}</h3>
+			<button class="expand minus"></button>
+			{% endif %}
+			<p class="catchphrase">				
+				{{- 
+					fn(
+						'comments_number', 
+						pll__( 'Il n\'y a aucun commentaire sur cet article' ), 
+						pll__( 'Il y a un commentaire sur cet article' ), 
+						pll__( 'Il y a % commentaires sur cet article' )
+					)
+				-}}
+			</p>
+		</header>
+
+		
+		{% include 'components/comment-form.twig' %}
+		
+		
+		<ol class="Comment-list">
+		{% for comment in post.comments %}
+		{# <pre>{{comment|print_r}}</pre> #}
+			<li>
+			{% 	
+				include 'components/comment-thread.twig' 
+				with {
+					'post': comment,
+				
+				} 
+			%}
+			</li>
+			
+		{% endfor %}
+		</ol>
+
+	</div>
+</div>

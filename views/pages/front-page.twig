@@ -8,6 +8,11 @@
 {% block content %}
 	
 	{{ parent() }}
+
+	{# Banner #}
+	{% include 'components/banner.twig' %}
+
+
 	<div class="Front-page-header">
 		<div class="l-container">
 			<div class="row">
@@ -25,7 +30,8 @@
 								'language': true,
 								'search': true,
 								'layout': {
-									'desktop': true
+									'desktop': true,
+									'marker': true
 								}
 							} 
 						%}
@@ -40,6 +46,10 @@
 			{{ sticky_post }}
 		</div>
 	</div>
+
+
+	{{ slider_videos }}
+
 
 	<h2 class="Heading Heading--marquee">
 		<span>{{- pll__( 'Découvrir les articles') -}}</span>

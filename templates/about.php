@@ -17,7 +17,7 @@ if ( ! class_exists( 'Timber' ) ) {
 $context = Timber::get_context();
 $post = new TimberPost();
 $context['post'] = $post;
-
+$context['links'] = Timber::get_sidebar( 'component-link.php' );
 
 $templates = array( 'pages/about.twig' );
 

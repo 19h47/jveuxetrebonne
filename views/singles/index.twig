@@ -215,12 +215,16 @@
 		<span>{{- pll__( 'Tu aimeras peut-être aussi') -}}</span>
 	</h2>
 
-	<div class="Relationship-posts">
+	<div class="Relationship-posts js-relationship-posts">
 		<div class="l-container">
 			<div class="Relationship-posts__inner">
-				<ul class="items js-relationship-posts">
+				<ul class="items js-relationship-posts-container">
 					{{ relationship_post }}
 				</ul>
+				
+				<button class="previous js-relationship-posts-previous"></button>
+				<button class="next js-relationship-posts-next"></button>
+
 			</div>
 		</div>
 	</div>

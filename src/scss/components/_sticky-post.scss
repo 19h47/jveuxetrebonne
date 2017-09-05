@@ -202,13 +202,11 @@
 		$font-size: 35;
 		
 		@extend %margin-xs-0;
-		@include letter-spacing( 12 );
+		@include font( $font-size, 38, 12 );
 
 		font: {
-			size: ( $font-size / $base-font-size ) * 1em;
 			family: map-get( map-get( $font, families ), body );
 		}
-		line-height: ( 33 / $font-size );
 	}
 
 

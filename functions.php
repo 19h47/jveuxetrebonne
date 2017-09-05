@@ -26,7 +26,7 @@ include get_template_directory() . '/vendor/autoload.php';
  * @see         https://github.com/timber/timber
  * @version     1.3.0
  */
-$timber = new \Timber\Timber();  
+$timber = new \Timber\Timber(); 
 
 
 /**
@@ -101,6 +101,8 @@ class JVEB extends TimberSite {
         require_once get_template_directory() . '/inc/post-template.php';
         require_once get_template_directory() . '/inc/shortcodes/gallery.php';
         require_once get_template_directory() . '/inc/shortcodes/rich-content.php';
+        require_once get_template_directory() . '/inc/shortcodes/image-content.php';
+
         
         // if ( is_admin() ) new Admin( $this->get_theme_name(), $this->get_theme_version() );
         new acf_location_rule( 'category_parents' );
@@ -155,6 +157,41 @@ class JVEB extends TimberSite {
             } ) );
         }
 
+
+        if ( function_exists( 'comment_class' ) ) {
+            $twig->addFunction( new \Twig_SimpleFunction( 'comment_class', function( $args = '' ) {
+                return comment_class( $args );
+            } ) );
+        }
+
+
+        if ( function_exists( 'get_avatar' ) ) {
+            $twig->addFunction( new \Twig_SimpleFunction( 'get_avatar', function( $args = '' ) {
+                return get_avatar( $args );
+            } ) );
+        }
+
+
+        if( function_exists( 'wp_login_url' ) ) {
+            $twig->addFunction( new \Twig_SimpleFunction( 'wp_login_url', function( $args = '' ) {
+                return wp_login_url( $args );
+            } ) );
+        };
+
+
+        if( function_exists( 'wp_logout_url' ) ) {
+            $twig->addFunction( new \Twig_SimpleFunction( 'wp_logout_url', function( $args = '' ) {
+                return wp_logout_url( $args );
+            } ) );
+        };
+
+
+        if ( ! function_exists( 'youtube_id' ) ) {
+            $twig->addFunction( new \Twig_SimpleFunction( 'youtube_id', function( $args = '' ) {
+                return youtube_id( $args );
+            } ) );
+        };
+
         return $twig;
     }
 
@@ -174,6 +211,7 @@ class JVEB extends TimberSite {
         foreach ( $menus as $menu => $value ) {
             $context['menu'][$menu] = new TimberMenu( $value );
         }
+
 
         // Add socials to context
         $socials = array();
@@ -217,6 +255,44 @@ class JVEB extends TimberSite {
             $context['permalink'][$slug] = get_page_link( $page->ID );
         }
         $context['permalink']['current_url'] = get_permalink();
+
+
+        // Share
+        $shares = array(
+            array(
+                'slug'  => 'facebook',
+                'name' => pll__( 'Partager sur Facebook' ),
+                'url'  => ''
+            ),
+            array(
+                'slug'  => 'twitter',
+                'name' => pll__( 'Partager sur Twitter' ),
+                'url'  => ''
+            ),
+            array(
+                'slug'  => 'google-plus',
+                'name' => pll__( 'Partager sur Google+' ),
+                'url'  => ''
+            ),
+            array(
+                'slug'  => 'envelope',
+                'name' => pll__( 'Partager par Mail' ),
+                'url'  => ''
+            )
+        );
+
+        foreach ( $shares as $share ) {
+            $context['contact']['shares'][$share['slug']] = $share;
+        }
+
+        // Block for slider videos
+        $context['slider_videos'] = Timber::get_sidebar( 'component-slider-videos.php' );
+
+        // Block for sticky post
+        $context['sticky_post'] = Timber::get_sidebar( 'component-sticky-post.php' );
+
+        // Block for relationship post
+        $context['relationship_post'] = Timber::get_sidebar( 'component-relationship-post.php' );
 
        
         return $context;
@@ -379,6 +455,17 @@ class JVEB extends TimberSite {
             true 
         );
 
+        $cat_is_ancestor_of_food = get_categories(
+            array( 
+                'parent'    => 445 
+            )
+        );
+
+        $cat_is_ancestor_of_food_array = array();
+        foreach ( $cat_is_ancestor_of_food as $cat ) {
+            array_push( $cat_is_ancestor_of_food_array, $cat->term_id );
+        }
+
 
         wp_localize_script( 
             $this->theme_name . '-main', 
@@ -388,10 +475,12 @@ class JVEB extends TimberSite {
                 'base_url'                  => site_url(),
                 'home_url'                  => home_url( '/' ),
                 'ajax_url'                  => admin_url( 'admin-ajax.php' ),
+                'api_url'                   => home_url( 'wp-json' ),
                 'search_api'                => home_url( 'wp-json/jveb/v2/search' ),
+                'cat_is_ancestor_of_food'   => $cat_is_ancestor_of_food_array,
                 'template_instagram'        => file_get_contents( Timber::compile_string( get_template_directory_uri() . '/views/components/instagram-post.twig', array() ) )
             )
-        ); 
+        );
 
 
         wp_enqueue_script( $this->theme_name . '-main' );

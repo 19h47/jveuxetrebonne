@@ -1,0 +1,14 @@
+/**
+ * Category videos
+ *
+ * @uses .Category videos
+ */
+.Category-videos {
+	
+	/**
+	 * Slider category videos
+	 *
+	 * @uses .Category-videos .Slider-category-videos
+	 */
+	.Slider-category-videos { @include margin( top ( $grid-gutter-width * -2 ) ); }
+}

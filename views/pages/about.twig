@@ -12,7 +12,7 @@
 	{# Banner #}
 	{% include 'components/banner.twig' %}
 	
-	<div class="Page-about-header">
+	<div class="About-header">
 		<div class="l-container">
 			<div class="row">
 				<div class="col-xs-12 col-md-1">
@@ -46,4 +46,81 @@
 	<h2 class="Heading Heading--marquee">
 		<span>{{- post.title -}}</span>
 	</h2>
+
+	<div class="l-container">
+		<div class="Sticky-posts">
+			<article class="Sticky-post row">
+
+		        <div class="col-xs-12 col-md-6 col-md-offset-1">
+
+		            <a class="thumbnail" href="{{ post.link }}">
+		                <img class="img-full" src="{{ post.thumbnail.src | tojpg | resize( 635, 550 ) }}" alt="" />
+		            </a>
+
+		        </div>
+
+		        <div class="col-xs-12 col-md-5">        
+		            
+		            <header class="Sticky-post-header">
+
+		                {# Title #}
+		                <h2 class="title">{{- post.get_field( 'preview' ) -}}</h2>
+
+		            </header>
+
+		            
+		            {# Excerpt #}
+		            <div class="excerpt">{{- post.content -}}</div>
+
+		            
+		            {# Footer #}
+		            {% if post.get_field( 'gallery' ) %}
+		            <footer class="Sticky-post-footer js-slider-sticky-container">
+		                <div class="Sticky-post-footer__inner">
+		                    
+		                    <ul class="Sticky-post-footer__gallery js-slider-sticky">
+		                        {% for image in post.get_field( 'gallery' ) %}
+		                            <li class="Sticky-post-footer__gallery__item">
+		                                <img src="{{ TimberImage( image ) }}" />
+		                            </li>
+		                        {% endfor %}
+		                    </ul>
+
+		                    <button class="Sticky-post-footer__gallery__button js-slider-sticky-next" type="button" >
+		                        
+		                        <svg class="Icon next">
+		                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ theme.link }}/dist/svg/icons.svg#next"></use>
+		                        </svg>
+		                        
+		                    </button>
+
+		                </div>
+		            </footer>
+		            {% endif %}
+
+		        </div>
+
+		    </article>
+		</div>
+	</div>
+
+	<div class="l-container About-description">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="About-description-inner">
+					{{ post.description | wpautop }}
+					
+					<div class="About-description-footer">
+						<a href="http://www.jveb.19h47.fr/" class="Link-readmore Link-marker Link-marker--orange" target="_blank">
+							<span>{{ pll__( 'Découvrir jveb studio' ) }}</span>
+						</a>	
+					</div>	
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	{{ links }}
+
 {% endblock %}

@@ -35,6 +35,7 @@
     "hogan.js": "^3.0.2",
     "instafeed.js": "^1.4.1",
     "mustache": "^2.3.0",
+    "plyr": "^2.0.13",
     "polyfill-nodelist-foreach": "^1.0.1",
     "promise-polyfill": "^6.0.2",
     "rellax": "^1.0.0",
@@ -63,13 +64,13 @@
     "gsap.easing.CustomEase": "CustomEase"
   },
   "dependencies": {
-    "bootstrap-sass": "latest",
+    "bootstrap-sass": "^3.3.7",
     "breakpoint-sass": "^2.7.1",
     "breakpoint-slicer": "^2.0.0",
     "corejs-typeahead": "^1.1.1",
     "dom-classes": "^1.0.0",
     "dom-css": "^2.1.0",
-    "dom-select": "^1.0.0",
+    "dom-select": "^1.1.1",
     "dom-style": "^1.0.0",
     "ress": "^1.2.2"
   },

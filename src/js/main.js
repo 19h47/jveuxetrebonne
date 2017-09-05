@@ -5,12 +5,19 @@ var Modules = require('./modules/index');
 // create App
 window.app = new Modules.App();
 
+// Instanciate Recipe
+new Modules.Recipe();
 
 // instanciate Sliders
 new Modules.SliderIntroduction();
 new Modules.SliderPost();
 new Modules.SliderRichContent();
+new Modules.SliderCategoryVideos();
+new Modules.SliderRelationshipPosts();
 
+new Modules.CategoryVideos();
+
+new Modules.ImageContent();
 
 // instanciate Slider
 new Modules.Instagram();

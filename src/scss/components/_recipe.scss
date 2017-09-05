@@ -1,0 +1,252 @@
+/**
+ * Recipe
+ *
+ * @uses .Recipe
+ */
+.Recipe {
+
+	/**
+	 * Header
+	 *
+	 * @uses .Recipe-header
+	 */
+	&-header {
+		@extend %position-xs-relative;
+
+		h2 {
+			@extend .color-gray-very-dark;
+			@extend %font-semibold, %font-title;
+			@include font( 40, 33 );
+			@include margin( 
+				top ( $grid-gutter-width * 2 ) 
+				bottom ( $grid-gutter-width * 2 ) 
+			);
+		}
+
+		a {
+			@include absolute( top 50% right 0 );
+
+			transform: translate3d( 0, -50%, 0 );
+		}
+
+		@at-root .Category-food & {
+			@extend %display-xs-none;
+
+			&--category-food {
+				@extend %display-xs-block;
+			}
+		}
+	}
+
+
+	/**
+	 * Description
+	 *
+	 * @uses .Recipe-description
+	 */
+	&-description {
+		box-shadow: 0px 1px 15px 0px rgba( the_color( gray, very-dark ), .07 ); 
+	}
+
+
+
+	/**
+	 * Ingredients
+	 *
+	 * @uses .Recipe-ingredients
+	 */
+	&-ingredients {
+
+		.summary {
+			@extend %font-title, %font-semibold;
+			@extend .background-orange-very-soft-04, .color-white;
+			@include font( 16, 20.32 );
+		}
+
+		p:first-child {
+			@extend %text-xs-center;
+
+			width: percentage( 235 / 742 );
+			border: {
+				right: {
+					color: rgba( the_color( white ), .45  );
+					style: solid;
+					width: 1px;
+				}
+			}
+		}
+
+		p {
+			@extend %display-xs-inline-block, %margin-xs-0;
+			@include padding( top 10px bottom 10px );
+		}
+
+		.person-number {
+			@extend %text-xs-center;
+			width: percentage( 170 / 742 );
+			border: {
+				right: {
+					color: rgba( the_color( white ), .45  );
+					style: solid;
+					width: 1px;
+				}
+			}
+
+			&::before {
+				@extend %display-xs-inline-block, %vertical-align-middle;
+				@include margin( right 10px );
+				@include size( 25px );
+
+				background: {
+					image: url('#{ map-get( $directories, svg )}person-number.svg' );
+				}
+				content: '';
+			}
+		}
+		.preparation-time {
+			@extend %text-xs-center;
+			width: percentage( 171 / 742 );
+			border: {
+				right: {
+					color: rgba( the_color( white ), .45  );
+					style: solid;
+					width: 1px;
+				}
+			}
+
+			&::before {
+				@extend %display-xs-inline-block, %vertical-align-middle;
+				@include margin( right 10px );
+				@include size( 25px );
+
+				background: {
+					image: url('#{ map-get( $directories, svg )}preparation-time.svg' );
+				}
+				content: '';
+			}
+		}
+		.cooking-time {
+			@extend %text-xs-center;
+			width: percentage( 166 / 742 );
+			
+			&::before {
+				@extend %display-xs-inline-block, %vertical-align-middle;
+				@include margin( right 10px );
+				@include size( 25px );
+
+				background: {
+					image: url('#{ map-get( $directories, svg )}cooking-time.svg' );
+				}
+				content: '';
+			}
+		}
+	}
+
+
+	/**
+	 * Steps
+	 *
+	 * @uses .Recipe-steps
+	 */
+	&-steps {
+		h3 {
+			@extend .color-gray-very-dark;
+			@extend %font-title, %font-bold;
+			@include font( 20, 38 );
+			@include margin( top 2em );
+		}
+
+		b, strong { @extend .color-orange-very-soft-01; }
+	}
+
+
+	/**
+	 * Collection
+	 *
+	 * @uses .Recipe-collection
+	 */
+	&-collection {
+		@extend %display-xs-inline-block, %w-xs-100;
+		@include padding( 
+			right percentage( 40 / 742 )
+			bottom $grid-gutter-width 
+			left percentage( 40 / 742 ) 
+		);
+
+		.description {
+			@extend %font-semibold;
+			@include font( 16, 40 );
+		}
+
+		.ingredients {
+			column-count: 3;
+		}
+
+		ul {
+			@extend .color-gray-very-dark-01;
+			@extend %font-title, %font-medium, %margin-xs-0;
+			@include font( 14, 40.04 );
+
+			> :first-child {
+				@extend %margin-xs-top-0;
+			}
+			
+		}
+
+		.ingredient {}
+	}
+
+
+	/**
+	 * Child
+	 *
+	 * @uses .Recipe-child
+	 */
+	&-child {
+		.items { @extend %list-unstyled, %margin-xs-0; }
+
+		.item {
+			@extend %margin-xs-0;
+			
+			button {
+				@extend %font-title, %font-bold, %position-xs-relative, %Transition-ease;
+				@include font( 20, 41.96 );
+				@include padding( top 10px right 10px bottom 10px left 10px );
+
+
+				&::before {
+					@extend %Position-absolute-center, %display-xs-inline-block, %Transition-ease, %Pointer-events-none;
+
+					background: {
+						image: url( '#{ map-get( $directories, svg ) }marker-stroke.svg' );
+						position: center;
+						size: 100% 100%;
+					}
+					content: '';
+
+					opacity: 0;
+					transform: translate3d( ( ( $grid-gutter-width / 4 ) * -1 ), 0, 0 );
+
+					z-index: 10;
+				}
+
+				span {
+					@extend %position-xs-relative;
+
+					z-index: 20;
+				}
+
+				&.is-active,
+				&:hover {
+					
+					color: the_color( white );
+
+					&::before {
+						transform: translate3d( 0, 0, 0 );
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+}

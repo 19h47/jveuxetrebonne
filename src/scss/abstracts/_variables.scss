@@ -32,6 +32,7 @@ $color-variations: (
 		grayish: #cebfa6,
 		light-grayish-01: #fbdccf,
 		light-grayish-02: #fbeae2,
+		light-grayish-03: #fdeacc,
 		mostly-desaturated-dark: #9d8a6d,
 		slightly-desaturated: #bfa885,
 		very-soft: #fbcab6,
@@ -39,6 +40,8 @@ $color-variations: (
 		very-soft-02: #f4b89d,
 		very-soft-03: #fed9c9,
 		very-soft-04: #fddfb1,
+		very-soft-05: #fddeb0,
+		dark-grayish: #938672
 	),
 
 	 gray: (
@@ -89,7 +92,7 @@ $font: (
 	 *
 	 * Each font weight used in the theme.
 	 * 
-	 * @uses map-get( $font-weight, $key ) to retrieve font weight value
+	 * @uses map-get( $font, weights ) to retrieve font weight value
 	 * @type map
 	 * @author Jérémy Levron levronjeremy@19h47.fr
 	 */

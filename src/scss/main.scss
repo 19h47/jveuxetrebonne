@@ -19,7 +19,8 @@
 @import 
 	'ress',
 	'vendors/slick-theme',
-	'vendors/slick'
+	'vendors/slick',
+	'vendors/plyr'
 	;
 
 
@@ -59,7 +60,9 @@
 @import 
 	'pages/front-page',
 	'pages/category',
-	'pages/single';
+	'pages/single',
+	'pages/category-videos',
+	'pages/about';
 
 
 /**
@@ -82,7 +85,13 @@
 	'components/search',
 	'components/list-post',
 	'components/list-posts',
-	'components/single-menu';
+	'components/single-menu',
+	'components/comment',
+	'components/comments',
+	'components/respond',
+	'components/relationship-posts',
+	'components/banner',
+	'components/recipe';
 
 
 /**

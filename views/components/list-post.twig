@@ -8,11 +8,21 @@
     
 #}
 
-<article class="List-post js-load-more-post">
+<article class="List-post js-load-more-post{{ video ? ' List-post-category-videos js-category-videos' }}{{ relationship ? ' List-post-relationship' }}">
 	
-	<a class="link" href="{{ post.link }}">		
-		<img class="thumbnail" src="{{ post.thumbnail }}">
-	</a>
+		{% if video %}
+		
+			<div class="thumbnail js-category-video" data-type="youtube" data-video-id="{{ function( 'get_field', 'videos', post, false ) }}">
+				
+			</div>
+		
+		{% else %}
+			<a class="link" href="{{ post.link }}">		
+
+				<img class="thumbnail" src="{{ post.thumbnail }}">
+			</a>
+		{% endif %}
+
 	
 
 	{% spaceless %}
@@ -32,9 +42,9 @@
 		
 
 		{# Link #}
-		<a class="link" href="{{ post.link }}" title="{{ post.title }}">
+		{{ video ? '' : '<a class="link" href="{{ post.link }}" title="{{ post.title }}">' }}
 			<h3 class="title">{{ post.title }}</h3>
-		</a>
+		{{ video ? '' : '</a>' }}
 	
 	</div>
 	{% endspaceless %}

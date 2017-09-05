@@ -25,7 +25,8 @@
 							'language': true,
 							'search': true,
 							'layout': {
-								'desktop': true
+								'desktop': true,
+								'marker': true
 							}
 						} 
 					%}
@@ -39,18 +40,8 @@
 		<span>{{- category.description -}}</span>
 	</h2>
 
-	VIDÉOS
-	<div class="l-container">
-		
-		{% 
-			include 'partials/load-more.twig'
-			with {
-				'post_template_name': 'list',
-				'load_more_label': pll__( "Afficher plus d'article" )
-			}
-		%}
+	{{ slider_videos }}
 
-	</div>
 
 	{% include 'partials/instagram.twig' %}
 

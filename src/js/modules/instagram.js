@@ -16,7 +16,7 @@ function Instagram() {
 
     this.feed = null;
     this.userId = '26283047';
-    this.accessToken = '26283047.1677ed0.98b4ff5d9dd149a9b6d395127fbbd241';
+    this.accessToken = '26283047.1677ed0.eefc02ff179746bcb76f99cc08554827';
     
     this.setup();
     

@@ -71,7 +71,7 @@
                     <ul class="Sticky-post-footer__gallery js-slider-sticky">
                         {% for image in post.get_field( 'gallery' ) %}
                             <li class="Sticky-post-footer__gallery__item">
-                                <img src="{{ TimberImage(image) }}" />
+                                <img src="{{ TimberImage( image ) }}" />
                             </li>
                         {% endfor %}
                     </ul>

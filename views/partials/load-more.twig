@@ -18,14 +18,14 @@
 		<div class="col-xs-12 text-xs-center">
 
 			<button 
-				class="Link-readmore js-load-more-button" 
+				class="Link-readmore js-load-more-button Link-marker Link-marker--orange" 
 				data-tag="{{ category.term_id }}" 
 				data-count="{{ found_posts }}" 
 				data-posts-per-page="{{ post_per_page }}"
 				data-template="{{ post_template_name }}"
 				data-offset=""
 			>
-				{{- load_more_label -}}
+				<span>{{- load_more_label -}}</span>
 			</button>
 			
 		</div>

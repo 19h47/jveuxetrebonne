@@ -1,0 +1,18 @@
+{#
+    
+    /**
+     * /views/components/comment-thread
+     *
+     * @package WordPress
+     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     */
+    
+#}
+
+
+{% include 'components/comment.twig' %}
+
+
+{% for cmt in post.children %}
+	{% include 'components/comment.twig' with { comment: cmt } %}
+{% endfor %}

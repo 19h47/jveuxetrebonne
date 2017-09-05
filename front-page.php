@@ -20,7 +20,7 @@ $context['posts'] = Timber::get_posts(
 		// 'offset'				=> 0,
 		'posts_per_page'		=> $post_per_page,
 		'ignore_sticky_posts' 	=> 1,
-		'post__not_in' 			=> get_option( 'sticky_posts' ),
+		'post__not_in' 			=> array( get_option( 'sticky_posts' ) ),
 
 	) 
 );
@@ -30,7 +30,7 @@ $count_query = new WP_Query(
 		'post_type' 			=> 'post', 
 		'posts_per_page'		=> -1,
 		'ignore_sticky_posts' 	=> 1,
-		'post__not_in' 			=> get_option( 'sticky_posts' ),
+		'post__not_in' 			=> array( get_option( 'sticky_posts' ) ),
 
 	) 
 );
@@ -38,12 +38,6 @@ $count_query = new WP_Query(
 $context['post_per_page'] = $post_per_page;
 $context['found_posts'] = $count_query->found_posts;
 
-
-// Block for recent post
-// $context['recent_post'] = Timber::get_sidebar( 'component-recent-post.php' );
-
-// Block for sticky post
-$context['sticky_post'] = Timber::get_sidebar( 'component-sticky-post.php' );
 
 $templates = array( 'pages/front-page.twig' );
 

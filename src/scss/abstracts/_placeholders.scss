@@ -197,6 +197,16 @@
     &-pointer {
         cursor: pointer;
     }
+
+
+    /**
+     * Cursor auto
+     *
+     * @uses %Cursor-auto
+     */
+    &-auto {
+        cursor: auto;
+    }
 }
 
 

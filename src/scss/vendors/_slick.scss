@@ -77,23 +77,19 @@
 
     display: none;
 
-    &.dragging img {
-        pointer-events: none;
-    }
+    &.dragging img { pointer-events: none; }
 
-    .slick-initialized & {
-        display: block;
-    }
+    .slick-initialized & { display: block; }
 
-    .slick-loading & {
-        visibility: hidden;
-    }
+    .slick-loading & { visibility: hidden; }
 
     .slick-vertical & {
         display: block;
         height: auto;
         border: 1px solid transparent;
     }
+
+    &:focus { outline: none; }
 }
 .slick-arrow.slick-hidden {
     display: none;
