@@ -1,7 +1,7 @@
 /**
  * Category
  *
- * @uses 	.Front-page
+ * @uses 	.Category
  * @author 	Jérémy Levron <levronjeremy@19h47.fr>
  */
 .Category {
@@ -9,7 +9,7 @@
 	/**
 	 * Header
 	 *
-	 * @uses .Front-page-header
+	 * @uses .Category-header
 	 */
 	&-header {}
 
@@ -17,9 +17,15 @@
 	/**
 	 * List posts
 	 *
-	 * @uses .Front-page .List-posts
+	 * @uses .Category .List-posts
 	 */
-	.List-posts { @include margin( top ( $grid-gutter-width * -2 ) ); }
+	.List-posts { 
+		@include margin( top -40px );
+
+		@include from( 'md' ) {
+
+			@include margin( top ( $grid-gutter-width * -2 ) ); }
+		}
 
 
 	/**
