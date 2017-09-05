@@ -57,15 +57,20 @@
 	 */
 	&-article {
 		@extend %position-xs-relative;
-		@include padding( 
-			top 48px 
-			right percentage( 182 / 1029 )
-			left percentage( 107 / 1029 )
-		);
+		@include padding( top 48px );
 
-		top: -93px;
 		background: {
 			color: the_color( white );
+		}
+
+		@include from( 'md' ) {
+			
+			@include padding( 
+				right percentage( 182 / 1029 )
+				left percentage( 107 / 1029 )
+			);
+
+			top: -93px;
 		}
 
 		/**
@@ -100,7 +105,13 @@
 			
 			color: the_color( blue, light-grayish );
 			font: {
-				size: ( $font-size * 1px );
+				size: 18px;
+			}
+
+			@include from( 'md' ) {
+				font: {
+					size: ( $font-size * 1px );
+				}
 			}
 			// line-height: ( $line-height / $font-size );
 		}
@@ -117,12 +128,11 @@
 			$line-height: 48;
 			
 			@extend %font-body, %margin-xs-0;
-			@include letter-spacing( 20 );
+			@include font( 35, 42, 20 );
 
-			font: {
-				size: ( $font-size * 1px );
+			@include from( 'md' ) {
+				@include font( $font-size, $line-height, 20 );
 			}
-			line-height: ( $line-height / $font-size );
 		}
 
 
@@ -449,5 +459,11 @@
 	 *
 	 * @uses .Single .Relationship-posts
 	 */
-	.Relationship-posts { @include margin( top ( $grid-gutter-width * -2 ) ); }
+	.Relationship-posts { 
+		@include margin( top -40px );
+
+		@include from( 'md' ) {
+
+			@include margin( top ( $grid-gutter-width * -2 ) ); }
+		}
 }
