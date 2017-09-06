@@ -35,7 +35,11 @@
 	 *
 	 * @uses .Comment-list
 	 */
-	&-list { @extend %list-unstyled; }
+	&-list { 
+		@extend %list-unstyled; 
+
+		@at-root .js & { @extend %display-xs-none; }
+	}
 	
 	
 	/**

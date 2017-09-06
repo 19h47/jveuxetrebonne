@@ -8,14 +8,14 @@
     
 #}
 
-<div class="Comments">
+<div class="Comments js-comments">
 		
 	<div class="l-container">
 		
 		<header class="Comments-header">
 			{% if post.comments|length > 0 %}
-			<h3 class="title">{{- pll__( 'réduire' ) -}}</h3>
-			<button class="expand minus"></button>
+			<h3 class="title js-comments-title">{{- pll__( 'montrer' ) -}}</h3>
+			<button data-toggle-target="comment-list" class="expand plus"></button>
 			{% endif %}
 			<p class="catchphrase">				
 				{{- 
@@ -33,7 +33,7 @@
 		{% include 'components/comment-form.twig' %}
 		
 		
-		<ol class="Comment-list">
+		<ol class="Comment-list" data-toggle-name="comment-list">
 		{% for comment in post.comments %}
 		{# <pre>{{comment|print_r}}</pre> #}
 			<li>

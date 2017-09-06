@@ -2,6 +2,7 @@ var Modules = {
 
 	App: require('./app'),
 	CategoryVideos: require('./category-videos'),
+	Comments: require('./comments')(),
 	Guid: require('./guid')(),
 	Instagram: require('./instagram'),
 	ImageContent: require('./image-content'),
