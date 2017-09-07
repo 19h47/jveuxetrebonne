@@ -17,16 +17,21 @@
 {# Item #}
 {% for item in menu.get_items if layout.desktop %}
 
-    {# {{ item | print_r }} #}
+
     <li class="item{{ layout.marker ? ' has-stroke-marker' }} {{ item.class }}{{ item.current ? ' is-current' }}">
 
-        <a class="" target="{{ item.target }}" href="{{ item.link }}">
+        <a 
+            class="" 
+            target="{{ item.target }}" 
+            href="{{ item.title }}"
+        >
             {{ layout.marker ? '<span>' }}
             {{- item.title -}}
             {{ layout.marker ? '</span>' }}
         </a>
 
-	</li>
+    </li>
+
 
 {% endfor %}
 
