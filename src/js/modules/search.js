@@ -91,7 +91,10 @@ Search.prototype = {
 		plugins: function() {
 
 			this.$input.autocomplete({
-				
+				messages: {
+			        noResults: '',
+			        results: function() {}
+			    },
 				minLength: 1,
 				delay: 600,
 				source: $.proxy(function(request, response) {
