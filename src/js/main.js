@@ -5,6 +5,9 @@ var Modules = require('./modules/index');
 // create App
 window.app = new Modules.App();
 
+// Init scrollTop
+window.app.scrollTo();
+
 // Instanciate Recipe
 new Modules.Recipe();
 

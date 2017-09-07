@@ -136,12 +136,14 @@ App.prototype = {
 
 
 		elements.forEach(function(element) {
-			// console.dir(element);
 			var offset = element.dataset.offset;
 
 			switch (offset) {
 				case 'bottom':
 					offset = document.body.scrollHeight + element.scrollHeight;
+
+				case 'top':
+					offset = 0;
 
 				break;
 			}
@@ -151,7 +153,7 @@ App.prototype = {
 				// window.scrollTo(0, offset);
 
 				config.body.$.animate({
-				        scrollTop: $(document).height() - $(window).height()
+				        scrollTop: offset
 			    }, 200);
 			});
 			
