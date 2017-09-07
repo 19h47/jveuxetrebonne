@@ -200,7 +200,8 @@
 						<span class="aside-bull">&bull;</span>
 
 						<div class="aside-subscribe">
-							<a href="">{{ pll__( 'Abonne-toi' ) }}</a>
+							{# {{ site|print_r }} #}
+							<a href="mailto:{{ site.admin_email }}">{{ pll__( 'Abonne-toi' ) }}</a>
 						</div>
 					</aside>
 
