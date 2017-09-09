@@ -154,7 +154,7 @@
 				<article class="Single-article js-single-content">
 
 					{# {{ post|print_r}} #}
-					<h1 class="title">{{ post.title }}</h1>
+					<h1 class="title">{{- post.title -}}</h1>
 
 
 					{# Date #}
@@ -167,7 +167,7 @@
 					{# Preview #}
 					{% if post.get_field( 'preview' ) %}
 					<p class="preview">
-						{{ post.get_field( 'preview' ) | nl2br }}
+						{{- post.get_field( 'preview' ) | raw -}}
 					</p>
 					{% endif %}
 

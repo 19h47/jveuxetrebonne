@@ -89,6 +89,8 @@
 				size: ( $font-size * 1px );
 			}
 			line-height: ( $line-height / $font-size );
+			
+			a { color: the_color( orange, very-soft-01 ); }
 		}
 
 

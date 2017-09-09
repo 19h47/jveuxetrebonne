@@ -1,6 +1,7 @@
 var $ = require('jquery');
 var config = require('../config');
 var SliderPost = require('./slider-post');
+var SliderRecipe = require('./slider-recipe');
 
 function Recipe() {
     if (!(this instanceof Recipe)) {
@@ -110,6 +111,7 @@ Recipe.prototype = {
     update: function() {
 
         new SliderPost();
+        new SliderRecipe();
 
         // ensure everything is unlocked
         this.lock.off.call(this);

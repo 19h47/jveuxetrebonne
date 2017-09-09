@@ -1,0 +1,111 @@
+{#
+    
+    /**
+     * partials/Slider-recipe
+     * 
+     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     */
+    
+#}
+
+{% for collection in post.get_field( 'collection' ) %}
+
+	<div class="Slider-recipe js-slider-recipe">
+		<ul class="items js-slider-recipe-container">
+			
+			{% spaceless %}
+
+			<li class="item">
+
+				<div class="item__inner">
+					{% if collection.image|length %}
+						<img class="" src="{{ TimberImage( collection.image ).src }}">
+					{% endif %}
+				</div>
+
+				<div class="item__inner">
+
+					<h3 class="Slider-recipe__title">
+						{{- 
+							collection.description ? 
+								collection.description : 
+								pll__( 'Pour commencer <br> tu as besoin de :' ) 
+						-}}
+					</h3>
+					
+					{% if post.person_number or post.preparation_time or post.cooking_time %}
+						<div class="text-xs-center">
+						{{ post.person_number ? '<span class="person-number">' ~ post.person_number ~ ' pers.' ~ '</span>' }}
+						{{ post.preparation_time ? '<span class="preparation-time">' ~ post.preparation_time ~ ' min' ~ '</span>' }}
+						{{ post.cooking_time ? '<span class="cooking-time">' ~ post.cooking_time ~ ' min' ~ '</span>' }}
+						</div>
+					{% endif %}
+					
+					
+					{# Ingredients #}
+					{% if collection.ingredients %}
+
+						<ul class="Slider-recipe__ingredients">
+
+						{% for item in collection.ingredients %}
+
+							<li>{{- item.ingredient -}}</li>
+
+						{% endfor %}
+
+						</ul>
+				
+					{% endif %}
+					
+				</div>
+				
+			</li>
+			
+
+			{# Collection #}
+
+			{% for step in collection.steps %}
+				<li class="item">
+					
+					<div class="item__inner">
+						{% if step.image|length %}
+							<img src="{{ TimberImage( step.image ).src }}">
+						{% endif %}
+					</div>
+					<div class="item__inner">
+ 
+						<p class="Slider-recipe__title title-step">
+							{{- pll__( 'Étape' ) -}}&nbsp;{{ loop.index }}
+						</p>
+						{{- step.description -}}
+					</div>
+
+				</li>
+			{% endfor %}
+
+
+			{% endspaceless %}
+		</ul>
+
+	    {% if collection.steps|length > 0 %}
+
+		    <div class="Slider-recipe__progressbar js-slider-recipe-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+			
+		    {# Navigation #}
+		    <div class="Slider-recipe__navigation">
+
+		    	<button class="previous js-slider-recipe-previous"></button>
+		    	<button class="next js-slider-recipe-next"></button>
+
+		    	<span class="count">
+		    		<i class="count-inner js-slider-recipe-count" data-count="1">
+		    			/{{ collection.steps|length + 1 }}
+		    		</i>
+		    	</span>
+
+		    </div>
+
+		{% endif %}
+	</div>
+
+{% endfor %}
