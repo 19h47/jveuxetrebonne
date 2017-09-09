@@ -7,4 +7,9 @@
 {% extends 'singles/index.twig' %}
 
 
-{% block recipe %}{% include 'partials/recipe.twig' %}{% endblock %}
+{% block recipe %}
+	{% include 'partials/recipe.twig' with {
+			'title': pll__( 'La recette pas à pas' )
+		}
+	%}
+{% endblock %}
