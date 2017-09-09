@@ -102,6 +102,7 @@ class JVEB extends TimberSite {
         require_once get_template_directory() . '/inc/shortcodes/gallery.php';
         require_once get_template_directory() . '/inc/shortcodes/rich-content.php';
         require_once get_template_directory() . '/inc/shortcodes/image-content.php';
+        require_once get_template_directory() . '/inc/reset.php';
 
         
         // if ( is_admin() ) new Admin( $this->get_theme_name(), $this->get_theme_version() );
