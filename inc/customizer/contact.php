@@ -1,11 +1,11 @@
 <?php
-add_action( 'customize_register', 'jveuxetrebonne_customize_contact' );
+add_action( 'customize_register', 'jveb_customize_contact' );
 /**
  * Contact
  * 
  * @param WP_Customize_Manager $wp_customize Customizer object.
  */
-function jveuxetrebonne_customize_contact( $wp_customize ) {
+function jveb_customize_contact( $wp_customize ) {
     
     /**
      * Add contact section

@@ -8,10 +8,12 @@
      */
     
 #}
-<div class="Banner" style="background-image: url('{{ theme.link }}/img/jpg/banner.jpg');">
+{% if banner %}
+<div class="Banner" style="background-image: url( '{{ banner }}' );">
 	<div class="display-xs-table w-xs-100 h-xs-100 text-xs-center">
 		<div class="display-xs-table-cell vertical-align-middle">
 			{% include 'components/header-logo.twig' %}
 		</div>
 	</div>
 </div>
+{% endif %}

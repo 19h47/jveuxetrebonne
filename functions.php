@@ -243,6 +243,13 @@ class JVEB extends TimberSite {
             $context['contact']['phone'] = get_option( 'phone' );
         }
 
+        // Banner
+        if ( get_option( 'banner' ) ) {
+
+            $context['banner'] = get_option( 'banner' );
+        }
+
+
         // Permalink
         $page_args = array();
         $pages = get_pages( $page_args );
