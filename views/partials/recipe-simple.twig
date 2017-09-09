@@ -1,0 +1,96 @@
+{#
+    
+    /**
+     * partials/recipe-simple
+     * 
+     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     */
+    
+#}
+
+<div class="Recipe-description">
+
+	<div class="Recipe-ingredients">
+		
+		<div class="summary">
+			{% spaceless %}
+				
+			<p>{{ pll__( 'Tu as besoin de …' ) }}</p>
+			{{ post.person_number ? '<p class="person-number">' ~ post.person_number ~ ' pers.' ~ '</p>' }}</p>
+			{{ post.preparation_time ? '<p class="preparation-time">' ~ post.preparation_time ~ ' min' ~ '</p>' }}</p>
+			{{ post.cooking_time ? '<p class="cooking-time">' ~ post.cooking_time ~ ' min' ~ '</p>' }}</p>
+
+			{% endspaceless %}
+		</div>		
+	</div>
+	
+
+	{% if post.get_field( 'collection' ) %}
+	<div class="Recipe-collection">
+
+		{# Collection #}
+		{% for collection in post.get_field( 'collection' ) %}
+			
+
+			{% if collection.ingredients %}
+
+				{# Description #}
+				<h3 class="description">
+				{{- 
+					collection.description 
+						? collection.description
+						: pll__( 'Tu as besoin de …' )
+				-}}
+				</h3>
+
+				
+				<div class="ingredients">
+					<ul>
+					{# Ingredients #}
+					{% for item in collection.ingredients %}
+
+						<li class="ingredient">{{ item.ingredient }}</li>
+
+					{% endfor %}
+					</ul>
+				</div>
+
+			{% endif %}
+
+		{% endfor %}
+
+	</div>
+	{% endif %}
+
+</div>
+
+{% if post.get_field( 'collection' ) %}
+<div class="Recipe-steps">
+
+	{# Collection #}
+	{% for collection in post.get_field( 'collection' ) %}
+
+		{% if collection.steps %}
+			
+			{# Steps #}
+			{% for step in collection.steps %}
+
+				{{ step.description }}
+
+			{% endfor %}	
+
+		{% endif %}
+
+	{% endfor %}
+
+</div>
+{% endif %}
+
+
+{% if post.gallery %}
+<div class="Recipe-gallery">
+	
+	{% include 'partials/slider-post.twig' %}
+
+</div>
+{% endif %}
