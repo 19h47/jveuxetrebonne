@@ -9,7 +9,7 @@ function Recipe() {
 
     this.$parent = $('.js-recipes');
 
-    if (this.$parent.length === 0 || this.$parent == 'undefined') {
+    if (this.$parent.length === 0 || this.$parent === 'undefined') {
         return;
     }
 
