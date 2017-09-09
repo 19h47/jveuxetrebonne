@@ -15,6 +15,7 @@ var Modules = {
 	SliderPost: require('./slider-post'),
 	SliderRichContent: require('./slider-rich-content'),
 	SliderRelationshipPosts: require('./slider-relationship-posts'),
+	SliderRecipe: require('./slider-recipe'),
 	SingleMenu: require('./single-menu'),
 };
 
