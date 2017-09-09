@@ -22,7 +22,7 @@ Comments.prototype = {
 	
 	initPlugins: function() {
 
-		console.log(toggle);
+		// console.log(toggle);
 		var $button = $("[data-toggle-target]");
 		var $title = this.$element.find('.js-comments-title');
 
