@@ -12,6 +12,7 @@ window.app.scrollTo();
 new Modules.Recipe();
 
 // instanciate Sliders
+new Modules.SliderFilter();
 new Modules.SliderIntroduction();
 new Modules.SliderPost();
 new Modules.SliderRichContent();

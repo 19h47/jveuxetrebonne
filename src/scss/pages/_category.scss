@@ -34,12 +34,17 @@
 	&-list-childs {
 		@extend %position-xs-relative;
 		@include padding( top 43px );
+		@include margin( bottom 43px );
+
+		@include from( 'md' ) {
+			@include margin( bottom 0 );
+		}
 		
 
 		&::before {
 			@extend %display-xs-block;
 			@include absolute( top 0 right 0 left 0 );
-			@include size( 100%, 180px );
+			@include size( 100% );
 
 			// @include padding( top percentage( 180 / $psd-width-unitless ) );
 			content: '';
@@ -48,6 +53,50 @@
 				the_color( orange, light-grayish-01 ) 0%,
 				the_color( orange, light-grayish-02 ) 100%
 			);
+
+			@include from( 'md' ) {
+				@include size( 100%, 180px );
+			}
+		}
+
+		.next {
+			@include absolute( top 50% right 0 );
+			@include margin( top 0 right $grid-gutter-width-mobile );
+			
+			background: { 
+				image: url( '#{ map-get( $directories, svg ) }arrow-right-white.svg' );
+			}
+			transform: translate3d( 0, calc( -50% - 44px ), 0 );
+		}
+			
+
+		.previous {
+			@include absolute( top 50% left 0 );
+			@include margin( top 0 left $grid-gutter-width-mobile );
+			
+			background: { 
+				image: url( '#{ map-get( $directories, svg ) }arrow-left-white.svg' );
+			}
+			transform: translate3d( 0, calc( -50% - 44px ), 0 );
+		}
+
+
+		.next,
+		.previous {
+			@extend %display-xs-inline-block, %vertical-align-middle, %Cursor-pointer, %Transition-ease;
+			@include size( 44px );
+
+			background: {
+				position: center;
+				size: 100%;
+			}
+			opacity: 1;
+			z-index: 1;
+
+			&.slick-disabled {
+				@extend %Cursor-auto;
+				opacity: 0;
+			}
 		}
 	}	
 
@@ -58,6 +107,12 @@
 	 * @uses .Category-list-child
 	 */
 	&-list-child {
+
+		@include padding( 
+			right percentage( 110 / 480 )
+			left percentage( 110 / 480 )
+		); 
+	
 
 		width: 100%;
 
@@ -70,6 +125,8 @@
 		opacity: 0;
 		transform: translateY( ( $grid-gutter-width * -1 ) );
 
+		@include from( 'md' ) { @include padding( right 0 left 0 ); }
+
 		&.is-active {}
 
 		.title {
@@ -78,20 +135,29 @@
 
 			@extend %font-title, %font-semibold, %margin-xs-0;
 			
-			color: the_color( blue, light-grayish );
+			color: the_color( white );
 			font: {
 				size: ( $font-size * 1px );
 			}
 			line-height: ( $line-height / $font-size );
 
+			@include from( 'md' ) {
+				color: the_color( blue, light-grayish );
+			}
 		}
+
 		.thumbnail {
 			@extend %position-xs-relative, %overflow-hidden;
+			
+			box-shadow: 1px 3px 9px 0px rgba( the_color( gray, very-dark ), .09 ); 
 
-			border: {
-				radius: 50%;
+			@include from( 'md' ) {
+				border: {
+					radius: 50%;
+				}
+				box-shadow: 0 -3px 15px 0 rgba( the_color( red, bright ), .15 ); 
+
 			}
-			box-shadow: 0 -3px 15px 0 rgba( the_color( red, bright ), .15 ); 
 
 			&::after {
 				@extend %display-xs-block;

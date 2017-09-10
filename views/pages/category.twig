@@ -43,7 +43,7 @@
 		
 		<div class="Category-list-childs js-filter">
 			<div class="l-container">
-				<div class="row">
+				<div class="row js-slider-filter-container">
 
 					{% for category in category.children %}
 						{# {{ category|print_r }} #}
@@ -72,6 +72,10 @@
 					{% endfor %}
 
 				</div>
+				
+				<button class="next js-slider-filter-next hidden-md hidden-lg hidden-hd"></button>
+				<button class="previous js-slider-filter-previous hidden-md hidden-lg hidden-hd"></button>
+
 			</div>
 		</div>	
 

@@ -10,6 +10,7 @@ var Modules = {
 	Recipe: require('./recipe'),
 	Search: require('./search'),
 	SliderCategoryVideos: require('./slider-category-videos'),
+	SliderFilter: require('./slider-filter'),
 	SliderIntroduction: require('./slider-introduction'),
 	SliderPost: require('./slider-post'),
 	SliderRichContent: require('./slider-rich-content'),
