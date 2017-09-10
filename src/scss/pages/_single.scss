@@ -17,10 +17,16 @@
 	 * @uses .Single-header
 	 */
 	&-header {
-		@include absolute( top 0 right 0 left 0 );
-	
-		color: the_color( white );
+		@include padding( bottom 24px );
+		color: the_color( gray, very-dark );
 		z-index: 10;
+
+		@include from( 'md' ) {
+			@include absolute( top 0 right 0 left 0 );
+			@include padding( bottom 0 );
+			
+			color: the_color( white );
+		}
 	}
 
 
@@ -32,13 +38,17 @@
 	&-introduction {
 		@extend %position-xs-relative;
 
-		height: 100vh;
-		max-height: 821px;
+		height: 353px;
 
 		background: {
 			attachment: fixed;
 			position: center;
 			size: cover;
+		}
+
+		@include from( 'md' ) {
+			height: 100vh;
+			max-height: 821px;
 		}
 
 		// img {
@@ -183,7 +193,7 @@
 				/* Image with 'data' attribute is hidden */
 				&[data-lazy-src] {
 				/* we set the opacity to 0 */
-				   opacity: 0;
+				   // opacity: 0;
 				}
 				
 				/* Image without 'data' attribute is (or becomes) visible */

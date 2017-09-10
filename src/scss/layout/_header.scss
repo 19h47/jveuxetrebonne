@@ -25,7 +25,11 @@
 		}
 
 		@at-root .Single-header & a{
-			@include margin( top 36px );
+			@include margin( top 24px );
+
+			@include from( 'md' ) {
+				@include margin( top 36px );
+			}
 		}
 
 		@at-root .About-header & a{
