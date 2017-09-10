@@ -219,6 +219,8 @@ class Post {
 			'post_status'   	=> 'publish',
 			'posts_per_page'	=> -1,
 			's'             	=> $request['term'],
+			// Exclude video catgory
+			'category__not_in' 	=> array( 1335 )
 		) );
 
 		if ( empty( $results ) ) {
