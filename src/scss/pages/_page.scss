@@ -1,9 +1,9 @@
 /**
- * Page
+ * Page template default
  *
  * @uses .scss
  */
-.page {
+.page-template-default {
 	&-content {
 		@extend .color-gray-very-dark;
 		@include margin( bottom 100px );
