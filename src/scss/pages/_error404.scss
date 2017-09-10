@@ -1,0 +1,11 @@
+/**
+ * 404
+ *
+ * @uses .error404
+ */
+.error404 {
+
+	&-content {
+		@include margin( bottom $grid-gutter-width * 5 );
+	}
+}
