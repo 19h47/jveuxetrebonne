@@ -22,7 +22,12 @@
 	 *
 	 * @uses .Front-page .Sticky-posts
 	 */
-	.Sticky-posts { @include margin( bottom ( $grid-gutter-width * 4 ) ); }
+	.Sticky-posts { 
+		@include margin( bottom ( $grid-gutter-width * 2 ) );
+
+		@include from( 'md' ) {
+			@include margin( bottom ( $grid-gutter-width * 4 ) ); }
+		}
 
 
 	/**
