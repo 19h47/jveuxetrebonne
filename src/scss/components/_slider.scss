@@ -295,14 +295,14 @@
 	 * @uses .Slider-category-videos
 	 */
 	&-category-videos {
-		@extend %position-xs-relative;
+		@extend %position-xs-relative, %text-xs-center;
 		@include padding( top 70px bottom 70px );
 
 
 		&::before {
 			@extend %display-xs-block;
 			@include absolute( top 0 right 0 left 0 );
-			@include size( 100%, 348px );
+			@include size( 100% );
 			
 			background: 
 			    linear-gradient(
@@ -311,6 +311,10 @@
 			    	rgba( the_color( orange, light-grayish-01 ), 1 ) 100%
 			    ); 
 			content: '';
+
+			@include from( 'md' ) {
+				height: 348px;
+			}
 		}
 
 		.items { @extend %list-unstyled, %margin-xs-0, %padding-xs-0; }
@@ -325,9 +329,17 @@
 		.List-post-category-videos {
 			// @extend %display-xs-inline-block;
 			@include margin( 
-				right percentage( 135 / 876 ) 
-				left percentage( 135 / 876 ) 
+				right $grid-gutter-width-mobile
+				left $grid-gutter-width-mobile
 			);
+
+			@include from( 'md' ) {
+				
+				@include margin( 
+					right percentage( 135 / 876 ) 
+					left percentage( 135 / 876 ) 
+				);
+			}
 
 			// @include margin( 
 			// 	right auto
@@ -339,37 +351,50 @@
 
 
 		.next {
-			@include absolute( top 0 right 0 );
-			@include margin( right percentage( 282 / $psd-width-unitless ) );
-
+			@include margin( left 20px );
 			background: { 
 				image: url( '#{ map-get( $directories, svg ) }arrow-right-white.svg' );
+			}
+
+			@include from( 'md' ) {
+				@include margin( right percentage( 282 / $psd-width-unitless ) left auto );
+				@include absolute( top 0 right 0 );
+
 			}
 		}
 			
 
 		.previous {
-			@include absolute( top 0 left 0 );
-			@include margin( left percentage( 282 / $psd-width-unitless ) );
-
+			@include margin( right 20px );
 			background: { 
 				image: url( '#{ map-get( $directories, svg ) }arrow-left-white.svg' );
+			}
+
+			@include from( 'md' ) {
+				@include margin( right auto left percentage( 282 / $psd-width-unitless ) );
+				@include absolute( top 0 left 0 );
+
 			}
 		}
 
 
 		.next,
 		.previous {
-
-			@include margin( top 224px );
-			@extend %display-xs-inline-block, %vertical-align-middle, %Cursor-pointer, %Transition-ease;
-			@include size( 27px );
+			@extend %display-xs-inline-block, %vertical-align-middle, %Cursor-pointer, %Transition-ease, %position-xs-relative;
+			@include margin( top 40px );
+			@include size( 44px );
 
 			background: {
 				position: center;
 				size: 100%;
 			}
 			opacity: 1;
+			z-index: 1;
+
+			@include from( 'md' ) { 
+				@include margin( top 224px ); 
+				@include size( 27px );
+			}
 
 			&.slick-disabled {
 				@extend %Cursor-auto;
