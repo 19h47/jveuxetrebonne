@@ -6,7 +6,10 @@
 .Footer {
 	@include padding( top 55px bottom 44px );
 
-	@at-root .About & {
+	@at-root 
+		.About &, 
+		.error404 &,
+		.page & {
 		border: {
 			top: {
 				color: the_color( blue, light-grayish );

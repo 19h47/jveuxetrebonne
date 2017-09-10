@@ -45,13 +45,11 @@
 		</div>
 	</div> 
 	
-	<div class="l-container error404-content">
+	<div class="l-container page-content {{ post.class }}" id="{{ post.id }}">
 		<div class="row">
-			<div class="col-xs-12 col-md-8 col-md-offset-2">
-				<h1 class="font-bold">{{- pll__( 'Oops! Cette page ne peut être trouvée.' ) -}}</h1>
-				<p>
-					{{- pll__( "Il semble que rien n'ait été trouvé à cet endroit. Peut-être essayer une recherche ?" ) -}}
-				</p>
+			<div class="col-xs-12 col-md-6 col-md-offset-3">
+				<h1 class="font-bold">{{- post.title -}}</h1>
+				{{- post.content -}}
 			</div>
 		</div>
 	</div>

@@ -6,6 +6,7 @@
 .error404 {
 
 	&-content {
+		@extend .color-gray-very-dark;
 		@include margin( bottom $grid-gutter-width * 5 );
 	}
 }
