@@ -37,7 +37,7 @@
  * @see http://getbootstrap.com/css/#helper-classes-clearfix
  * @uses .clearfix
  */
-.clearfix {
+%clearfix {
     &::before,
     &::after { 
         content: " ";
@@ -47,6 +47,10 @@
     &::after {
         clear: both;
     }
+}
+
+.clearfix {
+    @extend %clearfix;
 }
 
 

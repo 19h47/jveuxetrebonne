@@ -48,7 +48,13 @@
 		$font-size: 60;
 		$line-height: 41.94;
 
-		@extend %display-xs-inline-block, %font-title, %font-semibold, %Transition-ease;
+		@extend 
+			%display-xs-block, 
+			%display-md-inline-block, 
+			%font-title, 
+			%font-semibold, 
+			%Transition-ease;
+			
 		@include margin( 
 			top 0
 			right ( ( ( 30 * 100 ) / $psd-width-unitless ) * 1vw ) 
@@ -68,6 +74,7 @@
 			play-state: paused;
 			fill-mode: backwards;
 		}
+
 		// opacity: 0;
 		// transform: translateY( ( $grid-gutter-width * -1 ) );
 		

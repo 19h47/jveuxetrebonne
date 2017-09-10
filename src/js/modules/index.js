@@ -16,7 +16,7 @@ var Modules = {
 	SliderRichContent: require('./slider-rich-content'),
 	SliderRelationshipPosts: require('./slider-relationship-posts'),
 	SliderRecipe: require('./slider-recipe'),
-	SingleMenu: require('./single-menu'),
+	SingleMenu: require('./single-menu')
 };
 
 module.exports = Modules;
