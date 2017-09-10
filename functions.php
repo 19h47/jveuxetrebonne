@@ -92,7 +92,6 @@ class JVEB extends TimberSite {
      */
     private function load_dependencies() {
 
-        // require_once get_template_directory() . '/inc/reset.php';
         require_once get_template_directory() . '/inc/utilities.php';
         require_once get_template_directory() . '/inc/acf-location.php';
         require_once get_template_directory() . '/inc/wp-rocket.php';
@@ -104,12 +103,14 @@ class JVEB extends TimberSite {
         require_once get_template_directory() . '/inc/shortcodes/rich-content.php';
         require_once get_template_directory() . '/inc/shortcodes/image-content.php';
         require_once get_template_directory() . '/inc/reset.php';
+        require_once get_template_directory() . '/inc/admin.php';
 
         
-        // if ( is_admin() ) new Admin( $this->get_theme_name(), $this->get_theme_version() );
         new acf_location_rule( 'category_parents' );
         new Custom_Post_Types( $this->get_theme_name(), $this->get_theme_version() );
         new Custom_Taxonomies( $this->get_theme_name(), $this->get_theme_version() );
+        
+        if ( is_admin() ) new Admin( $this->get_theme_name(), $this->get_theme_version() );
     }
 
 
