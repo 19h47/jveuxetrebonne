@@ -167,7 +167,7 @@
 					{# Preview #}
 					{% if post.get_field( 'preview' ) %}
 					<p class="preview">
-						{{- post.get_field( 'preview' ) | raw -}}
+						{{- post.get_field( 'preview' ) | nl2br | raw -}}
 					</p>
 					{% endif %}
 
