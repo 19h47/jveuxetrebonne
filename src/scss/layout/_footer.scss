@@ -27,7 +27,7 @@
 
 		@extend .text-xs-center;
 		@extend %font-title;
-		@include font( 15, 21 );
+		font: { size: 15px; }
 
 		color: $color;
 
@@ -76,11 +76,17 @@
 	&-logo {
 
 		a {
-			@include margin( top 50px );
+			@include margin( top 50px bottom 50px );
 			@extend %display-xs-block;
 			
 			&:hover {}
+	
+			@include from( 'md' ) {
+				@include margin( bottom 0 );
+			}
 		}
+
+
 		img {
 			@extend %display-xs-inline-block, %vertical-align-middle;
 		}
@@ -97,7 +103,11 @@
 		
 		@extend %display-xs-inline-block, %vertical-align-middle;
 		@include size( ( $size * 1px ) );
-		@include margin( top 23px );
+		@include margin( top 23px bottom 23px );
+
+		@include from( 'md' ) {
+			@include margin( bottom 0 );
+		}
 
 		&:hover {
 			svg {
