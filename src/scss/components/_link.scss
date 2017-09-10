@@ -10,10 +10,14 @@
 	&-blogrolls {
 
 		&-header {
-			@include margin( 
-				right percentage( 76 / $container-width-without-outer-gutter-unitless ) 
-				left percentage( 76 / $container-width-without-outer-gutter-unitless ) 
-			);
+
+			@include from( 'md' ) {
+				
+				@include margin( 
+					right percentage( 76 / $container-width-without-outer-gutter-unitless ) 
+					left percentage( 76 / $container-width-without-outer-gutter-unitless ) 
+				);
+			}
 		}
 
 		&-category-recompense {}
@@ -24,6 +28,16 @@
 			@extend %font-bold;
 			@include margin( top 45px bottom 45px );
 			@include font( 20, 33 );
+		}
+
+		.container {
+		    white-space: nowrap;
+    		overflow-x: scroll;
+
+    		@include from( 'md' ) {
+    			overflow-x: visible;
+    			white-space: normal;
+    		}
 		}
 	}
 
@@ -56,10 +70,17 @@
 			@extend %display-xs-inline-block;
 			@include margin( 
 				top $grid-gutter-width
-				right percentage( $grid-gutter-width-unitless / $container-width-without-outer-gutter-unitless ) 
+				right $grid-gutter-width 
 				bottom $grid-gutter-width
-				left percentage( $grid-gutter-width-unitless / $container-width-without-outer-gutter-unitless ) 
+				left $grid-gutter-width 
 			);
+
+			@include from( 'md' ) {
+				@include margin( 
+					right percentage( $grid-gutter-width-unitless / $container-width-without-outer-gutter-unitless ) 
+					left percentage( $grid-gutter-width-unitless / $container-width-without-outer-gutter-unitless ) 
+				);				
+			}
 			
 			.thumbnail {
 				@extend %display-xs-inline-block, %vertical-align-middle;

@@ -40,17 +40,18 @@
 	<div class="l-container Link-blogrolls-category-presse">
 		<div class="row">
 
-			<div class="col-xs-12">
-			{# Presse #}
-			{% spaceless %}
-				
-			{% for link in links if link.terms()[0].slug == 'presse' %}
-				
-				{% include 'components/link.twig' %}
-				
-			{% endfor %}
+			<div class="col-xs-12 container">
+				{# Presse #}
+				{% spaceless %}
+					
+				{% for link in links if link.terms()[0].slug == 'presse' %}
+					
+					{% include 'components/link.twig' %}
+					
+				{% endfor %}
 
-			{% endspaceless %}
+				{% endspaceless %}
+			
 			</div>
 		</div>
 	</div>

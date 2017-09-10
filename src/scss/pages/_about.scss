@@ -21,7 +21,11 @@
 	 * @uses .Sticky-post
 	 */
 	.Sticky-post {
-		@include margin( top ( $grid-gutter-width * -2 ) );
+		@include margin( top ( $grid-gutter-width * -1 ) );
+
+		@include from( 'md' ) {
+			@include margin( top ( $grid-gutter-width * -2 ) );
+		}
 
 		.Sticky-post-header { @include margin( top $grid-gutter-width * 2 ); }
 		.excerpt { @include margin( bottom 40px ); }
@@ -38,9 +42,14 @@
 		&-inner {
 			@include margin( 
 				top 100px
-				right percentage( 76 / $container-width-without-outer-gutter-unitless ) 
-				left percentage( 76 / $container-width-without-outer-gutter-unitless ) 
 			);
+
+			@include from( 'md' ) {
+				@include margin( 
+					right percentage( 76 / $container-width-without-outer-gutter-unitless ) 
+					left percentage( 76 / $container-width-without-outer-gutter-unitless ) 
+				);
+			}
 
 			h3 {
 				@extend .color-gray-very-dark;
