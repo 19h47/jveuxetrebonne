@@ -33,9 +33,13 @@ SliderCategoryVideos.prototype = {
         $slider.find('.js-slider-category-videos-container')
 
             .on('beforeChange', function(event, slick, currentSlide, nextSlide){
+    
+                // If the current video is played
+                if (players[currentSlide].play) {
 
-                // Stop the current video
-                players[currentSlide].stop();
+                    // Stop it
+                    players[currentSlide].pause();
+                };
             })
 
             .slick({
