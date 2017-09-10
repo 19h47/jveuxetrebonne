@@ -45,7 +45,7 @@ Instagram.prototype = {
     },
 
     initPlugins: function() {
-        console.info('Instagram.initPlugins');
+        // console.info('Instagram.initPlugins');
 
         $('.js-slider-instagram').find('#js-instagram').slick({
             arrows: false,
