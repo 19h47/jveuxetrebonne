@@ -451,6 +451,49 @@ class JVEB extends TimberSite {
         );
 
 
+        // Mailpoet
+        wp_register_script(
+            'wysija_validation_engine_fr',
+            plugins_url() . '/wysija-newsletters/js/validate/languages/jquery.validationEngine-fr.js',
+            array( 'jquery' ),
+            '2.7.11.3',
+            true
+        );
+
+
+        wp_register_script(
+            'wysija_validation_engine',
+            plugins_url() . '/wysija-newsletters/js/validate/jquery.validationEngine.js',
+            array( 'jquery' ),
+            '2.7.11.3',
+            true
+        );
+
+        wp_register_script(
+            'wysija_front_subscribers',
+            plugins_url() . '/wysija-newsletters/js/front-subscribers.js',
+            array( 'jquery' ),
+            '2.7.11.3',
+            true
+        );
+
+        wp_localize_script(
+            'wysija_front_subscribers',
+            'wysijaAJAX', 
+            array(
+                'action'        => 'wysija_ajax',
+                'controller'    => 'subscribers',
+                'ajaxurl'       => admin_url( 'admin-ajax.php' ),
+                'loadingTrans'  => pll__( 'Chargement...' )
+            )
+        );
+
+
+        wp_enqueue_script( 'wysija_validation_engine_fr' );
+        wp_enqueue_script( 'wysija_validation_engine' );
+        wp_enqueue_script( 'wysija_front_subscribers' );
+
+
 
         wp_register_script( 
             $this->theme_name . '-main', 
@@ -485,6 +528,7 @@ class JVEB extends TimberSite {
                 'ajax_url'                  => admin_url( 'admin-ajax.php' ),
                 'api_url'                   => home_url( 'wp-json' ),
                 'search_api'                => home_url( 'wp-json/jveb/v2/search' ),
+                'current_url'               => get_permalink(),
                 'cat_is_ancestor_of_food'   => $cat_is_ancestor_of_food_array,
                 'template_instagram'        => file_get_contents( Timber::compile_string( get_template_directory_uri() . '/views/components/instagram-post.twig', array() ) )
             )
