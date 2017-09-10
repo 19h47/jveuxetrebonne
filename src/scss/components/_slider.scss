@@ -297,7 +297,12 @@
 	&-category-videos {
 		@extend %position-xs-relative, %text-xs-center;
 		@include padding( top 70px bottom 70px );
+		
+		@include margin( bottom $grid-gutter-width-mobile );
 
+		@include from( 'md' ) {
+			@include margin( bottom 0 );			
+		}
 
 		&::before {
 			@extend %display-xs-block;
