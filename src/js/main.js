@@ -19,6 +19,7 @@ new Modules.SliderCategoryVideos();
 new Modules.SliderRecipe();
 new Modules.SliderRelationshipPosts();
 
+new Modules.Menu();
 
 new Modules.ImageContent();
 

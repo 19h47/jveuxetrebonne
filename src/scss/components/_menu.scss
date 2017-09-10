@@ -7,40 +7,79 @@
 .Menu {
 	$this: &;
 	$margin: 68;
+	$padding: 10;
 
 	@extend %list-unstyled;
 	@extend .clearfix;
 	
 	color: currentColor;
 
+
+	&-button {
+		@include absolute( top 0 right 0 );
+		@include margin( top $grid-gutter-width right $grid-gutter-width );
+		@include size( 36px );
+
+		background: {
+			image: url( '#{ map-get( $directories, svg ) }icons/hamburger.svg' );
+			position: center;
+			size: 100%;
+		}
+		
+		z-index: 40;
+
+		@at-root .#{ map-get( $state-classes, 'menu-open' ) } & {
+			background: {
+				image: url( '#{ map-get( $directories, svg ) }icons/close.svg' );
+			}
+		}
+	}
+
+
 	/**
 	 * Front page header
-	 *
+	 * Category page header
+	 * 
 	 * @uses .Front-page-header .Menu
-	 */
-	@at-root .Front-page-header & {
-
-		@include margin( 
-			top 72px 
-			bottom 119px
-			left ( ( $margin / 2 ) * -1px )
-		);
-	}
-
-
-	/**
-	 * Category header
-	 *
 	 * @uses .Category-header .Menu
 	 */
-	@at-root .Category-header & {
+	@at-root 
+		.Category-header &,
+		.Front-page-header & {
 
-		@include margin( 
-			top 72px 
-			bottom 119px
-			left ( ( $margin / 2 ) * -1px )
-		);
+		@extend %Position-fixed-center, %Transition-ease;
+		@include margin( top 0 bottom 0 );
+		@include padding( top 104px );
+		@include size( 100% );
+		
+		transform: translate3d( -100%, 0, 0 );
+		background: { color: the_color( white ); }
+		z-index: 30;
+
+		@at-root .#{ map-get( $state-classes, 'menu-open' ) } & {
+			transform: translate3d( 0, 0, 0 );
+		}
+
+		@include from( 'md' ) {
+			@include margin( 
+				top 72px 
+				bottom 119px
+				left ( ( $margin / 2 ) * -1px )
+			);
+			@include padding( top 0 );
+			@include size( auto );
+	
+			position: static;
+			top: auto;
+			right: auto;
+			bottom: auto;
+			left: auto;
+			background: { color: transparent; }
+			transform: translate3d( 0, 0, 0 );
+			z-index: auto;
+		}
 	}
+
 
 
 	/**
@@ -58,7 +97,11 @@
 	 */
 	.item {
 
-		@extend %display-xs-inline-block, %vertical-align-middle, %position-xs-relative;
+		@extend 
+			%display-xs-block, 
+			%display-md-inline-block, 
+			%vertical-align-middle, 
+			%position-xs-relative;
 
 		/**
 		 * Link 
@@ -107,7 +150,7 @@
 					z-index: 20;
 				}
 
-
+				&.is-current,
 				&:hover {
 					
 					color: the_color( white );
@@ -129,17 +172,18 @@
 		 * @uses .Menu .item.menu-item-object-category
 		 */
 		&.menu-item-object-category {
-			$padding: 10;
 			$font-size: 40;
 
 			@extend 
 				%font-title,
-				%font-semibold;
+				%font-semibold,
+				%text-xs-center, 
+				%text-md-left;
 
 			@include margin( 
-				bottom 0
+				top ( ( $margin / 2 ) * 1px )
 				right ( ( ( $margin / 2 ) - $padding ) * 1px )
-				top 0
+				bottom ( ( $margin / 2 ) * 1px )
 				left ( ( ( $margin / 2 ) - $padding ) * 1px )
 			);
 
@@ -148,12 +192,21 @@
 			}
 			line-height: ( 42 / $font-size );
 
+			@include from( 'md' ) {
+				@include margin( 
+					bottom 0
+					right ( ( ( $margin / 2 ) - $padding ) * 1px )
+					top 0
+					left ( ( ( $margin / 2 ) - $padding ) * 1px )
+				);
+			}
+
 			a {
 				@extend %lowercase;
 				@include padding(
-					// top ( $padding * 1px ) 
+					top 0
 					right ( $padding * 1px ) 
-					// bottom ( $padding * 1px ) 
+					bottom 0
 					left ( $padding * 1px )
 				);
 			}
@@ -167,18 +220,39 @@
 			$orange: the_color( orange, very-soft-01 );
 			$font-size: 13;
 
-			@extend %font-title, %font-semibold, %float-xs-right, %Transition-ease;
-			@include margin( top 3px bottom 0 );
+			@extend 
+				%font-title, 
+				%font-semibold, 
+				%float-md-right, 
+				%Transition-ease, 
+				%text-xs-center, 
+				%text-md-left;
+			@include font( $font-size, 44.8 );
+			@include margin( 
+				top (( $margin / 2 ) * 1px )
+				right ( ( ( $margin / 2 ) - $padding ) * 1px )
+				bottom (( $margin / 2 ) * 1px )
+				left ( ( ( $margin / 2 ) - $padding ) * 1px )
+			);
 
 			color: the_color( blue, light-grayish );
-			font: {
-				size: $font-size * 1px;
+
+			@include from( 'md' ) {
+				@include margin( 
+					top 3px 
+					right 0
+					bottom 0
+					left 0
+				);
 			}
-			line-height: 44.8px;
 
 
 			@at-root .Single-header & {
-				color: the_color( white );
+
+				@include from( 'md' ) {
+
+					color: the_color( white );
+				}
 			}
 
 			&.lang-item-fr {

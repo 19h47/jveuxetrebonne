@@ -11,10 +11,19 @@
 	 * @uses .Header-logo
 	 */
 	&-logo {
-		
+		@extend %text-xs-center, %text-md-left;
+
 		a {
 			@extend %display-xs-block;
-			@include margin( top $grid-gutter-width * 2 );
+			@include margin( top 20px bottom 25px );
+
+			@include from( 'md' ) {
+				
+				@include margin( 
+					top $grid-gutter-width * 2 
+					bottom auto
+				);
+			}
 		}
 		svg {
 			@extend %display-xs-inline-block, %vertical-align-middle;
