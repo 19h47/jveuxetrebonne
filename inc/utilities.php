@@ -154,3 +154,16 @@ function str_split_unicode( $str, $l = 0 ) {
     }
     return preg_split("//u", $str, -1, PREG_SPLIT_NO_EMPTY);
 }
+
+
+/**
+ * Embed oembed HTML
+ *
+ * @see  https://wordpress.org/support/topic/adding-a-wrapping-div-to-video-embeds/#post-2671537
+ */
+add_filter('embed_oembed_html', 'pup_embed_oembed_html', 99, 4);
+
+function pup_embed_oembed_html($html, $url, $attr, $post_id) {
+    
+    return '<div class="embed-container">' . $html . '</div>';
+}
