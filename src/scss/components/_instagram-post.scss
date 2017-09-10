@@ -5,18 +5,25 @@
  */
 .Instagram-post {
 	$opacity: .15;
-	@extend %float-xs-left, %position-xs-relative;
+	@extend %float-xs-left, %position-xs-relative, %margin-xs-0;
 	@include padding(
-		left $grid-gutter-width / 2
-		right $grid-gutter-width / 2
+		left $grid-gutter-width
+		right $grid-gutter-width
 	);
+
+	@include from( 'md' ) {
+		@include padding(
+			left $grid-gutter-width / 2
+			right $grid-gutter-width / 2
+		);
+	}
 
 	width: percentage( ( $container-width-unitless / 6 ) / $container-width-unitless );
 
 	&::after {
 		@extend %display-xs-block;
 		@include padding( top 100% );
-
+		
 		content: '';
 
 	}
@@ -26,9 +33,16 @@
 		@extend %display-xs-block; 
 
 		@include margin(
-			left $grid-gutter-width / 2
-			right $grid-gutter-width / 2
+			left $grid-gutter-width
+			right $grid-gutter-width
 		);
+
+		@include from( 'md' ) {
+			@include margin(
+				left $grid-gutter-width / 2
+				right $grid-gutter-width / 2
+			);
+		}
 
 		&::after {
 			@extend %Position-absolute-center, %display-xs-block, %Transition-ease;

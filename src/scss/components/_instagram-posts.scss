@@ -31,8 +31,12 @@
 	&-container {
 		$padding: 48;
 		
+		@extend %list-unstyled;
+		@include margin( top 0 bottom 0 );
+		
 		@include padding( 
 			top $padding * 1px 
+			left 0
 			bottom $padding * 1px 
 		);
 	}

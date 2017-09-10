@@ -2,6 +2,7 @@
 module.exports = Instagram;
 
 var Instafeed = require('instafeed.js');
+require('slick-carousel');
 
 function Instagram() {
     if (!(this instanceof Instagram)) {
@@ -38,6 +39,24 @@ Instagram.prototype = {
             sortBy: 'most-recent',
             limit: 6,
             template: wp.template_instagram,
+            after: this.initPlugins
+        });
+
+    },
+
+    initPlugins: function() {
+        console.info('Instagram.initPlugins');
+
+        $('.js-slider-instagram').find('#js-instagram').slick({
+            arrows: false,
+            centerMode: true,
+            centerPadding: ( 138 * 100 ) / 486 + '%',
+            mobileFirst: true,
+            
+            responsive: [{
+                breakpoint: 992,
+                settings: "unslick"
+            }]
         });
     }
 }
