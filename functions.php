@@ -499,7 +499,7 @@ class JVEB extends TimberSite {
 
         wp_register_script( 
             $this->theme_name . '-main', 
-            get_template_directory_uri() . '/dist/js/bundle.js', 
+            get_template_directory_uri() . '/dist/js/min/bundle.min.js', 
             array( 
                 'jquery', 
                 'jquery-ui' 

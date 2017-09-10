@@ -21,23 +21,26 @@
 		}
 
 		&-category-recompense {}
-		&-category-presse { @include margin( bottom 70px ); }
+		&-category-presse { 
+			@include margin( bottom 70px ); 
+
+			&__container {
+			    white-space: nowrap;
+	    		overflow-x: scroll;
+
+	    		@include from( 'md' ) {
+	    			overflow-x: visible;
+	    			white-space: normal;
+	    		}
+			}
+		}
+
 
 		.title {
 			@extend .color-gray-very-dark;
 			@extend %font-bold;
 			@include margin( top 45px bottom 45px );
 			@include font( 20, 33 );
-		}
-
-		.container {
-		    white-space: nowrap;
-    		overflow-x: scroll;
-
-    		@include from( 'md' ) {
-    			overflow-x: visible;
-    			white-space: normal;
-    		}
 		}
 	}
 
