@@ -65,7 +65,8 @@
             {# Thumbnail #}
             <img 
                 class="thumbnail" 
-                src="{{ post.thumbnail.src | tojpg | resize( width, height ) }}" 
+                {# | resize( width, height ) #}
+                src="{{ post.thumbnail.src | tojpg }}" 
                 alt="" 
                 width="{{ width }}"
                 height="{{ height }}"
