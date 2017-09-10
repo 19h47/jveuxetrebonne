@@ -95,6 +95,7 @@ class JVEB extends TimberSite {
         // require_once get_template_directory() . '/inc/reset.php';
         require_once get_template_directory() . '/inc/utilities.php';
         require_once get_template_directory() . '/inc/acf-location.php';
+        require_once get_template_directory() . '/inc/wp-rocket.php';
         require_once get_template_directory() . '/inc/post-types/_includes.php';
         require_once get_template_directory() . '/inc/taxonomies/_includes.php';
         require_once get_template_directory() . '/inc/customizer/_includes.php';
