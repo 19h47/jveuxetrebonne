@@ -53,6 +53,7 @@ SliderPost.prototype = {
                 })
 
                 .slick({
+                    accessibility: false,
                     // arrows: false,
                     useCSS: false,
                     fade: true,
