@@ -19,9 +19,9 @@ $context['posts'] = Timber::get_posts(
 		'post_type' 			=> 'post', 
 		// 'offset'				=> 0,
 		'posts_per_page'		=> $post_per_page,
-		'ignore_sticky_posts' 	=> 1,
-		'post__not_in' 			=> array( get_option( 'sticky_posts' ) ),
-
+		// 'ignore_sticky_posts' 	=> 1,
+		'post__not_in' 			=> get_option( 'sticky_posts' ),
+		'post_status'		    => 'publish'
 	) 
 );
 
@@ -29,8 +29,9 @@ $count_query = new WP_Query(
 	array( 
 		'post_type' 			=> 'post', 
 		'posts_per_page'		=> -1,
-		'ignore_sticky_posts' 	=> 1,
-		'post__not_in' 			=> array( get_option( 'sticky_posts' ) ),
+		// 'ignore_sticky_posts' 	=> 1,
+		'post__not_in' 			=>	get_option( 'sticky_posts' ),
+		'post_status'		    => 'publish'
 
 	) 
 );

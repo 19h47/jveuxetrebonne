@@ -132,20 +132,22 @@ class Post {
 	 * Load posts with AJAX request.	 
 	 */
 	public function ajax_load_posts() {
+
 		$tag = isset( $_GET['tag'] ) ? $_GET['tag'] : 0;
 		$offset = isset( $_GET['offset'] ) ? $_GET['offset'] : 0;
 		$posts_per_page = isset( $_GET['posts_per_page'] ) ? $_GET['posts_per_page'] : 3;
 		$post_template = isset( $_GET['post_template'] ) ? $_GET['post_template'] : 'tease';
 		
-		$sticky = get_option( 'sticky_posts' );
+		// $sticky = get_option( 'sticky_posts' );
 
 		$args = array(
 			'post_type'         	=> 'post',
 			'posts_per_page'    	=> (int) $posts_per_page,
 			'cat' 					=> (int) $tag,
 			'offset'            	=> (int) $offset,
-			'ignore_sticky_posts' 	=> 1,
-			'post__not_in' 			=> array( $sticky ),
+			// 'ignore_sticky_posts' 	=> 1,
+			'post__not_in' 			=> get_option( 'sticky_posts' ),
+			'post_status' 			=> 'publish'
 		);
 		// var_dump($args);
 
@@ -188,12 +190,15 @@ class Post {
 	 *
 	 * @since 1.0.0
 	 */
-	function rest_api_register_routes() {
+	public function rest_api_register_routes() {
 		register_rest_route( 
-			'jveb/v2', '/search', array(
-			'methods'  => 'GET',
-			'callback' => array( $this, 'rest_api_search' ),
-		) );
+			'jveb/v2', 
+			'/search', 
+			array(
+				'methods'  	=> 'GET',
+				'callback' 	=> array( $this, 'rest_api_search' ),
+			) 
+		);
 	}
 
 
@@ -203,7 +208,7 @@ class Post {
 	 * @since 1.0.0
 	 * @param object $request
 	 */
-	function rest_api_search( $request ) {
+	public function rest_api_search( $request ) {
 		
 		if ( empty( $request['term'] ) ) {
 			return;
@@ -220,7 +225,7 @@ class Post {
 			return;
 		}
 
-		foreach ($results as $post ) {
+		foreach ( $results as $post ) {
 			
 			// Date
 			$post->post_date_format = get_the_date( 'd\.m\.Y', $post->ID );
