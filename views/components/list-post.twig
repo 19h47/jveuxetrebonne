@@ -12,9 +12,7 @@
 	
 		{% if video %}
 		
-			<div class="thumbnail js-category-video" data-type="youtube" data-video-id="{{ function( 'get_field', 'videos', post, false ) }}">
-				
-			</div>
+			<div class="thumbnail js-category-video" data-type="youtube" data-video-id="{{ function( 'get_field', 'videos', post, false ) }}"></div>
 		
 		{% else %}
 			<a class="link" href="{{ post.link }}">		
@@ -30,7 +28,7 @@
 	<div class="List-post-meta">
 		
 		{# Date #}
-		<p class="date">{{ post.date }}</p>
+		<p class="date">{{- post.date -}}</p>
 	 	
 
 	 
@@ -38,12 +36,12 @@
 	 	
 		
 		{# Categories #}
-	 	<em class="categories">{{ post.categories | join( ', ' ) | replace( post.name, '' ) }}</em>
+	 	<em class="categories">{{- post.categories | join( ', ' ) | replace( post.name, '' ) -}}</em>
 		
 
 		{# Link #}
 		{{ video ? '' : '<a class="link" href="{{ post.link }}" title="{{ post.title }}">' }}
-			<h3 class="title">{{ post.title }}</h3>
+			<h3 class="title">{{- post.title -}}</h3>
 		{{ video ? '' : '</a>' }}
 	
 	</div>
