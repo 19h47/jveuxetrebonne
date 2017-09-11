@@ -515,6 +515,7 @@
 					@include font( 16, 29 );
 
 					background: { color: the_color( white ); }
+					overflow-x: hidden;
 					overflow-y: scroll;
 
 					color: the_color( gray, very-dark-01 );
