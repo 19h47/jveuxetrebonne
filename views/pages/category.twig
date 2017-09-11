@@ -46,6 +46,9 @@
 				<div class="row js-slider-filter-container">
 
 					{% for category in category.children %}
+
+						{% if category.count > 0 %}
+
 						{# {{ category|print_r }} #}
 						<div class="col-xs-2">
 
@@ -69,6 +72,8 @@
 								</h2>
 							</button>
 						</div>
+
+						{% endif %}
 					{% endfor %}
 
 				</div>
