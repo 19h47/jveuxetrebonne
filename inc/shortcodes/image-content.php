@@ -45,7 +45,7 @@ function image_content_shortcode_handler( $atts ) {
 
 	$output  = "<span class=\"image-content-link js-image-content-link\">";
 	$output .= "<span class=\"image js-image-content-link-image\">";
-	$output .= "<img src=\"{$url}\"></span>";
+	$output .= "<img src=\"{$url}\" data-no-lazy=\"1\"></span>";
 	$output .= "<span class=\"letters\">" . implode( $letters ) . "</span>";
 	$output .= "</span>";
 
