@@ -29,6 +29,7 @@ function LoadMore(element) {
 	this.posts_per_page = this.button.dataset.postsPerPage || 3;
 	this.post_template = this.button.dataset.template || 'tease';
 	this.offset = this.button.dataset.offset || 9;
+	this.exclude = this.button.dataset.exclude;
 
 	this.update();
 	this.setup.events.call(this);
@@ -112,7 +113,8 @@ LoadMore.prototype = {
 
 		var data = {
         	action: 'ajax_load_posts',
-	        offset: this.offset
+	        offset: this.offset,
+	        exclude: this.exclude
 		};
 
 		if (this.tag) {

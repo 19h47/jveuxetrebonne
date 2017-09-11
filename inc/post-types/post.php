@@ -137,6 +137,7 @@ class Post {
 		$offset = isset( $_GET['offset'] ) ? $_GET['offset'] : 0;
 		$posts_per_page = isset( $_GET['posts_per_page'] ) ? $_GET['posts_per_page'] : 3;
 		$post_template = isset( $_GET['post_template'] ) ? $_GET['post_template'] : 'tease';
+		$exclude = $_GET['exclude'];
 		
 		// $sticky = get_option( 'sticky_posts' );
 
@@ -149,7 +150,20 @@ class Post {
 			'post__not_in' 			=> get_option( 'sticky_posts' ),
 			'post_status' 			=> 'publish'
 		);
+
+		// Exclude some article on front page
+		if ( $exclude ) {
+			$args['meta_query'] = array(
+				array(
+					'key' 		=> 'exclude',
+					'compare' 	=> 'NOT EXISTS'
+				)
+			);
+		}
+
+			
 		// var_dump($args);
+
 
 		$context = Timber::get_context();
 		$context['posts'] = Timber::get_posts($args);

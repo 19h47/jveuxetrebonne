@@ -21,7 +21,13 @@ $context['posts'] = Timber::get_posts(
 		'posts_per_page'		=> $post_per_page,
 		// 'ignore_sticky_posts' 	=> 1,
 		'post__not_in' 			=> get_option( 'sticky_posts' ),
-		'post_status'		    => 'publish'
+		'post_status'		    => 'publish',
+		'meta_query' => array(
+			array(
+				'key' 		=> 'exclude',
+				'compare' 	=> 'NOT EXISTS'
+			)
+		)
 	) 
 );
 
@@ -38,6 +44,7 @@ $count_query = new WP_Query(
 
 $context['post_per_page'] = $post_per_page;
 $context['found_posts'] = $count_query->found_posts;
+$context['exclude'] = 1;
 
 
 $templates = array( 'pages/front-page.twig' );

@@ -24,6 +24,7 @@
 				data-posts-per-page="{{ post_per_page }}"
 				data-template="{{ post_template_name }}"
 				data-offset=""
+				{{ exclude ? 'data-exclude="1"' : '' }}
 			>
 				<span>{{- load_more_label -}}</span>
 			</button>
