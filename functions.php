@@ -272,22 +272,22 @@ class JVEB extends TimberSite {
             array(
                 'slug'  => 'facebook',
                 'name' => pll__( 'Partager sur Facebook' ),
-                'url'  => ''
+                'url'  => 'https://www.facebook.com/sharer.php?u='
             ),
             array(
                 'slug'  => 'twitter',
                 'name' => pll__( 'Partager sur Twitter' ),
-                'url'  => ''
+                'url'  => 'https://twitter.com/intent/tweet?url='
             ),
             array(
                 'slug'  => 'google-plus',
                 'name' => pll__( 'Partager sur Google+' ),
-                'url'  => ''
+                'url'  => 'https://plus.google.com/share?url='
             ),
             array(
                 'slug'  => 'envelope',
                 'name' => pll__( 'Partager par Mail' ),
-                'url'  => ''
+                'url'  => 'mailto:?&amp;body='
             )
         );
 
