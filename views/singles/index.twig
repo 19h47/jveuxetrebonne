@@ -187,26 +187,28 @@
 
 					{# Aside #}
 					<aside class="aside hidden-xs hidden-md">
-						<ul class="aside-socials">
-							{% for share in contact.shares %}
-								<li class="aside-socials__item">
-									<a 
-										href="{{ share.url ~ permalink.current_url }}" 
-										title="{{ share.name }}" 
-										{{ share.slug == 'envelope' ? '' : 'target="_blank"' }}
-									>
-										<svg class="{{ share.slug }}" role="img">
-											<use xlink:href="{{ theme.link }}/dist/svg/icons.svg#{{ share.slug }}"/>
-										</svg>
-									</a>
-								</li>
-							{% endfor %}
-						</ul>
-						<span class="aside-bull">&bull;</span>
+						<div class="aside-inner js-single-aside">
+							<ul class="aside-socials">
+								{% for share in contact.shares %}
+									<li class="aside-socials__item">
+										<a 
+											href="{{ share.url ~ permalink.current_url }}" 
+											title="{{ share.name }}" 
+											{{ share.slug == 'envelope' ? '' : 'target="_blank"' }}
+										>
+											<svg class="{{ share.slug }}" role="img">
+												<use xlink:href="{{ theme.link }}/dist/svg/icons.svg#{{ share.slug }}"/>
+											</svg>
+										</a>
+									</li>
+								{% endfor %}
+							</ul>
+							<span class="aside-bull">&bull;</span>
 
-						<div class="aside-subscribe">
-							{# {{ site|print_r }} #}
-							<button class="js-scroll-to" data-offset="bottom">{{ pll__( 'Abonne-toi' ) }}</a>
+							<div class="aside-subscribe">
+								{# {{ site|print_r }} #}
+								<button class="js-scroll-to" data-offset="bottom">{{ pll__( 'Abonne-toi' ) }}</a>
+							</div>
 						</div>
 					</aside>
 

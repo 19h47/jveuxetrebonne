@@ -28,6 +28,12 @@ SliderRichContent.prototype = {
             bottoming: true
         });
 
+
+        $('.js-single-aside').stick_in_parent({
+            parent: '.js-sticky-container',
+            bottoming: true,
+        });
+
         // Select all sticky sliders on page
         var $sliders = $('.js-slider-rich-content');
         var $content = $('.js-single-content');

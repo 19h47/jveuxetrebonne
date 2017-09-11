@@ -339,9 +339,16 @@
 
 		.aside {
 			@include absolute( top 0 right 0 );
-			@include margin( top ( $grid-gutter-width * 4 ) );
 
 			width: percentage( 76 / 1029 );
+
+			&-inner {
+				@include margin( 
+					top ( $grid-gutter-width * 4 ) 
+					bottom ( $grid-gutter-width * 4 )
+				);
+
+			}
 
 			&-socials {
 				@extend .list-unstyled;
