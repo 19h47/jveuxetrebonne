@@ -7,6 +7,10 @@
 .Single {
 	@extend %position-xs-relative;
 
+	.Recipe-print {
+		display: none;
+	}	
+
 	.l-wrapper {
 		overflow-x: hidden;
 	}

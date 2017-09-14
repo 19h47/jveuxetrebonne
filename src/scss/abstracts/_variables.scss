@@ -20,7 +20,9 @@ $color-variations: (
 	blue: (	
 		pure: #0075e3,
 		light-grayish: #ccd2d9,
-		light-grayish-01: #dfe5ed
+		light-grayish-01: #dfe5ed,
+		light-grayish-02: #d7d9de,
+		light-grayish-03: #f2f6fb
 	),
 
 	red: (
@@ -41,7 +43,11 @@ $color-variations: (
 		very-soft-03: #fed9c9,
 		very-soft-04: #fddfb1,
 		very-soft-05: #fddeb0,
-		dark-grayish: #938672
+		very-soft-06: #eac2a6,
+		dark-grayish: #938672,
+		very-dark: #32312f,
+		very-dark-grayish: #6e6c69,
+		very-dark-grayish-01: #3d3b38
 	),
 
 	 gray: (
@@ -82,7 +88,7 @@ $font: (
 	 * @type map
 	 */
 	families: (
-		body: ( 'Lora', sans-serif ),
+		body: ( 'Lora', serif ),
 		title: ( 'Poppins', sans-serif ),
 	),
 

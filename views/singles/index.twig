@@ -150,7 +150,7 @@
 				{% endif %}
 			</aside>
 
-			<div class="col-xs-12 col-md-10">
+			<div class="col-xs-12 col-md-10 print-w-100">
 
 				<article class="Single-article js-single-content">
 
@@ -160,8 +160,7 @@
 
 					{# Date #}
 					<p class="date">
-
-						{{- pll__( 'Publié le' ) -}}&nbsp;{{ post.post_date | date( 'd\.m\.Y' ) }}
+						{{- pll__( 'Publié le' ) -}}&nbsp;{{- post.post_date | date( 'd\.m\.Y' ) -}}
 					</p>
 					
 

@@ -17,11 +17,12 @@
 		</a>
 	</header>
 
+	{% include 'partials/recipe-print.twig' %}
+
 	{% if post.layout == 1 %}
 		{% include 'partials/slider-recipe.twig' %}
 	{% else %}
 		{% include 'partials/recipe-simple.twig' %}
 	{% endif %}
-
 
 </div>
