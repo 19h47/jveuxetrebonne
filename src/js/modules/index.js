@@ -7,6 +7,7 @@ var Modules = {
 	ImageContent: require('./image-content'),
 	Menu: require('./menu'),
 	LoadMore: require('./load-more'),
+	Print: require('./print'),
 	Recipe: require('./recipe'),
 	Search: require('./search'),
 	SliderCategoryVideos: require('./slider-category-videos'),

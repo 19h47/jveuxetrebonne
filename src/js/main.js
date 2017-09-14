@@ -8,6 +8,8 @@ window.app = new Modules.App();
 // Init scrollTop
 window.app.scrollTo();
 
+new Modules.Print();
+
 // Instanciate Recipe
 new Modules.Recipe();
 
