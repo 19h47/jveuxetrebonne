@@ -37,7 +37,7 @@ Recipe.prototype = {
     setup: {
 
         event: function(el) {
-            console.info('Recipe.setup.event');
+            // console.info('Recipe.setup.event');
 
             $('.js-recipes-buttons').on('click', '.js-recipes-button', function(e) {
                 this.id = e.currentTarget.dataset.id;
