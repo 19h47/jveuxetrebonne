@@ -23,9 +23,7 @@
 				left percentage( 188 / $container-width-without-outer-gutter-unitless )
 			);
 
-			.slick-list {
-				overflow: visible;
-			}
+			.slick-list { overflow: visible; }
 		}
 	}
 	
@@ -105,7 +103,8 @@
 			
 			@include size( 27px );
 			@include margin( top 123px );
-
+			
+			&.slick-hidden,
 			&.slick-disabled {
 				cursor: auto;
 				opacity: 0;
