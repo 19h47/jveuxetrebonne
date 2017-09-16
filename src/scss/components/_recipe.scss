@@ -186,9 +186,10 @@
 			@extend %font-semibold;
 			@include font( 16, 40 );
 		}
-
+		
 		.ingredients {
-			column-count: 3;
+
+			@include from( 'md' ) { column-count: 3; }
 		}
 
 		ul {
