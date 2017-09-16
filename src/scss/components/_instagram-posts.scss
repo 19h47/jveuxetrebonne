@@ -62,7 +62,7 @@
 		@extend %font-bold, %margin-xs-0;
 		@include font( $font-size, $line-height, 15 );
 		
-		color: rgba( the_color( white ), .55 );
+		color: the_color( white );
 	}
 	
 
