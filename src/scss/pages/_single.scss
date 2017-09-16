@@ -97,12 +97,9 @@
 			$line-height: 33;
 
 			@extend %font-title, %font-bold;
+			@include font( $font-size, $line-height );
 			
 			color: the_color( gray, very-dark );
-			font: {
-				size: ( $font-size * 1px );
-			}
-			line-height: ( $line-height / $font-size );
 			
 			a { color: the_color( orange, very-soft-01 ); }
 		}
