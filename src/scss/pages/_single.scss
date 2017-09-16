@@ -22,7 +22,7 @@
 	 */
 	&-header {
 		// @include padding( bottom 24px );
-		color: the_color( gray, very-dark );
+		color: the_color( gray, very-dark )!important;
 		z-index: 10;
 
 		@include from( 'md' ) {
