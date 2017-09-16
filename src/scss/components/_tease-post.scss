@@ -32,19 +32,13 @@
 
 		font-size: 18px;
 
-		@include from( 'md' ) {
-			font-size: 15px;
-		}
+		@include from( 'md' ) { font-size: 15px; }
 
 		// line-height: map-get( $header, line-height ) / map-get( map-get( $header, font ), size );
 	}
 
 	@include between( 'xs', 'sm' ) {
-		&::before {
-			background: {
-				color: rgba( the_color( black ), .3 );
-			}
-		}
+		&::before { background: { color: rgba( the_color( black ), .3 ); } }
 	}
 	
 
@@ -65,11 +59,7 @@
 		@extend %display-xs-block, %overflow-hidden, %position-xs-relative;
 		@include size( 100% );
 
-		&:hover {
-			.thumbnail {
-				transform: scale( 1.1 );
-			}
-		}
+		&:hover { .thumbnail { transform: scale( 1.1 ); } }
 	}
 
 	
@@ -162,7 +152,7 @@
 	$grids: (
 		01: (
 			class: 'first',
-			width: percentage( 817 / $container-width-without-outer-gutter-unitless ),
+			width: calc( #{ percentage( 847 / $container-width-without-outer-gutter-unitless ) } - #{ $grid-gutter-width } ),
 			height: 666px,
 			margin: (
 				right: $grid-gutter-width
@@ -183,7 +173,7 @@
 		),
 		04: (
 			class: 'fourth',
-			width: 393px,
+			width: calc( #{ percentage( 423 / $container-width-without-outer-gutter-unitless ) } - #{ $grid-gutter-width } ),
 			height: 524px,
 			margin: (
 				right: $grid-gutter-width
@@ -191,7 +181,7 @@
 		),
 		05: (
 			class: 'fifth',
-			width: 817px,
+			width: percentage( 817 / $container-width-without-outer-gutter-unitless ),
 			height: 524px,
 		)
 	);
@@ -199,9 +189,7 @@
 	@each $grid, $key in $grids {
 		// @warn $key;
 		
-		@include from( 'md' ) {
-
-		}
+		// @include from( 'md' ) {}
 		
 		&#{ $this }--#{ map-get( $key, class ) } {
 			
