@@ -21,15 +21,15 @@
 	 * @uses .Single-header
 	 */
 	&-header {
-		@include padding( bottom 24px );
+		// @include padding( bottom 24px );
 		color: the_color( gray, very-dark );
 		z-index: 10;
 
 		@include from( 'md' ) {
 			@include absolute( top 0 right 0 left 0 );
-			@include padding( bottom 0 );
+			// @include padding( bottom 0 );
 			
-			color: the_color( white );
+			color: currentColor;
 		}
 	}
 
