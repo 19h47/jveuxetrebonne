@@ -9,8 +9,8 @@
 {% block content %}
 
 	{{ parent() }}
-	
-	<div class="Single-header">
+
+	<div class="Single-header{{ post.color_header ? ' color-black' : ' color-white' }}">
 		<div class="l-container">
 			<div class="row">
 				<div class="col-xs-4 col-md-1">
