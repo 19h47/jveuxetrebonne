@@ -52,7 +52,7 @@ SliderCategoryVideos.prototype = {
                     breakpoint: 992,
                     settings: {
                         centerMode: true,
-                        centerPadding: ( 282 * 100 ) / 1440 + '%',
+                        centerPadding: ( 297 * 100 ) / 1440 + '%',
                     }
                 }]
             });
