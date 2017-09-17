@@ -35,7 +35,7 @@ ImageContent.prototype = {
      * ImageContent.init
      */
     init: function() {
-        console.log(this.$elements);
+        // console.log(this.$elements);
 
         this.$elements.each($.proxy(function(i, e) {
             var $element = $(e)
