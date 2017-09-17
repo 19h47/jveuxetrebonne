@@ -22,14 +22,13 @@
 	 */
 	&-header {
 		// @include padding( bottom 24px );
-		color: the_color( gray, very-dark )!important;
+		@include between( 'xs', 'sm' ) { color: the_color( gray, very-dark )!important; }
 		z-index: 10;
 
 		@include from( 'md' ) {
 			@include absolute( top 0 right 0 left 0 );
 			// @include padding( bottom 0 );
-			
-			color: currentColor;
+			// color: currentColor;
 		}
 	}
 

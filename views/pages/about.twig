@@ -42,10 +42,7 @@
 		</div>
 	</div> 
 	
-
-	<h2 class="Heading Heading--marquee">
-		<span>{{- post.title -}}</span>
-	</h2>
+	{% include 'components/heading.twig' with { 'title': post.title } %}
 
 	<div class="l-container">
 		<div class="Sticky-posts">

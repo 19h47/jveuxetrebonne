@@ -22,23 +22,35 @@
 	color: rgba( the_color( orange, light-grayish-01 ), .5 );
 
 	&--marquee {
+		$duration: 20s;
 		@extend %overflow-hidden;
 
 		white-space: nowrap;
 
 		span {
 			@extend %display-xs-inline-block;
-		    @include padding( left 100% );
 
-		    // backface-visibility: hidden;
-			// perspective: 1000;
 			will-change: transform;
+			min-width: 100vw;
+			text-align: center;
 
 			animation: {
-				name: marquee;
-				duration: 15s; 
+				duration: $duration; 
 				timing-function: linear;
 				iteration-count: infinite;
+			}
+		}
+
+		span:nth-child( 1 ) {
+			animation: { 
+				name: marquee-first-child; 
+			}
+		}
+
+		span:nth-child( 2 ) {
+			animation: { 
+				delay: ( $duration / 2 );
+				name: marquee-second-child; 
 			}
 		}
 	}

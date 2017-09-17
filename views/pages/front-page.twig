@@ -58,10 +58,8 @@
 
 	{{ slider_videos }}
 
-
-	<h2 class="Heading Heading--marquee">
-		<span>{{- pll__( 'Découvrir les articles') -}}</span>
-	</h2>
+	
+	{% include 'components/heading.twig' with { 'title': pll__( 'Découvrir les articles') } %}
 
 	
 	<div class="l-container">
