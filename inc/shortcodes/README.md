@@ -32,7 +32,7 @@ It comes with one parameter wich is an `id`.
 ### How to use it
 
 ```
-[rich_content id="some_id"]Some content[/rich_content]
+[rich_content id="test-01"]Some content[/rich_content]
 ```
 
 Then fill the __ACF__ field. You must put the same _id_ to link them.
