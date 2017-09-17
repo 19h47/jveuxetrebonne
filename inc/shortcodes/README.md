@@ -10,7 +10,7 @@ When you hover a link, an image appears, it's the purpose of this shortcode.
 
 ### `content`
 
-The content of `image_content` shortcode.
+The content of `image_content` shortcode. It can be HTML.
 
 ### `url`
 
@@ -30,8 +30,6 @@ It comes with one parameter wich is an `id`.
 ### `id`
 
 ### How to use it
-
-In content:
 
 ```
 [rich_content id="some_id"]Some content[/rich_content]
