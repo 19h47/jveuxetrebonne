@@ -38,3 +38,9 @@ It comes with one parameter wich is an `id`.
 Then fill the __ACF__ field. You must put the same _id_ to link them.
 
 ![Rich content](../../img/png/rich-content.png)
+
+## Gallery
+
+To use the `gallery` shortcode, just use the built in gallery feature from __WordPress__.
+
+![Gallery](../../img/png/gallery.png)
