@@ -43,7 +43,20 @@
 		<span>{{- category.description -}}</span>
 	</h2>
 
-	{{ slider_videos }}
+	<div class="l-container">
+		
+		{% 
+			include 'partials/load-more.twig'
+			with {
+				'post_template_name': 'list',
+				'load_more_label': pll__( "Afficher plus d'article" ),
+				'video': true
+			}
+		%}
+
+	</div>
+
+	{# {{ slider_videos }} #}
 
 
 	{% include 'partials/instagram.twig' %}

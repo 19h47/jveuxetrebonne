@@ -11,7 +11,7 @@
 <div class="{{ post_template_name | capitalize }}-posts js-load-more">
 
 	<div class="{{ post_template_name | capitalize }}-posts-container js-load-more-container{{ post_template_name == 'list' ? ' row'}}">
-		{% include "components/#{ post_template_name }-posts.twig" %}
+		{% include "components/#{ post_template_name }-posts.twig" with { 'video': video ? true } %}
 	</div>
 
 	<footer class="{{ post_template_name | capitalize }}-posts-footer row">
