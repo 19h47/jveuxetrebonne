@@ -49,12 +49,12 @@
 	<div class="l-container js-sticky-container">
 		<div class="row">
 			
-			<aside class="Single-aside hidden-xs hidden-md col-xs-2 position-xs-static">
+			<aside class="Single-aside col-md-2 position-md-static">
 			
 				{# {{ post|print_r}} #}
 
 				{# Breadcrumb #}
-				<div class="Single-breadcrumb">
+				<div class="Single-breadcrumb hidden-xs hidden-md">
 					<ul class="Single-breadcrumb__items">
 						<li class="Single-breadcrumb__item">
 							{% spaceless %}
@@ -95,6 +95,8 @@
 
 				{% if post.get_field( 'rich_content' ) %}
 					<div class="Slider-rich-content js-slider-rich-content">
+
+						<button class="Slider-rich-content__close hidden-md hidden-lg hidden-hd js-slider-rich-content-close"></button>
 						<ul class="Slider-rich-content__items js-slider-rich-content-container">
 						
 							{% for rich_content in post.get_field( 'rich_content' ) %}

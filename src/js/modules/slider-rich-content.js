@@ -23,16 +23,24 @@ SliderRichContent.prototype = {
      */
     initPlugins: function() {
          
-        $('.js-slider-rich-content').stick_in_parent({
-            parent: '.js-sticky-container',
-            bottoming: true
-        });
+        if (feature.matchMedia && window.matchMedia('(min-width: 992px)').matches) {
+            $('.js-slider-rich-content').stick_in_parent({
+                parent: '.js-sticky-container',
+                bottoming: true
+            });
 
 
-        $('.js-single-aside').stick_in_parent({
-            parent: '.js-sticky-container',
-            bottoming: true,
-        });
+            $('.js-single-aside').stick_in_parent({
+                parent: '.js-sticky-container',
+                bottoming: true,
+            });
+        }
+
+        if (feature.matchMedia && window.matchMedia('(max-width: 991px)').matches) {
+            $('.js-slider-rich-content-close').on('click', function() {
+                $('body').toggleClass('aside--is-open');
+            });
+        }
 
         // Select all sticky sliders on page
         var $sliders = $('.js-slider-rich-content');
@@ -54,19 +62,35 @@ SliderRichContent.prototype = {
                 .find('.js-slider-rich-content-container')
 
                 .on('init', function(event, slick) {
+
+                    $links[0].classList.add('is-active');
                     
                     $links.each(function(i, link) {
                         var $link = $(link);
                         var id = $link[0].dataset.id;
+                        // console.log(id);
 
                         $link[0].addEventListener('mouseenter', function() {
+
+                            $links.each(function(i, link) {
+
+                                $(link).removeClass('is-active');
+                            });
+
+                            $link.addClass('is-active');
 
                             var index = $slider.find('[data-id=' + id + ']').index();
 
                             slick.goTo(parseInt(index));
                         });
 
+                        if (feature.matchMedia && window.matchMedia('(max-width: 991px)').matches) {
+                            $link[0].addEventListener('click', function() {
+                                $('body').toggleClass('aside--is-open');
+                            });
+                        }
                     });
+
                 })
 
                 .on('init afterChange', function(event, slick) {   
