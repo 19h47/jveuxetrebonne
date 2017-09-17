@@ -75,11 +75,24 @@
 							<svg role="img">
 								<use xlink:href="{{- theme.link -}}/dist/svg/icons.svg#list-style-type"/>
 							</svg>
-							<span class="display-xs-inline-block">
-								{% for category in categories %}
-										{{- category.name -}}
-										{{- not loop.last ? ', ' -}}
-								{% endfor %}
+
+							{% set categoriesString = '' %}
+							{% for category in categories %}
+									{% set categoriesString = categoriesString ~ category.name %}
+									
+									{% if not loop.last %} 
+										{% set categoriesString = categoriesString ~ ', ' %}
+									{% endif %}
+							{% endfor %}
+
+							<span class="display-xs-inline-block" title="{{ categoriesString }}">
+
+								{{- 
+									categoriesString | length > 21 ? 
+									categoriesString | slice( 0, 21 ) ~ '&hellip;' : 
+									categoriesString 
+								-}}
+
 							</span>
 							{% endspaceless %}
 
@@ -88,7 +101,7 @@
 							<svg role="img">
 								<use xlink:href="{{- theme.link -}}/dist/svg/icons.svg#list-style-type"/>
 							</svg>
-							{{- post.title -}}
+							{{- post.title | length > 21 ? post.title | slice( 0, 21 ) ~ '&hellip;' : post.title -}}
 						</li>
 					</ul>
 				</div>
