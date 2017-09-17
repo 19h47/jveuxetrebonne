@@ -18,12 +18,12 @@ sftp-config.dev.json
 sftp-config.json
 *.sublime-workspace
 
-#Update a gitignore http://stackoverflow.com/a/1139797
-#git rm -r --cached .
-#This removes any changed files from the index(staging area), then just run:
-#git add .
-#Commit it:
-#git commit -m ".gitignore is now working"
+# Update a gitignore http://stackoverflow.com/a/1139797
+# git rm -r --cached .
+# This removes any changed files from the index(staging area), then just run:
+# git add .
+# Commit it:
+# git commit -m ".gitignore is now working"
 
 
 # Temporary files created by OSX
