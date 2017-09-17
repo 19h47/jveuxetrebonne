@@ -41,6 +41,10 @@ Then fill the __ACF__ field. You must put the same _id_ to link them.
 
 ## Gallery
 
+The gallery allow us to implement beautiful slider inside the content.
+
+### How to use it 
+
 To use the `gallery` shortcode, just use the built in gallery feature from __WordPress__.
 
 ![Gallery](../../img/png/gallery.png)
