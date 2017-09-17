@@ -74,20 +74,22 @@
 			@extend %font-title, %font-semibold;
 			@extend .background-orange-very-soft-04, .color-white;
 			@include font( 16, 20.32 );
+
+			height: 50px;
 		}
 
-		p:first-child {
-			@extend %text-xs-center;
+		// p:first-child {
+		// 	@extend %text-xs-center;
 
-			width: percentage( 235 / 742 );
-			border: {
-				right: {
-					color: rgba( the_color( white ), .45  );
-					style: solid;
-					width: 1px;
-				}
-			}
-		}
+		// 	width: percentage( 235 / 742 );
+		// 	border: {
+		// 		right: {
+		// 			color: rgba( the_color( white ), .45  );
+		// 			style: solid;
+		// 			width: 1px;
+		// 		}
+		// 	}
+		// }
 
 		p {
 			@extend %display-xs-inline-block, %margin-xs-0;
@@ -120,7 +122,8 @@
 		}
 
 		.person-number {
-			width: percentage( 170 / 742 );
+			// width: percentage( 170 / 742 );
+			width: percentage( ( 742 / 3 ) / 742 );
 
 			&::before {
 				background: {
@@ -129,7 +132,8 @@
 			}
 		}
 		.preparation-time {
-			width: percentage( 171 / 742 );
+			// width: percentage( 171 / 742 );
+			width: percentage( ( 742 / 3 ) / 742 );
 
 			&::before {
 				background: {
@@ -138,7 +142,8 @@
 			}
 		}
 		.cooking-time {
-			width: percentage( 166 / 742 );
+			// width: percentage( 166 / 742 );
+			width: percentage( ( 742 / 3 ) / 742 );
 			
 			&::before {
 				background: {

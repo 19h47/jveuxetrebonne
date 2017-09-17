@@ -26,14 +26,12 @@
 
 		{# Collection #}
 		{% for collection in post.get_field( 'collection' ) %}
-
-			<div class="summary-title color-orange-very-soft-06">
-			{{- 
-				collection.description 
-					? collection.description
-					: pll__( 'Tu as besoin de …' )
-			-}}
-			</div>
+			
+			{% if collection.description %}
+				<div class="summary-title color-orange-very-soft-06">
+					{{- collection.description -}}
+				</div>
+			{% endif %}
 
 			<div class="ingredients">
 				<ul>
