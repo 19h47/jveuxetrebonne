@@ -130,7 +130,7 @@
 		&:hover,
 		&.is-active {
 			.thumbnail {
-				transform: translate3d( 0, $grid-gutter-width, 0 );
+				transform: translate3d( 0, ( $grid-gutter-width * -1 ), 0 );
 			}
 		}
 
@@ -156,7 +156,7 @@
 			
 			box-shadow: 1px 3px 9px 0px rgba( the_color( gray, very-dark ), .09 ); 
 
-			transform: translate3d( 0, $grid-gutter-width, 0 );
+			transform: translate3d( 0, 0, 0 );
 
 			@include from( 'md' ) {
 				border: {
