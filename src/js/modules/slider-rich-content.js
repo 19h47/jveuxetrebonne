@@ -24,7 +24,7 @@ SliderRichContent.prototype = {
     initPlugins: function() {
          
         if (feature.matchMedia && window.matchMedia('(min-width: 992px)').matches) {
-            $('.js-slider-rich-content').stick_in_parent({
+            $('.js-sticky').stick_in_parent({
                 parent: '.js-sticky-container',
                 bottoming: true
             });

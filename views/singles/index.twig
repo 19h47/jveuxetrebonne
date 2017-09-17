@@ -49,121 +49,123 @@
 	<div class="l-container js-sticky-container">
 		<div class="row">
 			
-			<aside class="Single-aside col-md-2 position-md-static">
-			
-				{# {{ post|print_r}} #}
+			<div class="col-md-2 js-sticky">
+				<aside class="Single-aside position-md-static">
+					
+					{# {{ post|print_r}} #}
 
-				{# Breadcrumb #}
-				<div class="Single-breadcrumb hidden-xs hidden-md">
-					<ul class="Single-breadcrumb__items">
-						<li class="Single-breadcrumb__item">
-							{% spaceless %}
-								
-							<a href="{{- site.url -}}">
+					{# Breadcrumb #}
+					<div class="Single-breadcrumb hidden-xs hidden-md">
+						<ul class="Single-breadcrumb__items">
+							<li class="Single-breadcrumb__item">
+								{% spaceless %}
+									
+								<a href="{{- site.url -}}">
+									<svg role="img">
+										<use xlink:href="{{- theme.link -}}/dist/svg/icons.svg#list-style-type-dash"/>
+									</svg>
+									{{- pll__( 'Accueil' ) -}}
+								</a>
+
+								{% endspaceless %}
+							</li>
+							<li class="Single-breadcrumb__item">
+
+								{% spaceless %}
+
 								<svg role="img">
-									<use xlink:href="{{- theme.link -}}/dist/svg/icons.svg#list-style-type-dash"/>
+									<use xlink:href="{{- theme.link -}}/dist/svg/icons.svg#list-style-type"/>
 								</svg>
-								{{- pll__( 'Accueil' ) -}}
-							</a>
 
-							{% endspaceless %}
-						</li>
-						<li class="Single-breadcrumb__item">
+								{% set categoriesString = '' %}
+								{% for category in categories %}
+										{% set categoriesString = categoriesString ~ category.name %}
+										
+										{% if not loop.last %} 
+											{% set categoriesString = categoriesString ~ ', ' %}
+										{% endif %}
+								{% endfor %}
 
-							{% spaceless %}
+								<span class="display-xs-inline-block" title="{{ categoriesString }}">
 
-							<svg role="img">
-								<use xlink:href="{{- theme.link -}}/dist/svg/icons.svg#list-style-type"/>
-							</svg>
+									{{- 
+										categoriesString | length > 21 ? 
+										categoriesString | slice( 0, 21 ) ~ '&hellip;' : 
+										categoriesString 
+									-}}
 
-							{% set categoriesString = '' %}
-							{% for category in categories %}
-									{% set categoriesString = categoriesString ~ category.name %}
-									
-									{% if not loop.last %} 
-										{% set categoriesString = categoriesString ~ ', ' %}
-									{% endif %}
-							{% endfor %}
+								</span>
+								{% endspaceless %}
 
-							<span class="display-xs-inline-block" title="{{ categoriesString }}">
-
-								{{- 
-									categoriesString | length > 21 ? 
-									categoriesString | slice( 0, 21 ) ~ '&hellip;' : 
-									categoriesString 
-								-}}
-
-							</span>
-							{% endspaceless %}
-
-						</li>
-						<li class="Single-breadcrumb__item title">
-							<svg role="img">
-								<use xlink:href="{{- theme.link -}}/dist/svg/icons.svg#list-style-type"/>
-							</svg>
-							{{- post.title | length > 21 ? post.title | slice( 0, 21 ) ~ '&hellip;' : post.title -}}
-						</li>
-					</ul>
-				</div>
-
-				{% if post.get_field( 'rich_content' ) %}
-					<div class="Slider-rich-content js-slider-rich-content">
-
-						<button class="Slider-rich-content__close hidden-md hidden-lg hidden-hd js-slider-rich-content-close"></button>
-						<ul class="Slider-rich-content__items js-slider-rich-content-container">
-						
-							{% for rich_content in post.get_field( 'rich_content' ) %}
-								<li class="Slider-rich-content__item" data-id="{{ rich_content.id }}">
-									
-									{% if rich_content.img %}
-									<img 
-										class="img"
-										src="{{ TimberImage( rich_content.img ).src }}"
-										width="{{ TimberImage( rich_content.img ).width }}"
-										height="{{ TimberImage( rich_content.img ).height }}"
-										alt="{{ TimberImage( rich_content.img ).alt }}"
-									>
-									{% endif %}
-									
-									<h3 class="title">
-										{{ rich_content.title | raw }}
-									</h3>
-
-									<div class="content">
-										{{ rich_content.content }}
-									</div>
-
-									{% if rich_content.link %}
-										<a class="link Link-readmore Link-marker Link-marker--white" href="{{ rich_content.link }}" target="_blank">
-											<span>{{ rich_content.label ? rich_content.label : pll__( 'Découvrir' ) }}</span>
-										</a>
-									{% endif %}
-
-								</li>
-							{% endfor %}
-
+							</li>
+							<li class="Single-breadcrumb__item title">
+								<svg role="img">
+									<use xlink:href="{{- theme.link -}}/dist/svg/icons.svg#list-style-type"/>
+								</svg>
+								{{- post.title | length > 21 ? post.title | slice( 0, 21 ) ~ '&hellip;' : post.title -}}
+							</li>
 						</ul>
-
-						{% if post.get_field( 'rich_content' )|length > 1 %}
-
-							<div class="Slider-rich-content__progressbar js-slider-rich-content-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-
-							<div class="Slider-rich-content__navigation">
-
-	        					<button class="previous js-slider-rich-content-previous"></button>
-	        					<button class="next js-slider-rich-content-next"></button>
-
-	        					<span class="count">
-	    							<i class="count-inner js-slider-rich-content-count" data-count="1">
-	    								/{{ post.get_field( 'rich_content' )|length }}
-	    							</i>
-	    						</span>
-	        				</div>
-
-						{% endif %}
 					</div>
-				{% endif %}
-			</aside>
+
+					{% if post.get_field( 'rich_content' ) %}
+						<div class="Slider-rich-content js-slider-rich-content">
+
+							<button class="Slider-rich-content__close hidden-md hidden-lg hidden-hd js-slider-rich-content-close"></button>
+							<ul class="Slider-rich-content__items js-slider-rich-content-container">
+							
+								{% for rich_content in post.get_field( 'rich_content' ) %}
+									<li class="Slider-rich-content__item" data-id="{{ rich_content.id }}">
+										
+										{% if rich_content.img %}
+										<img 
+											class="img"
+											src="{{ TimberImage( rich_content.img ).src }}"
+											width="{{ TimberImage( rich_content.img ).width }}"
+											height="{{ TimberImage( rich_content.img ).height }}"
+											alt="{{ TimberImage( rich_content.img ).alt }}"
+										>
+										{% endif %}
+										
+										<h3 class="title">
+											{{ rich_content.title | raw }}
+										</h3>
+
+										<div class="content">
+											{{ rich_content.content }}
+										</div>
+
+										{% if rich_content.link %}
+											<a class="link Link-readmore Link-marker Link-marker--white" href="{{ rich_content.link }}" target="_blank">
+												<span>{{ rich_content.label ? rich_content.label : pll__( 'Découvrir' ) }}</span>
+											</a>
+										{% endif %}
+
+									</li>
+								{% endfor %}
+
+							</ul>
+
+							{% if post.get_field( 'rich_content' )|length > 1 %}
+
+								<div class="Slider-rich-content__progressbar js-slider-rich-content-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+
+								<div class="Slider-rich-content__navigation">
+
+		        					<button class="previous js-slider-rich-content-previous"></button>
+		        					<button class="next js-slider-rich-content-next"></button>
+
+		        					<span class="count">
+		    							<i class="count-inner js-slider-rich-content-count" data-count="1">
+		    								/{{ post.get_field( 'rich_content' )|length }}
+		    							</i>
+		    						</span>
+		        				</div>
+
+							{% endif %}
+						</div>
+					{% endif %}
+				</aside>
+			</div> 
 
 			<div class="col-xs-12 col-md-10 print-w-100">
 
