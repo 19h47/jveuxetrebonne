@@ -13,8 +13,8 @@ npm-debug.log
 /src/mockup/
 /src/prototype/
 /vendor/
-sftp-config.json.prod
-sftp-config.json.dev
+sftp-config.prod.json
+sftp-config.dev.json
 sftp-config.json
 *.sublime-workspace
 
