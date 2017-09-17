@@ -58,6 +58,13 @@
 				@include size( 100%, 180px );
 			}
 		}
+		
+		.col-xs-2 {
+			@extend %display-xs-inline-block;
+
+			float: none;
+
+		}
 
 		.next {
 			@include absolute( top 50% right 0 );
