@@ -5,7 +5,10 @@
  */
 .Contact {
 	@include fixed( right 0 bottom 0 left 0 );
+	
 	height: $contact-height;
+	max-height: 100vh;
+
 	background: {
 		image: url( '#{ map-get( $directories, svg ) }terrazzo.svg' );
 		position: center;

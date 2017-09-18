@@ -6,24 +6,19 @@
 .Single-menu {
 	$this: &;
 
+	@extend .background-white;
 	@extend %Position-fixed-center, %overflow-scroll, %Transition-ease;
+	@include autoAlpha( 0 );
 
-	background: {
-		color: the_color( white );
-	}
-	opacity: 0;
-	visibility: hidden;
 	z-index: 50;
 
-	@at-root .#{ map-get( $state-classes, single-menu-open ) } & {
-		opacity: 1;
-		visibility: visible;
-	}
+	@at-root .#{ map-get( $state-classes, single-menu-open ) } & { @include autoAlpha( 1 ); }
 
 	&.is-hover {
 		
-		#{ $this }__item:not(:hover) {
-			opacity: .07;
+		@include from( 'md' ) {
+
+			#{ $this }__item:not(:hover) { opacity: .07; }
 		}
 	}
 
@@ -31,12 +26,11 @@
 		@extend %list-unstyled, %margin-xs-0;
 
 		color: the_color( gray, very-dark );
+		white-space: nowrap;
 	}
 
 
-	&__background {
-		@extend %Position-absolute-center;
-	}
+	&__background { @extend %Position-absolute-center; }
 	
 
 	/**
@@ -58,15 +52,15 @@
 		@include font( $font-size, $line-height );
 		@include margin( 
 			top 0
-			right ( ( ( 30 * 100 ) / $psd-width-unitless ) * 1vw ) 
+			right $grid-gutter-width
 			bottom 0
-			left ( ( ( 30 * 100 ) / $psd-width-unitless ) * 1vw ) 
+			left $grid-gutter-width
 		);
 
 		animation: {
 			name: fade-in-down;
-			duration: .3s;
-			timing-function: ease-in;
+			duration: .15s;
+			timing-function: ease-in-out;
 			play-state: paused;
 			fill-mode: backwards;
 		}
@@ -98,7 +92,12 @@
 				@extend %position-xs-relative, %Transition-ease;
 
 				&::before {
-					@extend %Position-absolute-center, %display-xs-inline-block, %Transition-ease, %Pointer-events-none;
+					@extend 
+						%Position-absolute-center, 
+						%display-xs-inline-block, 
+						%Transition-ease, 
+						%Pointer-events-none;
+					@include autoAlpha( 0 );
 
 					background: {
 						image: url( '#{ map-get( $directories, svg ) }marker-stroke.svg' );
@@ -107,7 +106,6 @@
 					}
 					content: '';
 
-					opacity: 0;
 					transform: translate3d( ( ( $grid-gutter-width / 4 ) * -1 ), 0, 0 );
 
 					z-index: 10;
@@ -125,8 +123,10 @@
 					color: the_color( white );
 
 					&::before {
+
+						@include autoAlpha( 1 );
+
 						transform: translate3d( 0, 0, 0 );
-						opacity: 1;
 					}
 				}
 			}
@@ -144,18 +144,20 @@
 		img {
 			@extend %Position-absolute-center, %display-xs-inline-block, %Transition-ease;
 			@include size( 100% );
+			@include autoAlpha( 0 );
 
 			object-fit: cover;
 
-			opacity: 0;
 			transform: translate3d( ( $grid-gutter-width * -1 ), 0, 0 );
 	
 			&.is-active {
-				transform: translate3d( 0, 0, 0 );
-				opacity: 1;
+				@include from( 'md' ) {
+
+					@include autoAlpha( 1 );
+					transform: translate3d( 0, 0, 0 );
+				}
 			}
 		}
-
 	}
 
 
