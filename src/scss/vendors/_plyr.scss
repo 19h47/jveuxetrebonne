@@ -355,7 +355,7 @@
 }
 
 .plyr--video .plyr__controls {
-	display: none;
+	// display: none;
 
     position: absolute;
     left: 0;
@@ -367,7 +367,17 @@
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
     color: #fff;
-    transition: opacity .3s ease
+    transition: opacity .3s ease;
+
+    [data-plyr="pause"],
+    [data-plyr="play"],
+    [data-plyr="mute"],
+    [data-plyr="captions"],
+    .plyr__progress,
+    .plyr__time,
+    .plyr__volume {
+        display: none;
+    }
 }
 
 .plyr--video .plyr__controls button.tab-focus:focus,
