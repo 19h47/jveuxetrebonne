@@ -5,9 +5,9 @@
  */
 .Contact {
 	@include fixed( right 0 bottom 0 left 0 );
-	height: 100vh;
+	height: $contact-height;
 	background: {
-		image: url( '#{ map-get( $directories, svg ) }background-contact.svg' );
+		image: url( '#{ map-get( $directories, svg ) }terrazzo.svg' );
 		position: center;
 		size: cover;
 	}

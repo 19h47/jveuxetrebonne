@@ -180,6 +180,8 @@ $container-width-unitless: $container-width-without-outer-gutter-unitless + ( $g
 $container-width: $container-width-unitless * 1px;
 
 
+$contact-height: 570px;
+
 /**
  * Transitions
  *

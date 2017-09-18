@@ -32,7 +32,7 @@
 	 */
 	&-wrapper {
 		@extend %position-xs-relative;
-		@include margin( bottom 100vh );
+		@include margin( bottom $contact-height );
 
 		background: {
 			color: the_color( white );
