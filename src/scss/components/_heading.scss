@@ -2,7 +2,7 @@
  * Heading
  */
 .Heading {
-	$font-size: 97;
+	$font-size: 160;
 	
 	@extend %margin-xs-0;
 	
@@ -22,7 +22,7 @@
 	color: rgba( the_color( orange, light-grayish-01 ), .5 );
 
 	&--marquee {
-		$duration: 20s;
+		$duration: 30s;
 		@extend %overflow-hidden;
 
 		white-space: nowrap;

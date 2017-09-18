@@ -39,7 +39,7 @@
 		@include margin( top -40px ); 
 
 		@include from( 'md' ) {
-			@include margin( top ( $grid-gutter-width * -2 ) ); 
+			@include margin( top -115px ); 
 		}
 	}
 }

@@ -7,12 +7,20 @@
 .Single {
 	@extend %position-xs-relative;
 
-	.Recipe-print {
-		display: none;
-	}	
+	.Recipe-print { @extend %display-xs-none; }	
 
-	.l-wrapper {
-		overflow-x: hidden;
+	.l-wrapper { overflow-x: hidden; }
+
+
+	/**
+	 * Relationship posts
+	 *
+	 * @uses .Single .Relationship-posts
+	 */
+	.Relationship-posts { 
+		@include margin( top -40px );
+
+		@include from( 'md' ) { @include margin( top -115px ); } 
 	}
 
 	/**
@@ -559,17 +567,5 @@
 				content: none; 
 			}
 		}
-	}
-
-
-	/**
-	 * Relationship posts
-	 *
-	 * @uses .Single .Relationship-posts
-	 */
-	.Relationship-posts { 
-		@include margin( top -40px );
-
-		@include from( 'md' ) { @include margin( top ( $grid-gutter-width * -2 ) ); } 
 	}
 }

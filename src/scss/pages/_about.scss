@@ -10,9 +10,7 @@
 	 *
 	 * @uses .About-header
 	 */
-	&-header {
-		@include margin( bottom 90px );
-	}
+	&-header { @include margin( bottom 90px ); }
 
 
 	/**
@@ -24,7 +22,7 @@
 		@include margin( top ( $grid-gutter-width * -1 ) );
 
 		@include from( 'md' ) {
-			@include margin( top ( $grid-gutter-width * -2 ) );
+			@include margin( top -115px );
 		}
 
 		.Sticky-post-header { @include margin( top $grid-gutter-width * 2 ); }
