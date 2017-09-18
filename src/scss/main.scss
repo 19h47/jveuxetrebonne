@@ -8,8 +8,8 @@
 */
 @import 'breakpoint';
 @import 'breakpoint-slicer';
-@import 'vendors/bootstrap-custom';
 @import 'abstracts/variables';
+@import 'vendors/bootstrap-custom';
 @import 'base/fonts';
 
 
@@ -101,7 +101,7 @@
 /**
  * Utilities
  */
-@import 'Utilities/settings';
+@import 'utilities/settings';
 
 
 @import 'shame';
