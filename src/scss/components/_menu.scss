@@ -346,6 +346,11 @@
 					max-width: ( map-get( $size, width ) * 1px );
 					max-height: ( map-get( $size, height ) * 1px );
 
+					@include from( 'md' ) {
+						max-width: 23px;
+						max-height: 16px;
+					}
+
 					fill: currentColor;
 				}
 			}
