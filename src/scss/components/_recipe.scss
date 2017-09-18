@@ -19,14 +19,23 @@
 			@include font( 40, 33 );
 			@include margin( 
 				top ( $grid-gutter-width * 2 ) 
-				bottom ( $grid-gutter-width * 2 ) 
+				bottom ( 0 ) 
 			);
+
+			@include from( 'md' ) {
+				@include margin( bottom $grid-gutter-width * 2 );
+			}
 		}
 
 		.print {
-			@include absolute( top 50% right 0 );
+			@include margin( top $grid-gutter-width bottom $grid-gutter-width * 2 );
 
-			transform: translate3d( 0, -50%, 0 );
+			@include from( 'md' ) {
+				@include margin( top 0 bottom 0 );
+				@include absolute( top 50% right 0 );
+
+				transform: translate3d( 0, -50%, 0 );
+			}
 		}
 
 		@at-root .Category-food & {
