@@ -212,11 +212,10 @@
 		// @include margin( bottom $grid-gutter-width );
 		@include reset-placeholder( $color );
 		// @include letter-spacing( 40 );
+		@include responsive-font( ( ( $font-size * 100 ) / $psd-width-unitless ) * 1vw, 20px, ( $font-size * 1px ) );
 		
 		color: the_color( white );
-		font: {
-			size: ( $font-size * 1px );
-		}
+		// font: { size: ( $font-size * 1px ); }
 
 		border: {
 			bottom: {
