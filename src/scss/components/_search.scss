@@ -11,7 +11,7 @@
 		top ( ( ( 130 * 100 ) / 900 ) * 1vh )
 		bottom ( ( ( 130 * 100 ) / 900 ) * 1vh )
 	);
-	@include size( 100vw, 199vh );
+	@include size( 100vw, 100vh );
 	// background: linear-gradient(
 	// 	33deg, 
 	// 	the_color( orange, light-grayish-01 ) 0%,
