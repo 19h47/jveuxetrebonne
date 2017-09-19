@@ -57,7 +57,18 @@ SliderRecipe.prototype = {
                     useCSS: false,
                     fade: true,
                     nextArrow: slider.next,
-                    prevArrow: slider.previous
+                    prevArrow: slider.previous,
+                    accessibility: false
+                    // mobileFirst: true,
+
+                    // responsive: [{
+                    //     breakpoint: 992,
+                    //     settings: {
+                    //         slidesToShow: 2,
+                    //         slidesToScroll: 2,
+                    //         infinite: false,
+                    //     }
+                    // }]
                 });
 
 

@@ -485,7 +485,16 @@
 		
 		$this: &;
 
-		@include margin( bottom $grid-gutter-width );
+		@include margin( 
+			right ( $grid-gutter-width-mobile * -1 )
+			bottom $grid-gutter-width 
+			left ( $grid-gutter-width-mobile * -1 )
+		);
+		width: calc( 100% + #{ $grid-gutter-width-mobile * 2 } );
+
+		@include from( 'md' ) {
+			width: auto;
+		}
 
 		&__title {
 			@extend %font-title, %font-bold, %text-xs-center;
@@ -510,7 +519,11 @@
 			color: the_color( gray, very-dark-01 );
 			list-style-type: disc;
 
-			li { @extend %margin-xs-y-0; }
+			li { 
+				// @extend %margin-xs-y-0; 
+
+				line-height: normal;
+			}
 		}
 
 		.items {
@@ -532,7 +545,11 @@
 				$animation-duration: 1.15s;
 
 				@extend %display-xs-inline-block, %vertical-align-middle, %position-xs-relative;
-				@include size( 50%, 100% );
+				@include size( 100% );
+
+				@include from( 'md' ) {
+					@include size( 50%, 100% );
+				}
 
 				&::after {
 					@extend %display-xs-block;
@@ -554,15 +571,20 @@
 						opacity: 1;
 					}
 
-					&::after {
-						animation-name: filler;
-						animation-iteration-count: 1;
-						animation-timing-function: cubic-bezier( 0.81, 0.15, 0.26, 0.99 );
-					    animation-fill-mode: forwards;
+					@include from( 'md' ) {
+
+						&::after {
+							animation-name: filler;
+							animation-iteration-count: 1;
+							animation-timing-function: cubic-bezier( 0.81, 0.15, 0.26, 0.99 );
+						    animation-fill-mode: forwards;
+						}
 					}
+
 				}
 
 				&:nth-child( 1 ) {
+					@extend %display-xs-none, %display-md-inline-block;
 
 					background: { color: the_color( orange, light-grayish-01 ); }
 					img {
@@ -582,8 +604,8 @@
 					@include font( 16, 29 );
 
 					background: { color: the_color( white ); }
-					overflow-x: hidden;
-					overflow-y: scroll;
+					overflow: hidden;
+					// overflow-y: scroll;
 
 					color: the_color( gray, very-dark-01 );
 
@@ -605,18 +627,24 @@
 
 					.person-number, 
 					.preparation-time {
+
 						@include margin( 
 							top ( $grid-gutter-width * 2 ) 
-							right 20px 
 							bottom ( $grid-gutter-width * 2 ) 
 						);
-
 						border: {
 							right: {
 								color: rgba( the_color( white ), .45  );
 								style: solid;
 								width: 1px;
 							}
+						}
+
+						@include from( 'md' ) {
+							
+							@include margin( 
+								right 20px 
+							);
 						}
 					}
 
