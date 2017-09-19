@@ -216,6 +216,10 @@
 			> :first-child {
 				@extend %margin-xs-top-0;
 			}
+
+			li {
+				line-height: normal;
+			}
 			
 		}
 
