@@ -2,6 +2,10 @@
  * Media print
  */
 @media print { 
+	// * { outline: 1px red solid; }
+	
+	// Shame 😔
+	.js-sticky { display: none; }
 
 	.print-w-100 { width: 100%; }
 	
@@ -57,11 +61,13 @@
 			h1 {
 				@include letter-spacing( 20 );
 				@include margin( top 0 bottom 0 );
+				@include padding( top 0 bottom 0 );
 
 				font-family: 'Lora', serif;
-				font-size: 109.88px;
+				font-size: 26.37pt;
 				font-weight: 400;
 				color: the-color( orange, very-dark );
+				line-height: normal;
 			}
 
 			p {
@@ -69,22 +75,27 @@
 			}
 
 			.date {
+				@include margin( top 11.8pt bottom 21.4pt );
+				@include letter-spacing( 25 );
 				display: block;
-				font-size: 35.71px;
+				font-size: 8.57pt;
 				font-family: 'Poppins', sans-serif;
 				font-weight: 600;
 				color: the_color( blue, light-grayish-02 );
-				@include letter-spacing( 25 );
 			}
 
 			.summary-title {
-				@include font( 38.81, 70 );
+				@include margin( top 30pt bottom 10pt );
+				font-size: 9.31pt;
+				line-height: 16.8pt;
 				font-weight: 600;
+
+				p { @include margin( top 0 bottom 0 ); }
 			}
 
 			.summary {
-				@include margin( top 80px bottom 40px );
-				@include padding( top 40px bottom 40px );
+				@include margin( top 22.3pt );
+				@include padding( top 10.3pt bottom 10.3pt );
 				display: inline-block;
 				border: {
 					top: {
@@ -105,13 +116,14 @@
 			.person-number,
 			.preparation-time,
 			.cooking-time {
-				@include margin( right 60px left 60px );
-				@include font( 38.85, 49.35 );
+				@include margin( right ( 26.9 / 2 ) * 1pt left ( 26.9 / 2 ) * 1pt );
+				font-size: 8.57pt; 
+				line-height: 11.84 pt;
 				font-family: 'Poppins', sans-serif;
 				
 				&::before {
-					@include size( 60px );
-					@include margin( right 25px );
+					@include size( 13.9pt, 14.6pt );
+					@include margin( right 18.75pt );
 					display: inline-block;
 					vertical-align: middle;
 					background: {
@@ -123,7 +135,7 @@
 			}
 
 			.person-number {
-				@include margin( left 0 );
+				@include margin( left 10.3pt );
 				&::before {
 					background: {
 						image: url('#{ map-get( $directories, svg )}person-number-orange.svg' );
@@ -149,16 +161,22 @@
 				@include margin( top 0 right 0 bottom 0 left 0 );
 				column-count: 3;
 
+				li {
+					@include margin( top 15pt bottom 15pt );
+				}
+
 				ul {
-					@include padding( left ( 1.8125em * 2 ) );
+					@include padding( left 15pt );
 				}
 
 				ul > :first-child {
-					@include margin( top  -.90625em );
+					@include margin( top  -15pt );
 				}
 
+
 				.ingredient {
-					@include font( 37.5, 70 );
+					font-size: 9pt; 
+					line-height: 16.8pt;
 					font-family: 'Poppins', sans-serif;
 					font-weight: 500;
 		
@@ -166,9 +184,13 @@
 			}
 
 			.steps {
-				@include font( 37.5, 62.35 );
+				@include margin( top 30pt );
+				font-size: 9pt;
+				line-height: 14.96pt;
 
 				strong {
+					font-size: 11.64pt;
+					line-height: 22.12pt;
 					color: the_color( orange, very-dark );
 				}
 
@@ -178,7 +200,7 @@
 			}
 
 			footer {
-				@include margin( top 120px );
+				@include margin( top 120pt );
 				border: {
 					top: {
 						color: the_color( blue, light-grayish-03 );
@@ -188,8 +210,8 @@
 				}
 				position: relative;
 				.logo {
-					@include margin( top 40px bottom 40px );
-					@include size( 156px, 120px );
+					@include margin( top 10.8pt bottom 18.7pt );
+					@include size( 37.4pt, 28.8pt );
 					display: inline-block;
 					vertical-align: middle;
 				}
@@ -200,7 +222,7 @@
 					color: the_color( orange, very-dark-grayish-01 );
 					display: inline-block;
 					vertical-align: middle;
-					font-size: 33.33px;
+					font-size: 8pt;
 					font-weight: 600;
 					transform: translate3d( 0, -50%, 0 );
 				}

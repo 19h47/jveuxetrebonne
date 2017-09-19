@@ -4,6 +4,7 @@ var $ = require('jquery');
 require('slick-carousel');
 require('sticky-kit/dist/sticky-kit.js');
 
+
 /**
  * Slider rich content
  */
@@ -39,6 +40,38 @@ SliderRichContent.prototype = {
         if (feature.matchMedia && window.matchMedia('(max-width: 991px)').matches) {
             $('.js-slider-rich-content-close').on('click', function() {
                 $('body').toggleClass('aside--is-open');
+            });
+        }
+
+        // Unstick and stick after and before print
+        var beforePrint = function() {
+            // console.info('beforePrint');
+
+            $('.js-single-aside').trigger('sticky_kit:detach');
+            $('.js-sticky').trigger('sticky_kit:detach');
+        };
+
+        var afterPrint = function() {
+            // console.info('afterPrint');
+
+            $('.js-single-aside').stick_in_parent({
+                parent: '.js-sticky-container',
+                bottoming: true
+            });
+            $('.js-sticky').stick_in_parent({
+                parent: '.js-sticky-container',
+                bottoming: true
+            });
+        };
+
+        if (window.matchMedia) {
+            var mediaQueryList = window.matchMedia('print');
+            mediaQueryList.addListener(function(mql) {
+                if (mql.matches) {
+                    beforePrint();
+                } else {
+                    afterPrint();
+                }
             });
         }
 
