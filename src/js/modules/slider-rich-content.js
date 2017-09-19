@@ -96,8 +96,14 @@ SliderRichContent.prototype = {
                 .on('init afterChange', function(event, slick) {   
                     var count = slick.slideCount;
                     var current = slick.currentSlide;
-                    
                     var calc = ( current / ( count - 1 ) ) * 100;
+
+                    $links.each(function(i, link) {
+
+                        $(link).removeClass('is-active');
+                    });
+
+                    $links[current].classList.add('is-active');
 
                     slider.progressbar
                         .css('background-size', calc + '% 100%')
