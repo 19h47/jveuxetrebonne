@@ -42,4 +42,9 @@
 			@include margin( top -115px ); 
 		}
 	}
+
+
+	.Slider-category-videos .List-post-meta {
+		@include between( 'xs', 'sm' ) { color: the_color( white ); }
+	}
 }
