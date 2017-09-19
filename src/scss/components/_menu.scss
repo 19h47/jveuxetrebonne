@@ -207,11 +207,23 @@
 			}
 			line-height: ( 42 / $font-size );
 
-			@include from( 'md' ) {
+			@include between( 'md', 'lg' ) {
+				font: {
+					size: ( ( $font-size / 1.5 ) / $base-font-size ) * 1em;
+				}
 				@include margin( 
-					bottom 0
-					right ( ( ( $margin / 2 ) - $padding ) * 1px )
 					top 0
+					right ( ( ( $margin / 4 ) - $padding ) * 1px )
+					bottom 0
+					left ( ( ( $margin / 4 ) - $padding ) * 1px )
+				);
+			}
+
+			@include from( 'lg' ) {
+				@include margin( 
+					top 0
+					right ( ( ( $margin / 2 ) - $padding ) * 1px )
+					bottom 0
 					left ( ( ( $margin / 2 ) - $padding ) * 1px )
 				);
 			}
@@ -308,6 +320,10 @@
 			@extend %margin-xs-0, %float-xs-right;
 
 			line-height: ( 42 / 15 );
+
+			@include between( 'md', 'lg' ) {
+				line-height: 28px;
+			}
 
 			.menu-item-search__button {
 

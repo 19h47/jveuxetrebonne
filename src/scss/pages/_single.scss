@@ -243,6 +243,8 @@
 		 */
 		.rich-content-link {
 			@extend %display-xs-inline-block, %position-xs-relative, %Cursor-pointer;
+
+			z-index: 1;
 			
 			&.is-active span,
 			&:hover span {

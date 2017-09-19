@@ -27,10 +27,16 @@
 		}
 		svg {
 			@extend %display-xs-inline-block, %vertical-align-middle;
-			max-width: 76px;
+			
+			max-width: 100%;
 			max-height: 59px;
-
 			fill: currentColor;
+			
+			@include from( 'lg' ) {
+				
+				max-width: 76px;
+			}
+
 		}
 
 		@at-root .Single-header & a{
