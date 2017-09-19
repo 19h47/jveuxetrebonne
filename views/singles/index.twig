@@ -52,6 +52,14 @@
 	
 	<div class="Single-introduction" style="background-image: url('{{ TimberImage( post.thumbnail ).src }}');">
 		{# <img src="{{ TimberImage( post.thumbnail ).src }}"> #}
+
+		<img 
+			class="hidden-md hidden-lg hidden-hd"
+			src="{{ TimberImage( post.thumbnail ).src }}" 
+			alt="{{ TimberImage( post.thumbnail ).alt }}" 
+			width="{{ TimberImage( post.thumbnail ).width }}" 
+			height="{{ TimberImage( post.thumbnail ).height }}" 
+		/>
 	</div>	
 
 	<div class="l-container js-sticky-container">

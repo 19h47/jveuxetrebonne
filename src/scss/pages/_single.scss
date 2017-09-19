@@ -49,18 +49,26 @@
 	&-introduction {
 		@extend %position-xs-relative;
 
-		height: 353px;
+		// height: 353px;
 
-		background: {
-			attachment: fixed;
-			position: center;
-			size: auto 100%;
+		background: { image: none!important; } 
+
+		img {
+			@extend %display-xs-inline-block, %vertical-align-middle;
+			width: 100%;
+			height: auto;
+
+			// object-fit: cover;
 		}
 
 		@include from( 'md' ) {
 			height: 100vh;
 			max-height: 821px;
-			background: { size: cover; }
+			background: {
+				attachment: fixed;
+				position: center;
+				size: auto 100%;
+			}
 		}
 
 		// img {
