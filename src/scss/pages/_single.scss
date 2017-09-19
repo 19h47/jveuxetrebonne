@@ -54,12 +54,13 @@
 		background: {
 			attachment: fixed;
 			position: center;
-			size: cover;
+			size: auto 100%;
 		}
 
 		@include from( 'md' ) {
 			height: 100vh;
 			max-height: 821px;
+			background: { size: cover; }
 		}
 
 		// img {
@@ -121,7 +122,7 @@
 			$font-size: 13;
 			$line-height: 80.86;
 
-			@extend %font-semibold, %margin-xs-0, %font-title;
+			@extend %font-semibold, %margin-xs-bottom-0, %margin-md-top-0, %font-title;
 			
 			color: the_color( blue, light-grayish );
 			font: {
