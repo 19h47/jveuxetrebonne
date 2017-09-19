@@ -155,7 +155,7 @@ class Post {
 		if ( $exclude ) {
 			$args['meta_query'] = array(
 				array(
-					'key' 		=> 'exclude',
+					'key' 		=> 'exclude_from_loop',
 					'compare' 	=> 'NOT EXISTS'
 				)
 			);
