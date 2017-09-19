@@ -11,6 +11,7 @@
 		top ( ( ( 130 * 100 ) / 900 ) * 1vh )
 		bottom ( ( ( 130 * 100 ) / 900 ) * 1vh )
 	);
+	@include size( 100vw, 199vh );
 	// background: linear-gradient(
 	// 	33deg, 
 	// 	the_color( orange, light-grayish-01 ) 0%,
@@ -19,8 +20,7 @@
 	background: {
 		color: the_color( orange, very-soft-03 );
 	}
-
-	height: 100vh;
+	
 	opacity: 0;
 	overflow-y: scroll;
 	visibility: hidden;
