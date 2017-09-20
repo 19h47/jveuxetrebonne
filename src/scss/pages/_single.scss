@@ -51,7 +51,7 @@
 
 		// height: 353px;
 
-		background: { image: none!important; } 
+		@include between( 'xs', 'sm' ) { background: { image: none!important; } }
 
 		img {
 			@extend %display-xs-inline-block, %vertical-align-middle;
@@ -67,7 +67,7 @@
 			background: {
 				attachment: fixed;
 				position: center;
-				size: auto 100%;
+				size: cover;
 			}
 		}
 
