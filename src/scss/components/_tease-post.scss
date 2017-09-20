@@ -6,16 +6,16 @@
 .Tease-post {
 	$this: &;
 	
-	$header: (
-		font: (
-			size: 15,
-			weight: map-get( map-get( $font, weights ), semibold )
-		),
-		line-height: 80.1,
-		color: the_color( blue, light-grayish )
-	);
+	// $header: (
+	// 	font: (
+	// 		size: 15,
+	// 		weight: map-get( map-get( $font, weights ), semibold )
+	// 	),
+	// 	line-height: 80.1,
+	// 	color: the_color( blue, light-grayish )
+	// );
 
-	@extend %position-xs-relative, %Pointer-events-auto;
+	@extend %position-xs-relative /*, %Pointer-events-auto */;
 
 	animation: {
 		name: fade-in-down;
@@ -37,29 +37,40 @@
 		// line-height: map-get( $header, line-height ) / map-get( map-get( $header, font ), size );
 	}
 
-	@include between( 'xs', 'sm' ) {
-		&::before { background: { color: rgba( the_color( black ), .3 ); } }
-	}
+	// @include between( 'xs', 'sm' ) {
+	// 	&::before { background: { color: rgba( the_color( black ), .3 ); } }
+	// }
 	
 
-	&::before {
-		@extend 
-			%Position-absolute-center, 
-			%Transition-ease, 
-			%display-xs-block, 
-			%Pointer-events-none;
+	// &::before {
+	// 	@extend 
+	// 		%Position-absolute-center, 
+	// 		%Transition-ease, 
+	// 		%display-xs-block, 
+	// 		%Pointer-events-none;
 			
-		content: '';
+	// 	content: '';
 
-		z-index: 10;
-	}
+	// 	z-index: 10;
+	// }
 
 
 	a {
 		@extend %display-xs-block, %overflow-hidden, %position-xs-relative;
 		@include size( 100% );
+		
+		@include from( 'md' ) {
 
-		&:hover { .thumbnail { transform: scale( 1.1 ); } }
+			&:hover { 
+				.thumbnail { transform: scale( 1.1 ); } 
+				#{ $this }-header { @include autoAlpha( 1 ); }
+				#{ $this }-header__meta { @include autoAlpha( 1 ); }
+				.title { 
+					@include autoAlpha( 1 );
+					transform: translate3d( 0, 0, 0 );
+				}
+			}
+		}
 	}
 
 	
@@ -77,20 +88,32 @@
 	 * @uses .Tease-post-header
 	 */
 	&-header {
-		@extend %text-xs-center;
-		@include absolute( top 50% right 0 left 0 );
+		@extend %text-xs-center, %Transition-ease;
+		@include absolute( right 0 bottom 0 left 0 );
 		@include padding( 
+			top ( $grid-gutter-width / 2 ) 
 			right $grid-gutter-width / 2
 			left $grid-gutter-width / 2
+			bottom ( $grid-gutter-width / 2 ) 
 		);
-
-		transform: translate3d( 0, -50%, 0 );
-		color: the_color( white );
+		
+		background: { color: the_color( white ) };
+		// color: the_color( white );
 		z-index: 20;
 
 		@include from( 'md' ) {
-			opacity: 0;
-			visibility: hidden;
+			@include autoAlpha( 0 );
+		}
+
+		&__meta {
+			color: the_color( blue, light-grayish );
+			transition: {				
+				delay: .15s;
+				duration: .3s;
+				timing-function: ease;
+			}
+
+			@include from( 'md' ) { @include autoAlpha( 0 ) };
 		}
 	}
 
@@ -115,16 +138,21 @@
 	 * @uses .Tease-post .title
 	 */
 	.title {
-		$font-size: 38;
+		$font-size: 18;
 
 		@extend %font-bold, %font-title, %margin-xs-0, %Transition-ease;
+		@include letter-spacing( 20 );
 		
+		color: the_color( gray, very-dark );
 		font: { size: ( 30 / $base-font-size ) * 1em; }
+		// line-height: map-get( $header, line-height ) / $font-size;
 
 		@include from( 'md' ) {
+			@include autoAlpha( 0 );
+			
 			font: { size: ( $font-size / $base-font-size ) * 1em; }
+			transform: translate3d( 0, 100%, 0 );
 		}
-		// line-height: map-get( $header, line-height ) / $font-size;
 	}
 
 	
