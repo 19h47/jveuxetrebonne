@@ -37,15 +37,18 @@
 
 
 	&-search-button {
-		@include margin( top $grid-gutter-width left $grid-gutter-width );
 		@extend .hidden-md, .hidden-lg, .hidden-hd;
 		@include absolute( top 0 left 0 );
+		@include margin( top $grid-gutter-width left $grid-gutter-width );
 		@include size( 27px );
 
 		.Icon {
-			@extend %vertical-align-middle, %display-xs-inline-block;
+			@extend %display-xs-inline-block;
+			@include size( 100% );
 			max-width: 27px;
 			max-height: 27px;
+
+			@include from( 'md' ) { vertical-align: middle; }
 		}
 		
 	}
@@ -144,7 +147,11 @@
 				@extend %position-xs-relative, %Transition-ease;
 
 				&::before {
-					@extend %Position-absolute-center, %display-xs-inline-block, %Transition-ease, %Pointer-events-none;
+					@extend 
+						%Position-absolute-center, 
+						%display-xs-inline-block, 
+						%Transition-ease, 
+						%Pointer-events-none;
 
 					background: {
 						image: url( '#{ map-get( $directories, svg ) }marker-stroke.svg' );
@@ -358,16 +365,18 @@
 				@include margin( left 50px );
 
 				.Icon {
-					@extend %vertical-align-middle, %display-xs-inline-block;
+					@extend %display-xs-inline-block;
+					
 					max-width: ( map-get( $size, width ) * 1px );
 					max-height: ( map-get( $size, height ) * 1px );
+					fill: currentColor;
 
 					@include from( 'md' ) {
 						max-width: 23px;
 						max-height: 16px;
-					}
 
-					fill: currentColor;
+						vertical-align: middle;
+					}
 				}
 			}
 		}
@@ -384,19 +393,15 @@
 		
 		@extend %font-title, %font-semibold;
 		@include margin( top 0 right 20px bottom 0 left 20px );
-
+		@include font( $font-size, 33 );
+		
 		color: the_color( gray, very-dark );
-
-		font-size: $font-size * 1px;
-		line-height: ( 33 / $font-size );
 
 		a {
 			@extend %Transition-ease;
 			@include padding( top 15px right 15px bottom 15px left 15px );
 
-			&:hover {
-				color: the_color( orange, very-soft-01 );
-			}
+			&:hover { color: the_color( orange, very-soft-01 ); }
 		}
 	}
 }
