@@ -79,7 +79,7 @@
 	 *
 	 * @uses .Tease-post-inner
 	 */
-	&-inner { @extend %Position-absolute-center; }
+	&-inner { @include from( 'md' ) { @include absolute( top 0 right 0 bottom 0 left 0 ); } }
 
 	
 	/**
@@ -89,7 +89,6 @@
 	 */
 	&-header {
 		@extend %text-xs-center, %Transition-ease;
-		@include absolute( right 0 bottom 0 left 0 );
 		@include padding( 
 			top ( $grid-gutter-width / 2 ) 
 			right $grid-gutter-width / 2
@@ -102,6 +101,7 @@
 		z-index: 20;
 
 		@include from( 'md' ) {
+			@include absolute( right 0 bottom 0 left 0 );
 			@include autoAlpha( 0 );
 		}
 
@@ -124,11 +124,18 @@
 	 * @uses .Tease-post .thumbnail
 	 */
 	.thumbnail {
-		@extend %Position-absolute-center, %Transition-ease;
+		@extend %Transition-ease;
 		@include size( 100% );
-
+		
+		height: 359px;
 		object-fit: cover;
 		object-position: 50% 50%;
+
+		@include from( 'md' ) { 
+			@include absolute( top 0 right 0 bottom 0 left 0 ); 
+
+			height: auto;
+		}
 	}
 
 
@@ -221,7 +228,7 @@
 		
 		&#{ $this }--#{ map-get( $key, class ) } {
 			
-			@include size( 100%, 359px );
+			@include size( 100%, auto );
 			
 			@include between( 'xs', 'sm' ) {
 				@include margin( bottom 38px );
