@@ -10,7 +10,7 @@
 	 *
 	 * @uses .About-header
 	 */
-	&-header { @include margin( bottom 90px ); }
+	&-header { @include from( 'md' ) { @include margin( bottom 90px ); } }
 
 
 	/**
@@ -21,9 +21,7 @@
 	.Sticky-post {
 		@include margin( top ( $grid-gutter-width * -1 ) );
 
-		@include from( 'md' ) {
-			@include margin( top -115px );
-		}
+		@include from( 'md' ) { @include margin( top -115px ); }
 
 		.Sticky-post-header { @include margin( top $grid-gutter-width * 2 ); }
 		.excerpt { @include margin( bottom 40px ); }
@@ -38,9 +36,7 @@
 	&-description {
 
 		&-inner {
-			@include margin( 
-				top 100px
-			);
+			@include margin( top 100px );
 
 			@include from( 'md' ) {
 				@include margin( 
@@ -61,8 +57,6 @@
 			}
 		}
 
-		&-footer {
-			@include margin( top 50px );
-		}
+		&-footer { @include margin( top 50px ); }
 	}
 }

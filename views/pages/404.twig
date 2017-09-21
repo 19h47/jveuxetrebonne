@@ -15,15 +15,22 @@
 	<div class="Front-page-header">
 		<div class="l-container">
 			
-			<button class="Menu-button js-toggle-menu-button hidden-md hidden-lg hidden-hd"></button>
-
+			<button class="Menu-search-button js-search-button">
+			    <svg class="Icon magnifying-glass">
+			        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ theme.link }}/dist/svg/icons.svg#magnifying-glass"></use>
+			    </svg>
+			</button>
+			
 			<div class="row">
-				<div class="col-xs-12 col-md-1">
+				
+				<div class="col-xs-4 col-xs-offset-4 col-md-1 col-md-offset-0">
 					<div class="Header-logo">
-						{% include 'components/header-logo.twig' %}
+						{%
+							include 'components/header-logo.twig'
+						%}
 					</div>
 				</div>
-				<div class="col-xs-12 col-md-10 col-md-offset-1">
+				<div class="col-xs-4 col-md-10 col-md-offset-1">
 
 
 					<ul class="Menu" role="navigation">
