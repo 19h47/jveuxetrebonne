@@ -4,7 +4,6 @@
  * @uses .Contact
  */
 .Contact {
-	@include fixed( right 0 bottom 0 left 0 );
 	
 	height: $contact-height;
 	max-height: 100vh;
@@ -16,6 +15,10 @@
 	}
 	color: the_color( gray, very-dark );
 	z-index: 10;
+
+	@include from( 'md' ) {
+		@include fixed( right 0 bottom 0 left 0 );
+	}
 
 
 	/**
@@ -78,14 +81,32 @@
 		$width: 911;
 		$width-input: 588;
 		$width-button: $width - $width-input;
-
+		
+		@extend %position-xs-relative;
 		@include margin( top 40px );
 		
 		/**
 		 * Mailpoet
 		 */
 		.formError {
-			&Content {}
+			top: 100%!important;
+			right: 0!important;
+			left: 0!important;
+
+			&Content {
+				@extend %text-xs-center, %padding-xs-0, %font-semibold;
+				padding: {
+					top: ( $grid-gutter-width / 2 )!important;
+					bottom: ( $grid-gutter-width / 2 )!important;
+				}
+				
+				background: { color: the_color( blue, light-grayish-01 ); }
+				border: none;
+				width: 100%;
+				color: the_color( gray, very-dark );
+				line-height: normal;
+				font-size: 12px;
+			}
 		}
 
 		/**
