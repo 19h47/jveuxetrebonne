@@ -1,5 +1,9 @@
 // Modules
 var Modules = require('./modules/index');
+var svg4everybody = require('svg4everybody');
+
+// SVG for everybody
+svg4everybody();
 
 
 // create App

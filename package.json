@@ -43,6 +43,7 @@
     "slick-carousel": "^1.7.1",
     "sprintf-js": "^1.1.1",
     "sticky-kit": "git+https://github.com/leafo/sticky-kit.git",
+    "svg4everybody": "^2.1.9",
     "svgo": "^0.7.2",
     "toggle": "^1.0.1",
     "vinyl-buffer": "^1.0.0",
