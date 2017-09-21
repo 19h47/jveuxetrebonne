@@ -39,7 +39,8 @@
 	&-search-button {
 		@extend .hidden-md, .hidden-lg, .hidden-hd;
 		@include absolute( top 0 left 0 );
-		@include margin( top $grid-gutter-width left $grid-gutter-width );
+		// Magic number is a shame!
+		@include margin( top ( $grid-gutter-width + 6px ) left $grid-gutter-width );
 		@include size( 27px );
 
 		.Icon {
