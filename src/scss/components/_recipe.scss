@@ -84,7 +84,7 @@
 			@extend .background-orange-very-soft-04, .color-white;
 			@include font( 16, 20.32 );
 
-			height: 50px;
+			@include from( 'md' ) { height: 50px; }
 		}
 
 		// p:first-child {
@@ -131,8 +131,9 @@
 		}
 
 		.person-number {
-			// width: percentage( 170 / 742 );
-			width: percentage( ( 742 / 3 ) / 742 );
+			width: 100%;
+
+			@include from( 'md' ) { width: percentage( ( 742 / 3 ) / 742 ); }
 
 			&::before {
 				background: {
@@ -142,8 +143,9 @@
 		}
 
 		.preparation-time {
-			// width: percentage( 171 / 742 );
-			width: percentage( ( 742 / 3 ) / 742 );
+			width: 100%;
+
+			@include from( 'md' ) { width: percentage( ( 742 / 3 ) / 742 ); }
 
 			&::before {
 				background: {
@@ -153,8 +155,9 @@
 		}
 		
 		.cooking-time {
-			// width: percentage( 166 / 742 );
-			width: percentage( ( 742 / 3 ) / 742 );
+			width: 100%;
+
+			@include from( 'md' ) { width: percentage( ( 742 / 3 ) / 742 ); }
 			
 			&::before {
 				background: {
@@ -239,7 +242,7 @@
 		}
 
 		.item {
-			@extend %margin-xs-0;
+			@extend %margin-xs-0, %text-xs-center, %text-md-left;
 			
 			button {
 				@extend %font-title, %font-bold, %position-xs-relative, %Transition-ease;
