@@ -20,4 +20,4 @@ gulp
 
 ## TODO
 
-[ ] Add a Ajax comment system (via a plugin maybe?)
+- [ ] Add a Ajax comment system (via a plugin maybe?)
