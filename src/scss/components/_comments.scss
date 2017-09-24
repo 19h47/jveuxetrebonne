@@ -5,13 +5,13 @@
  */
 .Comments {
 	@include padding( top 20px bottom 48px );
-	background: 
-	    linear-gradient(
-	    	33deg, 
-	    	rgba( the_color( orange, light-grayish-01 ), 1 ) 0%,
-	    	rgba( the_color( orange, light-grayish-02 ), 1 ) 100%
-	    );
-	
+	// background: 
+	//     linear-gradient(
+	//     	33deg, 
+	//     	rgba( the_color( orange, light-grayish-01 ), 1 ) 0%,
+	//     	rgba( the_color( orange, light-grayish-02 ), 1 ) 100%
+	//     );
+	background: { color: the_color( orange, very-soft-07 ); }
 
 	/**
 	 * Header
