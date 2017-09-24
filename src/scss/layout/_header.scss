@@ -41,10 +41,10 @@
 			@include from( 'md' ) { @include margin( top 36px ); }
 		}
 
-		@at-root .About-header & a {
-			@include margin( top 24px );
+		// @at-root .About-header & a {
+		// 	@include margin( top 24px );
 
-			@include from( 'md' ) { @include margin( top 36px ); }
-		}
+		// 	@include from( 'md' ) { @include margin( top 36px ); }
+		// }
 	}
 }

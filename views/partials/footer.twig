@@ -3,75 +3,82 @@
 	 * /views/partials/footer
 	 */
 #}
-<footer class="Footer l-container">
+<footer class="Footer">
+	
+	<div class="l-container">
+		<div class="row">
 
-	<div class="row">
+			<div class="col-xs-12">
+				<div class="Footer-logo">
+					<a href="{{ site.url }}">		
+						<img class="img-full" src="{{ theme.link }}/img/svg/logo-orange.svg" alt="{{ site.description }}" />
+					</a>
+				</div>
+			</div>
 
-		<div class="col-xs-4 col-xs-offset-4 col-md-1 col-md-offset-0">
-			<div class="Footer-logo">
-				<a href="{{ site.url }}">		
-					<img class="img-full" src="{{ theme.link }}/img/svg/logo-orange.svg" alt="{{ site.description }}" />
-				</a>
+		</div>
+		<div class="row">
+		
+
+			<div class="col-xs-12 col-md-10 col-md-offset-1 text-xs-center">
+
+			
+				<ul class="Menu" role="navigation">
+
+					{% 
+						include 'components/menu.twig' 
+						with { 
+							'menu' : menu.main,
+							'language': false,
+							'search': false,
+							'layout': {
+								'desktop': true,
+								'marker': false
+							}
+						} 
+					%}
+				</ul>
+
+				<ul class="Footer-socials">
+				{% for social in contact.socials %}
+					<li class="Footer-socials__item">
+						<a href="{{ social.url }}" title="{{ social.name }}" data-title="{{ social.name }}">
+							<svg class="{{ social.slug }}" role="img">
+								<use xlink:href="{{ theme.link }}/dist/svg/icons.svg#{{ social.slug }}"/>
+							</svg>
+						</a>
+					</li>
+				{% endfor %}
+				</ul>
+
+			</div>
+
+			<div class="col-xs-12 col-md-1">
+
+				<button class="Footer-button js-scroll-to" data-offset="top">
+					<svg class="" viewbox="0 0 32 32">
+					   <use xlink:href="{{ theme.link }}/dist/svg/icons#arrow-top"></use>
+					</svg>
+				</button>
+
 			</div>
 		</div>
-	
+	</div>
 
-		<div class="col-xs-12 col-md-10 text-xs-center">
 
+	<div class="Footer-copyright">
+		<div class="l-container">
 			<div class="row">
 				<div class="col-xs-12">
-					<div class="Footer-copyright">
-						{% spaceless %}
-						<span><i>© JVEB 2017</i></span>
-						<span>Design, <i><a href="http://lesindiens.fr/" target="_blank">Studio Les Indiens</a></i></span>
-						<span>&nbsp;&#124;&nbsp;</span>      
-						<span>Développement, <i><a href="http://19h47.fr/" target="_blank">19h47</a></i></span>
-						{% endspaceless %}
-					</div>
-				</div>
-				<div class="col-xs-12">
-					<ul class="Menu" role="navigation">
-
-						{% 
-							include 'components/menu.twig' 
-							with { 
-								'menu' : menu.main,
-								'language': false,
-								'search': false,
-								'layout': {
-									'desktop': true,
-									'marker': false
-								}
-							} 
-						%}
-					</ul>
-				</div>
-				<div class="col-xs-12">
-					<button class="Footer-button js-scroll-to" data-offset="top">
-						<svg class="" viewbox="0 0 32 32">
-						   <use xlink:href="{{ theme.link }}/dist/svg/icons#arrow-top"></use>
-						</svg>
-					</button>
+					{% spaceless %}
+					<span><i>© JVEB 2017</i></span>
+					<span>Design, <i><a href="http://lesindiens.fr/" target="_blank">Studio Les Indiens</a></i></span>
+					<span>&nbsp;&#124;&nbsp;</span>      
+					<span>Développement, <i><a href="http://19h47.fr/" target="_blank">19h47</a></i></span>
+					{% endspaceless %}
 				</div>
 			</div>
 		</div>
-
-		<div class="col-xs-12 col-md-1">
-
-			<ul class="Footer-socials">
-			{% for social in contact.socials %}
-				<li class="Footer-socials__item">
-					<a href="{{ social.url }}" title="{{ social.name }}">
-						<svg class="{{ social.slug }}" role="img">
-							<use xlink:href="{{ theme.link }}/dist/svg/icons.svg#{{ social.slug }}"/>
-						</svg>
-					</a>
-				</li>
-			{% endfor %}
-			</ul>
-
-		</div>
-
-		
 	</div>
+
 </footer>

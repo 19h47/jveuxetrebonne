@@ -64,7 +64,8 @@
 	 */
 	@at-root 
 		.Category-header &,
-		.Front-page-header & {
+		.Front-page-header &,
+		.About-header & {
 
 		@extend %Position-fixed-center, %Transition-ease;
 		@include margin( top 0 bottom 0 );

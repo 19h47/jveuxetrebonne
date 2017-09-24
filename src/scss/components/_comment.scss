@@ -38,7 +38,7 @@
 	&-list { 
 		@extend %list-unstyled; 
 
-		@at-root .js & { @extend %display-xs-none; }
+		// @at-root .js & { @extend %display-xs-none; }
 	}
 	
 	
