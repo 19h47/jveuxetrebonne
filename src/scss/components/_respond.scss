@@ -94,7 +94,7 @@
 			@extend .Link-readmore, .Link-marker, .Link-marker--orange-soft;
 			@include margin( top ( $grid-gutter-width / 2 ) left $grid-gutter-width );
 
-			&:hover { &::before { opacity: .25!important; } }
+			&:hover { &::before { opacity: .45!important; } }
 		}
 	}
 
