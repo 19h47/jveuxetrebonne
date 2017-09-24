@@ -50,17 +50,20 @@
 
 		@extend %font-bold, %margin-xs-0, %text-xs-center;
 		
-		width: 100%;
+		// width: 100%;
 		color: the_color( gray, very-dark );
 		font: {
 			size: ( $font-size * 1px );
 		}
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
 		
 		// In search result context
 		@at-root .Search .suggest & { color: the_color( white ); }
+
+		@include from( 'md' ) {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;	
+		}
 	}
 	
 

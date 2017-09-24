@@ -8,8 +8,10 @@
 
 
 {% block recipe %}
-	{% include 'partials/recipe.twig' with {
-			'title': pll__( 'La recette pas à pas' )
-		}
-	%}
+	{% if post.get_field( 'collection' ) %}
+		{% include 'partials/recipe.twig' with {
+				'title': pll__( 'La recette pas à pas' )
+			}
+		%}
+	{% endif %}
 {% endblock %}

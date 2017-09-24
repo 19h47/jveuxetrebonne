@@ -36,6 +36,16 @@
     <a href="{{ post.link }}">
 
         <div class="Tease-post-inner">
+
+            {# Thumbnail #}
+            <img 
+                class="thumbnail" 
+                {# | resize( width, height ) #}
+                src="{{ post.thumbnail.src }}" 
+                alt="" 
+                width="{{ width }}"
+                height="{{ height }}"
+            />
     	   
             {# Header #}
             <header class="Tease-post-header">
@@ -62,16 +72,6 @@
                 {# Title #}
                 <h2 class="title">{{- post.title -}}</h2>
             </header>
-
-            {# Thumbnail #}
-            <img 
-                class="thumbnail" 
-                {# | resize( width, height ) #}
-                src="{{ post.thumbnail.src }}" 
-                alt="" 
-                width="{{ width }}"
-                height="{{ height }}"
-            />
         
         </div>
 

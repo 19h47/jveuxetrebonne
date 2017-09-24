@@ -37,10 +37,9 @@
 		@include padding( top 43px );
 		@include margin( bottom 43px );
 
-		@include from( 'md' ) {
-			@include margin( bottom 0 );
-		}
-		
+		@include from( 'md' ) { 
+			@include padding( top 0 );
+			@include margin( bottom 0 ); }
 
 		&::before {
 			@extend %display-xs-block;
@@ -55,16 +54,13 @@
 				the_color( orange, light-grayish-02 ) 100%
 			);
 
-			@include from( 'md' ) {
-				@include size( 100%, 180px );
-			}
+			@include from( 'md' ) { @include size( 100%, 180px ); }
 		}
 		
 		.col-xs-2 {
 			@extend %display-xs-inline-block;
 
 			float: none;
-
 		}
 
 		.next {
@@ -93,17 +89,18 @@
 		.previous {
 			@extend %display-xs-inline-block, %vertical-align-middle, %Cursor-pointer, %Transition-ease;
 			@include size( 44px );
+			@include autoAlpha( 1 );
 
 			background: {
 				position: center;
 				size: 100%;
 			}
-			opacity: 1;
 			z-index: 1;
 
+			&[aria-disabled="true"],
 			&.slick-disabled {
 				@extend %Cursor-auto;
-				opacity: 0;
+				@include autoAlpha( 0 );
 			}
 		}
 	}	
@@ -115,7 +112,6 @@
 	 * @uses .Category-list-child
 	 */
 	&-list-child {
-
 		@include padding( 
 			right percentage( 110 / 480 )
 			left percentage( 110 / 480 )
@@ -133,12 +129,15 @@
 		opacity: 0;
 		transform: translateY( ( $grid-gutter-width * -1 ) );
 
-		@include from( 'md' ) { @include padding( right 0 left 0 ); }
+		@include from( 'md' ) { 
+			@include margin( top 43px );
+			@include padding( right 0 left 0 ); 
+		}
 		
 		&:hover,
 		&.is-active {
 			.thumbnail {
-				transform: translate3d( 0, ( $grid-gutter-width * -1 ), 0 );
+				transform: translate3d( 0, ( ( $grid-gutter-width / 2 ) * -1 ), 0 );
 			}
 		}
 

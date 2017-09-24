@@ -8,13 +8,21 @@
 
 	width: percentage( 76 / 1029 );
 	
-	@at-root .Front-page & { top: auto; bottom: 0; }
+	@at-root .Front-page &,
+	.About & { 
+		top: auto; bottom: 0; 
+	}
 
 	&-inner {
 		@include margin( 
 			top ( $grid-gutter-width * 4 ) 
 			bottom ( $grid-gutter-width * 4 )
 		);
+
+		@at-root .Front-page &,
+		.About & { 
+			@include margin( top 0 bottom 0 ); 
+		}
 
 	}
 
@@ -48,6 +56,8 @@
 
 				fill: the_color( blue, light-grayish );
 			}
+
+			@at-root .Front-page &:last-child { @include margin( bottom 0 ); }
 		}
 	}
 
@@ -66,4 +76,31 @@
 		color: the_color( orange, very-soft-01 );
 		white-space: nowrap;
 	}
+
+
+	&-email {
+		@extend %font-semibold, %font-title, %Transition-ease, %display-xs-inline-block, %overflow-hidden;;
+		@include font( 13, $grid-gutter-width-unitless );
+
+		color: the_color( blue, light-grayish );
+		width: 30px;
+
+		&:hover {
+			color: the_color( orange, very-soft-01 );
+		}
+
+		a {
+			@extend %display-xs-inline-block;
+			transform: translate( calc( -50% + #{ $grid-gutter-width } ), -50% ) rotate( 90deg );
+     		transform-origin: 0 50%;
+
+			white-space: nowrap;
+
+			&:after {
+			     content: "";
+			     float: left;
+			     margin-top: 100%;
+			 }
+		} 
+	}	
 }

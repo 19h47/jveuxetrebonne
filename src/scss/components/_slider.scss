@@ -200,8 +200,9 @@
 						top 0 
 						right ( percentage( $grid-gutter-width-unitless / 182 ) * -1 )
 						bottom 0
-						left ( percentage(  100 / 182 ) * -1 )
+						// left ( percentage(  100 / 182 ) * -1 )
 					);
+					width: 50vw;
 				    background: 
 				        linear-gradient(
 				        	135deg, 
@@ -211,7 +212,6 @@
 					content: '';
 				}
 			}
-			
 		}
 
 		&__item {

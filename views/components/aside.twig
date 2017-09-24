@@ -10,7 +10,29 @@
 #}
 <aside class="Aside hidden-xs hidden-md">
     
-    <div class="Aside-inner{{context == 'single' ? ' js-single-aside' }}">
+    <div class="Aside-inner{{ context == 'single' ? ' js-single-aside' }}">
+
+        {% if email %}
+        <div class="Aside-email">
+            {# {{ site|print_r }} #}
+            <a href="mailto:{{ site.admin_email }}">
+                {{- site.admin_email -}}
+
+                {% if context == 'about' %}
+                    &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+                    <span class="color-orange-very-soft-01">Me contacter</span>
+                {% endif %}
+
+            </a>
+
+        </div>
+        {% endif %}
+
+        {% if email and socials %}
+            <span class="Aside-bull">&bull;</span>
+        {% endif %}
+
+        {% if socials %}
         <ul class="Aside-socials">
 
             {% if shares %}
@@ -47,21 +69,15 @@
             {% endif %}
 
         </ul>
-
-        <span class="Aside-bull">&bull;</span>
-        
-        {% if subscribe %}
-        <div class="Aside-subscribe">
-            {# {{ site|print_r }} #}
-            <button class="js-scroll-to" data-offset="bottom">{{ pll__( 'Abonne-toi' ) }}</a>
-        </div>
         {% endif %}
 
 
-        {% if email %}
+        
+        {% if subscribe %}
+        <span class="Aside-bull">&bull;</span>
         <div class="Aside-subscribe">
             {# {{ site|print_r }} #}
-            <a href="mailto:{{ site.admin_email }}">{{- site.admin_email -}}</a>
+            <button class="js-scroll-to" data-offset="bottom">{{ pll__( 'Abonne-toi' ) }}</a>
         </div>
         {% endif %}
 

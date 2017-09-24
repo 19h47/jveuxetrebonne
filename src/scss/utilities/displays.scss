@@ -19,19 +19,6 @@
                     %display-#{ $breakpoint }-#{ unquote( $display-value ) } {
                         
                         display: #{ unquote( $display-value ) };
-
-                        @if $display-value == 'table-cell' {
-                            
-                            &.vertical-align-middle {
-
-                                vertical-align: middle;
-                            }
-
-                            &.vertical-align-bottom {
-                                
-                                vertical-align: bottom;
-                            }
-                        }
                     }
                     
                     .display-#{ $breakpoint }-#{ unquote( $display-value ) } {
