@@ -1,0 +1,71 @@
+{#
+    
+    /**
+     * /views/components/aside
+     *
+     * @package WordPress
+     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     */
+    
+#}
+<aside class="Aside hidden-xs hidden-md">
+    
+    <div class="Aside-inner{{context == 'single' ? ' js-single-aside' }}">
+        <ul class="Aside-socials">
+
+            {% if shares %}
+
+            {% for share in contact.shares %}
+                <li class="Aside-socials__item">
+                    <a 
+                        href="{{ share.url ~ permalink.current_url }}" 
+                        title="{{ share.name }}" 
+                        {{ share.slug == 'envelope' ? '' : 'target="_blank"' }}
+                    >
+                        <svg class="{{ share.slug }}" role="img">
+                            <use xlink:href="{{ theme.link }}/dist/svg/icons.svg#{{ share.slug }}"/>
+                        </svg>
+                    </a>
+                </li>
+            {% endfor %}
+
+            {% endif %}
+    
+
+            {% if socials %}
+
+            {% for social in contact.socials %}
+                <li class="Aside-socials__item">
+                    <a href="{{ social.url }}" title="{{ social.name }}">
+                        <svg class="{{ social.slug }}" role="img">
+                            <use xlink:href="{{ theme.link }}/dist/svg/icons.svg#{{ social.slug }}"/>
+                        </svg>
+                    </a>
+                </li>
+            {% endfor %}
+
+            {% endif %}
+
+        </ul>
+
+        <span class="Aside-bull">&bull;</span>
+        
+        {% if subscribe %}
+        <div class="Aside-subscribe">
+            {# {{ site|print_r }} #}
+            <button class="js-scroll-to" data-offset="bottom">{{ pll__( 'Abonne-toi' ) }}</a>
+        </div>
+        {% endif %}
+
+
+        {% if email %}
+        <div class="Aside-subscribe">
+            {# {{ site|print_r }} #}
+            <a href="mailto:{{ site.admin_email }}">{{- site.admin_email -}}</a>
+        </div>
+        {% endif %}
+
+        <div class="Aside-contact"></div> 
+
+    </div>
+</aside>

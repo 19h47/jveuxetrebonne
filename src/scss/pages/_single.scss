@@ -383,69 +383,6 @@
 				}
 			}
 		}
-
-		.aside {
-			@include absolute( top 0 right 0 );
-
-			width: percentage( 76 / 1029 );
-
-			&-inner {
-				@include margin( 
-					top ( $grid-gutter-width * 4 ) 
-					bottom ( $grid-gutter-width * 4 )
-				);
-
-			}
-
-			&-socials {
-				@extend .list-unstyled;
-				@extend %margin-xs-0;
-
-				&__item {
-					@extend %vertical-align-middle;
-					@include size( $grid-gutter-width );
-					@include margin( 
-						top ( $grid-gutter-width  / 2 )
-						bottom ( $grid-gutter-width  / 2 )
-					);
-
-					a {
-						@extend %display-xs-block;
-
-						&:hover {
-							svg {
-								fill: the_color( orange, very-soft-01 );
-							}
-						}
-					}
-
-					svg {
-						@extend %display-xs-inline-block, %vertical-align-middle, %Transition-ease;
-
-						max-width: $grid-gutter-width;
-						max-height: $grid-gutter-width;
-
-						fill: the_color( blue, light-grayish );
-					}
-				}
-			}
-
-			&-bull {
-				@extend %display-xs-block, %text-xs-center;
-				@include size( $grid-gutter-width );
-
-				color: the_color( blue, light-grayish );
-			}
-
-			&-subscribe {
-				@extend %font-semibold, %font-title;
-				@include font( 13, $grid-gutter-width-unitless );
-				transform: rotate( 90deg ) translate3d( 0, -50%, 0 );
-				transform-origin: 0 50%;
-				color: the_color( orange, very-soft-01 );
-				white-space: nowrap;
-			}
-		}
 	}	
 
 
@@ -465,8 +402,10 @@
 				top 0 
 				right ( percentage( $grid-gutter-width-unitless / 182 ) * -1 )
 				bottom 0
-				left ( percentage(  100 / 182 ) * -1 )
+				// left ( percentage(  100 / 182 ) * -1 )
+				
 			);
+			width: 50vw;
 
 			content: '';
 			background: 

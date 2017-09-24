@@ -12,6 +12,24 @@
 $context = Timber::get_context();
 
 
+// Add socials to context
+$socials = array();
+$socials_name = [ 'YouTube', 'Facebook', 'Twitter', 'Instagram' ];
+
+foreach ( $socials_name as $name ) {
+    ${ strtolower( $name ) } = array(
+        'slug'  => strtolower( $name ),
+        'name'  => $name,
+        'url'   => get_option( strtolower( $name ) )
+    );
+
+    $socials[strtolower( $name )] = ${ strtolower( $name ) };
+}
+
+// Add $socials to $context
+$context['contact']['socials'] = $socials;
+
+
 // get last post
 $context['posts'] = Timber::get_posts( 
     array( 

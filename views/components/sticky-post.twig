@@ -12,7 +12,7 @@
 
     <article id="Sticky-post-{{ post.ID }}" class="Sticky-post row">
 
-        <div class="col-xs-12 col-md-6 col-md-offset-1">
+        <div class="col-xs-12 col-md-6">{# col-md-offset-1 #}
 
             <a class="thumbnail" href="{{ post.link }}">
                 <img class="img-full" src="{{ post.thumbnail.src }}" alt="" />
@@ -89,6 +89,16 @@
             {% endif %}
 
         </div>
+
+        {% 
+            include 'components/aside.twig' 
+            with {
+                'socials': true,
+                'shares': false,
+                'subscribe': false,
+                'email': true
+            } 
+        %}
 
     </article>
 
