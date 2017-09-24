@@ -17,3 +17,7 @@ gulp
 ## Dependencies
 
 - [ACF plugin](https://www.advancedcustomfields.com/)
+
+## TODO
+
+[ ] Add a Ajax comment system (via a plugin maybe?)

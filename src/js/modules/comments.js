@@ -15,37 +15,51 @@ function Comments() {
 		return;
 	}
 
+	this.$button = this.$element.find('[data-toggle-target]');
+	this.$title = this.$element.find('.js-comments-title');
+
+	// console.log(this.$button);
+
+	var hash = window.location.hash;
+
+	if (window.location.hash) {
+	  	return;
+	}
+
 	this.initPlugins();
 }
 
 Comments.prototype = {
+
+	ajaxComment: function() {},
+
 	
 	initPlugins: function() {
 
 		// console.log(toggle);
-		var $button = $("[data-toggle-target]");
-		var $title = this.$element.find('.js-comments-title');
+		this.$element.find('.js-comments-list').hide();
 
-		toggle.toggle = function ($element) {
+		toggle.toggle = $.proxy(function ($element) {
 
 			$element.toggle();
 
-			if ($button.hasClass('minus')) {
 
-				$title.html('montrer');
-				$button.removeClass('minus').addClass('plus');
+			if (this.$button.hasClass('minus')) {
 
-				return;
-			}
-
-			if ($button.hasClass('plus')) {
-
-				$title.html('réduire');
-				$button.removeClass('plus').addClass('minus');
+				this.$title.html('montrer');
+				this.$button.removeClass('minus').addClass('plus');
 
 				return;
 			}
-		};
+
+			if (this.$button.hasClass('plus')) {
+
+				this.$title.html('réduire');
+				this.$button.removeClass('plus').addClass('minus');
+
+				return;
+			}
+		}, this);
 	}
 };
 
