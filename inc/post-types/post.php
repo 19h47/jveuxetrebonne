@@ -142,22 +142,29 @@ class Post {
 		// $sticky = get_option( 'sticky_posts' );
 
 		$args = array(
-			'post_type'         	=> 'post',
-			'posts_per_page'    	=> (int) $posts_per_page,
-			'cat' 					=> (int) $tag,
-			'offset'            	=> (int) $offset,
+			'post_type'        	=> 'post',
+			'posts_per_page'   	=> (int) $posts_per_page,
+			'cat' 				=> (int) $tag,
+			'offset'           	=> (int) $offset,
 			// 'ignore_sticky_posts' 	=> 1,
-			'post__not_in' 			=> get_option( 'sticky_posts' ),
-			'post_status' 			=> 'publish'
+			'post__not_in' 		=> get_option( 'sticky_posts' ),
+			'post_status' 		=> 'publish'
 		);
 
 		// Exclude some article on front page
 		if ( $exclude ) {
-			$args['meta_query'] = array(
+			$args['meta_query']	= array(
+				'relation' 	=> 'OR',
 				array(
-					'key' 		=> 'exclude_from_loop',
-					'compare' 	=> 'NOT EXISTS'
-				)
+					'key'		=> 'exclude_from_loop',
+					'value'		=> 0,
+					'type' 		=> 'BOOLEAN'
+				),
+				array(
+		            'key' 		=> 'exclude_from_loop',
+		            'compare' 	=> 'NOT EXISTS',
+		            'type' 		=> 'BOOLEAN'
+		        )
 			);
 		}
 
