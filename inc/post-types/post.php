@@ -148,7 +148,8 @@ class Post {
 			'offset'           	=> (int) $offset,
 			// 'ignore_sticky_posts' 	=> 1,
 			'post__not_in' 		=> get_option( 'sticky_posts' ),
-			'post_status' 		=> 'publish'
+			'post_status' 		=> 'publish',
+			'category__not_in'	=> array( 1335 )
 		);
 
 		// Exclude some article on front page
