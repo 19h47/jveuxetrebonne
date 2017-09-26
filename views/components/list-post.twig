@@ -11,8 +11,27 @@
 <article class="List-post js-load-more-post{{ video ? ' List-post-category-videos js-category-videos' }}{{ relationship ? ' List-post-relationship' }}">
 	
 		{% if video %}
-		
-			<div class="thumbnail js-category-video" data-type="youtube" data-video-id="{{ function( 'get_field', 'videos', post, false ) }}"></div>
+
+			{% if post.videos starts with 'https://www.youtube.com/' %}
+				{% set provider = 'youtube' %}
+
+
+				<div 
+					class="thumbnail js-category-video" 
+					data-type="youtube"
+					data-video-id="{{ post.videos }}"
+				></div>
+			
+			{% else %}	
+				<div class="thumbnail native-video">
+					<video poster="{{ post.thumbnail }}" controls preload="auto">
+				  		<source src="{{ post.videos }}" type="video/mp4">
+					</video>
+				</div>
+
+			{% endif %}
+
+
 		
 		{% else %}
 			<a class="link" href="{{ post.link }}">		

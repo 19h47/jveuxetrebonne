@@ -14,6 +14,10 @@
 	
 	color: currentColor;
 
+	@at-root .Footer & {
+		@include between( 'xs', 'md' ) { @include margin( bottom $grid-gutter-width ); }
+	}
+
 
 	&-button {
 		@include absolute( top 0 right 0 );

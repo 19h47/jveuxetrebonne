@@ -172,7 +172,7 @@
 				&::after {
 					@extend %display-xs-inline-block;
 
-					content: attr( data-title );
+					@include from( 'md' ) { content: attr( data-title ); }
 				}
 			}
 

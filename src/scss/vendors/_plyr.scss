@@ -16,6 +16,7 @@
 
 .plyr {
     position: relative;
+    height: 100%;
     max-width: 100%;
     min-width: 200px;
     // font-family: Avenir, 'Avenir Next', 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -172,6 +173,15 @@
     transform: scale(1.25)
 }
 
+.Front-page .native-video .plyr--video {
+    width: fit-content;
+    display: inline-block;
+    
+}
+.Front-page .plyr--video {
+    height: 346px;
+}
+
 .plyr--video input[type=range].tab-focus:focus {
     outline: rgba(255, 255, 255, .5) dotted 1px
 }
@@ -191,9 +201,29 @@
 }
 
 .plyr__video-wrapper {
+    display: inline-block;
+    height: 100%;
     position: relative;
-    background: #000;
-    border-radius: inherit
+    // background: #000;
+    border-radius: inherit;
+
+    @at-root .Category-videos & {
+        overflow: hidden;
+    }
+
+    video {
+        display: inline-block;
+        height: 100%;
+        background-color: transparent!important;
+        object-fit: cover;
+
+
+        @at-root .Front-page & { 
+            width: auto;
+            object-fit: contain;
+        }
+    }
+
 }
 
 .plyr__video-embed {
@@ -363,7 +393,7 @@
     bottom: 0;
     z-index: 2;
     padding: 50px 10px 10px;
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .5));
+    // background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .5));
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
     color: #fff;
@@ -380,11 +410,11 @@
     }
 }
 
-.plyr--video .plyr__controls button.tab-focus:focus,
-.plyr--video .plyr__controls button:hover {
-    background: #3498db;
-    color: #fff
-}
+// .plyr--video .plyr__controls button.tab-focus:focus,
+// .plyr--video .plyr__controls button:hover {
+//     background: #3498db;
+//     color: #fff
+// }
 
 .plyr--audio .plyr__controls {
     padding: 10px;
