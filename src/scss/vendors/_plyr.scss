@@ -173,15 +173,15 @@
     transform: scale(1.25)
 }
 
-.Front-page .native-video .plyr--video {
-    width: fit-content;
-    display: inline-block;
+// .Front-page .native-video .plyr--video {
+//     width: fit-content;
+//     display: inline-block;
     
-}
-.Front-page .native-video,
-.Front-page .plyr--video {
-    @include from( 'md' ) { height: 346px!important; }
-}
+// }
+// .Front-page .native-video,
+// .Front-page .plyr--video {
+//     @include from( 'md' ) { height: 346px!important; }
+// }
 
 .plyr--video input[type=range].tab-focus:focus {
     outline: rgba(255, 255, 255, .5) dotted 1px
