@@ -27,6 +27,17 @@ SliderCategoryVideos.prototype = {
             'iconUrl': wp.current_url
         });
 
+            // console.log();
+        players && players.forEach(function (player) {
+            player.on('play', function (event) {
+    
+                players.forEach(function (player) {
+
+                    player.pause();
+                });
+            });
+        });
+
 
         var $slider = $('.js-slider-category-videos');
         
@@ -34,12 +45,9 @@ SliderCategoryVideos.prototype = {
 
             .on('beforeChange', function(event, slick, currentSlide, nextSlide){
     
-                // If the current video is played
-                if (players[currentSlide].play) {
-
-                    // Stop it
-                    players[currentSlide].pause();
-                };
+                players.forEach(function(player) { 
+                    player.pause();
+                });
             })
 
             .slick({
@@ -47,6 +55,9 @@ SliderCategoryVideos.prototype = {
                 nextArrow: $slider.find('.js-slider-category-videos-next'),
                 prevArrow: $slider.find('.js-slider-category-videos-previous'),
                 mobileFirst: true,
+                // slidesToShow: 1,
+                infinite: false,
+                initialSlide: 1,
                 
                 responsive: [{
                     breakpoint: 992,

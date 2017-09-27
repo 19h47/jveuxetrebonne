@@ -32,7 +32,9 @@ SliderFilter.prototype = {
             
             responsive: [{
                 breakpoint: 992,
-                settings: "unslick"
+                settings: {
+                    slidesToShow: 6
+                }
             }]
         });
     }
