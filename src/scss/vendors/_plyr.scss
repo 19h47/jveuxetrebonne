@@ -178,8 +178,9 @@
     display: inline-block;
     
 }
+.Front-page .native-video,
 .Front-page .plyr--video {
-    height: 346px;
+    @include from( 'md' ) { height: 346px!important; }
 }
 
 .plyr--video input[type=range].tab-focus:focus {

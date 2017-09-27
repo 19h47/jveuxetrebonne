@@ -499,15 +499,27 @@
 		&__title {
 			@extend %font-title, %font-bold, %text-xs-center;
 			@include font( 20, 29 );
-			@include margin( top 70px );
+			@include margin( top $grid-gutter-width bottom 0 );
 
 			color: the_color( blue, light-grayish );
 
+			@include from( 'md' ) {
+				@include margin( top 70px bottom ( $grid-gutter-width / 3 )  );				
+			}
+
+
 			&.title-step {
 				@include margin( 
-					top ( $grid-gutter-width * 3 ) 
-					bottom ( $grid-gutter-width * 3 ) 
+					top $grid-gutter-width
+					bottom $grid-gutter-width
 				);
+
+				@include from( 'md' ) {
+					@include margin( 
+						top ( $grid-gutter-width * 3 ) 
+						bottom ( $grid-gutter-width * 3 ) 
+					);
+				}
 			}
 		}
 
@@ -517,7 +529,11 @@
 			@include font( 16, 40 );
 
 			color: the_color( gray, very-dark-01 );
-			list-style-type: disc;
+			list-style-type: none;
+
+			@include between( 'xs', 'sm' ) { @include padding( left 0 ); }
+
+			@include from( 'md' ) { list-style-type: disc; }
 
 			li { 
 				// @extend %margin-xs-y-0; 
@@ -583,10 +599,17 @@
 
 				}
 
-				&:nth-child( 1 ) {
-					@extend %display-xs-none, %display-md-inline-block;
+				&.image-mobile { background: { color: the_color( orange, light-grayish-01 ); } }
 
-					background: { color: the_color( orange, light-grayish-01 ); }
+				&:nth-child( 1 ) {
+					@extend /* %display-xs-none, */ %display-md-inline-block;
+
+					height: 100%; 
+
+					@include from( 'md' ) { 
+						background: { color: the_color( orange, light-grayish-01 ); }
+					}
+
 					img {
 						@extend %display-xs-inline-block, %vertical-align-middle;
 						@include size( 100% );
@@ -609,70 +632,73 @@
 
 					color: the_color( gray, very-dark-01 );
 
-					p { @extend %text-xs-center; }
+				}
+				p { @extend %text-xs-center; }
 
-					.person-number,
-					.preparation-time,
-					.cooking-time {
-						@extend %text-xs-center, %display-xs-inline-block;
-						
-						&::before {
-							@include size( 25px );
-							@include margin( right 10px );
-							@extend %display-xs-inline-block, %vertical-align-middle;
+				.person-number,
+				.preparation-time,
+				.cooking-time {
+					
+					@extend %text-xs-center, %display-xs-inline-block;
+					
+					&::before {
+						@include size( 25px );
+						@include margin( right 10px );
+						@extend %display-xs-inline-block, %vertical-align-middle;
 
-							content: '';
+						content: '';
+					}
+				}
+
+				.person-number, 
+				.preparation-time {
+
+					@include margin( 
+						top $grid-gutter-width
+						bottom $grid-gutter-width
+					);
+					border: {
+						right: {
+							color: rgba( the_color( white ), .45  );
+							style: solid;
+							width: 1px;
 						}
 					}
 
-					.person-number, 
-					.preparation-time {
-
+					@include from( 'md' ) {
+						
 						@include margin( 
 							top ( $grid-gutter-width * 2 ) 
+							right 20px 
 							bottom ( $grid-gutter-width * 2 ) 
 						);
-						border: {
-							right: {
-								color: rgba( the_color( white ), .45  );
-								style: solid;
-								width: 1px;
-							}
-						}
+					}
+				}
 
-						@include from( 'md' ) {
-							
-							@include margin( 
-								right 20px 
-							);
+				.person-number {
+					// width: percentage( 170 / 742 );
+
+					&::before {
+						background: {
+							image: url('#{ map-get( $directories, svg )}person-number-gray.svg' );
 						}
 					}
+				}
+				.preparation-time {
+					// width: percentage( 171 / 742 );
 
-					.person-number {
-						// width: percentage( 170 / 742 );
-
-						&::before {
-							background: {
-								image: url('#{ map-get( $directories, svg )}person-number-gray.svg' );
-							}
+					&::before {
+						background: {
+							image: url('#{ map-get( $directories, svg )}preparation-time-gray.svg' );
 						}
 					}
-					.preparation-time {
-						// width: percentage( 171 / 742 );
-
-						&::before {
-							background: {
-								image: url('#{ map-get( $directories, svg )}preparation-time-gray.svg' );
-							}
-						}
-					}
-					.cooking-time {
-						// width: percentage( 166 / 742 );
-						
-						&::before {
-							background: {
-								image: url('#{ map-get( $directories, svg )}cooking-time-gray.svg' );
-							}
+				}
+				.cooking-time {
+					// width: percentage( 166 / 742 );
+					
+					&::before {
+						background: {
+							image: url('#{ map-get( $directories, svg )}cooking-time-gray.svg' );
 						}
 					}
 				}

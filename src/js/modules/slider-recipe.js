@@ -49,6 +49,8 @@ SliderRecipe.prototype = {
                         .attr('aria-valuenow', calc );
 
                     slider.count[0].dataset.count = current + 1;
+
+                    slider.count[0].innerHTML = '/' + count;
                     
                 })
 
@@ -57,8 +59,8 @@ SliderRecipe.prototype = {
                     useCSS: false,
                     fade: true,
                     nextArrow: slider.next,
-                    prevArrow: slider.previous,
-                    accessibility: false
+                    prevArrow: slider.previous
+                    // accessibility: false
                     // mobileFirst: true,
 
                     // responsive: [{
