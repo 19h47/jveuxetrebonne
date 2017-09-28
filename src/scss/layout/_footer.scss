@@ -58,13 +58,17 @@
 		}
 
 		span:nth-child( 2 ) {
-			@include margin( right 22px );
+			@include margin( right 5px );
+
+			@include from( 'md' ) { @include margin( right 22px ); }
 		}
 		
 		span:nth-child( 3 ) {}
 
 		span:nth-child( 4 ) {
-			@include margin( left 22px );
+			@include margin( left 5px );
+
+			@include from( 'md' ) { @include margin( left 22px ); }
 		}
 
 		a {
@@ -179,13 +183,13 @@
 			svg {
 				@extend %display-xs-inline-block, %vertical-align-middle, %Transition-ease;
 
-				max-width: $grid-gutter-width * 2;
-				max-height: $grid-gutter-width * 2;
+				max-width: $grid-gutter-width /* * 2 */;
+				max-height: $grid-gutter-width /* * 2 */;
 
-				@include from( 'md' ) {
-					max-width: $grid-gutter-width;
-					max-height: $grid-gutter-width;
-				}
+				// @include from( 'md' ) {
+				// 	max-width: $grid-gutter-width;
+				// 	max-height: $grid-gutter-width;
+				// }
 
 				fill: the_color( blue, light-grayish );
 			}

@@ -54,8 +54,7 @@
 			max-height: 27px;
 
 			@include from( 'md' ) { vertical-align: middle; }
-		}
-		
+		}		
 	}
 
 
@@ -398,10 +397,18 @@
 		$font-size: 13;
 		
 		@extend %font-title, %font-semibold;
-		@include margin( top 0 right 20px bottom 0 left 20px );
-		@include font( $font-size, 33 );
+		@include margin( top $grid-gutter-width right 20px bottom $grid-gutter-width left 20px );
+		@include font( 19, 33 );
 		
 		color: the_color( gray, very-dark );
+
+		&:first-child { @include margin( top 0 ); }
+		&:last-child { @include margin( bottom 0 ); }
+		
+		@include from( 'md' ) { 
+			@include font( $font-size, 33 ); 
+			@include margin( top 0 bottom 0 );
+		}
 
 		a {
 			@extend %Transition-ease;
