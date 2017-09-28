@@ -545,9 +545,11 @@
 		.items {
 			@extend %list-unstyled, %margin-xs-y-0;
 
-			height: 650px;
+			height: calc( 100vh - ( 64px + 7px + 25px + 30px ) );
 
 			box-shadow: 0px 0px 15px 0px rgba( the_color( gray, very-dark ), .07 ); 
+
+			@include from( 'md' ) { height: 650px; }
 
 			.slick-list, .slick-track { @extend %h-xs-100; }
 		}
@@ -566,6 +568,7 @@
 				@include from( 'md' ) {
 					@include size( 50%, 100% );
 				}
+
 
 				&::after {
 					@extend %display-xs-block;
@@ -598,7 +601,15 @@
 					}
 
 				}
+				
+				&.ingredients-mobile { 
+				 	@extend %font-title; 
+					@include padding( right $grid-gutter-width / 2 left $grid-gutter-width / 2 );
+					@include absolute( top 50% right 0 left 0 );
 
+					transform: translate3d(0, -50%, 0);
+					height: auto!important;
+				}
 				&.image-mobile { background: { color: the_color( orange, light-grayish-01 ); } }
 
 				&:nth-child( 1 ) {
@@ -724,7 +735,7 @@
 				right $grid-gutter-width-mobile
 				left $grid-gutter-width-mobile
 			);
-			@extend %text-xs-right;
+			@extend %text-xs-center, %text-md-right, %position-xs-relative;
 
 			@include from( 'md' ) {
 				@include margin( right 0 left 0 );
@@ -734,7 +745,11 @@
 			.next {
 				@extend %display-xs-inline-block, %vertical-align-middle;
 				@include margin( right 10px left 10px );
-				@include size( 27px );
+				@include size( 64px );
+
+				@include from( 'md' ) {
+					@include size( 27ppx );
+				}
 
 				background: {
 					image: url( '#{ map-get( $directories, svg ) }arrow-right.svg' );
@@ -746,7 +761,11 @@
 			.previous {
 				@extend %display-xs-inline-block, %vertical-align-middle;
 				@include margin( right 10px left 10px );
-				@include size( 27px );
+				@include size( 64px );
+
+				@include from( 'md' ) {
+					@include size( 27ppx );
+				}
 
 				background: {
 					image: url( '#{ map-get( $directories, svg ) }arrow-left.svg' );
@@ -757,17 +776,26 @@
 
 
 			.count {
-				@extend %display-xs-inline-block, %font-title, %font-body, %position-xs-relative, %vertical-align-middle;
+				@extend %display-xs-inline-block, %font-title, %font-body, %position-md-relative, %vertical-align-middle;
 				@include margin( left 20px );
-				@include size( $grid-gutter-width );
+				@include size( 64px );
+
+				@include absolute( top 0 right 0 bottom 0 );
+
+				@include from( 'md' ) { @include size( $grid-gutter-width ); }
 			}
 
 			.count-inner {
 				color: the_color( blue, light-grayish );
 				font: {
-					size: 12px
+					size: 26.03px;
 				}
-				line-height: ( 21 / 12 );
+				line-height: ( 64 / 26.03 );
+
+				@include from( 'md' ) {
+					font-size: 12px;
+					line-height: ( 21 / 12 );
+				}
 
 				&::before {
 					@extend %display-xs-inline-block;
