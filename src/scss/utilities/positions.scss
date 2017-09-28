@@ -8,23 +8,17 @@
 
 	    @include from( $breakpoint ) {
 
-	        @each $size-dimension in $size-dimensions {
-	            
-	            @each $size-propertie-value, $size-propertie-name in $size-properties {
-					
-					@each $position-value in $position-values {
+			@each $position-value in $position-values {
 
-						%position-#{ unquote( $breakpoint ) }-#{ unquote( $position-value ) } {
+				%position-#{ unquote( $breakpoint ) }-#{ unquote( $position-value ) } {
 
-					        position: #{unquote( $position-value ) };
-					    }
+			        position: #{unquote( $position-value ) };
+			    }
 
-					    .position-#{ unquote( $breakpoint ) }-#{unquote( $position-value ) } {
+			    .position-#{ unquote( $breakpoint ) }-#{unquote( $position-value ) } {
 
-					        @extend %position-#{ unquote( $breakpoint ) }-#{ unquote( $position-value ) };
-					    }
-					}
-				}
+			        @extend %position-#{ unquote( $breakpoint ) }-#{ unquote( $position-value ) };
+			    }
 			}
 		}
 	}
