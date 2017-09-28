@@ -120,8 +120,8 @@
 			}
 		}
 		
-		@at-root .Front-page .item { @extend %Pointer-events-none; }
-		@at-root .Front-page .item.slick-current { @extend %Pointer-events-auto; }
+		// @at-root .Front-page .item .List-post-category-videos { @extend %Pointer-events-none; }
+		// @at-root .Front-page .item.slick-current .List-post-category-videos { @extend %Pointer-events-auto; }
 
 		@at-root .Front-page .slick-current & .List-post-meta {
 
@@ -130,7 +130,7 @@
 		}
 
 
-		@at-root .Front-page .thumbnail {
+		@at-root .Front-page .List-post-category-videos .thumbnail {
 			box-shadow: 1px 3px 9px 0px rgba( the_color( gray, very-dark ), .09 ); 
 		}
 	}

@@ -28,7 +28,7 @@ SliderCategoryVideos.prototype = {
         });
 
         var i = 1;
-        players.forEach(function (instance) {
+        players && players.forEach(function (instance) {
             instance.on('ready', function (event) {
                 instance.getContainer().setAttribute('id', 'plyId-' + i);
                 instance.plyId = 'plyr-' + i;
