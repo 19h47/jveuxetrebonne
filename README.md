@@ -2,6 +2,8 @@
 
 The WordPress theme for JVEB blog.
 
+![Screenshot](screenshot.png)
+
 ## Install
 
 ```
