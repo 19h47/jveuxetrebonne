@@ -12,23 +12,27 @@ function SliderCategoryVideos() {
         return new SliderCategoryVideos();
     }
 
-    this.initPlugins();
+    this.$slider = null;
+    this.players = null;
+
+    this.initSlick();
+    this.initPlyr();
 }
 
 
 SliderCategoryVideos.prototype = {
 
     /**
-     * SliderCategoryVideos.initPlugins
+     * SliderCategoryVideos.initPlyr
      */
-    initPlugins: function() {
+    initPlyr: function() {
 
-        var players = plyr.setup({
+        this.players = plyr.setup({
             'iconUrl': wp.current_url
         });
 
         var i = 1;
-        players && players.forEach(function (instance) {
+        this.players && this.players.forEach(function (instance) {
             instance.on('ready', function (event) {
                 instance.getContainer().setAttribute('id', 'plyId-' + i);
                 instance.plyId = 'plyr-' + i;
@@ -44,27 +48,35 @@ SliderCategoryVideos.prototype = {
                 });
             });
         });
+    },
 
 
-        var $slider = $('.js-slider-category-videos');
+    /**
+     * SliderCategoryVideos.initPlyr
+     */
+    initSlick: function() {
+
+        this.$slider = $('.js-slider-category-videos');
         
-        $slider.find('.js-slider-category-videos-container')
+        this.$slider.find('.js-slider-category-videos-container')
 
-            .on('beforeChange', function(event, slick, currentSlide, nextSlide){
+            .on('beforeChange', $.proxy(function(event, slick, currentSlide, nextSlide){
     
-                players.forEach(function(player) { 
+                this.players.forEach(function(player) { 
                     player.pause();
                 });
-            })
+
+            }, this))
 
             .slick({
                 // arrows: false,
-                nextArrow: $slider.find('.js-slider-category-videos-next'),
-                prevArrow: $slider.find('.js-slider-category-videos-previous'),
+                nextArrow: this.$slider.find('.js-slider-category-videos-next'),
+                prevArrow: this.$slider.find('.js-slider-category-videos-previous'),
                 mobileFirst: true,
-                slidesToShow: 1,
-                infinite: false,
-                initialSlide: 1,
+                accessibility: true,
+                // slidesToShow: 1,
+                // infinite: true,
+                // initialSlide: 1,
                 
                 responsive: [{
                     breakpoint: 992,
