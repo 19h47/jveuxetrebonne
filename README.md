@@ -1,6 +1,8 @@
 # JVEB
 
-The WordPress theme for JVEB blog.
+The WordPress theme for JVEB blog. 
+
+The site has been designed by [__Les Indiens__](http://lesindiens.fr/)
 
 ![Screenshot](screenshot.png)
 
