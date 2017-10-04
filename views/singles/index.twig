@@ -85,6 +85,26 @@
 
 								{% endspaceless %}
 							</li>
+
+							{% if is_ancestor_of_food %}
+								<li class="Single-breadcrumb__item">
+
+									{% spaceless %}
+
+									<svg role="img">
+										<use xlink:href="{{- theme.link -}}/dist/svg/icons.svg#list-style-type"/>
+									</svg>
+
+									<span class="display-xs-inline-block" title="{{ categoriesString }}">
+
+										{{ pll__( 'Food' ) }}
+
+									</span>
+									{% endspaceless %}
+
+								</li>
+							{% endif %}
+
 							<li class="Single-breadcrumb__item">
 
 								{% spaceless %}
