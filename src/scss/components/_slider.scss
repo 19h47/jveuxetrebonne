@@ -4,7 +4,7 @@
  * @uses .Slider
  */
 .Slider {
-	
+
 	/**
 	 * Gallery WordPress
 	 *
@@ -14,20 +14,20 @@
 	 */
 	&-post {
 		$this: &;
-		
-		@include margin( 
-			top 2em 
+
+		@include margin(
+			top 2em
 			right ( $grid-gutter-width-mobile * -1 )
-			bottom 2em 
+			bottom 2em
 			left ( $grid-gutter-width-mobile * -1 )
 		);
 
 		width: calc( 100% + #{ ( $grid-gutter-width-mobile * 2 ) } );
 
-		@include from( 'md' ) { 
+		@include from( 'md' ) {
 			@include margin( right 0 left 0 );
 
-			width: auto; 
+			width: auto;
 		}
 
 		&__items { @extend %list-unstyled, %margin-xs-0; }
@@ -52,9 +52,9 @@
 				transform-origin: right center;
 				transform: translateX( 0% ) scaleY( 1 ) scaleX( 0 );
 			}
-			
+
 			&.slick-current {
-				
+
 				#{ $this }__img {
 					transition-delay: ( $animation-duration / 2 );
 					transform: translate3d( 0, 0, 0 );
@@ -69,7 +69,7 @@
 				}
 			}
 		}
-		
+
 		&__img {
 			@extend %Position-absolute-center, %display-xs-inline-block, %vertical-align-middle;
 			@include size( 100% );
@@ -77,7 +77,7 @@
 			transform: translate3d( ( $grid-gutter-width * -1 ), 0, 0 );
 			transition: .6s ease;
 			opacity: 0;
-			
+
 			object-fit: cover;
 		}
 
@@ -93,8 +93,8 @@
 		}
 
 		&__navigation {
-			@include margin( 
-				top 25px 
+			@include margin(
+				top 25px
 				right $grid-gutter-width-mobile
 				left $grid-gutter-width-mobile
 			);
@@ -143,7 +143,7 @@
 
 				&::before {
 					@extend %display-xs-inline-block;
-					
+
 					content: attr(data-count);
 				}
 			}
@@ -177,35 +177,35 @@
 		}
 
 
-		&__items { 
-			@extend %margin-xs-0, %position-xs-relative; 
+		&__items {
+			@extend %margin-xs-0, %position-xs-relative;
 
-			background: 
+			background:
 			    linear-gradient(
-			    	135deg, 
+			    	135deg,
 			    	rgba( the_color( orange, very-soft-05 ), 1 ) 0%,
 			    	rgba( the_color( orange, light-grayish-03 ), 1 ) 100%
 			    );
 			list-style-type: none;
-			
+
 			@include padding( right 61px left 71px );
 
 			@include from( 'md' ) {
-				@include padding( right 0 left 0 );				
+				@include padding( right 0 left 0 );
 
 				background: initial;
 
 				&::before {
-					@include absolute( 
-						top 0 
+					@include absolute(
+						top 0
 						right ( percentage( $grid-gutter-width-unitless / 182 ) * -1 )
 						bottom 0
 						// left ( percentage(  100 / 182 ) * -1 )
 					);
 					width: 50vw;
-				    background: 
+				    background:
 				        linear-gradient(
-				        	135deg, 
+				        	135deg,
 				        	rgba( the_color( orange, very-soft-05 ), 1 ) 0%,
 				        	rgba( the_color( orange, light-grayish-03 ), 1 ) 100%
 				        );
@@ -228,7 +228,7 @@
 
 				max-width: 100%;
 				object-fit: cover;
-				box-shadow: 1px 3px 9px 0px rgba( the_color( gray, very-dark ), .09 ); 
+				box-shadow: 1px 3px 9px 0px rgba( the_color( gray, very-dark ), .09 );
 			}
 
 			.title {
@@ -236,7 +236,7 @@
 				@extend %font-bold;
 				@include font( 17, 38 );
 				@include margin( top 2em );
-				
+
 				color: the_color( orange, mostly-desaturated-dark );
 			}
 
@@ -264,7 +264,7 @@
 
 		&__progressbar {
 			@extend %Transition-ease, %position-xs-relative;
-			
+
 
 			height: 7px;
 			background: {
@@ -314,7 +314,7 @@
 					size: 100%;
 				}
 			}
-			
+
 			.previous {
 				@extend %display-xs-inline-block, %vertical-align-middle;
 				@include margin( right 10px left 10px );
@@ -330,7 +330,7 @@
 					size: 100%;
 				}
 			}
-			
+
 			.count {
 				@extend %display-xs-inline-block, %font-title, %font-body, %position-xs-relative, %vertical-align-middle;
 				@include margin( left 20px );
@@ -338,9 +338,9 @@
 
 				@include from( 'md' ) { @include size( $grid-gutter-width ); }
 			}
-			
+
 			.count-inner {
-				@include font( 17.9, 44 );	
+				@include font( 17.9, 44 );
 
 				color: the_color( blue, light-grayish );
 
@@ -348,7 +348,7 @@
 
 				&::before {
 					@extend %display-xs-inline-block;
-					
+
 					content: attr( data-count );
 				}
 			}
@@ -364,24 +364,24 @@
 	&-category-videos {
 		@extend %position-xs-relative, %text-xs-center;
 		@include padding( top 70px bottom 70px );
-		
+
 		@include margin( bottom $grid-gutter-width-mobile );
 
 		@include from( 'md' ) {
-			@include margin( bottom 0 );			
+			@include margin( bottom 0 );
 		}
 
 		&::before {
 			@extend %display-xs-block;
 			@include absolute( top 0 right 0 left 0 );
 			@include size( 100% );
-			
-			background: 
+
+			background:
 			    linear-gradient(
-			    	33deg, 
+			    	33deg,
 			    	rgba( the_color( orange, very-soft ), 1 ) 0%,
 			    	rgba( the_color( orange, light-grayish-01 ), 1 ) 100%
-			    ); 
+			    );
 			content: '';
 
 			@include from( 'md' ) {
@@ -392,39 +392,39 @@
 		.items { @extend %list-unstyled, %margin-xs-0, %padding-xs-0; }
 		.item { @extend %margin-xs-0; }
 		.List-post { @include margin( bottom 0 ); }
-		
+
 		/**
 		 * Slider category videos
-		 * 
+		 *
 		 * @uses .Slider-category-videos .List-post-category-videos
 		 */
 		.List-post-category-videos {
 			// @extend %display-xs-inline-block;
-			@include margin( 
+			@include margin(
 				right $grid-gutter-width-mobile
 				left $grid-gutter-width-mobile
 			);
 
 			@include from( 'md' ) {
-				
-				@include margin( 
-					right percentage( 120 / 848 ) 
-					left percentage( 120 / 848 ) 
+
+				@include margin(
+					right percentage( 120 / 848 )
+					left percentage( 120 / 848 )
 				);
 			}
 
-			// @include margin( 
+			// @include margin(
 			// 	right auto
 			// 	left auto
 			// );
-			
+
 			// max-width: percentage( 608 / $container-width-without-outer-gutter-unitless );
 		}
 
 
 		.next {
 			@include margin( left 20px );
-			background: { 
+			background: {
 				image: url( '#{ map-get( $directories, svg ) }arrow-right-white.svg' );
 			}
 
@@ -434,11 +434,11 @@
 
 			}
 		}
-			
+
 
 		.previous {
 			@include margin( right 20px );
-			background: { 
+			background: {
 				image: url( '#{ map-get( $directories, svg ) }arrow-left-white.svg' );
 			}
 
@@ -463,8 +463,8 @@
 			opacity: 1;
 			z-index: 1;
 
-			@include from( 'md' ) { 
-				@include margin( top 224px ); 
+			@include from( 'md' ) {
+				@include margin( top 224px );
 				@include size( 27px );
 			}
 
@@ -482,12 +482,12 @@
 	 * @uses .Slider-recipe
 	 */
 	&-recipe {
-		
+
 		$this: &;
 
-		@include margin( 
+		@include margin(
 			right ( $grid-gutter-width-mobile * -1 )
-			bottom $grid-gutter-width 
+			bottom $grid-gutter-width
 			left ( $grid-gutter-width-mobile * -1 )
 		);
 		width: calc( 100% + #{ $grid-gutter-width-mobile * 2 } );
@@ -496,6 +496,12 @@
 			width: auto;
 		}
 
+
+		/**
+		 * Title
+		 *
+		 * @uses .Slider-recipe__title
+		 */
 		&__title {
 			@extend %font-title, %font-bold, %text-xs-center;
 			@include font( 20, 29 );
@@ -504,20 +510,20 @@
 			color: the_color( blue, light-grayish );
 
 			@include from( 'md' ) {
-				@include margin( top 70px bottom ( $grid-gutter-width / 3 )  );				
+				@include margin( top 70px bottom ( $grid-gutter-width / 3 )  );
 			}
 
 
 			&.title-step {
-				@include margin( 
+				@include margin(
 					top $grid-gutter-width
 					bottom $grid-gutter-width
 				);
 
 				@include from( 'md' ) {
-					@include margin( 
-						top ( $grid-gutter-width * 3 ) 
-						bottom ( $grid-gutter-width * 3 ) 
+					@include margin(
+						top ( $grid-gutter-width * 3 )
+						bottom ( $grid-gutter-width * 3 )
 					);
 				}
 			}
@@ -535,19 +541,25 @@
 
 			@include from( 'md' ) { list-style-type: disc; }
 
-			li { 
-				// @extend %margin-xs-y-0; 
+			li {
+				// @extend %margin-xs-y-0;
 
 				line-height: normal;
 			}
 		}
 
+
+		/**
+		 * Items
+		 *
+		 * @uses .slider-recipe .items
+		 */
 		.items {
 			@extend %list-unstyled, %margin-xs-y-0;
 
-			height: calc( 100vh - ( 64px + 7px + 25px + 30px ) );
+			height: calc( 100vh - #{ ( 64 + 7 + 25 + 30 ) }px );
 
-			box-shadow: 0px 0px 15px 0px rgba( the_color( gray, very-dark ), .07 ); 
+			box-shadow: 0px 0px 15px 0px rgba( the_color( gray, very-dark ), .07 );
 
 			@include from( 'md' ) { height: 650px; }
 
@@ -583,7 +595,7 @@
 				}
 
 				@at-root .item.slick-current .item__inner {
-					
+
 					img {
 						transition-delay: ( $animation-duration / 2 );
 						transform: translate3d( 0, 0, 0 );
@@ -601,9 +613,9 @@
 					}
 
 				}
-				
-				&.ingredients-mobile { 
-				 	@extend %font-title; 
+
+				&.ingredients-mobile {
+				 	@extend %font-title;
 					@include padding( right $grid-gutter-width / 2 left $grid-gutter-width / 2 );
 					@include absolute( top 50% right 0 left 0 );
 
@@ -615,9 +627,9 @@
 				&:nth-child( 1 ) {
 					@extend /* %display-xs-none, */ %display-md-inline-block;
 
-					height: 100%; 
+					height: 100%;
 
-					@include from( 'md' ) { 
+					@include from( 'md' ) {
 						background: { color: the_color( orange, light-grayish-01 ); }
 					}
 
@@ -649,9 +661,9 @@
 				.person-number,
 				.preparation-time,
 				.cooking-time {
-					
+
 					@extend %text-xs-center, %display-xs-inline-block;
-					
+
 					&::before {
 						@include size( 25px );
 						@include margin( right 10px );
@@ -661,10 +673,10 @@
 					}
 				}
 
-				.person-number, 
+				.person-number,
 				.preparation-time {
 
-					@include margin( 
+					@include margin(
 						top $grid-gutter-width
 						bottom $grid-gutter-width
 					);
@@ -677,11 +689,11 @@
 					}
 
 					@include from( 'md' ) {
-						
-						@include margin( 
-							top ( $grid-gutter-width * 2 ) 
-							right 20px 
-							bottom ( $grid-gutter-width * 2 ) 
+
+						@include margin(
+							top ( $grid-gutter-width * 2 )
+							right 20px
+							bottom ( $grid-gutter-width * 2 )
 						);
 					}
 				}
@@ -706,7 +718,7 @@
 				}
 				.cooking-time {
 					// width: percentage( 166 / 742 );
-					
+
 					&::before {
 						background: {
 							image: url('#{ map-get( $directories, svg )}cooking-time-gray.svg' );
@@ -730,8 +742,8 @@
 
 
 		&__navigation {
-			@include margin( 
-				top 25px 
+			@include margin(
+				top 25px
 				right $grid-gutter-width-mobile
 				left $grid-gutter-width-mobile
 			);
@@ -745,7 +757,7 @@
 			.next {
 				@extend %display-xs-inline-block, %vertical-align-middle;
 				@include margin( right 10px left 10px );
-				@include size( 64px );
+				@include size( 40px );
 
 				@include from( 'md' ) {
 					@include size( 27px );
@@ -761,7 +773,7 @@
 			.previous {
 				@extend %display-xs-inline-block, %vertical-align-middle;
 				@include margin( right 10px left 10px );
-				@include size( 64px );
+				@include size( 40px );
 
 				@include from( 'md' ) {
 					@include size( 27px );
@@ -778,7 +790,7 @@
 			.count {
 				@extend %display-xs-inline-block, %font-title, %font-body, %position-md-relative, %vertical-align-middle;
 				@include margin( left 20px );
-				@include size( 64px );
+				@include size( 40px );
 
 				@include absolute( top 0 right 0 bottom 0 );
 
@@ -788,7 +800,7 @@
 			.count-inner {
 				color: the_color( blue, light-grayish );
 				font: {
-					size: 26.03px;
+					size: 14px;
 				}
 				line-height: ( 64 / 26.03 );
 
@@ -799,7 +811,7 @@
 
 				&::before {
 					@extend %display-xs-inline-block;
-					
+
 					content: attr(data-count);
 				}
 			}

@@ -134,7 +134,6 @@ App.prototype = {
 	scrollTo: function() {
 		var elements = document.querySelectorAll('.js-scroll-to');
 
-
 		elements.forEach(function(element) {
 			var offset = element.dataset.offset;
 			
@@ -155,7 +154,7 @@ App.prototype = {
 			element.addEventListener('click', function(){
 				// window.scrollTo(0, offset);
 
-				config.body.$.animate({
+				$('html, body').animate({
 				        scrollTop: offset
 			    }, 200);
 			});
