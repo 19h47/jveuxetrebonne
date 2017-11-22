@@ -121,8 +121,6 @@ class Post {
     	    		echo '—';
     	    	}
 
-    	        break;
-
     		break;
         }
     }
