@@ -1,7 +1,7 @@
 <?php
 /**
  * /category-videos
- * 
+ *
  * @package  	WordPress
  * @subpackage  jveuxetrebonne
  * @author  	Jérémy Levron levronjeremy@19h47.fr
@@ -24,9 +24,9 @@ $context['category'] = array(
 	'slug'			=> $category->slug
 );
 
-$count_query = new WP_Query( 
-	array( 
-		'post_type' 			=> 'post', 
+$count_query = new WP_Query(
+	array(
+		'post_type' 			=> 'post',
 		'posts_per_page'		=> -1,
 		'category__in'			=> $category->term_id
 
