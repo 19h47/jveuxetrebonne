@@ -1,12 +1,12 @@
 {#
-    
+
     /**
      * /views/components/tease-post
      *
      * @package WordPress
      * @author  Jérémy Levron <levronjeremy@19h47.fr
      */
-    
+
 #}
 
 {% if ( loop.index ) % 5 == 1 %}
@@ -38,21 +38,21 @@
         <div class="Tease-post-inner">
 
             {# Thumbnail #}
-            <img 
-                class="thumbnail" 
+            <img
+                class="thumbnail"
                 {# | resize( width, height ) #}
-                src="{{ post.thumbnail.src }}" 
-                alt="" 
+                src="{{ post.thumbnail.src }}"
+                alt=""
                 width="{{ width }}"
                 height="{{ height }}"
             />
-    	   
+
             {# Header #}
             <header class="Tease-post-header">
-                
+
                 <div class="Tease-post-header__meta">
                     {% spaceless %}
-                    
+
                     {# {{ post|print_r}} #}
                 	{# Date #}
                     <p class="date">
@@ -71,9 +71,10 @@
 
                 {# Title #}
                 <h2 class="title">{{- post.title -}}</h2>
+
             </header>
-        
+
         </div>
 
-    </a>    
+    </a>
 </article>

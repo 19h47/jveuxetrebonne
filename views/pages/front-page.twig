@@ -6,7 +6,7 @@
 {% extends 'index.twig' %}
 
 {% block content %}
-	
+
 	{{ parent() }}
 
 	{# Banner #}
@@ -19,13 +19,13 @@
 	<div class="Front-page-header">
 		<div class="l-container">
 
-			
+
 			<button class="Menu-search-button js-search-button">
 			    <svg class="Icon magnifying-glass">
 			        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ theme.link }}/dist/svg/icons.svg#magnifying-glass"></use>
 			    </svg>
 			</button>
-			
+
 			<button class="Menu-button js-toggle-menu-button hidden-md hidden-lg hidden-hd"></button>
 
 			<div class="row">
@@ -38,9 +38,9 @@
 
 
 					<ul class="Menu" role="navigation">
-						{% 
-							include 'components/menu.twig' 
-							with { 
+						{%
+							include 'components/menu.twig'
+							with {
 								'menu' : menu.categories,
 								'language': true,
 								'search': true,
@@ -48,14 +48,14 @@
 									'desktop': true,
 									'marker': true
 								}
-							} 
+							}
 						%}
 					</ul>
 				</div>
 			</div>
 		</div>
-	</div> 	
-	
+	</div>
+
 	<div class="l-container">
 		<div class="Sticky-posts">
 			{{ sticky_post }}
@@ -65,13 +65,13 @@
 
 	{{ slider_videos }}
 
-	
+
 	{% include 'components/heading.twig' with { 'title': pll__( 'Découvrir les articles' ) } %}
 
-	
+
 	<div class="l-container">
-		
-		{% 
+
+		{%
 			include 'partials/load-more.twig'
 			with {
 				'post_template_name': 'tease',

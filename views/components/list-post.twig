@@ -1,28 +1,28 @@
 {#
-    
+
     /**
      * components/list-post
-     * 
+     *
      * @author  Jérémy Levron <levronjeremy@19h47.fr
      */
-    
+
 #}
 
 <article class="List-post js-load-more-post{{ video ? ' List-post-category-videos js-category-videos' }}{{ relationship ? ' List-post-relationship' }}">
-	
+
 		{% if video %}
 
 			{% if post.videos starts with 'https://www.youtube.com/' %}
 				{% set provider = 'youtube' %}
 
 
-				<div 
-					class="thumbnail js-category-video" 
+				<div
+					class="thumbnail js-category-video"
 					data-type="youtube"
 					data-video-id="{{ post.videos }}"
 				></div>
-			
-			{% else %}	
+
+			{% else %}
 				<div class="thumbnail native-video">
 					<video poster="{{ post.thumbnail }}" controls preload="auto">
 				  		<source src="{{ post.videos }}" type="video/mp4">
@@ -32,38 +32,40 @@
 			{% endif %}
 
 
-		
+
 		{% else %}
-			<a class="link" href="{{ post.link }}">		
+			<a class="link" href="{{ post.link }}">
 
 				<img class="thumbnail" src="{{ post.thumbnail }}">
 			</a>
 		{% endif %}
 
-	
+
 
 	{% spaceless %}
-		
+
 	<div class="List-post-meta">
-		
+
 		{# Date #}
 		<p class="date">{{- post.date -}}</p>
-	 	
 
-	 
+
+
 	 	<span class="display-xs-inline-block">&nbsp;&bull;&nbsp;</span>
-	 	
-		
+
+		{% set categories = post.categories | join( ', ' ) | replace( post.name, '' ) %}
 		{# Categories #}
-	 	<em class="categories">{{- post.categories | join( ', ' ) | replace( post.name, '' ) -}}</em>
-		
+	 	<em class="categories">
+	 		{{- categories | length > 15 ? categories | slice( 0, 15 ) ~ '...' : categories -}}
+	 	</em>
+
 
 		{# Link #}
-		{{ video ? '' : '<a class="link" href="{{ post.link }}" title="{{ post.title }}">' }}
-			<h3 class="title">{{- post.title -}}</h3>
+		{{ video ? '' : '<a class="link" href="' ~ post.link ~'" title="' ~ post.title  ~ '">' }}
+			<h3 class="title">{{- post.title | length > 20 ? post.title | slice( 0, 20 ) ~ '...' : post.title -}}</h3>
 		{{ video ? '' : '</a>' }}
-	
+
 	</div>
 	{% endspaceless %}
-	
+
 </article>
