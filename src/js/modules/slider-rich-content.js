@@ -23,7 +23,7 @@ SliderRichContent.prototype = {
      * SliderRichContent.initPlugins
      */
     initPlugins: function() {
-         
+
         if (feature.matchMedia && window.matchMedia('(min-width: 992px)').matches) {
             $('.js-sticky').stick_in_parent({
                 parent: '.js-sticky-container',
@@ -96,8 +96,8 @@ SliderRichContent.prototype = {
 
                 .on('init', function(event, slick) {
 
-                    $links[0].classList.add('is-active');
-                    
+                    $links[0] && $links[0].classList.add('is-active');
+
                     $links.each(function(i, link) {
                         var $link = $(link);
                         var id = $link[0].dataset.id;
@@ -126,7 +126,7 @@ SliderRichContent.prototype = {
 
                 })
 
-                .on('init afterChange', function(event, slick) {   
+                .on('init afterChange', function(event, slick) {
                     var count = slick.slideCount;
                     var current = slick.currentSlide;
                     var calc = ( current / ( count - 1 ) ) * 100;
@@ -136,7 +136,7 @@ SliderRichContent.prototype = {
                         $(link).removeClass('is-active');
                     });
 
-                    $links[current].classList.add('is-active');
+                    $links[current] && $links[current].classList.add('is-active');
 
                     slider.progressbar
                         .css('background-size', calc + '% 100%')

@@ -23,10 +23,11 @@ $context['categories'] = $post->terms( 'category' );
 
 
 $categories = get_the_category();
+$context['is_ancestor_of_food'] = false;
 foreach ( $categories as $category ) {
 
 	if ( cat_is_ancestor_of( 445, $category->term_id ) ) {
-		
+		$context['is_ancestor_of_food'] = true;
 		array_unshift( $templates, 'singles/cat-is-ancestor-of-food.twig' );
 
 	}
