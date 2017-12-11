@@ -10,7 +10,7 @@
  *
  * Functions'prefix is jveb_
  */
- 
+
 
 /**
  * Autoload
@@ -20,18 +20,18 @@ include get_template_directory() . '/vendor/autoload.php';
 
 /**
  * Timber
- * 
+ *
  * Instanciate Timber
  *
  * @see         https://github.com/timber/timber
  * @version     1.3.0
  */
-$timber = new \Timber\Timber(); 
+$timber = new \Timber\Timber();
 
 
 /**
  * Dirname
- * 
+ *
  * Tell Timber where are views
  */
 Timber::$dirname = array( 'views' );
@@ -72,7 +72,7 @@ class JVEB extends TimberSite {
      * @access public
      */
     public function __construct( $theme_name, $theme_version ) {
-        
+
         $this->theme_name = $theme_name;
         $this->theme_version = $theme_version;
         $this->setup();
@@ -87,7 +87,7 @@ class JVEB extends TimberSite {
 
     /**
      * Load dependencies description
-     * 
+     *
      * @access private
      */
     private function load_dependencies() {
@@ -105,11 +105,11 @@ class JVEB extends TimberSite {
         require_once get_template_directory() . '/inc/reset.php';
         require_once get_template_directory() . '/inc/admin.php';
 
-        
+
         new acf_location_rule( 'category_parents' );
         new Custom_Post_Types( $this->get_theme_name(), $this->get_theme_version() );
         new Custom_Taxonomies( $this->get_theme_name(), $this->get_theme_version() );
-        
+
         if ( is_admin() ) new Admin( $this->get_theme_name(), $this->get_theme_version() );
     }
 
@@ -212,8 +212,11 @@ class JVEB extends TimberSite {
          */
         $menus = get_registered_nav_menus();
         foreach ( $menus as $menu => $value ) {
-            $context['menu'][$menu] = new TimberMenu( $value );
+            $context['menu'][$menu] = new Timber\Menu( $menu );
         }
+
+        // $context['menu']['main'] = new Timber\Menu( 'main' );
+        // $context['menu']['categories'] = new Timber\Menu( 'categories' );
 
 
         // Add socials to context
@@ -232,7 +235,7 @@ class JVEB extends TimberSite {
 
         // Add $socials to $context
         $context['contact']['socials'] = $socials;
-        
+
 
         // Address
         if ( get_option( 'address' ) ) {
@@ -305,14 +308,14 @@ class JVEB extends TimberSite {
         // Block for relationship post
         $context['relationship_post'] = Timber::get_sidebar( 'component-relationship-post.php' );
 
-       
+
         return $context;
     }
 
 
     /**
      * Setup
-     * 
+     *
      * @access public
      */
     public function setup() {
@@ -335,26 +338,26 @@ class JVEB extends TimberSite {
         * Switch default core markup for search form, comment form, and comments
         * to output valid HTML5.
         */
-        add_theme_support( 
-            'html5', 
+        add_theme_support(
+            'html5',
             array(
                 'search-form',
                 'comment-form',
                 'comment-list',
                 'gallery',
                 'caption',
-            ) 
+            )
         );
 
 
         /**
          * Register nav menus
          */
-        register_nav_menus( 
+        register_nav_menus(
             array(
                 'main'          => pll__( 'Main' ),
                 'categories'    => pll__( 'Catégories' ),
-            ) 
+            )
         );
 
 
@@ -362,11 +365,11 @@ class JVEB extends TimberSite {
         /**
          * Widget
          */
-        register_sidebar( 
+        register_sidebar(
             array(
                 'name'  => __( 'Newsletter', $this->theme_name ),
                 'id'    => 'newsletter'
-            ) 
+            )
         );
 
 
@@ -399,7 +402,7 @@ class JVEB extends TimberSite {
 
     /**
      * Enqueue styles.
-     * 
+     *
      * @access public
      */
     public function enqueue_style() {
@@ -430,7 +433,7 @@ class JVEB extends TimberSite {
      * @access public
      */
     public function enqueue_scripts() {
-        
+
         /**
          * Remove wp-embed script from WordPress
          */
@@ -454,20 +457,20 @@ class JVEB extends TimberSite {
         );
 
 
-        wp_register_script( 
-            $this->theme_name . '-main', 
-            get_template_directory_uri() . '/dist/js/min/bundle.min.js', 
-            array( 
-                'jquery', 
-                'jquery-ui' 
-            ), 
-            null, 
-            true 
+        wp_register_script(
+            $this->theme_name . '-main',
+            get_template_directory_uri() . '/dist/js/min/bundle.min.js',
+            array(
+                'jquery',
+                'jquery-ui'
+            ),
+            null,
+            true
         );
 
         $cat_is_ancestor_of_food = get_categories(
-            array( 
-                'parent'    => 445 
+            array(
+                'parent'    => 445
             )
         );
 
@@ -477,9 +480,9 @@ class JVEB extends TimberSite {
         }
 
 
-        wp_localize_script( 
-            $this->theme_name . '-main', 
-            'wp', 
+        wp_localize_script(
+            $this->theme_name . '-main',
+            'wp',
             array(
                 'template_directory_uri'    => get_template_directory_uri(),
                 'base_url'                  => site_url(),
@@ -505,7 +508,7 @@ class JVEB extends TimberSite {
 
     /**
      * List webfonts used by the theme.
-     * 
+     *
      * @return array
      * @access public
      */
@@ -529,7 +532,7 @@ class JVEB extends TimberSite {
         <script src="<?php echo get_template_directory_uri() ?>/dist/js/min/feature.min.js"></script>
         <script>
             document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-            
+
             if (feature.touch && !navigator.userAgent.match(/Trident\/(6|7)\./)) {
                 document.documentElement.className = document.documentElement.className.replace('no-touch', 'touch');
             }
@@ -568,7 +571,7 @@ class JVEB extends TimberSite {
 
         <?php
     }
-    
+
 
 
     /**
