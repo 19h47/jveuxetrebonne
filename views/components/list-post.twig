@@ -53,7 +53,8 @@
 
 	 	<span class="display-xs-inline-block">&nbsp;&bull;&nbsp;</span>
 
-		{% set categories = post.categories | join( ', ' ) | replace( post.name, '' ) %}
+		{% set categories = post.categories | join( ', ' ) %}
+		{# | replace( post.name, '' )  #}
 		{# Categories #}
 	 	<em class="categories">
 	 		{{- categories | length > 15 ? categories | slice( 0, 15 ) ~ '...' : categories -}}
