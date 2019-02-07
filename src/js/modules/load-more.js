@@ -1,7 +1,6 @@
 var $ = require('jquery');
 
 
-var select = require('dom-select');
 var classes = require('dom-classes');
 
 
@@ -12,13 +11,13 @@ function LoadMore(element) {
 	if (!(this instanceof LoadMore)) {
         	return new LoadMore();
 	}
-	
+
 	this.element = element;
 
 	if (!this.element) {
 		return;
 	}
-	
+
 	this.container = this.element.querySelector('.js-load-more-container');
 	this.button = this.element.querySelector('.js-load-more-button');
 	this.filters = document.querySelectorAll('.js-filters-button');
@@ -62,9 +61,9 @@ LoadMore.prototype = {
 		        	.then(this.append.bind(this))
 		        	// finally update things
 		        	.done(this.update.bind(this));
-	            
+
 	 		}.bind(this));
-			
+
 		},
 
 
@@ -75,9 +74,9 @@ LoadMore.prototype = {
 			// console.info('LoadMore.setup.filters');
 
 			el.addEventListener('click', function() {
-				
+
 				if (this.tag === el.dataset.tag) {
-					return;
+					return false;
 				}
 
 				// Remove all `is-active` classes
@@ -86,7 +85,7 @@ LoadMore.prototype = {
 				});
 
 				classes.add(el, 'is-active');
-				
+
 				this.offset = 0;
 				this.tag = el.dataset.tag;
 				this.count = el.dataset.count;
@@ -95,7 +94,7 @@ LoadMore.prototype = {
 
 				$(this.heading).find('span').html('Loading');
 
-				this.load()
+				return this.load()
 			    	// then replace result to the container
 			    	.then(this.replace.bind(this))
 			    	// finally update things
@@ -143,9 +142,9 @@ LoadMore.prototype = {
 		if (!html) {
         	return;
     	}
-		
+
     	$(this.heading).find('span').html(this.description);
-    	
+
     	this.container.innerHTML = html;
 	},
 
@@ -168,13 +167,13 @@ LoadMore.prototype = {
 	update: function() {
 
 		this.offset = this.container.querySelectorAll('.js-load-more-post').length;
-				
+
 		this.button.dataset.offset = this.offset;
 		this.button.dataset.tag = this.tag;
 		this.button.dataset.count = this.count;
 
 		this.button && $(this.button).toggle(this.offset < this.count);
-		
+
 		// ensure everything is unlocked
 		this.lock.off.call(this);
 	},
@@ -190,10 +189,10 @@ LoadMore.prototype = {
 		 */
 		on: function() {
 			// console.log('LoadMore.lock.on');
-			
+
 			// add loading state to ajax container if exists
 		    this.container && $(this.container).addClass('is-loading');
-			
+
 		},
 
 
@@ -202,7 +201,7 @@ LoadMore.prototype = {
 		 */
 		off: function() {
 			// console.log('LoadMore.lock.off');
-			
+
 			// remove loading state of ajax container if exists
 		    this.container && $(this.container).removeClass('is-loading');
 		},

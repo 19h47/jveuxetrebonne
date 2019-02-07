@@ -1,10 +1,9 @@
 <?php
+
 /**
- * /index
- *
- * @package  	WordPress
- * @subpackage  jveb
- * @author   	Jérémy Levron levronjeremy@19h47.fr
+ * @file 		index
+ * @package  	jveb
+ * @author   	Jérémy Levron <jeremylevron@19h47.fr> (http://19h47.fr)
  */
 
 

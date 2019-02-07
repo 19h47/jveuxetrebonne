@@ -1,9 +1,12 @@
 var $ = require('jquery');
+
 require('slick-carousel');
 
 
 /**
- * Slider post
+ * Slider recipe
+ *
+ * @author Jérémy Levron <jeremylevron@19h47.fr> (http://19h47.fr)
  */
 function SliderRecipe() {
     if (!(this instanceof SliderRecipe)) {
@@ -32,16 +35,16 @@ SliderRecipe.prototype = {
                 next: $slider.find('.js-slider-recipe-next'),
                 previous: $slider.find('.js-slider-recipe-previous')
             }
-            
+
             // console.log($slider);
-            
+
             $slider
                 .find('.js-slider-recipe-container')
 
-                .on('init afterChange', function(event, slick) {   
+                .on('init afterChange', function(event, slick) {
                     var count = slick.slideCount;
                     var current = slick.currentSlide;
-                    
+
                     var calc = ( current / ( count - 1 ) ) * 100;
 
                     slider.progressbar
@@ -51,7 +54,7 @@ SliderRecipe.prototype = {
                     slider.count[0].dataset.count = current + 1;
 
                     slider.count[0].innerHTML = '/' + count;
-                    
+
                 })
 
                 .slick({

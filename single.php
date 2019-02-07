@@ -3,9 +3,9 @@
 /**
  * The Template for displaying all single posts
  *
- *
- * @package  WordPress
- * @subpackage  jveb
+ * @file 		single
+ * @package  	jveb
+ * @author 		Jérémy Levron <jeremylevron@19h47.fr> (http://19h47.fr)
  */
 
 $context = Timber::get_context();
@@ -13,7 +13,7 @@ $post = Timber::query_post();
 $context['post'] = $post;
 $context['current_user'] = new Timber\User();
 
-$templates = array( 'singles/index.twig' ); 
+$templates = array( 'singles/index.twig' );
 
 
 
@@ -34,7 +34,6 @@ foreach ( $categories as $category ) {
 
 
 	if ( $category->term_id === 445 ) {
-
 		array_unshift( $templates, 'singles/category-food.twig' );
 	}
 }

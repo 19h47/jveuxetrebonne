@@ -1,5 +1,4 @@
 var Modules = {
-
 	App: require('./app'),
 	Comments: require('./comments')(),
 	Guid: require('./guid')(),

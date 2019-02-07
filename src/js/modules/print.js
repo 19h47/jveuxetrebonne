@@ -1,5 +1,4 @@
 var $ = require('jquery');
-var toggle = require('toggle');
 
 /**
  * Print

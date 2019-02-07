@@ -1,12 +1,11 @@
 <?php
 /**
- * /component-sticky-post
  *
  * Display last sticky post
  *
- * @package     WordPress
- * @subpackage  jveb
- * @author      Jérémy Levron <levronjeremy@19h47.fr>
+ * @file        component-sticky-post
+ * @package     jveb
+ * @author      Jérémy Levron <jeremylevron@19h47.fr> (http://19h47.fr)
  */
 
 $context = Timber::get_context();
@@ -32,15 +31,15 @@ $context['contact']['socials'] = $socials;
 
 
 // get last post
-$context['posts'] = Timber::get_posts( 
-    array( 
+$context['posts'] = Timber::get_posts(
+    array(
     	'ignore_sticky_posts' 	=> 1,
         'order'             	=> 'DESC',
         'orderby'           	=> 'date',
         'post_type'         	=> 'post',
     	'post__in'  			=> get_option( 'sticky_posts' ),
         'posts_per_page'    	=> 1
-    ) 
+    )
 );
 
 

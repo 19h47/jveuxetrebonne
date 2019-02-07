@@ -1,10 +1,9 @@
 <?php
+
 /**
- * /category-videos
- *
- * @package  	WordPress
- * @subpackage  jveuxetrebonne
- * @author  	Jérémy Levron levronjeremy@19h47.fr
+ * @file 		category-videos
+ * @package  	jveb
+ * @author  	Jérémy Levron <jeremylevron@19h47.fr> (http://19h47.fr)
  */
 
 if ( ! class_exists( 'Timber' ) ) {

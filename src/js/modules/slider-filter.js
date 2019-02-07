@@ -1,9 +1,10 @@
 var $ = require('jquery');
+
 require('slick-carousel');
 
 
 /**
- * Slider relationship posts
+ * Slider filter
  */
 function SliderFilter() {
     if (!(this instanceof SliderFilter)) {
@@ -21,7 +22,7 @@ SliderFilter.prototype = {
      */
     initPlugins: function() {
         var $slider = $('.js-filter');
-        
+
         $slider.find('.js-slider-filter-container').slick({
             // arrows: false,
             nextArrow: $slider.find('.js-slider-filter-next'),
@@ -29,7 +30,7 @@ SliderFilter.prototype = {
             // centerMode: true,
             // centerPadding: ( 53 * 100 ) / 1440 + '%',
             mobileFirst: true,
-            
+
             responsive: [{
                 breakpoint: 992,
                 settings: {

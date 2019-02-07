@@ -3,7 +3,6 @@ module.exports = App;
 var $ = require('jquery');
 var config = require('../config');
 var css = require('dom-css');
-var classes = require('dom-classes');
 
 
 /**
@@ -20,25 +19,25 @@ function App() {
 
 
 App.prototype = {
-	
+
 	/**
 	 * App.disableScroll
 	 */
 	disableScroll: function() {
 		// console.log('App.disableScroll');
-		
+
 		// lock scroll position, but retain settings for later
 		// http://stackoverflow.com/a/3656618
 		config.body.scroll.left = self.pageXOffset || document.documentElement.scrollLeft  || document.body.scrollLeft;
 		config.body.scroll.top = self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop;
-		
+
 		css(config.html, 'overflow', 'hidden');
 
 		this.resetScroll(config.body.scroll.left, config.body.scroll.top);
 
 		// disable scroll on touch devices as well
 		if (config.is.touch) {
-			
+
 			document.addEventListener('touchmove.app', function(e) {
 				e.preventDefault();
 			});
@@ -48,7 +47,7 @@ App.prototype = {
 
 	/**
 	 * App.enableScroll
-	 * 
+	 *
 	 * @param  position
 	 */
 	enableScroll: function(position) {
@@ -81,7 +80,7 @@ App.prototype = {
 
 	/**
 	 * App.resetScroll
-	 * 
+	 *
 	 * @param  position_x
 	 * @param  position_y
 	 */
@@ -113,7 +112,7 @@ App.prototype = {
 
 	/**
 	 * App.removeState
-	 * 
+	 *
 	 * @param 	state
 	 * @author 	Julien Vasseur julien@poigneedemainvirile.com
 	 */
@@ -124,7 +123,7 @@ App.prototype = {
 
 		deferred.promise();
 
-		return deferred.resolve();	
+		return deferred.resolve();
 	},
 
 
@@ -136,7 +135,7 @@ App.prototype = {
 
 		elements.forEach(function(element) {
 			var offset = element.dataset.offset;
-			
+
 			// console.log(offset);
 
 			switch (offset) {
@@ -158,7 +157,7 @@ App.prototype = {
 				        scrollTop: offset
 			    }, 200);
 			});
-			
+
 		});
 	}
 };

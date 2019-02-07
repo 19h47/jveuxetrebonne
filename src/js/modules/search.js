@@ -1,11 +1,9 @@
 var $ = require('jquery');
 
 
-var select = require('dom-select');
 var Mustache = require('mustache');
 var config = require('../config');
 var sprintf = require('sprintf-js').sprintf;
-var transitionEvent = require('../utils').whichTransitionEvent;
 
 
 /**
@@ -36,7 +34,7 @@ function Search(element) {
 	this.$informations.find('span:eq( 2 )').html(this.error);
 
 	this.response = null;
-	
+
 
 	this.update();
 	this.init.events.call(this);
@@ -55,22 +53,22 @@ Search.prototype = {
 		 * Search.init.events
 		 */
 		events: function() {
-			
+
 
 			this.$input.on('change keyup paste', (function (event) {
-							
+
 				this.update();
 
 			}).bind(this));
 
 
 			config.body.$.on('open.search', $.proxy(function() {
-				
+
 				// Weird behavior on Chrome
 				setTimeout($.proxy(function(){
 					this.$input.focus();
 				},this), 600);
-			
+
 			}, this));
 
 
@@ -98,7 +96,7 @@ Search.prototype = {
 				minLength: 1,
 				delay: 600,
 				source: $.proxy(function(request, response) {
-					
+
 					this.lock();
 
 					// Easter egg
@@ -123,8 +121,8 @@ Search.prototype = {
 				        	// }
 
 
-				        	var transformed = $.map( 
-				        		data, 
+				        	var transformed = $.map(
+				        		data,
 				            	function(el) {
 				                	return {
 				                	    title: el.post_title,
@@ -138,13 +136,13 @@ Search.prototype = {
 
 				            if (transformed.length === 0) {
 				            	return;
-				            } 
-			            	
+				            }
+
 			            	response(transformed);
 
 				        },this)
 
-				        // error: function(jqXHR){ 
+				        // error: function(jqXHR){
 				        // 	console.log(jqXHR);
 				       	// }
 
@@ -205,10 +203,10 @@ Search.prototype = {
 		this.update();
 
 		window.app.disableScroll();
-		
+
 		config.body.$
             .addClass('search--is-open')
-            .trigger('open.search');		
+            .trigger('open.search');
 	},
 
 
@@ -252,7 +250,7 @@ Search.prototype = {
 		// console.info('Search.construct');
 
 		if (suggests == null || suggests.length === 0) {
-			
+
 			this.$element.addClass('not-found');
 			this.reset()
 
@@ -262,7 +260,7 @@ Search.prototype = {
 
 		// Update total
 		this.total = suggests.length;
-		
+
 		var template = $('#suggest').html();
 		var output = '';
 		var i = 0;
@@ -350,8 +348,8 @@ Search.prototype = {
 
 		// console.log(this.$input.val().length);
 		if(this.$input.val().length === 0) {
-			
-			this.$element.removeClass('not-found');	
+
+			this.$element.removeClass('not-found');
 			this.reset();
 		}
 

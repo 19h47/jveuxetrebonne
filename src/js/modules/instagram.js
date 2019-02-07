@@ -1,7 +1,5 @@
-
-module.exports = Instagram;
-
 var Instafeed = require('instafeed.js');
+
 require('slick-carousel');
 
 function Instagram() {
@@ -18,9 +16,9 @@ function Instagram() {
     this.feed = null;
     this.userId = '26283047';
     this.accessToken = '26283047.1677ed0.eefc02ff179746bcb76f99cc08554827';
-    
+
     this.setup();
-    
+
     this.feed.run();
 }
 
@@ -52,7 +50,7 @@ Instagram.prototype = {
             centerMode: true,
             centerPadding: ( 138 * 100 ) / 486 + '%',
             mobileFirst: true,
-            
+
             responsive: [{
                 breakpoint: 992,
                 settings: "unslick"
@@ -60,3 +58,5 @@ Instagram.prototype = {
         });
     }
 }
+
+module.exports = Instagram;

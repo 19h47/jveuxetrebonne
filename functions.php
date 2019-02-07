@@ -4,9 +4,8 @@
  *
  * @see https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package WordPress
- * @subpackage pup
- * @since 1.0
+ * @package jveb
+ * @since   1.0.0
  *
  * Functions'prefix is jveb_
  */
@@ -24,7 +23,7 @@ include get_template_directory() . '/vendor/autoload.php';
  * Instanciate Timber
  *
  * @see         https://github.com/timber/timber
- * @version     1.3.0
+ * @version     1.4.0
  */
 $timber = new \Timber\Timber();
 

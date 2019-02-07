@@ -1,25 +1,23 @@
 <?php
 /**
- * /component-link
+ * Display link from Link plugin
  *
- * Display link from plugin
- *
- * @package     WordPress
- * @subpackage  jveb
- * @author      Jérémy Levron <levronjeremy@19h47.fr>
+ * @file        component-link
+ * @package     jveb
+ * @author      Jérémy Levron <jeremylevron@19h47.fr> (http://19h47.fr)
  */
 
 $context = Timber::get_context();
 
 
 // get last post
-$context['links'] = Timber::get_posts( 
-    array( 
+$context['links'] = Timber::get_posts(
+    array(
         'post_type'         	=> 'link',
         'posts_per_page'    	=> -1,
         'orderby' 				=> 'menu_order',
         'order' 				=> 'ASC'
-    ) 
+    )
 );
 
 

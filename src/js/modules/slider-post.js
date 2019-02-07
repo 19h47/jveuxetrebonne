@@ -1,4 +1,5 @@
 var $ = require('jquery');
+
 require('slick-carousel');
 
 
@@ -32,16 +33,16 @@ SliderPost.prototype = {
                 next: $slider.find('.js-slider-post-next'),
                 previous: $slider.find('.js-slider-post-previous')
             }
-            
+
             // console.log($slider);
-            
+
             $slider
                 .find('.js-slider-post-container')
 
-                .on('init afterChange', function(event, slick) {   
+                .on('init afterChange', function(event, slick) {
                     var count = slick.slideCount;
                     var current = slick.currentSlide;
-                    
+
                     var calc = ( current / ( count - 1 ) ) * 100;
 
                     slider.progressbar
@@ -49,7 +50,7 @@ SliderPost.prototype = {
                         .attr('aria-valuenow', calc );
 
                     slider.count[0].dataset.count = current + 1;
-                    
+
                 })
 
                 .slick({

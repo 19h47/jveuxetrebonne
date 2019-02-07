@@ -3,11 +3,10 @@
 /**
  * /component-slider-videos
  *
- * Display last recent post
+ * Display the last 5 recent post in the video category
  *
- * @package     WordPress
- * @subpackage  jveb
- * @author      Jérémy Levron <levronjeremy@19h47.fr>
+ * @package  	jveb
+ * @author      Jérémy Levron <jeremylevron@19h47.fr> (http://19h47.fr)
  */
 
 $context = Timber::get_context();

@@ -1,10 +1,9 @@
 <?php
+
 /**
- * /404
- *
- * @package  	WordPress
- * @subpackage  jveb
- * @author   	Jérémy Levron levronjeremy@19h47.fr
+ * @file 		404
+ * @package  	jveb
+ * @author   	Jérémy Levron <jeremylevron@19h47.fr> (http://19h47.fr)
  */
 
 
@@ -13,10 +12,8 @@ if ( ! class_exists( 'Timber' ) ) {
 	return;
 }
 
-
 $context = Timber::get_context();
 $post = new TimberPost();
-
 
 $templates = array( 'pages/404.twig' );
 

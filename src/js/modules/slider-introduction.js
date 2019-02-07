@@ -1,4 +1,5 @@
 var $ = require('jquery');
+
 require('slick-carousel');
 
 
@@ -26,8 +27,8 @@ SliderIntroduction.prototype = {
         $sliders.each($.proxy(function(i, e){
             var $slider = $(e);
             var $navigation = $(e).find('.js-slider-sticky-next');
-            
-            
+
+
             $slider
                 .find('.js-slider-sticky')
 

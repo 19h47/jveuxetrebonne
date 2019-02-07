@@ -1,4 +1,5 @@
 var $ = require('jquery');
+
 require('slick-carousel');
 
 
@@ -21,7 +22,7 @@ SliderRelationshipPosts.prototype = {
      */
     initPlugins: function() {
         var $slider = $('.js-relationship-posts');
-        
+
         $slider.find('.js-relationship-posts-container').slick({
             // arrows: false,
             nextArrow: $slider.find('.js-relationship-posts-next'),
@@ -29,7 +30,7 @@ SliderRelationshipPosts.prototype = {
             // centerMode: true,
             // centerPadding: ( 53 * 100 ) / 1440 + '%',
             mobileFirst: true,
-            
+
             responsive: [{
                 breakpoint: 992,
                 settings: {

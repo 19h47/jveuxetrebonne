@@ -1,9 +1,9 @@
 /**
  * utils
- * @type {Object}
+ * @type {obj}
  */
 var utils = {
-	
+
 	/**
 	 * Get right transitionend event name regarding browser support.
 	 * From Modernizr.
@@ -26,6 +26,11 @@ var utils = {
 	},
 
 	/**
+	 * Remove class by prefixof a given DOM element
+	 *
+	 * @param 	{obj} el 		DOM element
+	 * @param 	{str} prefix 	prefix to find and remove in class
+	 * @return 	{el}
 	 * @see  http://stackoverflow.com/a/28608829/5091221
 	 */
 	removeClassByPrefix: function(el, prefix) {

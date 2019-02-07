@@ -1,10 +1,8 @@
 <?php
 /**
- * /category
- * 
- * @package  	WordPress
- * @subpackage  jveuxetrebonne
- * @author  	Jérémy Levron levronjeremy@19h47.fr
+ * @file 		category
+ * @package  	jveb
+ * @author  	Jérémy Levron <jeremylevron@19h47.fr> (http://19h47.fr)
  */
 
 if ( ! class_exists( 'Timber' ) ) {
@@ -17,12 +15,12 @@ $context['posts'] = Timber::get_posts();
 
 $category = $wp_query->get_queried_object();
 
-$childrens = get_terms( 
-	$category->taxonomy, 
+$childrens = get_terms(
+	$category->taxonomy,
 	array(
 		'parent'		=> $category->term_id,
 		'hide_empty' 	=> false
-	) 
+	)
 );
 
 // Add ACF thumbnail field to WP_TERM if exist
@@ -45,9 +43,9 @@ $context['category'] = array(
 	'children'		=> ! empty( $childrens ) ? $childrens : false
 );
 
-$count_query = new WP_Query( 
-	array( 
-		'post_type' 			=> 'post', 
+$count_query = new WP_Query(
+	array(
+		'post_type' 			=> 'post',
 		'posts_per_page'		=> -1,
 		'category__in'			=> $category->term_id
 

@@ -11,7 +11,7 @@
 
 	@extend %list-unstyled;
 	@extend .clearfix;
-	
+
 	color: currentColor;
 
 	@at-root .Footer & {
@@ -29,7 +29,7 @@
 			position: center;
 			size: 100%;
 		}
-		
+
 		z-index: 39;
 
 		@at-root .#{ map-get( $state-classes, 'menu-open' ) } & {
@@ -54,18 +54,18 @@
 			max-height: 27px;
 
 			@include from( 'md' ) { vertical-align: middle; }
-		}		
+		}
 	}
 
 
 	/**
 	 * Front page header
 	 * Category page header
-	 * 
+	 *
 	 * @uses .Front-page-header .Menu
 	 * @uses .Category-header .Menu
 	 */
-	@at-root 
+	@at-root
 		.Category-header &,
 		.Front-page-header &,
 		.About-header & {
@@ -74,7 +74,7 @@
 		@include margin( top 0 bottom 0 );
 		@include padding( top 104px );
 		@include size( 100% );
-		
+
 		transform: translate3d( -100%, 0, 0 );
 		background: { color: the_color( white ); }
 		z-index: 30;
@@ -84,14 +84,14 @@
 		}
 
 		@include from( 'md' ) {
-			@include margin( 
-				top 72px 
+			@include margin(
+				top 72px
 				bottom 119px
 				left ( ( $margin / 2 ) * -1px )
 			);
 			@include padding( top 0 );
 			@include size( auto );
-	
+
 			position: static;
 			top: auto;
 			right: auto;
@@ -120,19 +120,19 @@
 	 */
 	.item {
 
-		@extend 
-			%display-xs-block, 
-			%display-md-inline-block, 
-			%vertical-align-middle, 
+		@extend
+			%display-xs-block,
+			%display-md-inline-block,
+			%vertical-align-middle,
 			%position-xs-relative;
 
 		/**
-		 * Link 
+		 * Link
 		 *
 		 * @uses .Menu .item a
 		 */
 		a {}
-		
+
 
 		/**
 		 * Current item
@@ -152,10 +152,10 @@
 				@extend %position-xs-relative, %Transition-ease;
 
 				&::before {
-					@extend 
-						%Position-absolute-center, 
-						%display-xs-inline-block, 
-						%Transition-ease, 
+					@extend
+						%Position-absolute-center,
+						%display-xs-inline-block,
+						%Transition-ease,
 						%Pointer-events-none;
 
 					background: {
@@ -179,7 +179,7 @@
 
 				&.is-current,
 				&:hover {
-					
+
 					color: the_color( white );
 
 					&::before {
@@ -195,19 +195,19 @@
 		 * Category item
 		 *
 		 * From WordPress
-		 * 
+		 *
 		 * @uses .Menu .item.menu-item-object-category
 		 */
 		&.menu-item-object-category {
 			$font-size: 40;
 
-			@extend 
+			@extend
 				%font-title,
 				%font-semibold,
-				%text-xs-center, 
+				%text-xs-center,
 				%text-md-left;
 
-			@include margin( 
+			@include margin(
 				top ( ( $margin / 2 ) * 1px )
 				right ( ( ( $margin / 2 ) - $padding ) * 1px )
 				bottom ( ( $margin / 2 ) * 1px )
@@ -223,7 +223,7 @@
 				font: {
 					size: ( ( $font-size / 1.5 ) / $base-font-size ) * 1em;
 				}
-				@include margin( 
+				@include margin(
 					top 0
 					right ( ( ( $margin / 4 ) - $padding ) * 1px )
 					bottom 0
@@ -232,7 +232,7 @@
 			}
 
 			@include from( 'lg' ) {
-				@include margin( 
+				@include margin(
 					top 0
 					right ( ( ( $margin / 2 ) - $padding ) * 1px )
 					bottom 0
@@ -244,7 +244,7 @@
 				@extend %lowercase;
 				@include padding(
 					top 0
-					right ( $padding * 1px ) 
+					right ( $padding * 1px )
 					bottom 0
 					left ( $padding * 1px )
 				);
@@ -259,15 +259,15 @@
 			$orange: the_color( orange, very-soft-01 );
 			$font-size: 13;
 
-			@extend 
-				%font-title, 
-				%font-semibold, 
-				%float-md-right, 
-				%Transition-ease, 
-				%text-xs-center, 
+			@extend
+				%font-title,
+				%font-semibold,
+				%float-md-right,
+				%Transition-ease,
+				%text-xs-center,
 				%text-md-left;
-			@include font( $font-size, 44.8 );
-			@include margin( 
+			@include font( $font-size, 29 );
+			@include margin(
 				top (( $margin / 2 ) * 1px )
 				right ( ( ( $margin / 2 ) - $padding ) * 1px )
 				bottom (( $margin / 2 ) * 1px )
@@ -277,8 +277,8 @@
 			color: the_color( blue, light-grayish );
 
 			@include from( 'md' ) {
-				@include margin( 
-					top 3px 
+				@include margin(
+					top 0
 					right 0
 					bottom 0
 					left 0
@@ -371,7 +371,7 @@
 
 				.Icon {
 					@extend %display-xs-inline-block;
-					
+
 					max-width: ( map-get( $size, width ) * 1px );
 					max-height: ( map-get( $size, height ) * 1px );
 					fill: currentColor;
@@ -395,18 +395,18 @@
 	 */
 	@at-root .Footer & .menu-item {
 		$font-size: 13;
-		
+
 		@extend %font-title, %font-semibold;
 		@include margin( top $grid-gutter-width right 20px bottom $grid-gutter-width left 20px );
 		@include font( 19, 33 );
-		
+
 		color: the_color( gray, very-dark );
 
 		&:first-child { @include margin( top 0 ); }
 		&:last-child { @include margin( bottom 0 ); }
-		
-		@include from( 'md' ) { 
-			@include font( $font-size, 33 ); 
+
+		@include from( 'md' ) {
+			@include font( $font-size, 33 );
 			@include margin( top 0 bottom 0 );
 		}
 
