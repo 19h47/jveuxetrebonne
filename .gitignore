@@ -13,6 +13,7 @@ npm-debug.log
 /src/mockup/
 /src/prototype/
 /vendor/
+/wpcs/
 sftp-config.prod.json
 sftp-config.dev.json
 sftp-config.json

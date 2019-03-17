@@ -4,13 +4,13 @@
 	 */
 #}
 <footer class="Footer">
-	
+
 	<div class="l-container">
 		<div class="row">
 
 			<div class="col-xs-12">
 				<div class="Footer-logo">
-					<a href="{{ site.url }}">		
+					<a href="{{ site.url }}">
 						<img class="img-full" src="{{ theme.link }}/img/svg/logo-orange.svg" alt="{{ site.description }}" />
 					</a>
 				</div>
@@ -18,16 +18,16 @@
 
 		</div>
 		<div class="row">
-		
+
 
 			<div class="col-xs-12 col-md-10 col-md-offset-1 text-xs-center">
 
-			
+
 				<ul class="Menu" role="navigation">
 
-					{% 
-						include 'components/menu.twig' 
-						with { 
+					{%
+						include 'components/menu.twig'
+						with {
 							'menu' : menu.main,
 							'language': false,
 							'search': false,
@@ -35,7 +35,7 @@
 								'desktop': true,
 								'marker': false
 							}
-						} 
+						}
 					%}
 				</ul>
 
@@ -71,9 +71,9 @@
 			<div class="row">
 				<div class="col-xs-12">
 					{% spaceless %}
-					<span><i>© JVEB 2017</i></span>
+					<span><i>© JVEB&nbsp;{{ 'now' | date( 'Y' ) -}}</i></span>
 					<span>Design, <i><a href="http://lesindiens.fr/" target="_blank">Studio Les Indiens</a></i></span>
-					<span>&nbsp;&#124;&nbsp;</span>      
+					<span>&nbsp;&#124;&nbsp;</span>
 					<span>Développement, <i><a href="http://19h47.fr/" target="_blank">19h47</a></i></span>
 					{% endspaceless %}
 				</div>
