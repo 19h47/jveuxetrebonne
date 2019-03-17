@@ -24,7 +24,7 @@
     "gulp-plumber": "^1.2.1",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^3.2.1",
-    "gulp-sourcemaps": "^2.6.4",
+    "gulp-sourcemaps": "^2.6.5",
     "gulp-svgmin": "^1.2.3",
     "gulp-svgstore": "^6.1.1",
     "gulp-uglify": "^2.1.2",
@@ -44,7 +44,7 @@
     "jquery": "global:$"
   },
   "dependencies": {
-    "bootstrap-sass": "^3.4.0",
+    "bootstrap-sass": "^3.4.1",
     "breakpoint-sass": "^2.7.1",
     "breakpoint-slicer": "^2.0.0",
     "dom-classes": "^1.0.0",
