@@ -273,22 +273,22 @@ class JVEB extends TimberSite {
         $shares = array(
             array(
                 'slug'  => 'facebook',
-                'name' => pll__( 'Partager sur Facebook' ),
+                'name' => __( 'Partager sur Facebook' ),
                 'url'  => 'https://www.facebook.com/sharer.php?u='
             ),
             array(
                 'slug'  => 'twitter',
-                'name' => pll__( 'Partager sur Twitter' ),
+                'name' => __( 'Partager sur Twitter' ),
                 'url'  => 'https://twitter.com/intent/tweet?url='
             ),
             array(
                 'slug'  => 'google-plus',
-                'name' => pll__( 'Partager sur Google+' ),
+                'name' => __( 'Partager sur Google+' ),
                 'url'  => 'https://plus.google.com/share?url='
             ),
             array(
                 'slug'  => 'envelope',
-                'name' => pll__( 'Partager par Mail' ),
+                'name' => __( 'Partager par Mail' ),
                 'url'  => 'mailto:?&amp;body='
             )
         );
@@ -354,8 +354,8 @@ class JVEB extends TimberSite {
          */
         register_nav_menus(
             array(
-                'main'          => pll__( 'Main' ),
-                'categories'    => pll__( 'Catégories' ),
+                'main'          => __( 'Main' ),
+                'categories'    => __( 'Catégories' ),
             )
         );
 

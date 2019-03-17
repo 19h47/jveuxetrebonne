@@ -16,7 +16,7 @@
 	@mixin meta-style() {
 		@extend %display-xs-inline-block, %font-title, %margin-xs-0, %font-semibold;
 		@include letter-spacing( 20 );
-		
+
 		font: {
 			size: ( map-get( map-get( $header, font ), size ) / $base-font-size ) * 1em;
 			weight: map-get( map-get( $header, font ), weight );
@@ -24,7 +24,7 @@
 		line-height: map-get( $header, line-height ) / map-get( map-get( $header, font ), size );
 		color: map-get( $header, color );
 	}
-	
+
 
 	/**
 	 * Header
@@ -48,19 +48,19 @@
 		);
 
 		@extend %position-xs-relative;
-		@include margin( 
-			left ( ( percentage( map-get( $size, overlap ) / map-get( map-get( $size, parent ), width ) ) ) * -1 ) 
+		@include margin(
+			left ( ( percentage( map-get( $size, overlap ) / map-get( map-get( $size, parent ), width ) ) ) * -1 )
 		);
-		
+
 		width: percentage( map-get( $size, width ) / map-get( map-get( $size, parent ), width ) );
 		// background: red;
 
 		&::after {
 			@extend %display-xs-block;
-			@include padding( 
-				top percentage( map-get( $size, height ) / map-get( $size, width ) ) 
+			@include padding(
+				top percentage( map-get( $size, height ) / map-get( $size, width ) )
 			);
-			
+
 			content: '';
 		}
 
@@ -73,7 +73,11 @@
 			.slick-list {
 				@extend %h-xs-100;
 			}
-			
+
+			.slick-slide > div {
+				height: 100%;
+			}
+
 
 			/**
 			 * Item
@@ -82,11 +86,14 @@
 			 */
 			&__item {
 				@extend %margin-xs-0, %h-xs-100, %position-xs-relative, %overflow-hidden;
-				
+
+				height: 100%;
+
 				img {
 					transform: translate3d( ( $grid-gutter-width * -1 ), 0, 0 );
 					transition: .6s ease;
 					opacity: 0;
+					height: 100%;
 				}
 
 				&::after {
@@ -103,8 +110,8 @@
 					transform: translateX( 0% ) scaleY( 1 ) scaleX( 0 );
 				}
 
-				&.slick-current {
-					
+				@at-root .slick-current & {
+
 					img {
 						transition-delay: ( 1.15s / 2 );
 						transform: translate3d( 0, 0, 0 );
@@ -140,10 +147,10 @@
 					width: 45,
 				);
 
-				@include absolute( 
-					top 0 
-					left calc( 100% - #{ ( ( map-get( $size, width ) / 2 ) * 1px ) } ) 
-					bottom 0 
+				@include absolute(
+					top 0
+					left calc( 100% - #{ ( ( map-get( $size, width ) / 2 ) * 1px ) } )
+					bottom 0
 				);
 
 				width: ( map-get( $size, width ) * 1px );
@@ -163,23 +170,23 @@
 
 	/**
 	 * Thumbnail
-	 * 
+	 *
 	 * @uses .Sticky-post .thumbnail
 	 */
 	.thumbnail {
 		@extend %display-xs-block;
-	    @include margin( 
-			right ( $grid-gutter-width-mobile * -1 ) 
-			left ( $grid-gutter-width-mobile * -1 ) 
+	    @include margin(
+			right ( $grid-gutter-width-mobile * -1 )
+			left ( $grid-gutter-width-mobile * -1 )
 		);
 
 		width: calc( 100% + 46px);
-		box-shadow: 1px 3px ( $grid-gutter-width / 2 ) 0px rgba( the_color( gray, very-dark ), 0.15); 
+		box-shadow: 1px 3px ( $grid-gutter-width / 2 ) 0px rgba( the_color( gray, very-dark ), 0.15);
 
 		img {
 			@extend %display-xs-inline-block, %vertical-align-middle;
 		}
-		
+
 		@include from( 'md' ) {
 			@include margin( left #{ $grid-gutter-width * -1 } );
 
@@ -187,10 +194,10 @@
 		}
 	}
 
-	
+
 	/**
 	 * Category
-	 * 
+	 *
 	 * @uses .Sticky-post .category
 	 */
 	.category { @include meta-style; }
@@ -198,12 +205,12 @@
 
 	/**
 	 * Title
-	 * 
+	 *
 	 * @uses .Sticky-post .title
 	 */
 	.title {
 		$font-size: 35;
-		
+
 		@extend %margin-xs-0;
 		@include font( $font-size, 38, 12 );
 
@@ -238,7 +245,7 @@
 
 	/**
 	 * Excerpt
-	 * 
+	 *
 	 * @uses .Sticky-post .excerpt
 	 */
 	.excerpt {
@@ -254,7 +261,7 @@
 
 	/**
 	 * Permalink
-	 * 
+	 *
 	 * @uses .Sticky-post .permalink
 	 */
 	.permalink {

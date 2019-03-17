@@ -23,7 +23,7 @@ foreach ( $socials_name as $name ) {
         'url'   => get_option( strtolower( $name ) )
     );
 
-    $socials[strtolower( $name )] = ${ strtolower( $name ) };
+    $socials[ strtolower( $name ) ] = ${ strtolower( $name ) };
 }
 
 // Add $socials to $context
