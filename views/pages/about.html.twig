@@ -6,20 +6,18 @@
 {% extends 'index.twig' %}
 
 {% block content %}
-	
+
 	{{ parent() }}
 
 	{# Banner #}
 	{% include 'components/banner.twig' %}
-	
+
 	<div class="About-header">
 		<div class="l-container">
 			<button class="Menu-search-button js-search-button">
-			    <svg class="Icon magnifying-glass">
-			        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ theme.link }}/dist/svg/icons.svg#magnifying-glass"></use>
-			    </svg>
+				{% include 'svg/use.html.twig' with { classes: [ 'Icon' ], icon: 'magnifying-glass', theme: theme } only %}
 			</button>
-			
+
 			<button class="Menu-button js-toggle-menu-button hidden-md hidden-lg hidden-hd"></button>
 
 			<div class="row">
@@ -32,9 +30,9 @@
 
 
 					<ul class="Menu" role="navigation">
-						{% 
-							include 'components/menu.twig' 
-							with { 
+						{%
+							include 'components/menu.twig'
+							with {
 								'menu' : menu.categories,
 								'language': true,
 								'search': true,
@@ -42,14 +40,14 @@
 									'desktop': true,
 									'marker': true
 								}
-							} 
+							}
 						%}
 					</ul>
 				</div>
 			</div>
 		</div>
-	</div> 
-	
+	</div>
+
 	{% include 'components/heading.twig' with { 'title': post.title } %}
 
 	<div class="l-container">
@@ -57,32 +55,28 @@
 			<article class="Sticky-post row">
 
 		        <div class="col-xs-12 col-md-5 col-md-offset-1">
-
 		            <a class="thumbnail" href="{{ post.link }}">
-		                <img class="img-full" src="{{ post.thumbnail.src | tojpg | resize( 635, 550 ) }}" alt="" />
+		                <img class="img-full" src="{{ post.thumbnail.src | tojpg | resize( 635, 550 ) }}" alt=""/>
 		            </a>
-
 		        </div>
 
-		        <div class="col-xs-12 col-md-5">        
-		            
-		            <header class="Sticky-post-header">
+		        <div class="col-xs-12 col-md-5">
 
+		            <header class="Sticky-post-header">
 		                {# Title #}
 		                <h2 class="title">{{- post.get_field( 'preview' ) -}}</h2>
-
 		            </header>
 
-		            
+
 		            {# Excerpt #}
 		            <div class="excerpt">{{- post.content -}}</div>
 
-		            
+
 		            {# Footer #}
 		            {% if post.get_field( 'gallery' ) %}
 		            <footer class="Sticky-post-footer js-slider-sticky-container hidden-xs hidden-sm">
 		                <div class="Sticky-post-footer__inner">
-		                    
+
 		                    <ul class="Sticky-post-footer__gallery js-slider-sticky">
 		                        {% for image in post.get_field( 'gallery' ) %}
 		                            <li class="Sticky-post-footer__gallery__item">
@@ -92,11 +86,7 @@
 		                    </ul>
 
 		                    <button class="Sticky-post-footer__gallery__button js-slider-sticky-next" type="button" >
-		                        
-		                        <svg class="Icon next">
-		                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ theme.link }}/dist/svg/icons.svg#next"></use>
-		                        </svg>
-		                        
+								{% include 'svg/use.html.twig' with { classes: [ 'Icon' ], icon: 'next', theme: theme } only %}
 		                    </button>
 
 		                </div>
@@ -105,15 +95,15 @@
 
 		        </div>
 
-		        {% 
-		            include 'components/aside.twig' 
+		        {%
+		            include 'components/aside.twig'
 		            with {
 		            	'context':	'about',
 		                'socials': false,
 		                'shares': false,
 		                'subscribe': false,
 		                'email': true
-		            } 
+		            }
 		        %}
 
 		    </article>
@@ -124,16 +114,16 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="About-description-inner">
-					{{ post.description | wpautop }}
-					
+					{{- post.description | wpautop -}}
+
 					{# <div class="About-description-footer">
 						<a href="http://www.jveb.19h47.fr/" class="Link-readmore Link-marker Link-marker--orange" target="_blank">
 							<span>{{ pll__( 'Découvrir jveb studio' ) }}</span>
-						</a>	
-					</div> #}	
-					<img class="img-full" src="{{ theme.link }}/img/png/banner-about.png" alt="" width="2000" height="660" />
+						</a>
+					</div> #}
+					{# <img class="img-full" src="{{ theme.link }}/img/png/banner-about.png" alt="" width="2000" height="660" /> #}
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
