@@ -1,5 +1,4 @@
 /* global $ */
-const toggle = require('toggle');
 
 export default class Comments {
 	constructor() {
@@ -30,19 +29,19 @@ export default class Comments {
 	initPlugins() {
 		// console.log(toggle);
 		this.$element.find('.js-comments-list').hide();
-
-		toggle.toggle = ($element) => {
-			$element.toggle();
-
-			if (this.$button.hasClass('minus')) {
-				this.$title.html('montrer');
-				this.$button.removeClass('minus').addClass('plus');
-			}
-
-			if (this.$button.hasClass('plus')) {
-				this.$title.html('réduire');
-				this.$button.removeClass('plus').addClass('minus');
-			}
-		};
+		//
+		// toggle.toggle = ($element) => {
+		// 	$element.toggle();
+		//
+		// 	if (this.$button.hasClass('minus')) {
+		// 		this.$title.html('montrer');
+		// 		this.$button.removeClass('minus').addClass('plus');
+		// 	}
+		//
+		// 	if (this.$button.hasClass('plus')) {
+		// 		this.$title.html('réduire');
+		// 		this.$button.removeClass('plus').addClass('minus');
+		// 	}
+		// };
 	}
 }
