@@ -1,54 +1,48 @@
 {#
-    
-    /**
-     * partials/comments
-     * 
-     * @author  Jérémy Levron <jeremylevron@19h47.fr
-     */
-    
+
+/views/partials/comments
+
+@author  Jérémy Levron <jeremylevron@19h47.fr
+
 #}
 
 <div class="Comments js-comments">
-		
+
 	<div class="l-container">
-		
+
 		<header class="Comments-header">
-			
-			{% if post.comments|length > 0 %}
+
+			{% if post.comments | length > 0 %}
 				<h3 class="title js-comments-title">{{- pll__( 'montrer' ) -}}</h3>
 				<button data-toggle-target="comment-list" class="expand plus"></button>
 			{% endif %}
 
-			<p class="catchphrase">				
-				{{- 
+			<p class="catchphrase">
+				{{-
 					fn(
-						'comments_number', 
-						pll__( 'Il n\'y a aucun commentaire sur cet article' ), 
-						pll__( 'Il y a un commentaire sur cet article' ), 
+						'comments_number',
+						pll__( 'Il n\'y a aucun commentaire sur cet article' ),
+						pll__( 'Il y a un commentaire sur cet article' ),
 						pll__( 'Il y a % commentaires sur cet article' )
 					)
 				-}}
 			</p>
 		</header>
 
-		
 		{% include 'components/comment-form.twig' %}
-		
-		
+
 		<ol id="comments" class="Comment-list js-comments-list" data-toggle-name="comment-list">
-		{% for comment in post.comments %}
-		{# <pre>{{comment|print_r}}</pre> #}
-			<li>
-			{% 	
-				include 'components/comment-thread.twig' 
-				with {
-					'post': comment,
-				
-				} 
-			%}
-			</li>
-			
-		{% endfor %}
+			{% for comment in post.comments %}
+				<li>
+				{%
+					include 'components/comment-thread.twig'
+					with {
+						'post': comment,
+
+					}
+				%}
+				</li>
+			{% endfor %}
 		</ol>
 
 	</div>

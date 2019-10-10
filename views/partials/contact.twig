@@ -1,7 +1,7 @@
 {#
-	/**
-	 * /views/partials/contact
-	 */
+
+/views/partials/contact
+
 #}
 
 
@@ -10,7 +10,7 @@
 		<div class="d-table-cell vertical-align-middle h-100">
 			<div class="l-container">
 				<div class="row">
-					
+
 					<div class="col-12 col-md-10 offset-md-1">
 						<div class="Contact-wrapper">
 							<h2 class="title js-contact-title">
@@ -19,53 +19,51 @@
 							<p class="catch-phrase">
 								{{- pll__( 'Abonne-toi et reçois les dernières actualités directement dans ta boîte mail.' ) -}}
 							</p>
-						
 
-													
-							{{ function( 'mc4wp_show_form', 4609, '', false ) }}
+
+
+							{{ function( 'mc4wp_show_form', 4609, [], false ) }}
 
 							{# Mailpoet #}
 							{# <div class="widget_wysija_cont html_wysija">
 
 								<div id="msg-form-wysija-html59b413f1d0953-3" class="wysija-msg ajax"></div>
-									<form 
-										id="form-wysija-html59b413f1d0953-3" 
-										method="post" 
-										action="#wysija" 
+									<form
+										id="form-wysija-html59b413f1d0953-3"
+										method="post"
+										action="#wysija"
 										class="Contact-form widget_wysija html_wysija"
 									>
-										
+
 									    <input type="hidden" name="form_id" value="3" />
 									    <input type="hidden" name="action" value="save" />
 									    <input type="hidden" name="controller" value="subscribers" />
 									    <input type="hidden" value="1" name="wysija-page" />
 								        <input type="hidden" name="wysija[user_list][list_ids]" value="5" />
-										
+
 									    <span class="abs-req">
 									        <input type="text" name="wysija[user][abs][email]" class="wysija-input validated[abs][email]" value="" />
 									    </span>
 
 										{% spaceless %}
-								    	<input 
-								    		type="text" 
-								    		name="wysija[user][email]" 
-								    		class="input validate[required,custom[email]]" 
-								    		title="E-mail"  
-								    		value="" 
-								    		placeholder="{{ pll__( 'Votre adresse email' ) }}" 
+								    	<input
+								    		type="text"
+								    		name="wysija[user][email]"
+								    		class="input validate[required,custom[email]]"
+								    		title="E-mail"
+								    		value=""
+								    		placeholder="{{ pll__( 'Votre adresse email' ) }}"
 								    	/>
-										     
-										    
+
+
 										<button class="button" type="submit">
-											<svg class="button__decor">
-											   <use xlink:href="{{ theme.link }}/dist/svg/icons#paper-plane"></use>
-											</svg>
+											{% include 'svg/use.html.twig' with { icon: 'paper-plane', classes: [ 'button__decor' ] } %}
 											<span class="button__label">
 												{{- pll__( 'Allez viens, on est bien !' ) -}}
 											</span>
 										</button>
 										{% endspaceless %}
-										
+
 									</form>
 								</div>
 							</div> #}
