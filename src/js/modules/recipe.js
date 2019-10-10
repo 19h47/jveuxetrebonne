@@ -1,4 +1,4 @@
-/* global $ */
+/* global $, wp */
 
 // import config from 'js/config';
 import SliderPost from 'Modules/SliderPost';
@@ -10,17 +10,13 @@ export default class Recipe {
 	}
 
 	init() {
-		if (0 === this.$parent.length || 'undefined' === this.$parent) {
+		if (0 === this.$parent.length || undefined === this.$parent) {
 			return;
 		}
 
 		this.$buttons = this.$parent.find('.js-recipes-button');
 		this.id = this.$buttons[0].dataset.id;
 		this.$container = this.$parent.find('.js-recipes-container');
-
-
-		// this.$buttons && this.$buttons.each((i, el) => {
-		// });
 
 		this.event.call(this);
 
@@ -70,7 +66,7 @@ export default class Recipe {
 		// lock everything before the request
 		this.on.call(this);
 
-		return $.get(window.wp.ajax_url, data);
+		return $.get(wp.ajax_url, data);
 	}
 
 

@@ -1,20 +1,17 @@
 
-/**
- * Guid
- */
 export default class Guid {
 	constructor() {
-		this.$guid = document.querySelector('.js-guid');
+		this.rootElement = document.querySelector('.js-guid');
 	}
 
 	init() {
-		if (null === this.$guid) {
+		if (null === this.rootElement) {
 			return false;
 		}
 
 		document.addEventListener('keydown', (e) => {
 			if ((e.metaKey || e.ctrlKey) && 186 === e.keyCode) {
-				this.$guid.classList.toggle('d-none');
+				this.rootElement.classList.toggle('d-none');
 			}
 		});
 

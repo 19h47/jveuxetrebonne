@@ -4,25 +4,25 @@ import config from 'js/config';
 
 export default class SingleMenu {
 	constructor() {
-		this.element = document.querySelector('.js-single-menu');
+		this.rootElement = document.querySelector('.js-single-menu');
 	}
 
 	init() {
-		if (null === this.element || 0 === this.element.length) {
-			return;
+		if (null === this.rootElement) {
+			return false;
 		}
 
-		this.is_open = config.body.$.hasClass('single-menu--is-open');
-		this.items = this.element.querySelectorAll('.js-single-menu-item');
-		this.thumbnails = this.element.querySelectorAll('.js-single-menu-thumbnail');
+		this.isOpen = config.body.$.hasClass('single-menu--is-open');
+		this.items = this.rootElement.querySelectorAll('.js-single-menu-item');
+		this.thumbnails = this.rootElement.querySelectorAll('.js-single-menu-thumbnail');
 
-		this.setupEvents();
+		return this.setupEvents();
 	}
 
 
 	setupEvents() {
 		$(document)
-			.on('click.single-menu', '.js-single-menu-button', this.toggle.bind(this))
+			.on('click.single-menu', '.js-single-menu-button', () => this.toggle())
 			.on('keydown.single-menu', (e) => {
 				if (27 === e.which) {
 					this.close();
@@ -33,34 +33,27 @@ export default class SingleMenu {
 			const target = el.children[0];
 			const { id } = target.dataset;
 
-			$(el).on({
-				mouseenter: $.proxy(() => {
-					// console.log('mouseenter');
+			el.addEventListener('mouseenter', () => {
+				this.rootElement.classList.add('is-hover');
 
-					this.element.classList.add('is-hover');
+				this.thumbnails.forEach((thumbnail) => {
+					if (thumbnail.dataset.id === id) {
+						thumbnail.classList.add('is-active');
+					}
+				});
+			});
 
-					this.thumbnails.forEach((thumbnail) => {
-						if (thumbnail.dataset.id === id) {
-							thumbnail.classList.add('is-active');
-						}
-					});
-				}, this),
-				mouseleave: $.proxy(() => {
-					// console.log('mouseout');
+			el.addEventListener('mouseleave', () => {
+				this.rootElement.classList.remove('is-hover');
 
-					this.element.classList.remove('is-hover');
-
-					this.thumbnails.forEach((thumbnail) => {
-						thumbnail.classList.remove('is-active');
-					});
-				}, this),
+				this.thumbnails.forEach((thumbnail) => thumbnail.classList.remove('is-active'));
 			});
 		});
 	}
 
 
 	toggle() {
-		if (this.is_open) {
+		if (this.isOpen) {
 			return this.close();
 		}
 
@@ -69,11 +62,11 @@ export default class SingleMenu {
 
 
 	close() {
-		if (!this.is_open) {
+		if (!this.isOpen) {
 			return;
 		}
 
-		this.is_open = false;
+		this.isOpen = false;
 
 		config.body.$
 			.removeClass('single-menu--is-open')
@@ -84,15 +77,15 @@ export default class SingleMenu {
 
 
 	open() {
-		if (this.is_open) {
-			return;
+		if (this.isOpen) {
+			return true;
 		}
 
-		this.is_open = true;
+		this.isOpen = true;
 
 		window.app.constructor.disableScroll();
 
-		config.body.$
+		return config.body.$
 			.addClass('single-menu--is-open')
 			.trigger('open.single-menu');
 	}

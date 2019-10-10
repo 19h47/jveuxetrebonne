@@ -59,11 +59,12 @@
         "webpack-notifier": "^1.8.0"
     },
     "dependencies": {
+        "@19h47/accordion": "^3.1.0",
         "architecture": "github:19h47/architecture",
         "bootstrap": "^4.3.1",
         "instafeed.js": "^1.4.1",
-        "mustache": "^2.3.2",
-        "plyr": "^2.0.18",
+        "mustache": "^3.1.0",
+        "plyr": "^3.5.6",
         "ress": "^1.2.2",
         "slick-carousel": "^1.8.1",
         "sprintf-js": "^1.1.2",

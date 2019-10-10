@@ -1,4 +1,4 @@
-/* global $ */
+/* global $, wp */
 
 
 import Mustache from 'mustache';
@@ -7,19 +7,19 @@ import { sprintf } from 'sprintf-js';
 
 export default class Search {
 	constructor() {
-		this.$element = $('.js-search');
+		this.rootElement = document.querySelector('.js-search');
 	}
 
 	init() {
-		if (this.$element && 0 === this.$element) {
+		if (null === this.rootElement) {
 			return false;
 		}
 
-		this.is_open = config.body.$.hasClass('search--is-open');
+		this.isOpen = config.body.$.hasClass('search--is-open');
 
-		this.$input = this.$element.find('.js-search-input');
-		this.$suggest = this.$element.find('.js-search-suggest');
-		this.$informations = this.$element.find('.js-search-informations');
+		this.$input = $(this.rootElement).find('.js-search-input');
+		this.$suggest = $(this.rootElement).find('.js-search-suggest');
+		this.$informations = $(this.rootElement).find('.js-search-informations');
 		this.$button = $('.js-search-button');
 		this.total = 0;
 
@@ -54,7 +54,6 @@ export default class Search {
 
 		$(document)
 			.on('click.search', '.js-search-button', this.toggle.bind(this))
-
 			.on('keydown.search', (e) => {
 				if (27 === e.which) {
 					this.close();
@@ -71,7 +70,7 @@ export default class Search {
 			},
 			minLength: 1,
 			delay: 600,
-			source: $.proxy((request, response) => {
+			source: (request, response) => {
 				this.lock();
 
 				// Easter egg
@@ -84,7 +83,7 @@ export default class Search {
 				}
 
 				$.ajax({
-					url: window.wp.search_api,
+					url: wp.search_api,
 					data: {
 						term: request.term,
 					},
@@ -110,7 +109,7 @@ export default class Search {
 					.then(this.construct.bind(this))
 					.then(this.append.bind(this))
 					.done(this.update.bind(this));
-			}, this),
+			},
 		});
 	}
 
@@ -119,7 +118,7 @@ export default class Search {
 	 * Search.toggle
 	 */
 	toggle() {
-		if (this.is_open) {
+		if (this.isOpen) {
 			return this.close();
 		}
 
@@ -131,11 +130,11 @@ export default class Search {
 	 * Search.close
 	 */
 	close() {
-		if (!this.is_open) {
+		if (!this.isOpen) {
 			return;
 		}
 
-		this.is_open = false;
+		this.isOpen = false;
 
 		this.total = 0;
 		this.$input.val('');
@@ -150,11 +149,11 @@ export default class Search {
 
 
 	open() {
-		if (this.is_open) {
+		if (this.isOpen) {
 			return;
 		}
 
-		this.is_open = true;
+		this.isOpen = true;
 
 		this.update();
 
@@ -172,10 +171,10 @@ export default class Search {
 	lock() {
 		// console.info('Search.lock');
 
-		this.$element.addClass('is-loading');
+		this.rootElement.classList.add('is-loading');
 
 		// Just in case
-		this.$element.removeClass('not-found');
+		this.rootElement.classList.remove('not-found');
 	}
 
 
@@ -185,7 +184,7 @@ export default class Search {
 	unlock() {
 		// console.info('Search.unlock');
 
-		this.$element.removeClass('is-loading');
+		this.rootElement.classList.remove('is-loading');
 	}
 
 
@@ -204,7 +203,7 @@ export default class Search {
 	 */
 	construct(suggests) {
 		if (null === suggests || 0 === suggests.length) {
-			this.$element.addClass('not-found');
+			this.rootElement.classList.add('not-found');
 			this.reset();
 
 			return false;
@@ -242,19 +241,15 @@ export default class Search {
 	 * @param string html
 	 */
 	append(html) {
-		// console.info('Search.append');
-
 		if (!html) {
-			return;
+			return false;
 		}
 
-		this.$suggest.html(html);
+		return this.$suggest.html(html);
 	}
 
 
 	reset() {
-		// console.info('Search.reset');
-
 		this.$suggest.html('');
 		this.total = 0;
 
@@ -282,12 +277,10 @@ export default class Search {
 			.data('total', this.total);
 
 		if (1 === this.total) {
-			// console.log(this.totalString);
 			this.$informations.find('span:eq( 1 )').html(this.success.replace(/s/g, ''));
 		}
 
 		if (1 < this.total) {
-			// console.log(this.totalString);
 			this.$informations.find('span:eq( 1 )').html(sprintf(this.success, 's', 'ent'));
 		}
 
@@ -295,7 +288,7 @@ export default class Search {
 
 		// console.log(this.$input.val().length);
 		if (0 === this.$input.val().length) {
-			this.$element.removeClass('not-found');
+			this.rootElement.classList.remove('not-found');
 			this.reset();
 		}
 	}

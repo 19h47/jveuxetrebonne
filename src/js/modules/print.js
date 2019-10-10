@@ -1,20 +1,19 @@
-/* global $ */
 
 export default class Print {
 	constructor() {
-		this.$element = $('.js-print');
+		this.rootElement = document.querySelector('.js-print');
 	}
 
 	init() {
-		if (0 === this.$element.length) {
-			return;
+		if (null === this.rootElement) {
+			return false;
 		}
 
-		this.initEvents();
+		return this.initEvents();
 	}
 
 	initEvents() {
-		this.$element.on('click', () => {
+		this.rootElement.addEventListener('click', () => {
 			window.print();
 		});
 	}

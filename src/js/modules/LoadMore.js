@@ -2,17 +2,17 @@
 
 export default class LoadMore {
 	constructor() {
-		this.element = document.querySelector('.js-load-more');
+		this.rootElement = document.querySelector('.js-load-more');
 	}
 
 	init() {
-		if (!this.element) {
+		if (!this.rootElement) {
 			return false;
 		}
 
-		this.container = this.element.querySelector('.js-load-more-container');
-		this.button = this.element.querySelector('.js-load-more-button');
-		this.filters = document.querySelectorAll('.js-filters-button');
+		this.container = this.rootElement.querySelector('.js-load-more-container');
+		this.button = this.rootElement.querySelector('.js-load-more-button');
+		this.filters = document.querySelectorAll('.js-filters-button') || false;
 		this.heading = document.querySelector('.js-heading') || null;
 
 		this.tag = this.button.dataset.tag || false;
@@ -35,9 +35,6 @@ export default class LoadMore {
 	}
 
 
-	/**
-	 * LoadMore.setup.events
-	 */
 	initEvents() {
 		this.button.addEventListener('click', () => {
 			// load more LoadMore with AJAX
@@ -113,17 +110,16 @@ export default class LoadMore {
 	}
 
 
-	/**
-	 * LoadMore.replace
-	 */
 	replace(html) {
 		if (!html) {
-			return;
+			return false;
 		}
 
 		$(this.heading).find('span').html(this.description);
 
 		this.container.innerHTML = html;
+
+		return true;
 	}
 
 
@@ -158,9 +154,6 @@ export default class LoadMore {
 	}
 
 
-	/**
-	 * LoadMore.lock.on
-	 */
 	on() {
 		if (this.container) {
 			this.container.classList.add('is-loading');
@@ -168,9 +161,6 @@ export default class LoadMore {
 	}
 
 
-	/**
-	 * LoadMore.lock.off
-	 */
 	off() {
 		if (this.container) {
 			this.container.classList.remove('is-loading');
