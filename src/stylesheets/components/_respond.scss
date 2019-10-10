@@ -1,0 +1,112 @@
+/**
+ * Respond
+ *
+ * @uses .Respond
+ */
+.Respond {
+	// @include font( 16, 80 );
+
+	font: {
+		size: ( $base-font-size / 16 ) * 1em;
+	}
+	
+	@include media-breakpoint-up( md ) { 
+		@include margin( right auto bottom 38px left auto );
+		width: percentage( 1090 / $container-width-without-outer-gutter-unitless );
+	}
+	
+	.email,
+	.author,
+	.url,
+	.comment {
+		@extend %font-title, %font-medium;
+		@include reset-placeholder( the_color( white ) );
+
+		border: {
+			bottom: {
+				color: the_color( white );
+				style: solid;
+				width: 1px;
+			}
+		}
+		color: the_color( white );
+		outline: none;
+	}
+
+
+	.comment,
+	.email, 
+	.author,
+	.url {
+		@include margin( top ( $grid-gutter-width / 2 ) );
+		@include padding( 
+			top ( $grid-gutter-width / 2 )
+			bottom ( $grid-gutter-width / 2 )
+		);
+	}
+	
+	.email {
+		@include media-breakpoint-up( md ) {
+
+			@include margin( 
+				right ( $grid-gutter-width / 2 ) 
+			);
+		}
+	}
+
+	.url {
+		@include media-breakpoint-up( md ) {
+
+			@include margin(
+				left ( $grid-gutter-width / 2 ) 
+			);
+		}
+	}
+
+	.email,
+	.url { 
+		width: 100%;
+
+		@include media-breakpoint-up( md ) {
+			width: calc( 50% - #{ $grid-gutter-width / 2 } ); 
+		}
+	}
+	
+	.comment,
+	.author { @extend %w-100; }
+
+	.comment {
+		height: ( $grid-gutter-width * 2 );
+		resize: none;
+	}
+
+	.submit,
+	.cancel {
+		@extend .d-inline-block, %font-semibold, %font-title;
+		@include font( 13, 33 );
+		
+		color: the_color( white );
+		width: calc( 50% - #{ $grid-gutter-width / 2 } );
+	}
+
+	.submit {
+		button {
+			@extend .Link-readmore, .Link-marker, .Link-marker--orange-soft;
+			@include margin( top ( $grid-gutter-width / 2 ) left $grid-gutter-width );
+
+			&:hover { &::before { opacity: .45!important; } }
+		}
+	}
+
+	.cancel {
+		@extend %text-align-right;
+		
+		// p { @include margin( top ( $grid-gutter-width / 2 ) right $grid-gutter-width ); }
+		
+		a {
+			@extend .Link-readmore, .Link-marker, .Link-marker--orange-soft;
+
+			&:hover { &::before { opacity: .25!important; } }
+		}
+	}
+}

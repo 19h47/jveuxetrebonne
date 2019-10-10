@@ -1,0 +1,191 @@
+/**
+ * Category
+ *
+ * @uses 	.Category
+ * @author 	Jérémy Levron <jeremylevron@19h47.fr>
+ */
+.Category {
+
+	/**
+	 * Header
+	 *
+	 * @uses .Category-header
+	 */
+	&-header {}
+
+
+	/**
+	 * List posts
+	 *
+	 * @uses .Category .List-posts
+	 */
+	.List-posts { 
+		@include margin( top -40px );
+
+		@include media-breakpoint-up( md ) {
+
+			@include margin( top -115px );
+		}
+	}
+
+
+	/**
+	 * List childs
+	 */
+	&-list-childs {
+		@extend %position-relative;
+		@include padding( top 43px );
+		@include margin( bottom 43px );
+
+		@include media-breakpoint-up( md ) { 
+			@include padding( top 0 );
+			@include margin( bottom 0 ); }
+
+		&::before {
+			@extend .d-block;
+			@include absolute( top 0 right 0 left 0 );
+			@include size( 100% );
+
+			// @include padding( top percentage( 180 / $psd-width-unitless ) );
+			content: '';
+			background: linear-gradient(
+				33deg, 
+				the_color( orange, light-grayish-01 ) 0%,
+				the_color( orange, light-grayish-02 ) 100%
+			);
+
+			@include media-breakpoint-up( md ) { @include size( 100%, 180px ); }
+		}
+		
+		.col-xs-2 {
+			@extend .d-inline-block;
+
+			float: none;
+		}
+
+		.next {
+			@include absolute( top 50% right 0 );
+			@include margin( top 0 right $grid-gutter-width-mobile );
+			
+			background: { 
+				image: url( '#{ map-get( $directories, svg ) }arrow-right-white.svg' );
+			}
+			transform: translate3d( 0, calc( -50% - 44px ), 0 );
+		}
+			
+
+		.previous {
+			@include absolute( top 50% left 0 );
+			@include margin( top 0 left $grid-gutter-width-mobile );
+			
+			background: { 
+				image: url( '#{ map-get( $directories, svg ) }arrow-left-white.svg' );
+			}
+			transform: translate3d( 0, calc( -50% - 44px ), 0 );
+		}
+
+
+		.next,
+		.previous {
+			@extend .d-inline-block, %vertical-align-middle, %Cursor-pointer, %Transition-ease;
+			@include size( 44px );
+			@include autoAlpha( 1 );
+
+			background: {
+				position: center;
+				size: 100%;
+			}
+			z-index: 1;
+
+			&[aria-disabled="true"],
+			&.slick-disabled {
+				@extend %Cursor-auto;
+				@include autoAlpha( 0 );
+			}
+		}
+	}	
+
+
+	/**
+	 * List child
+	 *
+	 * @uses .Category-list-child
+	 */
+	&-list-child {
+		@include padding( 
+			right percentage( 110 / 480 )
+			left percentage( 110 / 480 )
+		); 
+	
+
+		width: 100%;
+
+		animation: {
+			name: fade-in-down;
+			duration: .3s;
+			fill-mode: forwards;
+			timing-function: ease-in;
+		}
+		opacity: 0;
+		transform: translateY( ( $grid-gutter-width * -1 ) );
+
+		@include media-breakpoint-up( md ) { 
+			@include margin( top 43px );
+			@include padding( right 0 left 0 ); 
+		}
+		
+		&:hover,
+		&.is-active {
+			.thumbnail {
+				transform: translate3d( 0, ( ( $grid-gutter-width / 2 ) * -1 ), 0 );
+			}
+		}
+
+		.title {
+			$font-size: 13;
+			$line-height: 80.1;
+
+			@extend %font-title, %font-semibold, %margin-0;
+			
+			color: the_color( white );
+			font: {
+				size: ( $font-size * 1px );
+			}
+			line-height: ( $line-height / $font-size );
+
+			@include media-breakpoint-up( md ) {
+				color: the_color( blue, light-grayish );
+			}
+		}
+
+		.thumbnail {
+			@extend %position-relative, %overflow-hidden, %Transition-ease;
+			
+			box-shadow: 1px 3px 9px 0px rgba( the_color( gray, very-dark ), .09 ); 
+
+			transform: translate3d( 0, 0, 0 );
+
+			@include media-breakpoint-up( md ) {
+				border: {
+					radius: 50%;
+				}
+				box-shadow: 0 -3px 15px 0 rgba( the_color( red, bright ), .15 ); 
+
+			}
+
+			&::after {
+				@extend .d-block;
+				@include padding( top 100% );
+
+				content: '';
+			}
+
+			img {
+				@extend %Position-absolute-center;
+				@include size( 100% );
+				
+				object-fit: cover;
+			}
+		}
+	}
+}

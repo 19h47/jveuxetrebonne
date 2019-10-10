@@ -3,7 +3,7 @@
     /**
      * components/tease-posts
      * 
-     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     * @author  Jérémy Levron <jeremylevron@19h47.fr
      */
     
 #}
@@ -13,7 +13,7 @@
 	{% if loop.first %}
 		
 		<div class="row">
-			<div class="col-xs-12">
+			<div class="col-12">
 				<div class="Tease-posts-row">
 
 	{% endif %}
@@ -24,14 +24,14 @@
 	    	</div>
 	    </div>
 	    <div class="row">
-	    	<div class="col-xs-12">
+	    	<div class="col-12">
 	    		<div class="Tease-posts-row">
 	{% endif %}
 
 	{% include 'components/tease-post.twig' with { 'post' : post } %}
 
 	{# {% if ( loop.index ) % 5 == 0 %}
-	    </div></div></div><div class="row"><div class="col-xs-12"><div class="Tease-posts-row">
+	    </div></div></div><div class="row"><div class="col-12"><div class="Tease-posts-row">
 	{% endif %} #}
 
 	{% if loop.last %}

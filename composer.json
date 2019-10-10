@@ -1,9 +1,30 @@
 {
+    "name": "19h47/jveuxetrebonne",
     "require": {
-        "timber/timber": "^1.4",
-        "squizlabs/php_codesniffer": "*"
+        "timber/timber": "^1.11",
+        "vlucas/phpdotenv": "^3.3",
+        "19h47/set-glance-items": "dev-master",
+        "19h47/link": "dev-master"
     },
-    "scripts": {
-        "lint": "vendor/bin/phpcs --standard=WordPress"
+    "repositories": [{
+            "type": "git",
+            "url": "https://github.com/19h47/set-glance-items.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/19h47/link.git"
+        }
+    ],
+    "extra": {
+        "installer-paths": {
+            "../../plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "JVEB\\": "inc/"
+        }
     }
 }

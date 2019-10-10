@@ -1,0 +1,817 @@
+/**
+ * Slider
+ *
+ * @uses .Slider
+ */
+.Slider {
+
+	/**
+	 * Gallery WordPress
+	 *
+	 * Gallery shortcode transformed into slider
+	 *
+	 * @uses .Slider-post
+	 */
+	&-post {
+		$this: &;
+
+		@include margin(
+			top 2em
+			right ( $grid-gutter-width-mobile * -1 )
+			bottom 2em
+			left ( $grid-gutter-width-mobile * -1 )
+		);
+
+		width: calc( 100% + #{ ( $grid-gutter-width-mobile * 2 ) } );
+
+		@include media-breakpoint-up( md ) {
+			@include margin( right 0 left 0 );
+
+			width: auto;
+		}
+
+		&__items {
+			@extend %list-unstyled, %margin-0;
+		}
+
+		&__item {
+			$animation-duration: 1.15s;
+
+			@extend %margin-0, %position-relative, %vertical-align-middle;
+
+			height: 460px;
+
+			&::after {
+				@extend .d-block;
+				@include absolute( top 0 right 0 bottom 0 left 0 );
+
+				background: {
+					color: the_color( orange, light-grayish-01 );
+				}
+				content: '';
+
+				animation-duration: $animation-duration;
+				transform-origin: right center;
+				transform: translateX( 0% ) scaleY( 1 ) scaleX( 0 );
+			}
+
+			@at-root .slick-current & {
+
+				#{ $this }__img {
+					transition-delay: ( $animation-duration / 2 );
+					transform: translate3d( 0, 0, 0 );
+					opacity: 1;
+				}
+
+				&::after {
+					animation-name: filler;
+					animation-iteration-count: 1;
+					animation-timing-function: cubic-bezier( 0.81, 0.15, 0.26, 0.99 );
+				    animation-fill-mode: forwards;
+				}
+			}
+		}
+
+		&__img {
+			@extend %Position-absolute-center, .d-inline-block, %vertical-align-middle;
+			@include size( 100% );
+
+			transform: translate3d( ( $grid-gutter-width * -1 ), 0, 0 );
+			transition: .6s ease;
+			opacity: 0;
+
+			object-fit: cover;
+		}
+
+		&__progressbar {
+			@extend %Transition-ease;
+
+			height: 7px;
+			background: {
+				color: rgba( the_color( orange, light-grayish-01 ), 0 );
+				size: 0 100%;
+				image: linear-gradient( to right, the_color( orange, light-grayish-01 ), the_color( orange, light-grayish-01 ) );
+			}
+		}
+
+		&__navigation {
+			@include margin(
+				top 25px
+				right $grid-gutter-width-mobile
+				left $grid-gutter-width-mobile
+			);
+			@extend %text-align-right;
+
+			@include media-breakpoint-up( md ) {
+				@include margin( right 0 left 0 );
+			}
+
+			.next {
+				@extend .d-inline-block, %vertical-align-middle;
+				@include margin( right 10px left 10px );
+				@include size( 27px );
+
+				background: {
+					image: url( '#{ map-get( $directories, svg ) }arrow-right.svg' );
+					position: center;
+					size: 100%;
+				}
+			}
+
+			.previous {
+				@extend .d-inline-block, %vertical-align-middle;
+				@include margin( right 10px left 10px );
+				@include size( 27px );
+
+				background: {
+					image: url( '#{ map-get( $directories, svg ) }arrow-left.svg' );
+					position: center;
+					size: 100%;
+				}
+			}
+
+			.count {
+				@extend .d-inline-block, %font-title, %font-body, %position-relative, %vertical-align-middle;
+				@include margin( left 20px );
+				@include size( $grid-gutter-width );
+			}
+
+			.count-inner {
+				color: the_color( blue, light-grayish );
+				font: {
+					size: 12px
+				}
+				line-height: ( 21 / 12 );
+
+				&::before {
+					@extend .d-inline-block;
+
+					content: attr(data-count);
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * Slider rich content
+	 *
+	 * @uses .Slider-rich-content
+	 */
+	&-rich-content {
+
+		/**
+		 * Close button
+		 *
+		 * @uses .Slider-rich-content__close
+		 */
+		&__close {
+			@include absolute( top 0 left 0 );
+			@include size( 27px );
+			@include margin( top 21px left 21px );
+
+			background: {
+				image: url( '#{ map-get( $directories, svg ) }arrow-left-orange.svg' );
+				position: center;
+				size: 100%;
+			}
+			z-index: 1;
+		}
+
+
+		&__items {
+			@extend %margin-0, %position-relative;
+
+			background:
+			    linear-gradient(
+			    	135deg,
+			    	rgba( the_color( orange, very-soft-05 ), 1 ) 0%,
+			    	rgba( the_color( orange, light-grayish-03 ), 1 ) 100%
+			    );
+			list-style-type: none;
+
+			@include padding( right 61px left 71px );
+
+			@include media-breakpoint-up( md ) {
+				@include padding( right 0 left 0 );
+
+				background: initial;
+
+				&::before {
+					@include absolute(
+						top 0
+						right ( percentage( $grid-gutter-width-unitless / 182 ) * -1 )
+						bottom 0
+						// left ( percentage(  100 / 182 ) * -1 )
+					);
+					width: 50vw;
+				    background:
+				        linear-gradient(
+				        	135deg,
+				        	rgba( the_color( orange, very-soft-05 ), 1 ) 0%,
+				        	rgba( the_color( orange, light-grayish-03 ), 1 ) 100%
+				        );
+					content: '';
+				}
+			}
+		}
+
+		&__item {
+			@include margin( top 0 bottom 40px );
+
+			&:focus,
+			&:active {
+				outline: none;
+			}
+
+			.img {
+				@include margin( top 2em bottom 2em );
+				@include size( auto, 169px );
+
+				max-width: 100%;
+				object-fit: cover;
+				box-shadow: 1px 3px 9px 0px rgba( the_color( gray, very-dark ), .09 );
+			}
+
+			.title {
+
+				@extend %font-bold;
+				@include font( 17, 38 );
+				@include margin( top 2em );
+
+				color: the_color( orange, mostly-desaturated-dark );
+			}
+
+
+			.content {
+
+				@extend %font-title, %font-medium;
+				@include font( 12, 18 );
+
+				color: the_color( orange, slightly-desaturated );
+			}
+			.link {
+				@extend %font-semibold, %font-title;
+				@include font( 13.27, 23.68 );
+
+				color: the_color( orange, mostly-desaturated-dark );
+
+				&::before {
+					&:hover {
+						opacity: .3!important;
+					}
+				}
+			}
+		}
+
+		&__progressbar {
+			@extend %Transition-ease, %position-relative;
+
+
+			height: 7px;
+			background: {
+				color: the_color( white );
+				size: 0 100%;
+				image: linear-gradient( to right, the_color( orange, very-soft-04 ), the_color( orange, very-soft-04 ) );
+			}
+			width: 100%;
+			z-index: 2;
+
+
+			@include media-breakpoint-up( md ) {
+				left: percentage( 100 / 182 ) * -1;
+				width: percentage( 312 / 182 );
+				background: {
+					color: rgba( the_color( orange, very-soft-04 ), 0 );
+				}
+			}
+		}
+
+		&__navigation {
+			@extend %text-align-center, %text-align-md-right;
+			@include padding( top 31px right 61px bottom 31px left 71px );
+
+			background-color: the_color( white );
+
+			@include media-breakpoint-up( md ) {
+				@include padding( top 0 right 0 bottom 0 left 0 );
+				@include margin( top 27px );
+
+				background-color: transparent;
+
+			}
+
+			.next {
+				@extend .d-inline-block, %vertical-align-middle;
+				@include margin( right 10px left 10px );
+				@include size( 44px );
+
+				@include media-breakpoint-up( md ) {
+					@include size( 27px );
+				}
+
+				background: {
+					image: url( '#{ map-get( $directories, svg ) }arrow-right.svg' );
+					position: center;
+					size: 100%;
+				}
+			}
+
+			.previous {
+				@extend .d-inline-block, %vertical-align-middle;
+				@include margin( right 10px left 10px );
+				@include size( 44px );
+
+				@include media-breakpoint-up( md ) {
+					@include size( 27px );
+				}
+
+				background: {
+					image: url( '#{ map-get( $directories, svg ) }arrow-left.svg' );
+					position: center;
+					size: 100%;
+				}
+			}
+
+			.count {
+				@extend .d-inline-block, %font-title, %font-body, %position-relative, %vertical-align-middle;
+				@include margin( left 20px );
+				@include size( 44px );
+
+				@include media-breakpoint-up( md ) { @include size( $grid-gutter-width ); }
+			}
+
+			.count-inner {
+				@include font( 17.9, 44 );
+
+				color: the_color( blue, light-grayish );
+
+				@include media-breakpoint-up( md ) { @include font( 12, 21 ); }
+
+				&::before {
+					@extend .d-inline-block;
+
+					content: attr( data-count );
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * Slider category videos
+	 *
+	 * @uses .Slider-category-videos
+	 */
+	&-category-videos {
+		@extend %position-relative, %text-align-center;
+		@include padding( top 70px bottom 70px );
+
+		@include margin( bottom $grid-gutter-width-mobile );
+
+		@include media-breakpoint-up( md ) {
+			@include margin( bottom 0 );
+		}
+
+		&::before {
+			@extend .d-block;
+			@include absolute( top 0 right 0 left 0 );
+			@include size( 100% );
+
+			background:
+			    linear-gradient(
+			    	33deg,
+			    	rgba( the_color( orange, very-soft ), 1 ) 0%,
+			    	rgba( the_color( orange, light-grayish-01 ), 1 ) 100%
+			    );
+			content: '';
+
+			@include media-breakpoint-up( md ) {
+				height: 348px;
+			}
+		}
+
+		.items { @extend %list-unstyled, %margin-0, %padding-0; }
+		.item { @extend %margin-0; }
+		.List-post { @include margin( bottom 0 ); }
+
+		/**
+		 * Slider category videos
+		 *
+		 * @uses .Slider-category-videos .List-post-category-videos
+		 */
+		.List-post-category-videos {
+			// @extend .d-inline-block;
+			@include margin(
+				right $grid-gutter-width-mobile
+				left $grid-gutter-width-mobile
+			);
+
+			@include media-breakpoint-up( md ) {
+
+				@include margin(
+					right percentage( 120 / 848 )
+					left percentage( 120 / 848 )
+				);
+			}
+		}
+
+
+		.next {
+			@include margin( left 20px );
+
+			background: {
+				image: url( '#{ map-get( $directories, svg ) }arrow-right-white.svg' );
+			}
+
+			@include media-breakpoint-up( md ) {
+				@include margin( right percentage( 282 / $psd-width-unitless ) left auto );
+				top: 0;
+				right: 0;
+			}
+		}
+
+
+		.previous {
+			@include margin( right 20px );
+
+			background: {
+				image: url( '#{ map-get( $directories, svg ) }arrow-left-white.svg' );
+			}
+
+			@include media-breakpoint-up( md ) {
+				@include margin( right auto left percentage( 282 / $psd-width-unitless ) );
+				top: 0;
+				left: 0;
+			}
+		}
+
+
+		.next,
+		.previous {
+			@extend .d-inline-block, %vertical-align-middle, %Cursor-pointer, %Transition-ease, %position-relative, %position-md-absolute;
+			@include margin( top 40px );
+			@include size( 44px );
+
+			background: {
+				position: center;
+				size: 100%;
+			}
+			opacity: 1;
+			z-index: 1;
+
+			@include media-breakpoint-up( md ) {
+				@include margin( top 224px );
+				@include size( 27px );
+			}
+
+			&.slick-disabled {
+				@extend %Cursor-auto;
+				opacity: 0;
+			}
+		}
+	}
+
+
+	/**
+	 * Slider recipe
+	 *
+	 * @uses .Slider-recipe
+	 */
+	&-recipe {
+
+		$this: &;
+
+		@include margin(
+			right ( $grid-gutter-width-mobile * -1 )
+			bottom $grid-gutter-width
+			left ( $grid-gutter-width-mobile * -1 )
+		);
+		width: calc( 100% + #{ $grid-gutter-width-mobile * 2 } );
+
+		@include media-breakpoint-up( md ) {
+			width: auto;
+		}
+
+
+		/**
+		 * Title
+		 *
+		 * @uses .Slider-recipe__title
+		 */
+		&__title {
+			@extend %font-title, %font-bold, %text-align-center;
+			@include font( 20, 29 );
+			@include margin( top $grid-gutter-width bottom 0 );
+
+			color: the_color( blue, light-grayish );
+
+			@include media-breakpoint-up( md ) {
+				@include margin( top 70px bottom ( $grid-gutter-width / 3 )  );
+			}
+
+
+			&.title-step {
+				@include margin(
+					top $grid-gutter-width
+					bottom $grid-gutter-width
+				);
+
+				@include media-breakpoint-up( md ) {
+					@include margin(
+						top ( $grid-gutter-width * 3 )
+						bottom ( $grid-gutter-width * 3 )
+					);
+				}
+			}
+		}
+
+
+		&__ingredients {
+			@extend %font-title, %font-medium, %margin-y-0, %padding-y-0;
+			@include font( 16, 40 );
+
+			color: the_color( gray, very-dark-01 );
+			list-style-type: none;
+
+			@include media-breakpoint-between( 'xs', 'sm' ) { @include padding( left 0 ); }
+
+			@include media-breakpoint-up( md ) { list-style-type: disc; }
+
+			li {
+				// @extend %margin-y-0;
+
+				line-height: normal;
+			}
+		}
+
+
+		/**
+		 * Items
+		 *
+		 * @uses .slider-recipe .items
+		 */
+		.items {
+			@extend %list-unstyled, %margin-y-0;
+
+			height: calc( 100vh - #{ ( 64 + 7 + 25 + 30 ) }px );
+
+			box-shadow: 0px 0px 15px 0px rgba( the_color( gray, very-dark ), .07 );
+
+			@include media-breakpoint-up( md ) { height: 650px; }
+
+			.slick-list, .slick-track { @extend %h-100; }
+		}
+
+		.item {
+			@extend %margin-y-0;
+
+			height: 100%;
+
+			&__inner {
+				$animation-duration: 1.15s;
+
+				@extend .d-inline-block, %vertical-align-middle, %position-relative;
+				@include size( 100% );
+
+				@include media-breakpoint-up( md ) {
+					@include size( 50%, 100% );
+				}
+
+
+				&::after {
+					@extend .d-block;
+					@include absolute( top 0 right 0 bottom 0 left 0 );
+
+					background: { color: the_color( orange, light-grayish-01 ); }
+					content: '';
+
+					animation-duration: $animation-duration;
+					transform-origin: right center;
+					transform: translateX( 0% ) scaleY( 1 ) scaleX( 0 );
+				}
+
+				@at-root .item.slick-current .item__inner {
+
+					img {
+						transition-delay: ( $animation-duration / 2 );
+						transform: translate3d( 0, 0, 0 );
+						opacity: 1;
+					}
+
+					@include media-breakpoint-up( md ) {
+
+						&::after {
+							animation-name: filler;
+							animation-iteration-count: 1;
+							animation-timing-function: cubic-bezier( 0.81, 0.15, 0.26, 0.99 );
+						    animation-fill-mode: forwards;
+						}
+					}
+
+				}
+
+				&.ingredients-mobile {
+				 	@extend %font-title;
+					@include padding( right $grid-gutter-width / 2 left $grid-gutter-width / 2 );
+					@include absolute( top 50% right 0 left 0 );
+
+					transform: translate3d(0, -50%, 0);
+					height: auto!important;
+				}
+				&.image-mobile { background: { color: the_color( orange, light-grayish-01 ); } }
+
+				&:nth-child( 1 ) {
+					@extend /* .d-none, */ .d-md-inline-block;
+
+					height: 100%;
+
+					@include media-breakpoint-up( md ) {
+						background: { color: the_color( orange, light-grayish-01 ); }
+					}
+
+					img {
+						@extend .d-inline-block, %vertical-align-middle;
+						@include size( 100% );
+
+						object-fit: cover;
+					}
+				}
+
+				&:nth-child( 2 ) {
+					@extend %font-semibold, %font-title;
+					@include padding(
+						right $grid-gutter-width
+						left $grid-gutter-width
+					);
+					@include font( 16, 29 );
+
+					background: { color: the_color( white ); }
+					overflow: hidden;
+					// overflow-y: scroll;
+
+					color: the_color( gray, very-dark-01 );
+
+				}
+				p { @extend %text-align-center; }
+
+				.person-number,
+				.preparation-time,
+				.cooking-time {
+
+					@extend %text-align-center, .d-inline-block;
+
+					&::before {
+						@include size( 25px );
+						@include margin( right 10px );
+						@extend .d-inline-block, %vertical-align-middle;
+
+						content: '';
+					}
+				}
+
+				.person-number,
+				.preparation-time {
+
+					@include margin(
+						top $grid-gutter-width
+						bottom $grid-gutter-width
+					);
+					border: {
+						right: {
+							color: rgba( the_color( white ), .45  );
+							style: solid;
+							width: 1px;
+						}
+					}
+
+					@include media-breakpoint-up( md ) {
+
+						@include margin(
+							top ( $grid-gutter-width * 2 )
+							right 20px
+							bottom ( $grid-gutter-width * 2 )
+						);
+					}
+				}
+
+				.person-number {
+					// width: percentage( 170 / 742 );
+
+					&::before {
+						background: {
+							image: url('#{ map-get( $directories, svg )}person-number-gray.svg' );
+						}
+					}
+				}
+				.preparation-time {
+					// width: percentage( 171 / 742 );
+
+					&::before {
+						background: {
+							image: url('#{ map-get( $directories, svg )}preparation-time-gray.svg' );
+						}
+					}
+				}
+				.cooking-time {
+					// width: percentage( 166 / 742 );
+
+					&::before {
+						background: {
+							image: url('#{ map-get( $directories, svg )}cooking-time-gray.svg' );
+						}
+					}
+				}
+			}
+		}
+
+
+		&__progressbar {
+			@extend %Transition-ease;
+
+			height: 7px;
+			background: {
+				color: rgba( the_color( blue, light-grayish ), 0 );
+				size: 0 100%;
+				image: linear-gradient( to right, the_color( blue, light-grayish ), the_color( blue, light-grayish ) );
+			}
+		}
+
+
+		&__navigation {
+			@include margin(
+				top 25px
+				right $grid-gutter-width-mobile
+				left $grid-gutter-width-mobile
+			);
+			@extend %text-align-center, %text-align-md-right, %position-relative;
+
+			@include media-breakpoint-up( md ) {
+				@include margin( right 0 left 0 );
+			}
+
+
+			.next {
+				@extend .d-inline-block, %vertical-align-middle;
+				@include margin( right 10px left 10px );
+				@include size( 40px );
+
+				@include media-breakpoint-up( md ) {
+					@include size( 27px );
+				}
+
+				background: {
+					image: url( '#{ map-get( $directories, svg ) }arrow-right.svg' );
+					position: center;
+					size: 100%;
+				}
+			}
+
+			.previous {
+				@extend .d-inline-block, %vertical-align-middle;
+				@include margin( right 10px left 10px );
+				@include size( 40px );
+
+				@include media-breakpoint-up( md ) {
+					@include size( 27px );
+				}
+
+				background: {
+					image: url( '#{ map-get( $directories, svg ) }arrow-left.svg' );
+					position: center;
+					size: 100%;
+				}
+			}
+
+
+			.count {
+				@extend .d-inline-block, %font-title, %font-body, %position-md-relative, %vertical-align-middle;
+				@include margin( left 20px );
+				@include size( 40px );
+
+				@include absolute( top 0 right 0 bottom 0 );
+
+				@include media-breakpoint-up( md ) { @include size( $grid-gutter-width ); }
+			}
+
+			.count-inner {
+				color: the_color( blue, light-grayish );
+				font: {
+					size: 14px;
+				}
+				line-height: ( 64 / 26.03 );
+
+				@include media-breakpoint-up( md ) {
+					font-size: 12px;
+					line-height: ( 21 / 12 );
+				}
+
+				&::before {
+					@extend .d-inline-block;
+
+					content: attr(data-count);
+				}
+			}
+		}
+	}
+}

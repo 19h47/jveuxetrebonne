@@ -1,34 +1,34 @@
 /**
  * Guid
- * 
+ *
  * /src/scss/components/guid
  *
  * @uses .Guid
- * @author Jérémy Levron <levronjeremy@19h47.fr>
+ * @author Jérémy Levron <jeremylevron@19h47.fr>
  */
 .Guid {
-	@extend %Position-fixed-center;
-	
+	@extend %Position-fixed-center, %Pointer-events-none;
+
 	z-index: 10000;
-	
+
 
 	/**
-	 * Match all classes starting by col-xs
-	 */	
-	[class^='col-xs'] .Guid__column {
+	 * Match all classes starting by col-
+	 */
+	[class^='col-'] .Guid__column {
 		background: {
 			color: rgba( the_color( blue, pure ), .2 );
 		}
 	}
 
 
-	[class^='col-xs']:nth-child(odd) .Guid__column {
+	[class^='col-']:nth-child(odd) .Guid__column {
 		background: {
 			color: rgba( the_color( red, strong ), .2 );
 		}
 	}
-	
-  	
+
+
   	/**
   	 * Guid
   	 *
@@ -36,7 +36,7 @@
   	 */
 	&__column {
 		@include size( 100% );
-		
+
 		color: rgba( the_color( black ), .2 );
 	}
 }

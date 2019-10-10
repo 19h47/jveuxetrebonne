@@ -1,20 +1,20 @@
 {#
-    
+
     /**
      * partials/recipe-print
-     * 
-     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     *
+     * @author  Jérémy Levron <jeremylevron@19h47.fr
      */
-    
+
 #}
 <div class="Recipe-print">
 	<h1>{{- post.title -}}</h1>
 	<p class="date">{{- pll__( 'Publié le' ) -}}&nbsp;{{- post.post_date | date( 'd\.m\.Y' ) -}}</p>
 
 	{% spaceless %}
-	
+
 	<div class="color-orange-very-soft">
-		
+
 		{% if post.person_number or post.preparation_time or post.cooking_time %}
 			<div class="summary">
 				{{ post.person_number ? '<span class="person-number">' ~ post.person_number ~ ' pers.' ~ '</span>' }}
@@ -22,11 +22,11 @@
 				{{ post.cooking_time ? '<span class="cooking-time">' ~ post.cooking_time ~ ' min' ~ '</span>' }}
 			</div>
 		{% endif %}
-		
+
 
 		{# Collection #}
 		{% for collection in post.get_field( 'collection' ) %}
-			
+
 			{% if collection.description %}
 				<div class="summary-title color-orange-very-soft-06">
 					{{- collection.description -}}
@@ -44,7 +44,7 @@
 				</ul>
 			</div>
 		{% endfor %}
-	</div>	
+	</div>
 
 	{% endspaceless %}
 
@@ -55,13 +55,13 @@
 		{% for collection in post.get_field( 'collection' ) %}
 
 			{% if collection.steps %}
-				
+
 				{# Steps #}
 				{% for step in collection.steps %}
 
 					{{ step.description }}
 
-				{% endfor %}	
+				{% endfor %}
 
 			{% endif %}
 
@@ -71,15 +71,15 @@
 	{% endif %}
 
 	<footer>
-		
-		
-		<img class="logo" src="{{ theme.link }}/img/svg/logo-orange-very-dark.svg" width="156" height="120"/>
+
+
+		<img class="logo" src="{{ theme.link }}/{{ manifest['img/svg/logo-orange-very-dark.svg'] }}" width="156" height="120"/>
 
 		<p class="copyright">
 			<span class="color-blue-light-grayish-02">Recette proposée par le blog</span> www.jveuxetrebonne.com
 		</p>
-		
-		
+
+
 	</footer>
 
 </div>

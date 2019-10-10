@@ -18,10 +18,10 @@ class acf_location_rule {
 	/**
 	 * __construct
 	 *
-	 * @param  String 	$rule_name
+	 * @param  string 	$rule_name
 	 * @access public
 	 */
-	public function __construct( $rule_name ) {
+	public function __construct( string $rule_name ) {
 
 		$this->rule_name = $rule_name;
 

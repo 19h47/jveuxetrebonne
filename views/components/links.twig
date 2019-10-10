@@ -3,7 +3,7 @@
     /**
      * components/links
      * 
-     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     * @author  Jérémy Levron <jeremylevron@19h47.fr
      */
     
 #}
@@ -13,7 +13,7 @@
 
 	<header class="l-container">
 		<div class="row">
-			<div class="col-xs-12">
+			<div class="col-12">
 				<div class="Link-blogrolls-header">
 					<h2 class="title">{{ pll__( 'Récompenses et jveb dans la presse' ) }}</h2>
 				</div>
@@ -27,7 +27,7 @@
 			{# Récompense #}
 			{% for link in links if link.terms()[0].slug == 'recompense' %}
 				
-				<div class="col-xs-12 col-md-4">
+				<div class="col-12 col-md-4">
 					{% include 'components/link.twig' %}
 				</div>
 
@@ -40,7 +40,7 @@
 	<div class="l-container Link-blogrolls-category-presse">
 		<div class="row">
 
-			<div class="col-xs-12 Link-blogrolls-category-presse__container text-md-center">
+			<div class="col-12 Link-blogrolls-category-presse__container text-md-center">
 				{# Presse #}
 				{% spaceless %}
 					

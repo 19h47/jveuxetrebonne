@@ -1,11 +1,11 @@
 {#
-    
+
     /**
      * /views/components/menu
-     * 
-     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     *
+     * @author  Jérémy Levron <jeremylevron@19h47.fr
      */
-    
+
 #}
 
 {% spaceless %}
@@ -20,9 +20,9 @@
 
     <li class="item{{ layout.marker ? ' has-stroke-marker' }} {{ item.class }}">
 
-        <a 
-            class="{{ item.current ? ' is-current' }}" 
-            target="{{ item.target }}" 
+        <a
+            class="{{ item.current ? ' is-current' }}"
+            target="{{ item.target }}"
             href="{{ item.url }}"
         >
             {{ layout.marker ? '<span>' }}
@@ -41,11 +41,9 @@
 
 <li class="menu-item-button item">
     <button class="js-single-menu-button">
-        <svg class="Icon magnifying-glass">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ theme.link }}/dist/svg/icons.svg#hamburger"></use>
-        </svg>
+		{% include 'svg/use.html.twig' with { icon: 'hamburger', classes: [ 'Icon', 'magnifying-glass' ] } %}
     </button>
-</li> 
+</li>
 
 {% endif %}
 
@@ -56,7 +54,7 @@
     {% set languages = pll_the_languages( { 'raw': true } ) %}
 
     {% for lang in languages if not lang.current_lang %}
-        
+
         <li class="item menu-item-lang {{ lang.classes | join(' ') }}">
             <a href="{{ lang.url }}">
                 <span class="en">EN</span>
@@ -74,11 +72,9 @@
 {% if search %}
 
 <li class="hidden-xs hidden-sm item menu-item-search">
-    
+
     <button class="menu-item-search__button js-search-button">
-        <svg class="Icon magnifying-glass">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ theme.link }}/dist/svg/icons.svg#magnifying-glass"></use>
-        </svg>
+		{% include 'svg/use.html.twig' with { icon: 'magnifying-glass', classes: [ 'Icon', 'magnifying-glass' ] } %}
     </button>
 
 </li>

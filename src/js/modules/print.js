@@ -1,29 +1,21 @@
-var $ = require('jquery');
+/* global $ */
 
-/**
- * Print
- */
-function Print() {
-	if (!(this instanceof Print)) {
-        	return new Print();
+export default class Print {
+	constructor() {
+		this.$element = $('.js-print');
 	}
 
-	this.$element = $('.js-print');
+	init() {
+		if (0 === this.$element.length) {
+			return;
+		}
 
-	if (this.$element.length === 0) {
-		return;
+		this.initEvents();
 	}
 
-	this.initEvents();
-}
-
-Print.prototype = {
-	initEvents: function() {
-		this.$element.on('click', function() {
-			 window.print();
+	initEvents() {
+		this.$element.on('click', () => {
+			window.print();
 		});
 	}
-};
-
-
-module.exports = Print;
+}

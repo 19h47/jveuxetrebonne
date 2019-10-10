@@ -2,10 +2,10 @@
 404
 
 @file   views/pages/404
-@author Jérémy Levron <jeremylevron@19h47.fr> (http://19h47.fr)
+@author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
 
 #}
-{% extends 'index.twig' %}
+{% extends 'index.html.twig' %}
 
 {% block content %}
 
@@ -23,19 +23,16 @@
 					with { classes: [ 'Icon' ], icon: 'magnifying-glass' }
 					only
 				%}
-			    {# <svg class="Icon magnifying-glass">
-			        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ theme.link }}/dist/svg/icons.svg#magnifying-glass"></use>
-			    </svg> #}
 			</button>
 
 			<div class="row">
 
-				<div class="col-xs-4 col-xs-offset-4 col-md-1 col-md-offset-0">
+				<div class="col-4 offset-4 col-md-1 offset-md-0">
 					<div class="Header-logo">
 						{% include 'components/header-logo.twig' %}
 					</div>
 				</div>
-				<div class="col-xs-4 col-md-10 col-md-offset-1">
+				<div class="col-4 col-md-10 offset-md-1">
 
 					<ul class="Menu" role="navigation">
 						{%
@@ -55,7 +52,7 @@
 
 	<div class="l-container error404-content">
 		<div class="row">
-			<div class="col-xs-12 col-md-8 col-md-offset-2">
+			<div class="col-12 col-md-8 col-md-offset-2">
 				<h1 class="font-bold">{{- pll__( 'Oops! Cette page ne peut être trouvée.' ) -}}</h1>
 				<p>
 					{{- pll__( "Il semble que rien n'ait été trouvé à cet endroit. Peut-être essayer une recherche ?" ) -}}

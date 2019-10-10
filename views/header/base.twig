@@ -4,7 +4,7 @@
 	 *
 	 * @package WordPress
 	 * @subpackage jveb
-	 * @author Jérémy Levron levronjeremy@19h47.fr
+	 * @author Jérémy Levron jeremylevron@19h47.fr
 	 */
 #}
 
@@ -15,7 +15,7 @@
 <!--[if !(IE 9)]><!-->
 <html {{ language_attributes }} {{ html_class( 'no-js no-touch' ) }}>
 <!--<![endif]-->
-	
+
 	<head>
 
 		<meta charset="{{ site.charset }}">
@@ -29,4 +29,5 @@
 
 	</head>
 
-	<body {{ body_class() }}>				
+	<body {{ body_class() }}>
+		<div id="svg-sprite" class="d-none" style="display: none;">{% include '/dist/icons.svg' %}</div>

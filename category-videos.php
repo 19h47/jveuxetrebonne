@@ -1,15 +1,11 @@
 <?php
-
 /**
- * @file 		category-videos
- * @package  	jveb
- * @author  	Jérémy Levron <jeremylevron@19h47.fr> (http://19h47.fr)
+ * @file category-videos
+ * @package JVEB
+ * @author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
  */
 
-if ( ! class_exists( 'Timber' ) ) {
-	echo 'Timber not activated. Make sure you activate the plugin in <a href="/wp-admin/plugins.php#timber">/wp-admin/plugins.php</a>';
-	return;
-}
+use Timber\{ Timber, Post };
 
 $context = Timber::get_context();
 $context['posts'] = Timber::get_posts();
@@ -28,11 +24,8 @@ $count_query = new WP_Query(
 		'post_type' 			=> 'post',
 		'posts_per_page'		=> -1,
 		'category__in'			=> $category->term_id
-
 	)
 );
-
-
 
 $context['post_per_page'] = 9;
 $context['found_posts'] = $count_query->found_posts;

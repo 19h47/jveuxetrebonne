@@ -1,48 +1,31 @@
-module.exports = App;
+/* global $ */
 
-var $ = require('jquery');
-var config = require('../config');
-var css = require('dom-css');
+import config from 'js/config';
 
 
-/**
- * App
- */
-function App() {
-	if (!(this instanceof App)) {
-		return new App();
+export default class App {
+	constructor() {
+		console.log('%c🔥 Les Indiens x 19h47 🔥', 'background-color:#000;color:#fff;padding:0.5em 1em;');
 	}
 
-	console.log('%c🔥 Les Indiens x 19h47 🔥', 'background-color:#000;color:#fff;padding:0.5em 1em;' );
 
-}
-
-
-App.prototype = {
-
-	/**
-	 * App.disableScroll
-	 */
-	disableScroll: function() {
-		// console.log('App.disableScroll');
-
+	static disableScroll() {
 		// lock scroll position, but retain settings for later
 		// http://stackoverflow.com/a/3656618
-		config.body.scroll.left = self.pageXOffset || document.documentElement.scrollLeft  || document.body.scrollLeft;
-		config.body.scroll.top = self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop;
+		config.body.scroll.left = self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft; // eslint-disable-line no-restricted-globals, max-len
+		config.body.scroll.top = self.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop; // eslint-disable-line no-restricted-globals, max-len
 
-		css(config.html, 'overflow', 'hidden');
+		config.html.style.setProperty('overflow', 'hidden');
 
-		this.resetScroll(config.body.scroll.left, config.body.scroll.top);
+		App.resetScroll(config.body.scroll.left, config.body.scroll.top);
 
 		// disable scroll on touch devices as well
 		if (config.is.touch) {
-
-			document.addEventListener('touchmove.app', function(e) {
+			document.addEventListener('touchmove.app', (e) => {
 				e.preventDefault();
 			});
 		}
-	},
+	}
 
 
 	/**
@@ -50,114 +33,76 @@ App.prototype = {
 	 *
 	 * @param  position
 	 */
-	enableScroll: function(position) {
-		// console.log('App.enableScroll');
+	static enableScroll(position) {
+		let current = position;
 
-		if (typeof position === 'undefined') {
-			position = config.body.scroll.top;
+		if ('undefined' === typeof position) {
+			current = config.body.scroll.top;
 		}
 
-		var resume_scroll = true;
-		if (typeof position === 'boolean' && position === false) {
-			resume_scroll = false;
+		let resumeScroll = true;
+		if ('boolean' === typeof current && false === current) {
+			resumeScroll = false;
 		}
 
 		// unlock scroll position
 		// http://stackoverflow.com/a/3656618
-		css(config.html, 'overflow', 'visible');
+		config.html.style.setProperty('overflow', 'visible');
 
 		// resume scroll position if possible
-		if (resume_scroll) {
-			this.resetScroll(config.body.scroll.left, position);
+		if (resumeScroll) {
+			App.resetScroll(config.body.scroll.left, current);
 		}
 
 		// enable scroll on touch devices as well
 		if (config.is.touch) {
 			$(document).off('touchmove.app');
 		}
-	},
+	}
 
 
 	/**
 	 * App.resetScroll
 	 *
-	 * @param  position_x
-	 * @param  position_y
+	 * @param  x
+	 * @param  y
 	 */
-	resetScroll: function(position_x, position_y) {
-
-		if (typeof position_x !== 'undefined') {
-			config.body.scroll.left = parseInt(position_x);
+	static resetScroll(x, y) {
+		if ('undefined' !== typeof x) {
+			config.body.scroll.left = parseInt(x, 10);
 		}
 
-		if (typeof position_y !== 'undefined') {
-			config.body.scroll.top = parseInt(position_y);
+		if ('undefined' !== typeof y) {
+			config.body.scroll.top = parseInt(y, 10);
 		}
 
 		window.scrollTo(config.body.scroll.left, config.body.scroll.top);
-	},
+	}
 
 
-	/**
-	 * App.addState
-	 *
-	 * @param 	state
-	 * @author 	Julien Vasseur julien@poigneedemainvirile.com
-	 */
-	addState: function(state) {
+	static scrollTo() {
+		const elements = document.querySelectorAll('.js-scroll-to');
 
-		config.body.$.addClass(state);
-	},
-
-
-	/**
-	 * App.removeState
-	 *
-	 * @param 	state
-	 * @author 	Julien Vasseur julien@poigneedemainvirile.com
-	 */
-	removeState: function(state) {
-		var deferred = new $.Deferred();
-
-		config.body.$.removeClass(state);
-
-		deferred.promise();
-
-		return deferred.resolve();
-	},
-
-
-	/**
-	 * App.scrollTo
-	 */
-	scrollTo: function() {
-		var elements = document.querySelectorAll('.js-scroll-to');
-
-		elements.forEach(function(element) {
-			var offset = element.dataset.offset;
-
-			// console.log(offset);
+		elements.forEach((element) => {
+			let { offset } = element.dataset;
 
 			switch (offset) {
 				case 'bottom':
 					offset = document.body.scrollHeight;
-
-				break;
+					break;
 
 				case 'top':
 					offset = 0;
-
-				break;
+					break;
+				default:
+					break;
 			}
 
-			element.addEventListener('click', function(){
-				// window.scrollTo(0, offset);
-
+			element.addEventListener('click', () => {
 				$('html, body').animate({
-				        scrollTop: offset
-			    }, 200);
+					scrollTop: offset,
+				}, 200);
 			});
-
 		});
 	}
-};
+}

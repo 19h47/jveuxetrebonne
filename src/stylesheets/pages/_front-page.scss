@@ -1,0 +1,50 @@
+/**
+ * Front page
+ *
+ * Thanks to WordPress filter we add a .Front-page class to home instead of 
+ * using the ugly .home class, wich is meaningless here.
+ *
+ * @uses 	.Front-page
+ * @author 	Jérémy Levron <jeremylevron@19h47.fr>
+ */
+.Front-page {
+
+	/**
+	 * Header
+	 *
+	 * @uses .Front-page-header
+	 */
+	&-header {}
+	
+
+	/**
+	 * Sticky posts
+	 *
+	 * @uses .Front-page .Sticky-posts
+	 */
+	.Sticky-posts { 
+		@include margin( bottom ( $grid-gutter-width * 2 ) );
+
+		@include media-breakpoint-up( md ) {
+			@include margin( bottom ( $grid-gutter-width * 4 ) ); }
+		}
+
+
+	/**
+	 * Tease posts
+	 *
+	 * @uses .Front-page .Tease-posts
+	 */
+	.Tease-posts { 
+		@include margin( top -40px ); 
+
+		@include media-breakpoint-up( md ) {
+			@include margin( top -115px ); 
+		}
+	}
+
+
+	.Slider-category-videos .List-post-meta {
+		@include media-breakpoint-between( 'xs', 'sm' ) { color: the_color( white ); }
+	}
+}

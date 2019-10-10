@@ -3,7 +3,7 @@
     /**
      * partials/Slider-recipe
      * 
-     * @author  Jérémy Levron <levronjeremy@19h47.fr
+     * @author  Jérémy Levron <jeremylevron@19h47.fr
      */
     
 #}
@@ -35,7 +35,7 @@
 					</h3>
 					
 					{% if post.person_number or post.preparation_time or post.cooking_time %}
-						<div class="text-xs-center">
+						<div class="text-align-center">
 						{{ post.person_number ? '<span class="person-number">' ~ post.person_number ~ ' pers.' ~ '</span>' }}
 						{{ post.preparation_time ? '<span class="preparation-time">' ~ post.preparation_time ~ ' min' ~ '</span>' }}
 						{{ post.cooking_time ? '<span class="cooking-time">' ~ post.cooking_time ~ ' min' ~ '</span>' }}
@@ -137,7 +137,7 @@
 					</h3>
 					
 					{% if post.person_number or post.preparation_time or post.cooking_time %}
-						<div class="text-xs-center">
+						<div class="text-align-center">
 						{{ post.person_number ? '<span class="person-number">' ~ post.person_number ~ ' pers.' ~ '</span>' }}
 						{{ post.preparation_time ? '<span class="preparation-time">' ~ post.preparation_time ~ ' min' ~ '</span>' }}
 						{{ post.cooking_time ? '<span class="cooking-time">' ~ post.cooking_time ~ ' min' ~ '</span>' }}

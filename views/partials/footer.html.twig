@@ -1,7 +1,7 @@
 {#
 
 @file views/partials/footer
-@author Jérémy Levron <jeremylevron@19h47.fr> (http://19h47.fr)
+@author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
 
 #}
 <footer class="Footer">
@@ -9,12 +9,12 @@
 	<div class="l-container">
 		<div class="row">
 
-			<div class="col-xs-12">
+			<div class="col-12">
 				<div class="Footer-logo">
 					<a href="{{ site.url }}">
 						<img
 							class="img-full"
-							src="{{ theme.link }}/img/svg/logo-orange.svg"
+							src="{{ theme.link }}/{{ manifest['img/svg/logo-orange.svg'] }}"
 							alt="{{ site.description }}"
 						/>
 					</a>
@@ -23,11 +23,7 @@
 
 		</div>
 		<div class="row">
-
-
-			<div class="col-xs-12 col-md-10 col-md-offset-1 text-xs-center">
-
-
+			<div class="col-12 col-md-10 offset-md-1 text-align-center">
 				<ul class="Menu" role="navigation">
 
 					{%
@@ -48,9 +44,7 @@
 					{% for social in contact.socials %}
 						<li class="Footer-socials__item">
 							<a href="{{ social.url }}" title="{{ social.name }}" data-title="{{ social.name }}">
-								<svg class="{{ social.slug }}" role="img">
-									<use xlink:href="{{ theme.link }}/dist/svg/icons.svg#{{ social.slug }}"/>
-								</svg>
+								{% include 'svg/use.html.twig' with { classes: [ social.slug ], icon: social.slug } %}
 							</a>
 						</li>
 					{% endfor %}
@@ -58,14 +52,10 @@
 
 			</div>
 
-			<div class="col-xs-12 col-md-1 text-xs-center">
-
+			<div class="col-12 col-md-1 text-align-center">
 				<button class="Footer-button js-scroll-to" data-offset="top">
-					<svg class="" viewbox="0 0 32 32">
-					   <use xlink:href="{{ theme.link }}/dist/svg/icons#arrow-top"></use>
-					</svg>
+					{% include 'svg/use.html.twig' with { icon: 'arrow-top' } %}
 				</button>
-
 			</div>
 		</div>
 	</div>
@@ -74,12 +64,12 @@
 	<div class="Footer-copyright">
 		<div class="l-container">
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-12">
 					{% spaceless %}
 					<span><i>© JVEB&nbsp;{{ 'now' | date( 'Y' ) -}}</i></span>
 					<span>Design, <i><a href="http://lesindiens.fr/" target="_blank">Studio Les Indiens</a></i></span>
 					<span>&nbsp;&#124;&nbsp;</span>
-					<span>Développement, <i><a href="http://19h47.fr/" target="_blank">19h47</a></i></span>
+					<span>Développement, <i><a href="https://19h47.fr/" target="_blank">19h47</a></i></span>
 					{% endspaceless %}
 				</div>
 			</div>

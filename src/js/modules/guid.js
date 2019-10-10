@@ -1,19 +1,23 @@
-module.exports = Guid;
-
-var classes = require('dom-classes');
-var select = require('dom-select');
 
 /**
  * Guid
  */
-function Guid() {
-	if (!(this instanceof Guid)) {
-		return new Guid();
+export default class Guid {
+	constructor() {
+		this.$guid = document.querySelector('.js-guid');
 	}
 
-	// show/hide guides with CMD+;
-	document.addEventListener('keydown',function(e) {
+	init() {
+		if (null === this.$guid) {
+			return false;
+		}
 
-		(e.metaKey || e.ctrlKey) && e.keyCode === 186 && classes.toggle(select('.Guid'), 'display-xs-none');
-	});
+		document.addEventListener('keydown', (e) => {
+			if ((e.metaKey || e.ctrlKey) && 186 === e.keyCode) {
+				this.$guid.classList.toggle('d-none');
+			}
+		});
+
+		return true;
+	}
 }

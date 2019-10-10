@@ -1,0 +1,115 @@
+/**
+ * Relationship posts
+ *
+ * @uses .Relationship-posts
+ */
+.Relationship-posts {
+
+	@include media-breakpoint-up( md ) {
+
+		overflow-x: hidden;
+	}
+
+	&__inner {
+		@extend %position-relative, %text-align-center, %text-align-md-left;
+
+		@include margin( bottom 56px );
+		
+		@include media-breakpoint-up( md ) {
+	
+			@include margin(
+				right percentage( 53 / $container-width-without-outer-gutter-unitless )
+				bottom 0
+				left percentage( 188 / $container-width-without-outer-gutter-unitless )
+			);
+
+			.slick-list { overflow: visible; }
+		}
+	}
+	
+	/**
+	 * Items
+	 *
+	 * @uses .items
+	 */
+	.items { @extend %list-unstyled, %margin-0; }
+
+	
+	/**
+	 * Item
+	 *
+	 * @uses .item
+	 */
+	.item { @extend %margin-0; }
+
+
+	.List-post {}
+
+	.List-post-relationship {
+
+		@include media-breakpoint-up( md ) {
+
+			@include margin( 
+				right percentage( 53 / 500 ) 
+				left percentage( 53 / 500 ) 
+			);
+		}
+	}
+
+
+	.next {
+		@include margin( left 20px );
+
+		background: { 
+			image: url( '#{ map-get( $directories, svg ) }arrow-right.svg' );
+		}
+
+		@include media-breakpoint-up( md ) {
+			@include margin( left 0 );
+			@include absolute( top 0 left calc( 100% - #{ ( 27 / 2 ) * 1px } ) );
+		}
+
+	}
+		
+
+	.previous {
+		@include margin( right 20px );
+
+		background: { 
+			image: url( '#{ map-get( $directories, svg ) }arrow-left.svg' );
+		}
+
+		@include media-breakpoint-up( md ) {
+			@include margin( right 0 );
+			@include absolute( top 0 right calc( 100% - #{ ( 27 / 2 ) * 1px } ) );
+		}
+
+	}
+
+
+	.next,
+	.previous {
+
+		@extend .d-inline-block, %vertical-align-middle, %Cursor-pointer, %Transition-ease;
+		@include size( 44px );
+
+		background: {
+			position: center;
+			size: 100%;
+		}
+		opacity: 1;
+
+		@include media-breakpoint-up( md ) {
+			
+			@include size( 27px );
+			@include margin( top 123px );
+			
+			&.slick-hidden,
+			&.slick-disabled {
+				cursor: auto;
+				opacity: 0;
+			}
+		}
+
+	}
+}

@@ -1,0 +1,237 @@
+/**
+ * Contact
+ *
+ * @uses .Contact
+ */
+.Contact {
+	
+	height: $contact-height;
+	max-height: 100vh;
+
+	background: {
+		image: url( '#{ map-get( $directories, svg ) }terrazzo.svg' );
+		position: center;
+		size: cover;
+	}
+	color: the_color( gray, very-dark );
+	z-index: 10;
+
+	@include media-breakpoint-up( md ) {
+		@include fixed( right 0 bottom 0 left 0 );
+	}
+
+
+	/**
+	 * Title
+	 *
+	 * @uses .Contact .title
+	 */
+	.title {
+		$font-size: 44.01;
+		
+		@extend %text-align-center, %text-align-md-left, %margin-0, %font-bold;
+
+		font: {
+			size: ( $font-size * 1px );
+		}
+		// line-height: ( $font-size / $font-size );
+	}
+
+
+	/**
+	 * Catch phrase
+	 *
+	 * @uses .Contact .catch-phrase
+	 */
+	.catch-phrase {
+		$font-size: 16;
+		
+		@extend %text-align-center, %text-align-md-left, %font-title, %margin-0;
+		@include letter-spacing( 40 );
+
+		font: {
+			size: ( $font-size * 1px );
+		}
+	}
+
+
+	/**
+	 * Wrapper
+	 *
+	 * @uses .Contact-wrapper
+	 */
+	&-wrapper {
+
+		@include media-breakpoint-up( md ) {
+			
+			@include padding( 
+				right percentage( ( ( $grid-gutter-width-unitless * 2) / 1030 )  )
+				left percentage( ( ( $grid-gutter-width-unitless * 2) / 1030 )  ) 
+			);
+		}
+	}
+
+
+	/**
+	 * Form
+	 *
+	 * @uses .Contact-form
+	 */
+	@at-root .mc4wp-form,
+	&-form {
+		$width: 911;
+		$width-input: 588;
+		$width-button: $width - $width-input;
+		
+		@extend %position-relative;
+		@include margin( top 40px );
+		
+		/**
+		 * MailChimp for WordPress
+		 */
+		.mc4wp-response {
+			@include absolute( top 100% right 0 left 0 );
+			
+			p {
+
+				@extend %margin-0, %text-align-center, %padding-0, %font-semibold, %font-title;
+				padding: {
+					top: ( $grid-gutter-width / 2 )!important;
+					bottom: ( $grid-gutter-width / 2 )!important;
+				}
+				
+				background: { color: the_color( blue, light-grayish-01 ); }
+				border: none;
+				width: 100%;
+				color: the_color( gray, very-dark );
+				line-height: normal;
+				font-size: 12px;
+
+			}
+			
+		}
+
+		/**
+		 * Input
+		 */
+		.input,
+		input[type="email"] {
+			$font-size: 13;
+			
+			@extend 
+				%font-title, 
+				%font-medium, 
+				.d-inline-block, 
+				%vertical-align-middle, 
+				%margin-y-0,
+				%text-align-center,
+				%text-align-md-left;
+			@include reset-placeholder( the_color( blue, light-grayish ) );
+			@include letter-spacing( 40 );
+			@include padding( right $grid-gutter-width left $grid-gutter-width );
+			@include size(
+				100%,
+				( $grid-gutter-width * 3 )
+			);
+
+			background: {
+				color: the_color( white );
+			}
+			border: {
+				color: the_color( blue, light-grayish-01 );
+				style: solid;
+				width: 1px;
+			}
+			color: the_color( gray, very-dark-01 );
+			font: {
+				size: ( $font-size * 1px );
+			}
+			line-height: ( $font-size / 21.01 );
+
+			@include media-breakpoint-up( md ) {
+				width: percentage( $width-input / $width );
+				border: { right: { width: 0; } }
+			}
+
+
+			&:focus,
+			&:active {
+				outline: none;
+			}
+		}
+
+
+		/**
+		 * Button
+		 */
+		@at-root .mc4wp-form .button,
+		.button {
+			$this: &;
+			$font-size: 14;
+
+			@extend %font-title, %font-medium, .d-inline-block, %vertical-align-middle;
+			@include size(
+				100%,
+				( $grid-gutter-width * 3 )
+			);
+			@include margin( top -1px );
+			
+			background: {
+				color: the_color( white );
+			}
+			border: {
+				color: the_color( blue, light-grayish-01 );
+				style: solid;
+				width: 1px;
+			}			
+			color: the_color( gray, very-dark-01 );
+			font: {
+				size: ( $font-size * 1px );
+			}
+			// line-height: ( $font-size / 31.01 );
+			
+			@include media-breakpoint-up( md ) {
+				@include margin( top 0 );
+
+				width: percentage( $width-button / $width );
+			}
+			@at-root .mc4wp-form .button:hover,
+			&:hover {
+				
+				.button__decor {
+
+					// Animation
+					animation: {
+						duration: .3s;
+						fill-mode: forwards;
+						name: takes-off;
+					}
+				}
+			}
+			
+			@at-root .mc4wp-form .button__decor,
+			&__decor {
+				@extend .d-inline-block, %vertical-align-middle;
+
+				max-width: 21px;
+				max-height: 21px;
+
+				// Animation
+				animation: {					
+					duration: .7s;
+					name: landing;
+					timing-function: ease-out;
+				}
+
+				transition: opacity map-get( $transitions, ease );
+				opacity: 1;
+
+				fill: the_color( gray, very-dark-01 );
+			}
+			&__label {
+				@extend .d-inline-block, %vertical-align-middle;
+				@include margin( left 21px );
+			}
+		}
+	}
+}
