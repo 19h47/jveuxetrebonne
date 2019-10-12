@@ -10,33 +10,21 @@ Sticky post
 
     <article id="Sticky-post-{{ post.ID }}" class="Sticky-post row">
 
-        <div class="col-12 col-md-6">{# offset-md-1 #}
-
+        <div class="col-12 col-md-6 margin-bottom-7">
             <a class="thumbnail" href="{{ post.link }}">
-                <img class="img-full" src="{{ post.thumbnail.src }}" alt="" />
+                <img class="img-full" src="{{ Image( post.thumbnail ).src( 'large' ) }}" alt="{{ Image( post.thumbnail ).alt }}" width="{{ Image( post.thumbnail ).width }}" height="{{ Image( post.thumbnail ).height }}"/>
             </a>
-
         </div>
 
         <div class="col-12 col-md-5">
-
             <header class="Sticky-post-header">
-
-                {% spaceless %}
-
                 {# Date #}
-                <p class="date">
-                    {{- pll__( 'Le' ) -}}&nbsp;{{- post.date -}}
-                </p>
+                <p class="date">{{- pll__( 'Le' ) -}}&nbsp;{{- post.date -}}</p>
 
-                <span class="color-blue-light-grayish display-xs-inline-block font-title">&nbsp;&bull;&nbsp;</span>
+                <span class="color-blue-light-grayish d-inline-block font-title">&nbsp;&bull;&nbsp;</span>
 
                 {# Category #}
-                <p class="category lowercase">
-                    <em>{{- post.terms('category') | join(', ') -}}</em>
-                </p>
-
-                {% endspaceless %}
+                <p class="category lowercase"><em>{{- post.terms('category') | join(', ') -}}</em></p>
 
                 {# Title #}
                 <h2 class="title">
@@ -44,7 +32,6 @@ Sticky post
                         {{- post.post_title -}}
                     </a>
                 </h2>
-
             </header>
 
 
@@ -63,23 +50,25 @@ Sticky post
 
             {# Footer #}
             {% if post.get_field( 'gallery' ) %}
-            <footer class="Sticky-post-footer js-slider-sticky-container hidden-xs hidden-sm">
-                <div class="Sticky-post-footer__inner">
+				<div class="row">
+		            <footer class="Sticky-post-footer js-slider-sticky-container hidden-xs hidden-sm">
+		                <div class="Sticky-post-footer__inner">
 
-                    <ul class="Sticky-post-footer__gallery js-slider-sticky">
-                        {% for image in post.get_field( 'gallery' ) %}
-                            <li class="Sticky-post-footer__gallery__item">
-                                <img src="{{ TimberImage( image ) }}" />
-                            </li>
-                        {% endfor %}
-                    </ul>
+		                    <ul class="Sticky-post-footer__gallery js-slider-sticky">
+		                        {% for image in post.get_field( 'gallery' ) %}
+		                            <li class="Sticky-post-footer__gallery__item">
+		                                <img src="{{ TimberImage( image ) }}" />
+		                            </li>
+		                        {% endfor %}
+		                    </ul>
 
-                    <button class="Sticky-post-footer__gallery__button js-slider-sticky-next" type="button" >
-                        {% include 'svg/use.html.twig' with { classes: [ 'Icon', 'next' ], icon: 'next' }  %}
-                    </button>
+		                    <button class="Sticky-post-footer__gallery__button js-slider-sticky-next" type="button" >
+		                        {% include 'svg/use.html.twig' with { classes: [ 'Icon', 'next' ], icon: 'next' }  %}
+		                    </button>
 
-                </div>
-            </footer>
+		                </div>
+		            </footer>
+				</div>
             {% endif %}
 
         </div>

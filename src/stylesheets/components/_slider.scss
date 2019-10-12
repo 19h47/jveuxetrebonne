@@ -153,18 +153,10 @@
 	}
 
 
-	/**
-	 * Slider rich content
-	 *
-	 * @uses .Slider-rich-content
-	 */
+	// .Slider-rich-content
 	&-rich-content {
 
-		/**
-		 * Close button
-		 *
-		 * @uses .Slider-rich-content__close
-		 */
+		// .Slider-rich-content__close
 		&__close {
 			@include absolute( top 0 left 0 );
 			@include size( 27px );
@@ -195,16 +187,11 @@
 			@include media-breakpoint-up( md ) {
 				@include padding( right 0 left 0 );
 
-				background: initial;
-
 				&::before {
-					@include absolute(
-						top 0
-						right ( percentage( $grid-gutter-width-unitless / 182 ) * -1 )
-						bottom 0
-						// left ( percentage(  100 / 182 ) * -1 )
-					);
+					@include absolute( top 0 right 0 bottom 0 );
+
 					width: 50vw;
+					transform: translate3d( $grid-gutter-width, 0, 0 );
 				    background:
 				        linear-gradient(
 				        	135deg,
@@ -217,7 +204,7 @@
 		}
 
 		&__item {
-			@include margin( top 0 bottom 40px );
+			@include margin( top 0 bottom #{ $base-line-height * 1.5 }px );
 
 			&:focus,
 			&:active {
@@ -225,8 +212,8 @@
 			}
 
 			.img {
-				@include margin( top 2em bottom 2em );
-				@include size( auto, 169px );
+				@include margin( top #{ $base-line-height }px bottom #{ $base-line-height }px );
+				@include size( auto, #{ $base-line-height * 6 }px );
 
 				max-width: 100%;
 				object-fit: cover;
@@ -234,26 +221,30 @@
 			}
 
 			.title {
-
 				@extend %font-bold;
-				@include font( 17, 38 );
-				@include margin( top 2em );
+				@include margin( top #{ $base-line-height }px );
 
 				color: the_color( orange, mostly-desaturated-dark );
+				font-size: 17px;
+				line-height: #{ $base-line-height }px;
 			}
-
 
 			.content {
+				p {
+					@extend %font-title, %font-medium;
 
-				@extend %font-title, %font-medium;
-				@include font( 12, 18 );
-
-				color: the_color( orange, slightly-desaturated );
+					color: the_color( orange, slightly-desaturated );
+					font-size: 12px;
+					line-height: #{ $base-line-height }px;
+				}
 			}
+
 			.link {
 				@extend %font-semibold, %font-title;
-				@include font( 13.27, 23.68 );
+				@extend .d-inline-block;
 
+				font-size: 14px;
+				line-height: #{ $base-line-height }px;
 				color: the_color( orange, mostly-desaturated-dark );
 
 				&::before {
@@ -264,51 +255,45 @@
 			}
 		}
 
+		//
 		&__progressbar {
 			@extend %Transition-ease, %position-relative;
 
-
-			height: 7px;
+			height: #{ $base-line-height * 0.2 }px;
 			background: {
 				color: the_color( white );
 				size: 0 100%;
-				image: linear-gradient( to right, the_color( orange, very-soft-04 ), the_color( orange, very-soft-04 ) );
+				image:
+				   linear-gradient( to right,
+				   the_color( orange, very-soft-04 ),
+				   the_color( orange, very-soft-04 ) );
 			}
 			width: 100%;
 			z-index: 2;
 
 
 			@include media-breakpoint-up( md ) {
-				left: percentage( 100 / 182 ) * -1;
-				width: percentage( 312 / 182 );
-				background: {
-					color: rgba( the_color( orange, very-soft-04 ), 0 );
-				}
+				width: calc( 100% + #{ $grid-gutter-width } );
+				background-color: rgba( the_color( orange, very-soft-04 ), 0 );
 			}
 		}
 
+		// .Slider-rich-content__navigation
 		&__navigation {
-			@extend %text-align-center, %text-align-md-right;
-			@include padding( top 31px right 61px bottom 31px left 71px );
+			@extend .d-flex, .justify-content-center, .justify-content-md-end;
+			@include margin( top #{ $base-line-height * 0.8 }px );
 
-			background-color: the_color( white );
+			.next, .previous {
+				@extend .d-inline-block, %vertical-align-middle;
+				@include size( #{ $base-line-height * 1.5 }px );
 
-			@include media-breakpoint-up( md ) {
-				@include padding( top 0 right 0 bottom 0 left 0 );
-				@include margin( top 27px );
-
-				background-color: transparent;
-
+				@include media-breakpoint-up( md ) {
+					@include size( #{ $base-line-height }px );
+				}
 			}
 
 			.next {
-				@extend .d-inline-block, %vertical-align-middle;
-				@include margin( right 10px left 10px );
-				@include size( 44px );
-
-				@include media-breakpoint-up( md ) {
-					@include size( 27px );
-				}
+				@include margin( right 0 left #{ $base-line-height / 3 }px );
 
 				background: {
 					image: url( '#{ map-get( $directories, svg ) }arrow-right.svg' );
@@ -318,13 +303,7 @@
 			}
 
 			.previous {
-				@extend .d-inline-block, %vertical-align-middle;
-				@include margin( right 10px left 10px );
-				@include size( 44px );
-
-				@include media-breakpoint-up( md ) {
-					@include size( 27px );
-				}
+				@include margin( right #{ $base-line-height / 3 }px left 0 );
 
 				background: {
 					image: url( '#{ map-get( $directories, svg ) }arrow-left.svg' );
@@ -365,7 +344,7 @@
 	 */
 	&-category-videos {
 		@extend %position-relative, %text-align-center;
-		@include padding( top 70px bottom 70px );
+		@include padding( top #{ $base-line-height * 2.5 }px bottom #{ $base-line-height * 2.5 }px );
 
 		@include margin( bottom $grid-gutter-width-mobile );
 
@@ -387,12 +366,14 @@
 			content: '';
 
 			@include media-breakpoint-up( md ) {
-				height: 348px;
+				height: #{ $base-line-height * 12 }px;
 			}
 		}
 
 		.items { @extend %list-unstyled, %margin-0, %padding-0; }
-		.item { @extend %margin-0; }
+		.item {
+			@extend %margin-0, %vertical-align-middle;
+		}
 		.List-post { @include margin( bottom 0 ); }
 
 		/**
@@ -408,24 +389,24 @@
 			);
 
 			@include media-breakpoint-up( md ) {
-
+				@include padding( right $grid-gutter-width left $grid-gutter-width );
 				@include margin(
-					right percentage( 120 / 848 )
-					left percentage( 120 / 848 )
+					right percentage( 1 / 12 )
+					left percentage( 1 / 12 )
 				);
 			}
 		}
 
 
 		.next {
-			@include margin( left 20px );
+			@include margin( left #{ $base-line-height }px );
 
 			background: {
 				image: url( '#{ map-get( $directories, svg ) }arrow-right-white.svg' );
 			}
 
 			@include media-breakpoint-up( md ) {
-				@include margin( right percentage( 282 / $psd-width-unitless ) left auto );
+				@include margin( right percentage( 285 / $psd-width-unitless ) left auto );
 				top: 0;
 				right: 0;
 			}
@@ -433,14 +414,14 @@
 
 
 		.previous {
-			@include margin( right 20px );
+			@include margin( right #{ $base-line-height }px );
 
 			background: {
 				image: url( '#{ map-get( $directories, svg ) }arrow-left-white.svg' );
 			}
 
 			@include media-breakpoint-up( md ) {
-				@include margin( right auto left percentage( 282 / $psd-width-unitless ) );
+				@include margin( right auto left percentage( 285 / $psd-width-unitless ) );
 				top: 0;
 				left: 0;
 			}
@@ -450,8 +431,8 @@
 		.next,
 		.previous {
 			@extend .d-inline-block, %vertical-align-middle, %Cursor-pointer, %Transition-ease, %position-relative, %position-md-absolute;
-			@include margin( top 40px );
-			@include size( 44px );
+			@include margin( top #{ $base-line-height * 2 }px );
+			@include size( #{ $base-line-height * 2 }px );
 
 			background: {
 				position: center;
@@ -461,8 +442,8 @@
 			z-index: 1;
 
 			@include media-breakpoint-up( md ) {
-				@include margin( top 224px );
-				@include size( 27px );
+				@include margin( top #{ $base-line-height * 8 }px );
+				@include size( #{ $base-line-height }px );
 			}
 
 			&.slick-disabled {
@@ -484,7 +465,7 @@
 
 		@include margin(
 			right ( $grid-gutter-width-mobile * -1 )
-			bottom $grid-gutter-width
+			bottom #{ $base-line-height }px
 			left ( $grid-gutter-width-mobile * -1 )
 		);
 		width: calc( 100% + #{ $grid-gutter-width-mobile * 2 } );
@@ -502,25 +483,25 @@
 		&__title {
 			@extend %font-title, %font-bold, %text-align-center;
 			@include font( 20, 29 );
-			@include margin( top $grid-gutter-width bottom 0 );
+			@include margin( top #{ $base-line-height }px bottom 0 );
 
 			color: the_color( blue, light-grayish );
 
 			@include media-breakpoint-up( md ) {
-				@include margin( top 70px bottom ( $grid-gutter-width / 3 )  );
+				@include margin( top 70px bottom #{ $base-line-height / 3 }px  );
 			}
 
 
 			&.title-step {
 				@include margin(
-					top $grid-gutter-width
-					bottom $grid-gutter-width
+					top #{ $base-line-height }px
+					bottom #{ $base-line-height }px
 				);
 
 				@include media-breakpoint-up( md ) {
 					@include margin(
-						top ( $grid-gutter-width * 3 )
-						bottom ( $grid-gutter-width * 3 )
+						top #{ $base-line-height * 3 }px
+						bottom #{ $base-line-height * 3 }px
 					);
 				}
 			}
@@ -529,19 +510,19 @@
 
 		&__ingredients {
 			@extend %font-title, %font-medium, %margin-y-0, %padding-y-0;
-			@include font( 16, 40 );
+
+			font-size: 16px;
+			line-height: #{ $base-line-height }px;
 
 			color: the_color( gray, very-dark-01 );
 			list-style-type: none;
 
-			@include media-breakpoint-between( 'xs', 'sm' ) { @include padding( left 0 ); }
+			@include media-breakpoint-between( xs, sm ) { @include padding( left 0 ); }
 
 			@include media-breakpoint-up( md ) { list-style-type: disc; }
 
 			li {
-				// @extend %margin-y-0;
-
-				line-height: normal;
+				line-height: #{ $base-line-height }px;
 			}
 		}
 
@@ -558,7 +539,9 @@
 
 			box-shadow: 0px 0px 15px 0px rgba( the_color( gray, very-dark ), .07 );
 
-			@include media-breakpoint-up( md ) { height: 650px; }
+			@include media-breakpoint-up( md ) {
+				height: #{ $base-line-height * 22.5 }px;
+			}
 
 			.slick-list, .slick-track { @extend %h-100; }
 		}
@@ -591,7 +574,7 @@
 					transform: translateX( 0% ) scaleY( 1 ) scaleX( 0 );
 				}
 
-				@at-root .item.slick-current .item__inner {
+				@at-root .slick-current .item__inner {
 
 					img {
 						transition-delay: ( $animation-duration / 2 );

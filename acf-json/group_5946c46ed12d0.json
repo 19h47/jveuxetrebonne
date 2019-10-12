@@ -1,0 +1,46 @@
+{
+    "key": "group_5946c46ed12d0",
+    "title": "Catégorie Food",
+    "fields": [
+        {
+            "key": "field_5946c485b8319",
+            "label": "Recettes enfants",
+            "name": "child_recipes",
+            "type": "post_object",
+            "instructions": "Sélectionner les recettes",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "recipe"
+            ],
+            "taxonomy": "",
+            "allow_null": 0,
+            "multiple": 1,
+            "return_format": "object",
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:food"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1570909348
+}

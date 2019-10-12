@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Rich content
+ *
+ * @package JVEB
+ */
 
 add_action( 'init', 'rich_content_shortcode_init' );
 
@@ -15,21 +19,19 @@ function rich_content_shortcode_init() {
 /**
  * Rich content shortcode handler
  *
- * @param  array 	$atts 		An array of attributes or an empty string
- * @param  string 	$content 	The enclosed content (available for enclosing
- *                           	shortcodes only)
- * @param  string   $tag 		The name of the shortcode, useful for shared
- *                         		callback functions.
+ * @param array  $atts An array of attributes or an empty string.
+ * @param string $content The enclosed content (available for enclosing shortcodes only).
+ * @param string $tag The name of the shortcode, useful for shared callback functions.
  */
-function rich_content_shortcode_handler( $atts, $content = null, $tag = '' ) {
+function rich_content_shortcode_handler( array $atts, string $content = null, string $tag = '' ) {
 
-	// normalize attribute keys, lowercase
-	$atts = array_change_key_case( (array)$atts, CASE_LOWER );
+	// normalize attribute keys, lowercase.
+	$atts = array_change_key_case( (array) $atts, CASE_LOWER );
 
 	extract(
 		shortcode_atts(
 			array(
-				'id' => ''
+				'id' => '',
 			),
 			$atts,
 			'rich_content'
@@ -37,9 +39,7 @@ function rich_content_shortcode_handler( $atts, $content = null, $tag = '' ) {
 	);
 
 	$output  = "<span class=\"rich-content-link js-rich-content-link\" data-id=\"{$id}\">";
-	$output .= "<span></span>";
-	$output .= "<i>" . html_entity_decode( $content ) . "</i>";
-	$output .= "</span>";
+	$output .= '<span></span><i>' . html_entity_decode( $content ) . '</i></span>';
 
 	return $output;
 }

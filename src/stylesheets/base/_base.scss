@@ -8,16 +8,10 @@ html {
 }
 
 body {
-    
-    line-height: ( ( $base-line-height / $base-font-size ) * 1em );
-
-    &.page--is-loading {
-        cursor: progress !important;
-        cursor: wait !important;
-    }
+    line-height: $scale-factor;
 }
 
-a, 
+a,
 button {
     cursor: pointer;
     outline: none;
@@ -32,34 +26,34 @@ i {
     @extend %font-style-normal!optional;
 }
 
-b, 
+b,
 strong {
     font-weight: map-get( map-get( $font, weights ), bold );
 }
 
 p {
-    @include margin ( 
-        top ( ( $base-line-height / $base-font-size ) * 1em ) 
-        bottom ( ( ( $base-line-height / $base-font-size ) / 2 ) * 1em )
+    @include margin (
+        top #{ $base-line-height }px
+        bottom #{ $base-line-height / 2 }px
     );
-    
-    font-size: 1em;
-    line-height: ( ( $base-line-height / $base-font-size ) * 1em );
+
+    font-size: $base-font-size-px;
+    line-height: #{ $base-line-height }px;
 }
 
 ul,
 ol {
-    @include margin ( 
-        top ( ( $base-line-height / $base-font-size ) * 1em ) 
+    @include margin (
+        top ( ( $base-line-height / $base-font-size ) * 1em )
         right 0
         bottom ( ( ( $base-line-height / $base-font-size ) / 2 ) * 1em )
         left 0
     );
-    @include padding ( 
-        top 0 
-        right 0 
-        bottom 0 
-        left ( ( $base-line-height / $base-font-size ) * 1em ) 
+    @include padding (
+        top 0
+        right 0
+        bottom 0
+        left ( ( $base-line-height / $base-font-size ) * 1em )
     );
 }
 
@@ -68,23 +62,23 @@ ul {
 }
 
 li {
-    @include margin ( 
+    @include margin (
         top ( ( ( $base-line-height / $base-font-size ) / 2 ) * 1em )
-        right 0 
+        right 0
         bottom ( ( ( $base-line-height / $base-font-size ) / 4 ) * 1em )
-        left 0 
+        left 0
     );
 }
 
 hr {
     @extend %margin-0;
-    
+
     border: 0;
 }
 
 em {
 
-    font: 
+    font:
     {
         style: italic;
     }
@@ -96,21 +90,21 @@ iframe {
 
 blockquote {
     // Extend class
-    @extend .font-title, .font-regular; 
+    @extend .font-title, .font-regular;
 
     // Include margin
-    @include margin ( 
+    @include margin (
         top ( ( $base-line-height / $base-font-size ) * 1em )
-        right 0 
+        right 0
         bottom ( ( ( $base-line-height / $base-font-size ) / 2 ) * 1em )
-        left 0 
+        left 0
     );
 
     // Include padding
-    @include padding ( 
-        top 20px 
-        left ( $grid-outer-gutter-width * 2 ) 
-        bottom 20px 
+    @include padding (
+        top 20px
+        left ( $grid-outer-gutter-width * 2 )
+        bottom 20px
     );
 
     border: {

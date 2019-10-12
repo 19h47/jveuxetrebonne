@@ -8,7 +8,7 @@
 
 
 {% block recipe %}
-	{% if post.get_field( 'collection' ) %}
+	{% if post.get_field( 'collection' ) and post.get_field( 'collection' ) is iterable %}
 		{% include 'partials/recipe.twig' with {
 				'title': pll__( 'La recette pas à pas' )
 			}

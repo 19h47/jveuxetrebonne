@@ -10,7 +10,7 @@ namespace JVEB;
 use Timber\{ Timber, Menu };
 
 use JVEB\{ Admin, Helpers };
-use JVEB\PostTypes\{ Post };
+use JVEB\PostTypes\{ Post, Recipe };
 use JVEB\Taxonomies\{ ProjectTag };
 
 // @TODO include in namespace JVEB
@@ -94,6 +94,7 @@ class App extends Timber {
 
 		new acf_location_rule( 'category_parents' );
 		new Post( $this->get_theme_name(), $this->get_theme_version() );
+		new Recipe( $this->get_theme_name(), $this->get_theme_version() );
 		new ProjectTag( $this->get_theme_name(), $this->get_theme_version() );
 
 		if ( is_admin() ) {

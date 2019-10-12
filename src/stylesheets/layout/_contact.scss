@@ -4,8 +4,8 @@
  * @uses .Contact
  */
 .Contact {
-	
-	height: $contact-height;
+
+	height: #{ $base-line-height * 20 }px;
 	max-height: 100vh;
 
 	background: {
@@ -27,14 +27,9 @@
 	 * @uses .Contact .title
 	 */
 	.title {
-		$font-size: 44.01;
-		
 		@extend %text-align-center, %text-align-md-left, %margin-0, %font-bold;
 
-		font: {
-			size: ( $font-size * 1px );
-		}
-		// line-height: ( $font-size / $font-size );
+		font-size: 44;
 	}
 
 
@@ -44,14 +39,10 @@
 	 * @uses .Contact .catch-phrase
 	 */
 	.catch-phrase {
-		$font-size: 16;
-		
 		@extend %text-align-center, %text-align-md-left, %font-title, %margin-0;
 		@include letter-spacing( 40 );
 
-		font: {
-			size: ( $font-size * 1px );
-		}
+		font-size: 16px;
 	}
 
 
@@ -63,52 +54,47 @@
 	&-wrapper {
 
 		@include media-breakpoint-up( md ) {
-			
-			@include padding( 
-				right percentage( ( ( $grid-gutter-width-unitless * 2) / 1030 )  )
-				left percentage( ( ( $grid-gutter-width-unitless * 2) / 1030 )  ) 
+			@include padding( right $grid-gutter-width / 2 left $grid-gutter-width / 2 );
+			@include margin(
+				right calc( #{ percentage( 1 / 10 ) } - #{ $grid-gutter-width } )
+				left calc( #{ percentage( 1 / 10 ) } - #{ $grid-gutter-width } )
 			);
 		}
 	}
 
 
-	/**
-	 * Form
-	 *
-	 * @uses .Contact-form
-	 */
-	@at-root .mc4wp-form,
-	&-form {
+	// .Contact-form .mc4wp-form
+	@at-root .mc4wp-form, &-form {
 		$width: 911;
 		$width-input: 588;
 		$width-button: $width - $width-input;
-		
+
 		@extend %position-relative;
-		@include margin( top 40px );
-		
+		@include margin( top #{ $base-line-height * 1.5 }px );
+
 		/**
 		 * MailChimp for WordPress
 		 */
 		.mc4wp-response {
 			@include absolute( top 100% right 0 left 0 );
-			
+
 			p {
 
 				@extend %margin-0, %text-align-center, %padding-0, %font-semibold, %font-title;
 				padding: {
-					top: ( $grid-gutter-width / 2 )!important;
-					bottom: ( $grid-gutter-width / 2 )!important;
+					top: #{ $base-line-height / 2 }px!important;
+					bottom: #{ $base-line-height / 2 }px!important;
 				}
-				
-				background: { color: the_color( blue, light-grayish-01 ); }
+
+				background-color: the_color( blue, light-grayish-01 );
 				border: none;
 				width: 100%;
 				color: the_color( gray, very-dark );
-				line-height: normal;
+				line-height: #{ $base-line-height }px;
 				font-size: 12px;
 
 			}
-			
+
 		}
 
 		/**
@@ -117,12 +103,12 @@
 		.input,
 		input[type="email"] {
 			$font-size: 13;
-			
-			@extend 
-				%font-title, 
-				%font-medium, 
-				.d-inline-block, 
-				%vertical-align-middle, 
+
+			@extend
+				%font-title,
+				%font-medium,
+				.d-inline-block,
+				%vertical-align-middle,
 				%margin-y-0,
 				%text-align-center,
 				%text-align-md-left;
@@ -131,26 +117,17 @@
 			@include padding( right $grid-gutter-width left $grid-gutter-width );
 			@include size(
 				100%,
-				( $grid-gutter-width * 3 )
+				#{ $base-line-height * 3 }px
 			);
 
-			background: {
-				color: the_color( white );
-			}
-			border: {
-				color: the_color( blue, light-grayish-01 );
-				style: solid;
-				width: 1px;
-			}
+			background-color: the_color( white );
+			box-shadow:0px 0px 0px 1px the_color( blue, light-grayish-01 );
 			color: the_color( gray, very-dark-01 );
-			font: {
-				size: ( $font-size * 1px );
-			}
-			line-height: ( $font-size / 21.01 );
+			font-size: ( $font-size * 1px );
+			line-height: #{ $base-line-height }px;
 
 			@include media-breakpoint-up( md ) {
-				width: percentage( $width-input / $width );
-				border: { right: { width: 0; } }
+				width: calc( #{ percentage( 5 / 8 ) } + #{ $grid-gutter-width / 2 } );
 			}
 
 
@@ -167,37 +144,28 @@
 		@at-root .mc4wp-form .button,
 		.button {
 			$this: &;
-			$font-size: 14;
 
 			@extend %font-title, %font-medium, .d-inline-block, %vertical-align-middle;
 			@include size(
 				100%,
-				( $grid-gutter-width * 3 )
+				#{ $base-line-height * 3 }px
 			);
 			@include margin( top -1px );
-			
-			background: {
-				color: the_color( white );
-			}
-			border: {
-				color: the_color( blue, light-grayish-01 );
-				style: solid;
-				width: 1px;
-			}			
+
+			background-color: the_color( white );
+			box-shadow: 0px 0px 0px 1px the_color( blue, light-grayish-01 );
 			color: the_color( gray, very-dark-01 );
-			font: {
-				size: ( $font-size * 1px );
-			}
-			// line-height: ( $font-size / 31.01 );
-			
+			font-size: 14px;
+			line-height: #{ $base-line-height }px;
+
 			@include media-breakpoint-up( md ) {
 				@include margin( top 0 );
 
-				width: percentage( $width-button / $width );
+				width: calc( #{ percentage( 3 / 8 ) } - #{ $grid-gutter-width / 2 } );
 			}
 			@at-root .mc4wp-form .button:hover,
 			&:hover {
-				
+
 				.button__decor {
 
 					// Animation
@@ -208,7 +176,7 @@
 					}
 				}
 			}
-			
+
 			@at-root .mc4wp-form .button__decor,
 			&__decor {
 				@extend .d-inline-block, %vertical-align-middle;
@@ -217,7 +185,7 @@
 				max-height: 21px;
 
 				// Animation
-				animation: {					
+				animation: {
 					duration: .7s;
 					name: landing;
 					timing-function: ease-out;

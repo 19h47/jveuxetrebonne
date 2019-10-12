@@ -4,26 +4,20 @@
  * @uses .List-posts
  */
 .List-posts {
-	
-	/**
-	 * Footer
-	 *
-	 * @uses .List-posts-footer
-	 */
+
+	// .List-posts-footer
 	&-footer {
-		@include padding( 
-			top ( $grid-gutter-width * 2 ) 
-			bottom ( $grid-gutter-width * 3 )
+		@include padding(
+			top #{ $base-line-height * 2 }px
+			bottom #{ $base-line-height * 3 }px
 		);
 	}
-	
 
-	/**
-	 * List-posts-container
-	 */
+
+	// .List-posts-container
 	&-container {
 		@extend %Transition-ease;
-		
+
 		opacity: 1;
 
 		&.is-loading {

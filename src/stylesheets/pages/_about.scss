@@ -5,26 +5,27 @@
  */
 .About {
 
-	/**
-	 * Header
-	 *
-	 * @uses .About-header
-	 */
-	// &-header { @include media-breakpoint-up( md ) { @include margin( bottom 90px ); } }
+	// .About-page-header
+	&-header {
+		@include padding( top #{ $base-line-height * 2 }px bottom #{ $base-line-height * 4 }px );
+	}
 
 
-	/**
-	 * Sticky post
-	 *
-	 * @uses .Sticky-post
-	 */
+	// .About .Sticky-post
 	.Sticky-post {
-		@include margin( top ( $grid-gutter-width * -1 ) );
+		@include margin( top #{ $base-line-height * -1 }px );
 
-		@include media-breakpoint-up( md ) { @include margin( top -115px ); }
+		@include media-breakpoint-up( md ) {
+			@include margin( top #{ $base-line-height * -4 }px );
+		}
 
-		.Sticky-post-header { @include margin( top $grid-gutter-width * 2 ); }
-		.excerpt { @include margin( bottom 40px ); }
+		.Sticky-post-header {
+			@include margin( top #{ $base-line-height } * 2 );
+
+		}
+		.excerpt {
+			@include margin( bottom #{ $base-line-height * 2 }px );
+		}
 	}
 
 
@@ -36,27 +37,27 @@
 	&-description {
 
 		&-inner {
-			@include margin( top 100px );
-
-			@include media-breakpoint-up( md ) {
-				@include margin(
-					right percentage( 76 / $container-width-without-outer-gutter-unitless )
-					left percentage( 76 / $container-width-without-outer-gutter-unitless )
-				);
-			}
+			@include margin( top #{ $base-line-height * 3.5 }px );
 
 			h3 {
 				@extend .color-gray-very-dark;
 				@extend %font-title, %font-bold;
-				@include font( 20, 33 );
+
+				font-size: 20px;
+				line-height: #{ $base-line-height }px;
 			}
 
 			p {
 				@extend .color-gray-very-dark-01;
-				@include font( 16, 29, 15 );
+				@include letter-spacing( 15 );
+
+				font-size: 16px;
+				line-height: #{ $base-line-height }px;
 			}
 		}
 
-		&-footer { @include margin( top 50px ); }
+		&-footer {
+			@include margin( top #{ $base-line-height * 2 }px );
+		}
 	}
 }

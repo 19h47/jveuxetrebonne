@@ -1,19 +1,17 @@
 /**
  * Media print
  */
-@media print { 
-	// * { outline: 1px red solid; }
-	
-	// Shame 😔
-	.js-sticky { display: none; }
+@media print {
+	.print-w-100 {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
 
-	.print-w-100 { width: 100%; }
-	
 	.Single,
 	.Category-food {
 
-		.l-wrapper { 
-			margin-bottom: 0; 
+		.l-wrapper {
+			margin-bottom: 0;
 			box-shadow: none;
 		}
 
@@ -23,7 +21,8 @@
 				left ( $grid-gutter-width / 2 )
 			);
 		}
-		
+
+		.Aside,
 		.Search,
 
 		.Single-header,
@@ -49,9 +48,9 @@
 		.Footer,
 		.Contact { display: none; }
 
-		.Single-article { 
+		.Single-article {
 			@include padding( right 0 left 0 );
-			top: auto; 
+			top: auto;
 		}
 
 
@@ -110,6 +109,7 @@
 						width: 1px;
 					}
 				}
+				width: 100%;
 			}
 
 
@@ -117,10 +117,10 @@
 			.preparation-time,
 			.cooking-time {
 				@include margin( right ( 26.9 / 2 ) * 1pt left ( 26.9 / 2 ) * 1pt );
-				font-size: 8.57pt; 
+				font-size: 8.57pt;
 				line-height: 11.84 pt;
 				font-family: 'Poppins', sans-serif;
-				
+
 				&::before {
 					@include size( 13.9pt, 14.6pt );
 					@include margin( right 18.75pt );
@@ -149,7 +149,7 @@
 					}
 				}
 			}
-			.cooking-time {				
+			.cooking-time {
 				&::before {
 					background: {
 						image: url('#{ map-get( $directories, svg )}cooking-time-orange.svg' );
@@ -175,11 +175,11 @@
 
 
 				.ingredient {
-					font-size: 9pt; 
+					font-size: 9pt;
 					line-height: 16.8pt;
 					font-family: 'Poppins', sans-serif;
 					font-weight: 500;
-		
+
 				}
 			}
 
@@ -200,31 +200,30 @@
 			}
 
 			footer {
-				@include margin( top 120pt );
-				border: {
-					top: {
-						color: the_color( blue, light-grayish-03 );
-						style: solid;
-						width: 1px;
-					}
+				@include margin( top 20pt );
+				@include padding( top 10.8pt bottom 18.7pt );
+
+				align-items: center;
+				display: flex;
+				justify-content: space-between;
+
+				border-top: {
+					color: the_color( blue, light-grayish-03 );
+					style: solid;
+					width: 1px;
 				}
+
 				position: relative;
 				.logo {
-					@include margin( top 10.8pt bottom 18.7pt );
 					@include size( 37.4pt, 28.8pt );
-					display: inline-block;
-					vertical-align: middle;
 				}
 
 				.copyright {
-					@include absolute( top 50% right 0 );
 					@include margin( top 0 bottom 0 );
+
 					color: the_color( orange, very-dark-grayish-01 );
-					display: inline-block;
-					vertical-align: middle;
 					font-size: 8pt;
 					font-weight: 600;
-					transform: translate3d( 0, -50%, 0 );
 				}
 			}
 		}

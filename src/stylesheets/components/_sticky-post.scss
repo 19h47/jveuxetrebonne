@@ -4,12 +4,14 @@
  * @uses .Sticky-post
  */
 .Sticky-post {
+	@extend %position-relative;
+
 	$header: (
 		font: (
 			size: 15,
 			weight: map-get( map-get( $font, weights ), semibold )
 		),
-		line-height: 80,
+		line-height: #{ $base-line-height * 2 }px,
 		color: the_color( blue, light-grayish )
 	);
 
@@ -21,7 +23,7 @@
 			size: ( map-get( map-get( $header, font ), size ) / $base-font-size ) * 1em;
 			weight: map-get( map-get( $header, font ), weight );
 		}
-		line-height: map-get( $header, line-height ) / map-get( map-get( $header, font ), size );
+		line-height: map-get( $header, line-height );
 		color: map-get( $header, color );
 	}
 
@@ -32,11 +34,7 @@
 	&-header {}
 
 
-	/**
-	 * Footer
-	 *
-	 * @uses .Sticky-post-footer
-	 */
+	// .Sticky-post-footer
 	&-footer {
 		$size: (
 			parent: (
@@ -48,26 +46,25 @@
 		);
 
 		@extend %position-relative;
-		@include margin(
-			left ( ( percentage( map-get( $size, overlap ) / map-get( map-get( $size, parent ), width ) ) ) * -1 )
+
+		@include size(
+			percentage( 300 / 500 ),
+			#{ $base-line-height * 8 }px
 		);
 
-		width: percentage( map-get( $size, width ) / map-get( map-get( $size, parent ), width ) );
-		// background: red;
+		transform: translate3d( percentage( -100 / 300 ), 0, 0 );
 
-		&::after {
-			@extend .d-block;
-			@include padding(
-				top percentage( map-get( $size, height ) / map-get( $size, width ) )
-			);
+		@include padding( right $grid-gutter-width / 2 left $grid-gutter-width / 2 );
 
-			content: '';
+		&__inner {
+			@extend %position-relative;
+			@include size( 100% );
 		}
 
-
 		&__gallery {
-			@extend %Position-absolute-center, %margin-0, %padding-0;
+			@extend %margin-0, %padding-0;
 			@extend .list-unstyled;
+			@include size( 100% );
 
 			.slick-track,
 			.slick-list {
@@ -137,29 +134,22 @@
 			}
 
 
-			/**
-			 * Button
-			 *
-			 * @Sticky-post-footer__gallery__button
-			 */
+			// .Sticky-post-footer__gallery__button
 			&__button {
-				$size: (
-					width: 45,
-				);
-
 				@include absolute(
 					top 0
-					left calc( 100% - #{ ( ( map-get( $size, width ) / 2 ) * 1px ) } )
+					right 0
 					bottom 0
 				);
+				transform: translate3d( $grid-gutter-width * 0.75, 0, 0 );
 
-				width: ( map-get( $size, width ) * 1px );
+				width: #{ $base-line-height * 1.5 }px;
 
 				svg {
 					@extend .d-inline-block, %vertical-align-middle;
-					max-width: ( map-get( $size, width ) * 1px );
-					max-height: ( map-get( $size, width ) * 1px );
 
+					width: 100%;
+					height: 100%;
 					fill: the_color( white );
 					filter: drop-shadow( 0 0 $grid-gutter-width rgba( the_color( gray, very-dark ), .55 ) );
 				}
@@ -168,30 +158,20 @@
 	}
 
 
-	/**
-	 * Thumbnail
-	 *
-	 * @uses .Sticky-post .thumbnail
-	 */
+	// .Sticky-post .thumbnail
 	.thumbnail {
 		@extend .d-block;
-	    @include margin(
-			right ( $grid-gutter-width-mobile * -1 )
-			left ( $grid-gutter-width-mobile * -1 )
-		);
+		@include size( 100% );
 
-		max-width: 100%;
-		width: calc( 100% + 46px);
-		box-shadow: 1px 3px ( $grid-gutter-width / 2 ) 0px rgba( the_color( gray, very-dark ), 0.15);
+		transform: translate3d( $grid-gutter-width * -1, 0, 0 );
 
 		img {
 			@extend .d-inline-block, %vertical-align-middle;
-		}
+			@include size( 100% );
 
-		@include media-breakpoint-up( md ) {
-			@include margin( left #{ $grid-gutter-width * -1 } );
-
-			width: calc( 100% + #{ $grid-gutter-width } );
+			object-fit: cover;
+			object-position: center;
+			box-shadow: 1px 3px #{ $base-line-height / 2 }px 0px rgba( the_color( gray, very-dark ), 0.15 );
 		}
 	}
 
@@ -210,14 +190,12 @@
 	 * @uses .Sticky-post .title
 	 */
 	.title {
-		$font-size: 35;
-
 		@extend %margin-0;
-		@include font( $font-size, 38, 12 );
+		@include letter-spacing( 12 );
 
-		font: {
-			family: map-get( map-get( $font, families ), body );
-		}
+		line-height: #{ $base-line-height * 2 }px;
+		font-family: map-get( map-get( $font, families ), body );
+		font-size: 35px;
 	}
 
 
@@ -229,26 +207,18 @@
 	.date { @include meta-style; }
 
 
-	/**
-	 * Preview
-	 *
-	 * @uses .Sticky-post .preview
-	 */
+	// .Sticky-post .preview
 	.preview {
 		font: {
-			size: ( 20 / $base-font-size ) * 1em;
+			size: 20px;
 			family: map-get( map-get( $font, families ), title );
 			weight: map-get( map-get( $font, weights ), bold );
 		}
-		line-height: ( 30 / 20 );
+		line-height: #{ $base-line-height }px;
 	}
 
 
-	/**
-	 * Excerpt
-	 *
-	 * @uses .Sticky-post .excerpt
-	 */
+	// .Sticky-post .excerpt
 	.excerpt {
 		@include letter-spacing( 15 );
 
@@ -256,7 +226,7 @@
 			size: ( map-get( map-get( $header, font ), size ) / $base-font-size ) * 1em;
 		}
 		color: the_color( gray, very-dark-01 );
-		line-height: 25 / map-get( map-get( $header, font ), size );
+		line-height: #{ $base-line-height }px;
 	}
 
 
@@ -266,9 +236,7 @@
 	 * @uses .Sticky-post .permalink
 	 */
 	.permalink {
-		font: {
-			size: ( 14.97 / $base-font-size ) * 1em;
-		}
-		line-height: ( 79.82 / 14.97 );
+		font-size: 15px;
+		line-height: #{ $base-line-height * 2 }px;
 	}
 }

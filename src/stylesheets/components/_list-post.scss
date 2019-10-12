@@ -6,8 +6,10 @@
 .List-post {
 	@include margin( bottom 40px );
 
-	@include media-breakpoint-up( md ) { @include margin( bottom 70px ); }
-	
+	@include media-breakpoint-up( md ) {
+		@include margin( bottom #{ $base-line-height * 2.5 }px );
+	}
+
 	animation: {
 		name: fade-in-down;
 		duration: .3s;
@@ -16,56 +18,42 @@
 	opacity: 1;
 	transform: translateY( 0 );
 
-	/**
-	 * Meta
-	 *
-	 * @uses .List-post-meta
-	 */
+	// .List-post-meta
 	&-meta {
-		$font-size: 13.01;
-
 		@extend %font-semibold, %font-title, %text-align-center;
-		@include margin( top 20px );
+		@include margin( top #{ $base-line-height * 0.5 }px righ #{ $base-line-height }px left #{ $base-line-height }px );
 		@include letter-spacing( 20 );
 
 		color: the_color( blue, light-grayish );
-		font: {
-			size: ( $font-size * 1px );
-		}
-		
-		// In search result context
-		@at-root .Search .suggest & { color: the_color( white ); }
+		font-size: 13px;
 
-		// line-height: ( 80.06 / $font-size );
+		// In search result context
+		@at-root .Search .suggest & {
+			color: the_color( white );
+		}
 	}
 
 
-	/**
-	 * Title
-	 *
-	 * @uses .List-post .title
-	 */
+	// .List-post .title
 	.title {
-		$font-size: 15.01;
-
 		@extend %font-bold, %margin-0, %text-align-center;
-		
-		// width: 100%;
+
 		color: the_color( gray, very-dark );
-		font: {
-			size: ( $font-size * 1px );
-		}
-		
+		font-size: 15px;
+		line-height: #{ $base-line-height }px;
+
 		// In search result context
-		@at-root .Search .suggest & { color: the_color( white ); }
+		@at-root .Search .suggest & {
+			color: the_color( white );
+		}
 
 		@include media-breakpoint-up( md ) {
 			overflow: hidden;
 			white-space: nowrap;
-			text-overflow: ellipsis;	
+			text-overflow: ellipsis;
 		}
 	}
-	
+
 
 	/**
 	 * Date
@@ -73,7 +61,7 @@
 	 * @uses .List-post .date
 	 */
 	.date { @extend .d-inline-block, %margin-0; }
-	
+
 
 	/**
 	 * Categories
@@ -82,14 +70,20 @@
 	 */
 	.categories { @extend %lowercase; }
 
-	
+
 	/**
 	 * Link
 	 *
 	 * @uses .List-post .link
 	 */
-	.link { @extend .d-block; }
-	
+	.link {
+		@extend .d-block;
+
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
 
 	/**
 	 * Thumbnail
@@ -98,9 +92,10 @@
 	 */
 	.thumbnail {
 		@extend .d-inline-block, %vertical-align-middle;
-		@include size( 100%, 273px );
+		@include size( 100%, #{ $base-line-height * 9.5 }px );
 
 		object-fit: cover;
+		object-position: center;
 	}
 
 
@@ -112,14 +107,14 @@
 	&-category-videos {
 
 		@at-root .Front-page & {
-			
+
 			.List-post-meta {
 				@extend %Transition-ease;
 				opacity: 0;
 				transform: translate3d( 0, $grid-gutter-width * .5, 0 );
 			}
 		}
-		
+
 		// @at-root .Front-page .item .List-post-category-videos { @extend %Pointer-events-none; }
 		// @at-root .Front-page .item.slick-current .List-post-category-videos { @extend %Pointer-events-auto; }
 
@@ -131,7 +126,7 @@
 
 
 		@at-root .Front-page .List-post-category-videos .thumbnail {
-			box-shadow: 1px 3px 9px 0px rgba( the_color( gray, very-dark ), .09 ); 
+			box-shadow: 1px 3px 9px 0px rgba( the_color( gray, very-dark ), .09 );
 		}
 	}
 
@@ -142,7 +137,7 @@
 	 * @uses .List-post-relationship
 	 */
 	&-relationship {
-		
+
 		.List-post-meta {
 			@extend %Transition-ease;
 			opacity: 0;

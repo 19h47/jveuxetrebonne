@@ -1,95 +1,67 @@
 {#
-    
+
     /**
      * partials/recipe-simple
-     * 
+     *
      * @author  Jérémy Levron <jeremylevron@19h47.fr
      */
-    
+
 #}
 <div class="Recipe-description">
 
 	<div class="Recipe-ingredients">
-		
-		<div class="summary">
-			{% spaceless %}
-				
-			{# <p>{{ pll__( 'Tu as besoin de …' ) }}</p> #}
-			{{ post.person_number ? '<p class="person-number">' ~ post.person_number ~ ' pers.' ~ '</p>' }}
-			{{ post.preparation_time ? '<p class="preparation-time">' ~ post.preparation_time ~ ' min' ~ '</p>' }}
-			{{ post.cooking_time ? '<p class="cooking-time">' ~ post.cooking_time ~ ' min' ~ '</p>' }}
 
-			{% endspaceless %}
-		</div>		
+		<div class="summary">
+			{{- post.person_number ? "<p class=\"person-number\">#{ post.person_number }pers.</p>" | raw -}}
+			{{- post.preparation_time ? "<p class=\"preparation-time\">#{ post.preparation_time } min</p>" | raw -}}
+			{{- post.cooking_time ? "<p class=\"cooking-time\">#{ post.cooking_time } min</p>" | raw -}}
+		</div>
 	</div>
-	
+
 
 	{% if post.get_field( 'collection' ) %}
-	<div class="Recipe-collection">
+		<div class="Recipe-collection">
 
-		{# Collection #}
-		{% for collection in post.get_field( 'collection' ) %}
-			
+			{% for collection in post.get_field( 'collection' ) %}
 
-			{% if collection.ingredients %}
 
-				{# Description #}
-				<h3 class="description">
-				{{- 
-					collection.description 
-						? collection.description
-						: pll__( 'Tu as besoin de …' )
-				-}}
-				</h3>
+				{% if collection.ingredients %}
 
-				
-				<div class="ingredients">
-					<ul>
-					{# Ingredients #}
-					{% for item in collection.ingredients %}
+					<h3 class="description">
+						{{- collection.description ? collection.description : pll__( 'Tu as besoin de …' ) -}}
+					</h3>
 
-						<li class="ingredient">{{ item.ingredient }}</li>
+					<div class="ingredients">
+						<ul>
+							{% for item in collection.ingredients %}
+								<li class="ingredient">{{ item.ingredient }}</li>
+							{% endfor %}
+						</ul>
+					</div>
 
-					{% endfor %}
-					</ul>
-				</div>
+				{% endif %}
 
-			{% endif %}
+			{% endfor %}
 
-		{% endfor %}
-
-	</div>
+		</div>
 	{% endif %}
 
 </div>
 
 {% if post.get_field( 'collection' ) %}
-<div class="Recipe-steps">
-
-	{# Collection #}
-	{% for collection in post.get_field( 'collection' ) %}
-
-		{% if collection.steps %}
-			
-			{# Steps #}
-			{% for step in collection.steps %}
-
-				{{ step.description }}
-
-			{% endfor %}	
-
-		{% endif %}
-
-	{% endfor %}
-
-</div>
+	<div class="Recipe-steps">
+		{% for collection in post.get_field( 'collection' ) %}
+			{% if collection.steps %}
+				{% for step in collection.steps %}
+					{{- step.description -}}
+				{% endfor %}
+			{% endif %}
+		{% endfor %}
+	</div>
 {% endif %}
 
-
 {% if post.gallery %}
-<div class="Recipe-gallery">
-	
-	{% include 'partials/slider-post.twig' %}
-
-</div>
+	<div class="Recipe-gallery">
+		{% include 'partials/slider-post.twig' %}
+	</div>
 {% endif %}

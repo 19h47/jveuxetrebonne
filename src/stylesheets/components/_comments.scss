@@ -4,13 +4,8 @@
  * @uses .Comments
  */
 .Comments {
-	@include padding( top 20px bottom 48px );
-	// background: 
-	//     linear-gradient(
-	//     	33deg, 
-	//     	rgba( the_color( orange, light-grayish-01 ), 1 ) 0%,
-	//     	rgba( the_color( orange, light-grayish-02 ), 1 ) 100%
-	//     );
+	@include padding( top #{ $base-line-height }px bottom #{ $base-line-height * 2 }px );
+
 	background: { color: the_color( orange, very-soft-07 ); }
 
 	/**
@@ -23,8 +18,10 @@
 
 	.title {
 		@extend %font-bold, %margin-0;
-		@include font( 45, 80, 15 );
-		
+		@include letter-spacing( 15 );
+
+		font-size: 45px;
+		line-height: #{ $base-line-height * 3 }px;
 		color: the_color( white );
 	}
 
@@ -34,7 +31,7 @@
 		$line-height: 69.99;
 
 		@extend %font-semibold, %font-title;
-		
+
 		color: the_color( white );
 		font: {
 			size: ( $font-size / $base-font-size ) * 1em;
@@ -45,12 +42,10 @@
 
 	.expand {
 		@extend .d-block, %position-relative;
-		@include size( 22px );
-		@include margin( top -30px right auto bottom -15px left auto );
+		@include size( #{ $base-line-height }px );
+		@include margin( top #{ $base-line-height * -1 }px right auto bottom #{ $base-line-height * -0.5 }px left auto );
 
-		background: {
-			size: 100%;
-		}
+		background-size: 100%;
 		z-index: 1;
 
 		&.minus {
@@ -62,8 +57,7 @@
 		&.plus {
 			background: {
 				image: url('#{ map-get( $directories, svg ) }plus.svg' );
-			}	
+			}
 		}
-
 	}
 }

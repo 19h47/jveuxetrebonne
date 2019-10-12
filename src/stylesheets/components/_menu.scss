@@ -13,9 +13,13 @@
 	@extend .clearfix;
 
 	color: currentColor;
+	height: #{ $base-line-height }px;
 
 	@at-root .Footer & {
-		@include media-breakpoint-between( 'xs', 'md' ) { @include margin( bottom $grid-gutter-width ); }
+		@include margin( top #{ $base-line-height }px bottom #{ $base-line-height }px );
+
+		@include media-breakpoint-between( xs, md ) {
+			@include margin( bottom #{ $base-line-height }px ); }
 	}
 
 
@@ -39,21 +43,21 @@
 		}
 	}
 
-
+	// .Menu-item-search
 	&-search-button {
 		@extend .hidden-md, .hidden-lg, .hidden-hd;
 		@include absolute( top 0 left 0 );
 		// Magic number is a shame!
-		@include margin( top ( $grid-gutter-width + 6px ) left $grid-gutter-width );
-		@include size( 27px );
+		@include margin( left #{ $base-line-height }px );
+		@include size( #{ $base-line-height }px );
 
 		.Icon {
 			@extend .d-inline-block;
 			@include size( 100% );
-			max-width: 27px;
-			max-height: 27px;
 
-			@include media-breakpoint-up( md ) { vertical-align: middle; }
+			@include media-breakpoint-up( md ) {
+				vertical-align: middle;
+			}
 		}
 	}
 
@@ -71,8 +75,7 @@
 		.About-header & {
 
 		@extend %Position-fixed-center, %Transition-ease;
-		@include margin( top 0 bottom 0 );
-		@include padding( top 104px );
+		@extend %margin-y-0;
 		@include size( 100% );
 
 		transform: translate3d( -100%, 0, 0 );
@@ -84,12 +87,7 @@
 		}
 
 		@include media-breakpoint-up( md ) {
-			@include margin(
-				top 72px
-				bottom 119px
-				left ( ( $margin / 2 ) * -1px )
-			);
-			@include padding( top 0 );
+			@include margin( left ( ( $margin / 2 ) * -1px ) );
 			@include size( auto );
 
 			position: static;
@@ -123,7 +121,6 @@
 		@extend
 			.d-block,
 			.d-md-inline-block,
-			%vertical-align-middle,
 			%position-relative;
 
 		/**
@@ -214,10 +211,8 @@
 				left ( ( ( $margin / 2 ) - $padding ) * 1px )
 			);
 
-			font: {
-				size: ( $font-size / $base-font-size ) * 1em;
-			}
-			line-height: ( 42 / $font-size );
+			font-size: ( $font-size / $base-font-size ) * 1em;
+			line-height: #{ $base-line-height }px;
 
 			@include media-breakpoint-between( 'md', 'lg' ) {
 				font: {
@@ -256,65 +251,36 @@
 		 * Lang
 		 */
 		&.menu-item-lang {
-			$orange: the_color( orange, very-soft-01 );
-			$font-size: 13;
+			@extend .d-flex, .align-items-center;
 
 			@extend
 				%font-title,
 				%font-semibold,
 				%float-md-right,
-				%Transition-ease,
-				%text-align-center,
-				%text-align-md-left;
-			@include font( $font-size, 29 );
-			@include margin(
-				top (( $margin / 2 ) * 1px )
-				right ( ( ( $margin / 2 ) - $padding ) * 1px )
-				bottom (( $margin / 2 ) * 1px )
-				left ( ( ( $margin / 2 ) - $padding ) * 1px )
-			);
+				%text-transform-uppercase,
+				%margin-0;
 
 			color: the_color( blue, light-grayish );
-
-			@include media-breakpoint-up( md ) {
-				@include margin(
-					top 0
-					right 0
-					bottom 0
-					left 0
-				);
-			}
+			font-size: 13;
+			line-height: #{ $base-line-height }px;
 
 
 			@at-root .Single-header & {
-
 				@include media-breakpoint-up( md ) {
-
 					color: the_color( white );
 				}
 			}
 
-			&.lang-item-en {
-				.fr {
-					color: $orange;
-
-					&:hover {
-						color: shade( $orange, .7 );
-					}
-				}
+			.lang-item {
+				@extend %margin-0;
 			}
 
-			&.lang-item-fr {
-				.en {
-					color: $orange;
-
-					&:hover {
-						color: shade( $orange, .7 );
-					}
-				}
+			a {
+				@extend %Transition-ease;
+				color: the_color( orange, very-soft-01 );
 			}
 
-			&:hover {
+			a:hover {
 				color: shade( the_color( blue, light-grayish ), .7 );
 			}
 		}
@@ -324,27 +290,17 @@
 		 * Search
 		 */
 		&.menu-item-search {
-			$size: (
-				width: 20,
-				height: 20
-			);
-
 			@extend %margin-0, %float-right;
 
-			line-height: ( 42 / 15 );
-
-			@include media-breakpoint-between( 'md', 'lg' ) {
-				line-height: 28px;
-			}
+			line-height: #{ $base-line-height }px;
 
 			.menu-item-search__button {
-
-				@include margin( right 50px );
+				@extend %vertical-align-middle, .d-inline-block;
+				@include margin( right #{ $base-line-height * 2 }px );
+				@include size( #{ $base-line-height * 0.75 }px );
 
 				.Icon {
-					@extend %vertical-align-middle, .d-inline-block;
-					max-width: ( map-get( $size, width ) * 1px );
-					max-height: ( map-get( $size, height ) * 1px );
+					@include size( 100% );
 
 					fill: currentColor;
 				}
@@ -394,11 +350,11 @@
 	 * @uses .Footer .Menu .menu-item
 	 */
 	@at-root .Footer & .menu-item {
-		$font-size: 13;
 
 		@extend %font-title, %font-semibold;
-		@include margin( top $grid-gutter-width right 20px bottom $grid-gutter-width left 20px );
-		@include font( 19, 33 );
+		@include margin( top #{ $base-line-height }px right $grid-gutter-width bottom #{ $base-line-height }px left $grid-gutter-width );
+		font-size: 19px;
+		line-height: #{ $base-line-height }px;
 
 		color: the_color( gray, very-dark );
 
@@ -406,13 +362,14 @@
 		&:last-child { @include margin( bottom 0 ); }
 
 		@include media-breakpoint-up( md ) {
-			@include font( $font-size, 33 );
 			@include margin( top 0 bottom 0 );
+			font-size: 13px;
+			line-height: #{ $base-line-height }px;
 		}
 
 		a {
 			@extend %Transition-ease;
-			@include padding( top 15px right 15px bottom 15px left 15px );
+			@include padding( top #{ $base-line-height / 2 }px right $grid-gutter-width / 2 bottom #{ $base-line-height / 2 }px left $grid-gutter-width / 2 );
 
 			&:hover { color: the_color( orange, very-soft-01 ); }
 		}

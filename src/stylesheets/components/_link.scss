@@ -8,21 +8,10 @@
 
 
 	&-blogrolls {
-
-		&-header {
-
-			@include media-breakpoint-up( md ) {
-
-				@include margin(
-					right percentage( 76 / $container-width-without-outer-gutter-unitless )
-					left percentage( 76 / $container-width-without-outer-gutter-unitless )
-				);
-			}
-		}
-
+		&-header {}
 		&-category-recompense {}
 		&-category-presse {
-			@include margin( bottom 70px );
+			@include margin( bottom #{ $base-line-height * 2.5 }px );
 
 			&__container {
 			    white-space: nowrap;
@@ -39,8 +28,10 @@
 		.title {
 			@extend .color-gray-very-dark;
 			@extend %font-bold;
-			@include margin( top 45px bottom 45px );
-			@include font( 20, 33 );
+			@include margin( top #{ $base-line-height * 1.5 }px bottom #{ $base-line-height * 1.5 }px );
+
+			font-size: 20px;
+			line-height: #{ $base-line-height }px;
 		}
 	}
 
@@ -50,47 +41,43 @@
 		.description {
 			@extend .color-blue-light-grayish;
 			@extend %font-title, %font-semibold;
-			@include margin( top $grid-gutter-width );
-			@include font( 12.02, 29.05, 15 );
+			@include margin( top #{ $base-line-height }px );
+			@include letter-spacing( 15 );
+
+			font-size: 12px;
+			line-height: #{ $base-line-height }px;
 		}
 
 		&-category-recompense {
 			@extend %text-align-center;
-			@include margin( top 45px bottom 45px );
+			@include margin( top #{ $base-line-height * 1.5 }px bottom #{ $base-line-height * 1.5 }px );
 
 			.thumbnail {
 				@extend .d-inline-block, %vertical-align-middle;
-				@include size( 218px, 120px );
+				@include size( #{ $base-line-height * 7.5 }px, #{ $base-line-height * 4 }px );
 
 				max-width: 100%;
-
 				object-fit: none;
-				object-position: 50% 50%;
+				object-position: center;
 			}
 		}
 
 		&-category-presse {
 			@extend .d-inline-block;
 			@include margin(
-				top $grid-gutter-width
+				top #{ $base-line-height }px
 				right $grid-gutter-width
-				bottom $grid-gutter-width
+				bottom #{ $base-line-height }px
 				left $grid-gutter-width
 			);
 
-			@include media-breakpoint-up( md ) {
-				@include margin(
-					right percentage( $grid-gutter-width-unitless / $container-width-without-outer-gutter-unitless )
-					left percentage( $grid-gutter-width-unitless / $container-width-without-outer-gutter-unitless )
-				);
-			}
-
 			.thumbnail {
 				@extend .d-inline-block, %vertical-align-middle;
-				@include size( auto, 60px );
+				@include size( auto, #{ $base-line-height * 2 }px );
 				filter: grayscale(100%);
+
 				opacity: .2;
-				max-width: 180px;
+				max-width: $grid-gutter-width * 6;
 
 				object-fit: contain;
 				object-position: 50% 50%;

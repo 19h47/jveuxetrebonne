@@ -5,43 +5,37 @@
  * @author 	Jérémy Levron
  */
 .Comment {
-	$parent-size: 1088;
+	@extend .d-flex;
+
 	@extend .background-white;
-	@include margin( bottom 38px );
-	@include padding( 
-		top percentage( 36 / $parent-size ) 
-		right 30px
-		bottom percentage( 36 / $parent-size ) 
-		left 30px
+	@include margin( bottom #{ $base-line-height }px );
+	@include padding(
+		top #{ $base-line-height }px
+		right $grid-gutter-width
+		bottom #{ $base-line-height }px
+		left $grid-gutter-width
 	);
 
-	box-shadow: -1px 3px 15px 0px rgba( the_color( orange, very-soft-01 ), .25 ); 
+	box-shadow: -1px 3px 15px 0px rgba( the_color( orange, very-soft-01 ), .25 );
 
 	@include media-breakpoint-up( md ) {
-		@include margin( right auto left auto );
-		@include padding( 
-			top percentage( 36 / $parent-size ) 
-			right percentage( 36 / $parent-size ) 
-			bottom percentage( 36 / $parent-size ) 
-			left percentage( 36 / $parent-size ) 
+		@include margin(
+			right calc( #{ percentage( 1 / 12 ) } + #{ $grid-gutter-width / 2 } )
+			left calc( #{ percentage( 1 / 12 ) } + #{ $grid-gutter-width / 2 } )
 		);
-		
-		width: percentage( $parent-size / $container-width-without-outer-gutter-unitless );
 	}
-	
 
-	/**
-	 * Comment list
-	 *
-	 * @uses .Comment-list
-	 */
-	&-list { 
-		@extend %list-unstyled; 
 
-		// @at-root .js & { @extend .d-none; }
+	// .Comment-list
+	&-list {
+		@extend %list-unstyled;
+
+		& > li {
+			@include margin( right $grid-gutter-width / -2 left $grid-gutter-width / -2 );
+		}
 	}
-	
-	
+
+
 	/**
 	 * Comment inner
 	 *
@@ -49,12 +43,9 @@
 	 */
 	&-inner {
 		@extend .d-inline-block, %vertical-align-top;
-		
-		@include media-breakpoint-up( md ) {
-			@include padding( left 39px );
 
-			// Don't forget to interpolate in CSS calc built in function
-			width: calc( 100% - #{ $grid-gutter-width * 2 } );
+		@include media-breakpoint-up( md ) {
+			@include padding( right $grid-gutter-width left $grid-gutter-width );
 		}
 	}
 
@@ -74,17 +65,16 @@
 	 */
 	.author {
 		@extend %font-semibold, %margin-0;
-		// @include font( 16, 69.99 );
-		
-		font: {
-			size: ( 18 / $base-font-size ) * 1em;
-		}
+
+		font-size: 18px;
 		color: the_color( orange, very-soft-01 );
 
-		@include media-breakpoint-up( md ) { font-size: ( 16 / $base-font-size ) * 1em; }
+		@include media-breakpoint-up( md ) {
+			font-size: 16px;
+		}
 	}
 
-	
+
 	/**
 	 * Date
 	 *
@@ -94,16 +84,16 @@
 		@include margin( top 0 );
 		@extend %font-title, %font-regular;
 		// @include font( 12, 80 );
-		
-		font: {
-			size: ( 15 / $base-font-size ) * 1em;
-		}
+
+		font-size: 15px;
 		color: the_color( blue, light-grayish );
 
-		@include media-breakpoint-up( md ) { font-size: ( 12 / $base-font-size ) * 1em; }
+		@include media-breakpoint-up( md ) {
+			font-size: 12px;
+		}
 	}
 
-	
+
 	/**
 	 * Content
 	 *
@@ -111,14 +101,17 @@
 	 */
 	.content {
 		@extend %font-title;
-		@include font( 16, 22, 15 );
+		@include letter-spacing( 15 );
+
+		font-size: 16px;
+		line-height: #{ $base-line-height }px;
 
 		@include media-breakpoint-up( md ) {
-			@include font( 13, 22, 15 );
+			font-size: 13px;
 		}
 	}
 
-	
+
 	/**
 	 * Avatar
 	 *
@@ -126,28 +119,27 @@
 	 */
 	.avatar {
 		@extend .d-inline-block, %vertical-align-middle;
-		@include size( $grid-gutter-width * 2 );
-		box-shadow: -1px 3px 15px 0px rgba( the_color( red, bright ), .15 ); 
+		@include size( #{ $base-line-height * 2 }px );
+		box-shadow: -1px 3px 15px 0px rgba( the_color( red, bright ), .15 );
 	}
 
-	
-	/**
-	 * Reply
-	 *
-	 * @uses .Comment .reply
-	 */
+
+	// .Comment .reply
 	.reply {
 		@include margin( bottom 0 );
 
-		a {
-			@extend .Link-readmore, .Link-marker, .Link-marker--orange-soft;
-			@extend %font-title, %font-semibold;
-			@include font( 18, 33 );
+		height: #{ $base-line-height }px;
 
+		a {
+			@extend .Link-readmore, .Link-marker, .Link-marker--orange-soft, .d-inline-block;
+			@extend %font-title, %font-semibold;
+
+			font-size: 18px;
+			line-height: #{ $base-line-height }px;
 			color: the_color( orange, very-soft-01 );
 
 			@include media-breakpoint-up( md ) {
-				@include font( 13, 33 );
+				font-size: 13px;
 			}
 
 			&:hover {

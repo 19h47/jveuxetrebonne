@@ -1,5 +1,5 @@
 /**
- * Shame 
+ * Shame
  *
  * Here goes all the CSS declarations, hacks and things we are not proud of.
  *
@@ -10,4 +10,10 @@
 	img {
 		height: 100%!important;
 	}
+}
+
+.plyr__video-embed,
+.plyr__video-wrapper--fixed-ratio {
+	height: #{ $base-line-height * 10.5 }px!important;
+	padding-bottom: 0!important;
 }

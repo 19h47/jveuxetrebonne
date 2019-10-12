@@ -4,84 +4,67 @@
  * @uses .Instagram-posts
  */
 .Instagram-posts {
-	@include padding( top 20px bottom 48px );
-	
+	@include padding( top #{ $base-line-height }px bottom #{ $base-line-height * 2 }px );
+
 	background: linear-gradient(
-		33deg, 
+		33deg,
 		the_color( orange, light-grayish-01 ) 0%,
 		the_color( orange, light-grayish-02 ) 100%
 	);
 
 	color: the_color( white );
 
-	
+
 	/**
 	 * Header
 	 *
 	 * @uses .Instagram-posts-header
 	 */
 	&-header { @extend %text-align-center; }
-	
 
-	/**
-	 * Container
-	 *
-	 * @uses .Instagram-posts-container
-	 */
+
+	// .Instagram-posts-container
 	&-container {
-		$padding: 48;
-		
 		@extend %list-unstyled;
 		@include margin( top 0 bottom 0 );
-		
-		@include padding( 
-			top $padding * 1px 
+
+		@include padding(
+			top #{ $base-line-height * 2 }px
 			left 0
-			bottom $padding * 1px 
+			bottom #{ $base-line-height * 2 }px
 		);
 	}
 
 
-	/**
-	 * Footer
-	 *
-	 * @uses .Instagram-posts-footer
-	 */
-	&-footer { @extend %text-align-center; }
-	
+	// .Instagram-posts-footer
+	&-footer {
+		@extend %text-align-center;
 
-	/**
-	 * Title
-	 * 
-	 * @uses .Instagram-posts-header .title
-	 */
-	.title {
-		$font-size: 45;
-		$line-height: 80;
-
-		@extend %font-bold, %margin-0;
-		@include font( $font-size, $line-height, 15 );
-		
-		color: the_color( white );
+		height: #{ $base-line-height }px;
 	}
-	
+
+
+	// .Instagram-posts-header .title
+	.title {
+		@extend %font-bold, %margin-0;
+		@include letter-spacing( 15 );
+
+		color: the_color( white );
+		font-size: 45px;
+		line-height: #{ $base-line-height * 3 }px;
+	}
+
 
 	/**
 	 * Catchphrase
-	 * 
+	 *
 	 * @uses .Instagram-posts-header .catchphrase
 	 */
 	.catchphrase {
-		$font-size: 15;
-		$line-height: 69.99;
-
 		@extend %font-semibold, %font-title;
-		@include margin( top -25px bottom -15px );
-		
+		@include margin( top #{ $base-line-height * -1 }px bottom #{ $base-line-height * 0.5 }px );
+
 		color: the_color( orange, very-soft-01 );
-		font: {
-			size: ( $font-size / $base-font-size ) * 1em;
-		}
-		// line-height: $line-height / $font-size;
+		font-size: 15px;
 	}
 }

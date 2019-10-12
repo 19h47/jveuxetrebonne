@@ -6,40 +6,50 @@
 .Aside {
 	@include absolute( top 0 right 0 );
 
-	width: percentage( 76 / 1029 );
-	
-	@at-root .Front-page &,
-	.About & { 
-		top: auto; bottom: 0; 
+	@at-root .Single & {
+		width: percentage( 62 / 895 );
+	}
+
+	@at-root .Front-page &, .About & {
+		width: percentage( 1 / 12 );
+		top: auto; bottom: 0;
+	}
+
+	@at-root .Single & {
+		bottom: 0;
 	}
 
 	&-inner {
-		@include margin( 
-			top ( $grid-gutter-width * 4 ) 
-			bottom ( $grid-gutter-width * 4 )
-		);
+		@extend .d-flex, .align-items-center, .flex-column;
 
-		@at-root .Front-page &,
-		.About & { 
-			@include margin( top 0 bottom 0 ); 
+		@at-root .Single & {
+			top: 0;
+			position: sticky;
+
+			@include padding(
+				top #{ $base-line-height * 3 }px
+				bottom #{ $base-line-height * 3 }px
+			);
 		}
-
 	}
 
 	&-socials {
-		@extend .list-unstyled;
 		@extend %margin-0;
+		@extend .list-unstyled, .d-flex, .flex-column;
 
 		&__item {
-			@extend %vertical-align-middle;
-			@include size( $grid-gutter-width );
-			@include margin( 
-				top ( $grid-gutter-width  / 2 )
-				bottom ( $grid-gutter-width  / 2 )
+			@include size( #{ $base-line-height }px );
+			@include margin(
+				top #{ $base-line-height  / 4 }px
+				bottom #{ $base-line-height  / 4 }px
 			);
+
+			&:first-child { @include margin( top 0 ); }
+			&:last-child { @include margin( bottom 0 ); }
 
 			a {
 				@extend .d-block;
+				@include size( 100% );
 
 				&:hover {
 					svg {
@@ -51,56 +61,57 @@
 			svg {
 				@extend .d-inline-block, %vertical-align-middle, %Transition-ease;
 
-				max-width: $grid-gutter-width;
-				max-height: $grid-gutter-width;
+				max-width: 100%;
+				max-height: 100%;
 
 				fill: the_color( blue, light-grayish );
 			}
-
-			@at-root .Front-page &:last-child { @include margin( bottom 0 ); }
 		}
 	}
 
 	&-bull {
 		@extend .d-block, %text-align-center;
-		@include size( $grid-gutter-width );
+		@include size( #{ $base-line-height }px );
+
+		@include margin(
+			top #{ $base-line-height  / 2 }px
+			bottom #{ $base-line-height  / 2 }px
+		);
 
 		color: the_color( blue, light-grayish );
 	}
 
 	&-subscribe {
-		@extend %font-semibold, %font-title;
-		@include font( 13, $grid-gutter-width-unitless );
-		transform: rotate( 90deg ) translate3d( 0, -50%, 0 );
-		transform-origin: 0 50%;
-		color: the_color( orange, very-soft-01 );
-		white-space: nowrap;
+		line-height: #{ $base-line-height }px;
+		height: #{ $base-line-height * 3 }px;
+
+		button {
+			@extend %font-semibold, %font-title;
+
+			height: 100%;
+			font-size: 13px;
+			color: the_color( orange, very-soft-01 );
+
+			span {
+				writing-mode: vertical-lr;
+			}
+		}
 	}
 
 
 	&-email {
-		@extend %font-semibold, %font-title, %Transition-ease, .d-inline-block, %overflow-hidden;;
-		@include font( 13, $grid-gutter-width-unitless );
+		@extend %font-semibold, %font-title, %Transition-ease, .d-inline-block;
 
 		color: the_color( blue, light-grayish );
-		width: 30px;
+		font-size: 13px;
+		line-height: #{ $base-line-height }px;
 
 		&:hover {
 			color: the_color( orange, very-soft-01 );
 		}
 
 		a {
-			@extend .d-inline-block;
-			transform: translate( calc( -50% + #{ $grid-gutter-width } ), -50% ) rotate( 90deg );
-     		transform-origin: 0 50%;
-
-			white-space: nowrap;
-
-			&:after {
-			     content: "";
-			     float: left;
-			     margin-top: 100%;
-			 }
-		} 
-	}	
+			writing-mode: vertical-lr;
+		}
+	}
 }

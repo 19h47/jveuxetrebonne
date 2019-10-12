@@ -18,7 +18,7 @@ export default class Recipe {
 		this.id = this.$buttons[0].dataset.id;
 		this.$container = this.$parent.find('.js-recipes-container');
 
-		this.event.call(this);
+		this.event();
 
 		this.load()
 			.then(this.append.bind(this))
@@ -103,8 +103,6 @@ export default class Recipe {
 
 
 	on() {
-		// console.log('Recipe.lock.on');
-
 		// add loading state to ajax container if exists
 		if (this.$container) {
 			$(this.$container).addClass('is-loading');

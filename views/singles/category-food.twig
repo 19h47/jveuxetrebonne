@@ -9,28 +9,29 @@
 {% extends 'singles/index.twig' %}
 
 {% block recipe %}
+	{% if post.get_field( 'child_recipes' ) %}
+		<header class="Recipe-header Recipe-header--category-food">
+			<h2>{{- pll__( 'La recette pas à pas' ) -}}</h2>
+			<button class="Link-readmore Link-marker Link-marker--blue print js-print d-print-none">
+				<span>{{- pll__( 'Imprimer' ) -}}</span>
+			</button>
+		</header>
 
-	<header class="Recipe-header Recipe-header--category-food">
-		<h2>{{- pll__( 'La recette pas à pas' ) -}}</h2>
-		<button class="Link-readmore Link-marker Link-marker--blue print js-print">
-			<span>{{- pll__( 'Imprimer' ) -}}</span>
-		</button>
-	</header>
+		<div class="Recipe-child js-recipes">
+			{% if post.get_field( 'child_recipes' ) %}
+				<ul class="items js-recipes-buttons">
+					{% for child_recipe in post.get_field( 'child_recipes' ) %}
+						<li class="item">
+							<button type="button" class="js-recipes-button{{ loop.index == 1 ? ' is-active' }}" data-id="{{ child_recipe.id }}">
+								<span>{{- child_recipe.title -}}</span>
+							</button>
+						</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
 
-	<div class="Recipe-child js-recipes">
-		<ul class="items js-recipes-buttons">
-			{% for child_recipe in post.get_field( 'child_recipes' ) %}
-
-				<li class="item">
-					<button class="js-recipes-button{{ loop.index == 1 ? ' is-active' }}" data-id="{{ child_recipe.id }}">
-						<span>{{- child_recipe.title -}}</span>
-					</button>
-				</li>
-
-			{% endfor %}
-		</ul>
-
-		<div class="js-recipes-container Recipe-container"></div>
-	</div>
+			<div class="js-recipes-container Recipe-container"></div>
+		</div>
+	{% endif %}
 
 {% endblock %}

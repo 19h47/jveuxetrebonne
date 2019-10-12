@@ -3,23 +3,20 @@
  */
 .Heading {
 	$font-size: 160;
-	
-	@extend %margin-0;
-	
+
+	@extend %margin-0, %Pointer-events-none;
+
+	color: rgba( the_color( orange, light-grayish-01 ), .5 );
 	font: {
 		size: ( 60 / $base-font-size ) * 1em;
 		family: map-get( map-get( $font, families ), title );
 		weight: map-get( map-get( $font, weights ), semibold );
 	}
+	line-height: #{ $base-line-height * 8 }px;
 
-	@include media-breakpoint-up( md ) { 
-		font: { 
-			size: ( $font-size / $base-font-size ) * 1em; 
-		} 
+	@include media-breakpoint-up( md ) {
+		font-size: ( $font-size / $base-font-size ) * 1em;
 	}
-
-	// line-height: ( 69.99 / $font-size );
-	color: rgba( the_color( orange, light-grayish-01 ), .5 );
 
 	&--marquee {
 		$duration: 30s;
@@ -35,22 +32,22 @@
 			text-align: center;
 
 			animation: {
-				duration: $duration; 
+				duration: $duration;
 				timing-function: linear;
 				iteration-count: infinite;
 			}
 		}
 
 		span:nth-child( 1 ) {
-			animation: { 
-				name: marquee-first-child; 
+			animation: {
+				name: marquee-first-child;
 			}
 		}
 
 		span:nth-child( 2 ) {
-			animation: { 
+			animation: {
 				delay: ( $duration / 2 );
-				name: marquee-second-child; 
+				name: marquee-second-child;
 			}
 		}
 	}

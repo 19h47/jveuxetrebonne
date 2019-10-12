@@ -1,3 +1,4 @@
+import config from 'js/config';
 
 export default class Guid {
 	constructor() {
@@ -12,6 +13,7 @@ export default class Guid {
 		document.addEventListener('keydown', (e) => {
 			if ((e.metaKey || e.ctrlKey) && 186 === e.keyCode) {
 				this.rootElement.classList.toggle('d-none');
+				config.body.el.classList.toggle('position-relative');
 			}
 		});
 

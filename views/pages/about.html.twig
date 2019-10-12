@@ -20,15 +20,13 @@
 
 			<button class="Menu-button js-toggle-menu-button hidden-md hidden-lg hidden-hd"></button>
 
-			<div class="row">
+			<div class="row d-flex align-items-center">
 				<div class="col-4 offset-4 offset-md-0 col-md-1">
 					<div class="Header-logo">
 						{% include 'components/header-logo.twig' %}
 					</div>
 				</div>
 				<div class="col-12 col-md-10 offset-md-1">
-
-
 					<ul class="Menu" role="navigation">
 						{%
 							include 'components/menu.twig'
@@ -54,7 +52,7 @@
 		<div class="Sticky-posts">
 			<article class="Sticky-post row">
 
-		        <div class="col-12 col-md-5 offset-md-1">
+		        <div class="col-12 col-md-5 offset-md-1 margin-bottom-7">
 		            <a class="thumbnail" href="{{ post.link }}">
 		                <img class="img-full" src="{{ post.thumbnail.src | tojpg | resize( 635, 550 ) }}" alt=""/>
 		            </a>
@@ -74,23 +72,25 @@
 
 		            {# Footer #}
 		            {% if post.get_field( 'gallery' ) %}
-		            <footer class="Sticky-post-footer js-slider-sticky-container hidden-xs hidden-sm">
-		                <div class="Sticky-post-footer__inner">
+						<div class="row">
+				            <footer class="Sticky-post-footer js-slider-sticky-container hidden-xs hidden-sm">
+				                <div class="Sticky-post-footer__inner">
 
-		                    <ul class="Sticky-post-footer__gallery js-slider-sticky">
-		                        {% for image in post.get_field( 'gallery' ) %}
-		                            <li class="Sticky-post-footer__gallery__item">
-		                                <img src="{{ TimberImage( image ) }}" />
-		                            </li>
-		                        {% endfor %}
-		                    </ul>
+				                    <ul class="Sticky-post-footer__gallery js-slider-sticky">
+				                        {% for image in post.get_field( 'gallery' ) %}
+				                            <li class="Sticky-post-footer__gallery__item">
+				                                <img src="{{ Image( image ).src( 'large' ) }}" alt="{{ Image( image ).alt }}" width="{{ Image( image ).width }}" height="{{ Image( image ).height }}" />
+				                            </li>
+				                        {% endfor %}
+				                    </ul>
 
-		                    <button class="Sticky-post-footer__gallery__button js-slider-sticky-next" type="button" >
-								{% include 'svg/use.html.twig' with { classes: [ 'Icon' ], icon: 'next', theme: theme } only %}
-		                    </button>
+				                    <button class="Sticky-post-footer__gallery__button js-slider-sticky-next" type="button" >
+										{% include 'svg/use.html.twig' with { classes: [ 'Icon' ], icon: 'next', theme: theme } only %}
+				                    </button>
 
-		                </div>
-		            </footer>
+				                </div>
+				            </footer>
+						</div>
 		            {% endif %}
 
 		        </div>
@@ -112,18 +112,10 @@
 
 	<div class="l-container About-description">
 		<div class="row">
-			<div class="col-12">
+			<div class="col-12 col-md-10 offset-md-1">
 				<div class="About-description-inner">
 					{{- post.description | wpautop -}}
-
-					{# <div class="About-description-footer">
-						<a href="http://www.jveb.19h47.fr/" class="Link-readmore Link-marker Link-marker--orange" target="_blank">
-							<span>{{ pll__( 'Découvrir jveb studio' ) }}</span>
-						</a>
-					</div> #}
-					{# <img class="img-full" src="{{ theme.link }}/img/png/banner-about.png" alt="" width="2000" height="660" /> #}
 				</div>
-
 			</div>
 		</div>
 	</div>

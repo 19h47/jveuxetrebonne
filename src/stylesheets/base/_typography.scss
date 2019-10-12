@@ -9,7 +9,7 @@ html {
 }
 
 body {
-    
+
 
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -39,35 +39,35 @@ body {
  */
 $titles: (
     h1: (
-        57, 
-        64,
-        map-get( map-get( $font, weights ), medium ), 
+        57px,
+        #{ $base-line-height * 2 }px,
+        map-get( map-get( $font, weights ), medium ),
         map-get( map-get( $font, families ), title ),
-        0 
+        0
     ),
 
     h2: (
-        44,
-        normal,
+        44px,
+        #{ $base-line-height * 2 }px,
         map-get( map-get( $font, weights ), regular ),
         map-get( map-get( $font, families ), title ),
-        0    
+        0
     ),
 
     h3: (
-        32,
-        normal,
+        32px,
+        #{ $base-line-height }px,
         map-get( map-get( $font, weights ), regular ),
         map-get( map-get( $font, families ), title ),
-        0    
+        0
     ),
 
     h4: (
         24,
-        32,
+        #{ $base-line-height }px,
         map-get( map-get( $font, weights ), medium ),
         map-get( map-get( $font, families ), title ),
-        0    
+        0
     ),
 );
 
@@ -97,21 +97,19 @@ $titles: (
         // Include mixin
         @include letter-spacing( $letter-spacing );
         @include margin (
-            top 1em
-            bottom .5em
+            top #{ $base-line-height }px
+            bottom #{ $base-line-height * 0.5 }px
         );
 
         font: {
             family: $family;
-            size: ( $font-size / 10 ) * 1rem;
+            size: $font-size;
             weight: $weight;
         }
-        line-height: $line-height / $font-size; 
+        line-height: $line-height;
 
         @if $line-height == normal {
-
             line-height: normal;
         }
-            
     }
 };

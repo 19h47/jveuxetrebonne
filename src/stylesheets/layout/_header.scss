@@ -4,47 +4,20 @@
  * @uses .Header
  */
 .Header {
-	
-	/**
-	 * Logo
-	 *
-	 * @uses .Header-logo
-	 */
+
+	// .Header-logo
 	&-logo {
 		@extend %text-align-center, %text-align-md-left;
 
 		a {
 			@extend .d-block;
-			@include margin( top 20px bottom 25px );
-
-			@include media-breakpoint-up( md ) {
-				
-				@include margin( 
-					top $grid-gutter-width * 2 
-					bottom auto
-				);
-			}
+			@include size( 100%, #{ $base-line-height * 2 }px );
 		}
 		svg {
 			@extend .d-inline-block, %vertical-align-middle;
-			
-			max-width: 100%;
-			max-height: 59px;
+			@include size( 100% );
+
 			fill: currentColor;
-			
-			@include media-breakpoint-up( 'lg' ) { max-width: 76px; }
 		}
-
-		@at-root .Single-header & a {
-			@include margin( top 24px );
-
-			@include media-breakpoint-up( md ) { @include margin( top 36px ); }
-		}
-
-		// @at-root .About-header & a {
-		// 	@include margin( top 24px );
-
-		// 	@include media-breakpoint-up( md ) { @include margin( top 36px ); }
-		// }
 	}
 }

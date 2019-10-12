@@ -9,31 +9,33 @@
 
 	{{ parent() }}
 
-	<div class="Category-header l-container">
+	<div class="Category-header">
+		<div class="l-container">
 
-		<button class="Menu-button js-toggle-menu-button hidden-md hidden-lg hidden-hd"></button>
+			<button class="Menu-button js-toggle-menu-button hidden-md hidden-lg hidden-hd"></button>
 
-		<div class="row">
-			<div class="col-12 col-md-1">
-				<div class="Header-logo">
-					{% include 'components/header-logo.twig' %}
+			<div class="row d-flex align-items-center">
+				<div class="col-12 col-md-1">
+					<div class="Header-logo">
+						{% include 'components/header-logo.twig' %}
+					</div>
 				</div>
-			</div>
-			<div class="col-12 col-md-10 offset-md-1">
-				<ul class="Menu" role="navigation">
-					{%
-						include 'components/menu.twig'
-						with {
-							'menu' : menu.categories,
-							'language': true,
-							'search': true,
-							'layout': {
-								'desktop': true,
-								'marker': true
+				<div class="col-12 col-md-10 offset-md-1">
+					<ul class="Menu" role="navigation">
+						{%
+							include 'components/menu.twig'
+							with {
+								'menu' : menu.categories,
+								'language': true,
+								'search': true,
+								'layout': {
+									'desktop': true,
+									'marker': true
+								}
 							}
-						}
-					%}
-				</ul>
+						%}
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

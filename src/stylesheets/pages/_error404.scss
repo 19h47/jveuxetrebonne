@@ -7,6 +7,6 @@
 
 	&-content {
 		@extend .color-gray-very-dark;
-		@include margin( bottom $grid-gutter-width * 5 );
+		@include margin( bottom #{ $base-line-height * 5 }px );
 	}
 }

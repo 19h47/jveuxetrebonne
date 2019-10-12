@@ -7,20 +7,20 @@
 	$this: &;
 
 	@extend %Position-fixed-center, %Transition-ease;
-	@include padding( 
+	@include padding(
 		top ( ( ( 130 * 100 ) / 900 ) * 1vh )
 		bottom ( ( ( 130 * 100 ) / 900 ) * 1vh )
 	);
 	@include size( 100vw, 100vh );
 	// background: linear-gradient(
-	// 	33deg, 
+	// 	33deg,
 	// 	the_color( orange, light-grayish-01 ) 0%,
 	// 	the_color( orange, light-grayish-02 ) 100%
 	// );
 	background: {
 		color: the_color( orange, very-soft-03 );
 	}
-	
+
 	opacity: 0;
 	overflow-y: scroll;
 	visibility: hidden;
@@ -32,20 +32,20 @@
 		visibility: visible;
 	}
 
-	
+
 	/**
 	 * Inner
 	 *
 	 * @uses .Search-inner
 	 */
 	&-inner {
-		@include padding( 
+		@include padding(
 			right percentage( 76 / 1240 )
 			left percentage( 76 / 1240 )
 		);
-		@include margin( bottom 40px );
+		@include margin( bottom #{ $base-line-height * 1.5 }px );
 	}
-	
+
 
 	/**
 	 * Suggest
@@ -53,31 +53,23 @@
 	 * @uses .Search .suggest
 	 */
 	.suggest {
-
 		@extend %Transition-ease;
-		
+
 		opacity: 1;
 
 		@at-root #{ $this }.is-loading .suggest {
 			opacity: .3;
 		}
 	}
-	
 
-	/**
-	 * Loader
-	 *
-	 * @uses .Search .loader
-	 */
+
+	// .Search .loader
 	.loader {
-		$font-size: 16;
-		$line-height: 20.97;
-		
 		@extend %Transition-ease;
 		@include absolute( top 0 right 0 bottom 0 );
-		// @include padding( top 16px right 18px bottom 16px );
 
-		line-height: ( $line-height / $font-size );
+		font-size: 16px;
+		line-height: #{ $base-line-height }px;
 		opacity: 0;
 		visibility: hidden;
 
@@ -87,8 +79,6 @@
 		}
 
 		span {
-			$color: the_color( orange, very-soft-02 );
-
 			@extend .d-inline-block, %font-title;
 
 			animation: {
@@ -98,15 +88,12 @@
 				iteration-count: infinite;
 				fill-mode: forwards;
 			}
-
-			font: {
-				size: ( $font-size * 1px );
-			}
-			color: $color;
+			font-size: 16px;
+			color: the_color( orange, very-soft-02 );
 		}
 	}
-	
-	
+
+
 	/**
 	 * Close
 	 *
@@ -116,9 +103,9 @@
 		$size: 23;
 
 		@include absolute( top 0 right 0 );
-		@include margin( 
+		@include margin(
 			top percentage( 63 / $psd-width-unitless )
-			right percentage( 100 / $psd-width-unitless ) 
+			right percentage( 100 / $psd-width-unitless )
 		);
 		@include size( $size * 1px );
 
@@ -137,18 +124,13 @@
 	 * Title
 	 */
 	.title {
-		$font-size: 60;
-
 		@extend %font-semibold, %font-title, %margin-0;
-		
+
 		color: the_color( gray, very-dark-02 );
-		font: {
-			size: ( $font-size * 1px );
-		}
-		// line-height: ( 41.94 / $font-size );
+		font-size: 60px;
 	}
 
-	
+
 	/**
 	 * Informations
 	 *
@@ -156,7 +138,6 @@
 	 */
 	.informations {
 		$font-size: 16;
-		$line-height: 20.97;
 
 		@extend %font-title, %font-medium;
 
@@ -168,12 +149,12 @@
 		font: {
 			size: ( $font-size * 1px );
 		}
-		line-height: ( $line-height / $font-size );
+		line-height: #{ $base-line-height }px;
 		opacity: 1;
-		
+
 		span:nth-child( 1 ) { @extend .d-none; }
 		span:nth-child( 3 ) { @extend .d-none; }
-		
+
 		&::before {
 			@extend .d-inline-block;
 
@@ -181,12 +162,12 @@
 		}
 
 		&[data-total="0"] {
-			
+
 			span:nth-child( 1 ) { @extend .d-inline-block; }
 			span:nth-child( 2 ) { @extend .d-none; }
 			&::before { @extend .d-none; }
 		}
-		
+
 		// When block is loading
 		@at-root #{ $this }.is-loading .informations { opacity: .3; }
 
@@ -204,28 +185,20 @@
 	 */
 	.input {
 		$font-size: 60;
-		$line-height: 41.94;
+		$line-height: $base-line-height;
 		$color: the_color( orange, very-soft-02 );
 
 		@extend .d-block, %font-title, %font-semibold;
 		// @include padding( top 16px right 18px bottom 16px left 18px );
 		// @include margin( bottom $grid-gutter-width );
 		@include reset-placeholder( $color );
-		// @include letter-spacing( 40 );
 		@include responsive-font( ( ( $font-size * 100 ) / $psd-width-unitless ) * 1vw, 16px, ( $font-size * 1px ) );
-		
+
 		color: the_color( white );
-		// font: { size: ( $font-size * 1px ); }
 
-		border: {
-			bottom: {
-				color: the_color( white );
-				style: solid;
-				width: 1px;
-			}
-		}
+		box-shadow:0px 1px 1px the_color( white );
 
-		line-height: ( $line-height / $font-size );
+		line-height: #{ $base-line-height }px;
 		width: 100%;
 
 		&:focus,

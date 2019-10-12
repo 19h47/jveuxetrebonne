@@ -23,14 +23,13 @@
 	&::after {
 		@extend .d-block;
 		@include padding( top 100% );
-		
-		content: '';
 
+		content: '';
 	}
-	
+
 	a {
 		@extend %Position-absolute-center;
-		@extend .d-block; 
+		@extend .d-block;
 
 		@include margin(
 			left $grid-gutter-width
@@ -95,12 +94,11 @@
 			content: '';
 
 			animation: {
-				name: heartbeat; 
+				name: heartbeat;
 				duration: 2s;
 				iteration-count: infinite;
 			}
 		}
-
 	}
 
 
@@ -110,18 +108,17 @@
 	 * @uses .Instagram-post .thumbnail
 	 */
 	.thumbnail {
-
 		@extend .d-inline-block, %vertical-align-middle;
 		@include size( 100% );
 
 		object-fit: cover;
-		
-		box-shadow: 
-			0px 
-			( $grid-gutter-width / 10 ) 
-			( $grid-gutter-width / 2 ) 
-			0px 
+
+		box-shadow:
+			0px
+			#{ $base-line-height / 10 }px
+			#{ $base-line-height / 2 }px
+			0px
 			rgba( the_color( red, bright ), $opacity )
-		; 
+		;
 	}
 }

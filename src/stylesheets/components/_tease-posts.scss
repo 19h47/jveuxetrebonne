@@ -4,51 +4,15 @@
  * @uses .Tease-posts
  */
 .Tease-posts {
-	// @extend %Pointer-events-none;
-
-	// @include media-breakpoint-up( md ) {
-	
-	// 	&:hover .Tease-post {
-			
-	// 		&:hover {
-	
-	// 			.Tease-post-header {
-	// 				opacity: 1;
-	// 				visibility: visible;
-	// 			}
-	
-	// 			&::before {
-	// 				background: {
-	// 					color: rgba( the_color( black ), .3 );
-	// 				}
-	// 			}
-	// 		}		
-	
-	// 		&:not(:hover) {
-				
-	// 			.Tease-post-header {
-	// 				opacity: 0;
-	// 				visibility: hidden;
-	// 			}
-	
-	// 			&::before {
-	
-	// 				background: {
-	// 					color: rgba( the_color( white ), .6 );
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
 
 	&-row {
-		
+
 		@include media-breakpoint-up( md ) {
 
-			@include margin( bottom $grid-gutter-width );
-		    
+			@include margin( bottom #{ $base-line-height }px );
+
 		    &::before,
-		    &::after { 
+		    &::after {
 		        display: table;
 		        content: " ";
 		    }
@@ -60,9 +24,9 @@
 	}
 
 	&-footer {
-		@include padding( 
-			top ( $grid-gutter-width * 2 ) 
-			bottom ( $grid-gutter-width * 3 )
+		@include padding(
+			top #{ $base-line-height  * 2 }px
+			bottom #{ $base-line-height * 3 }px
 		);
 	}
 

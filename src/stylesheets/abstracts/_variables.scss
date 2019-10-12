@@ -122,6 +122,7 @@ $font: (
  */
 $base-font-size: 16;
 $base-font-size-px: $base-font-size * 1px;
+$scale-factor: 16 / 29;
 $base-line-height: 29;
 
 
@@ -180,8 +181,6 @@ $container-width: $container-width-without-outer-gutter-unitless * 1px;
 $container-width-unitless: $container-width-without-outer-gutter-unitless + ( $grid-outer-gutter-width-unitless * 2 );
 $container-width: $container-width-unitless * 1px;
 
-
-$contact-height: 570px;
 
 /**
  * Transitions

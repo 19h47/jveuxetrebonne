@@ -7,20 +7,102 @@
 .Single {
 	@extend %position-relative;
 
-	.Recipe-print { @extend .d-none; }
+	.Recipe-print {
+		display: none;
+	}
 
-	.l-wrapper { overflow-x: hidden; }
+	// .Single .Breadcrumb
+	.Breadcrumb {
+		@extend %font-title, %font-medium, %position-relative;
+		@include padding( top #{ $base-line-height }px bottom #{ $base-line-height }px );
+
+		font-size: 13px;
+		line-height: #{ $base-line-height }px;
+
+		&::before {
+			@extend .d-block;
+			@include absolute( top 0 right 0 bottom 0 );
+			width: 50vw;
+			transform: translate3d( $grid-gutter-width, 0, 0 );
+
+			content: '';
+			background:
+		        linear-gradient(
+		        	-135deg,
+		        	rgba( the_color( orange, light-grayish-03 ), 1 ) 0%,
+		        	rgba( the_color( orange, very-soft-05 ), 1 ) 100%
+		        );
+			box-shadow: 0px 0px 1px rgba( the_color( orange, dark-grayish ), .15 );
+		    z-index: 5;
+
+		}
+
+		&__items {
+			@extend %list-unstyled, %margin-0, %position-relative;
+
+			z-index: 9;
+
+		}
+		&__item {
+			@include margin( top #{ $base-line-height / 2 }px bottom #{ $base-line-height / 2 }px );
+
+			color: the_color( orange, grayish );
+			text-overflow: ellipsis;
+    		white-space: nowrap;
+    		overflow: hidden;
+
+			&:first-child { @include margin( top 0 ); }
+			&:last-child { @include margin( bottom 0 ); }
+
+			svg {
+				@extend .d-inline-block;
+				@include margin( right #{ $base-line-height * 0.3 }px );
+
+				max-width: #{ $base-line-height * 0.3 }px;
+				max-height: 5px;
+				fill: currentColor;
+			}
+
+			&:first-child {
+				svg {
+					@extend %Transition-ease;
+
+					max-height: 2px;
+					transform: translate3d( 0, 0, 0 );
+				}
+
+				&:hover {
+					svg {
+						transform: translate3d( #{ $base-line-height * -0.3 }px, 0, 0 );
+					}
+				}
+			}
+
+			&.title {
+				@extend %font-semibold;
+
+				color: the_color( orange, mostly-desaturated-dark );
+			}
+		}
+	}
+
+	// .Single-page-header
+	&-header {
+		@extend %padding-top-5, %padding-bottom-7;
+
+		.Menu {
+			@extend %margin-0;
+		}
+	}
 
 
-	/**
-	 * Relationship posts
-	 *
-	 * @uses .Single .Relationship-posts
-	 */
+	// .Relationship-posts
 	.Relationship-posts {
-		@include margin( top -40px );
+		@include margin( top #{ $base-line-height * -1 }px );
 
-		@include media-breakpoint-up( md ) { @include margin( top -115px ); }
+		@include media-breakpoint-up( md ) {
+			@include margin( top #{ $base-line-height * -3 }px );
+		}
 	}
 
 	/**
@@ -29,86 +111,60 @@
 	 * @uses .Single-header
 	 */
 	&-header {
-		// @include padding( bottom 24px );
-		@include media-breakpoint-between( 'xs', 'sm' ) { color: the_color( gray, very-dark )!important; }
 		z-index: 10;
+
+		@include media-breakpoint-between( xs, sm) {
+			color: the_color( gray, very-dark )!important;
+		}
 
 		@include media-breakpoint-up( md ) {
 			@include absolute( top 0 right 0 left 0 );
-			// @include padding( bottom 0 );
-			// color: currentColor;
 		}
 	}
 
 
-	/**
-	 * Introduction
-	 *
-	 * @uses .Single-introduction
-	 */
+	// .Single-introduction
 	&-introduction {
-		@extend %position-relative;
-
-		// height: 353px;
-
-		@include media-breakpoint-between( 'xs', 'sm' ) { background: { image: none!important; } }
-
 		img {
 			@extend .d-inline-block, %vertical-align-middle;
-			width: 100%;
-			height: auto;
 
-			// object-fit: cover;
+			width: 100%;
+			height: 100%;
+
+			object-fit: cover;
+			object-position: center;
 		}
 
 		@include media-breakpoint-up( md ) {
-			height: 100vh;
-			max-height: 821px;
-			background: {
-				attachment: fixed;
-				position: center;
-				size: cover;
-			}
+			height: #{ $base-line-height * 20 }px;
 		}
 	}
 
 
-	/**
-	 * Article
-	 *
-	 * @uses .Single-article
-	 */
+	// .Single-article
 	&-article {
 		@extend %position-relative;
-		@include padding( top 48px );
+		@include padding( top #{ $base-line-height * 1.5 }px );
 
 		background: {
 			color: the_color( white );
 		}
 
 		@include media-breakpoint-up( md ) {
-
+			@include margin( top #{ $base-line-height * -3 }px right $grid-gutter-width / 2 left $grid-gutter-width / 2 );
 			@include padding(
-				right percentage( 182 / 1029 )
-				left percentage( 107 / 1029 )
+				right calc( #{ percentage( 2 / 10 ) } )
+				left calc( #{ percentage( 1 / 10 ) } )
 			);
-
-			top: -93px;
 		}
 
-		/**
-		 * Preview
-		 *
-		 * @uses .Single-article .preview
-		 */
+		// .Single-article .preview
 		.preview {
-			$font-size: 20;
-			$line-height: 33;
-
 			@extend %font-title, %font-bold;
-			@include font( $font-size, $line-height );
 
 			color: the_color( gray, very-dark );
+			font-size: 20px;
+			line-height: #{ $base-line-height }px;
 
 			a { color: the_color( orange, very-soft-01 ); }
 		}
@@ -139,57 +195,39 @@
 		}
 
 
-		/**
-		 * Title
-		 *
-		 * @uses .Single-article .title
-		 */
+		// .Single-article .title
 		.title {
-
-			$font-size: 40;
-			$line-height: 48;
-
 			@extend %font-body, %margin-0;
-			@include font( 35, 42, 20 );
+			@include letter-spacing( 20 );
+
+			font-size: 35px;
+			line-height: #{ $base-line-height * 2 }px;
 
 			@include media-breakpoint-up( md ) {
-				@include font( $font-size, $line-height, 20 );
+				font-size: 40px;
 			}
 		}
 
 
-		/**
-		 * Content
-		 *
-		 * @uses .single-article .content
-		 */
+		// .Single-article .content
 		.content {
 			color: the_color( gray, very-dark-01 );
 
-			h3,
-			strong,
-			b {
-				@extend %font-bold;
-			}
+			h3, strong, b { @extend %font-bold; }
 
-			p {
-				@include letter-spacing( 15 );
-			}
+			p { @include letter-spacing( 15 ); }
 
 			h3 {
-				$font-size: 20;
-				$line-height: 33;
-
 				color: the_color( gray, very-dark );
-				font: {
-					size: ( $font-size * 1px );
-				}
-				line-height: ( $line-height / $font-size );
+				font-size: 20px;
+				line-height: #{ $base-line-height }px;
 			}
 
-			strong,
-			b,
-			a {
+			.wp-block-image {
+				@include margin( bottom #{ $base-line-height }px );
+			}
+
+			strong, b, a {
 				color: the_color( orange, very-soft-01 );
 			}
 
@@ -216,7 +254,10 @@
 				@extend %vertical-align-middle;
 
 				max-width: 100%;
-				height: auto;
+				width: 100%;
+				height: #{ $base-line-height * 14 }px;
+				object-fit: cover;
+				object-position: center;
 			}
 
 			p img {
@@ -377,120 +418,11 @@
 	}
 
 
-	/**
-	 * Breadcrumb
-	 *
-	 * @uses .Single-breadcrumb
-	 */
-	&-breadcrumb {
-		@extend %font-title, %font-medium, %position-relative;
-		@include font( 13, 25 );
-		@include padding( top $grid-gutter-width bottom $grid-gutter-width );
-
-		&::before {
-			@extend .d-block;
-			@include absolute(
-				top 0
-				right ( percentage( $grid-gutter-width-unitless / 182 ) * -1 )
-				bottom 0
-				// left ( percentage(  100 / 182 ) * -1 )
-
-			);
-			width: 50vw;
-
-			content: '';
-			background:
-		        linear-gradient(
-		        	-135deg,
-		        	rgba( the_color( orange, light-grayish-03 ), 1 ) 0%,
-		        	rgba( the_color( orange, very-soft-05 ), 1 ) 100%
-		        );
-		    border: {
-		    	bottom: {
-		    		color: rgba( the_color( orange, dark-grayish ), .15 );
-		    		style: solid;
-		    		width: 1px;
-		    	}
-		    }
-		    z-index: 5;
-
-		}
-
-		&__items {
-			@extend %list-unstyled, %margin-0, %position-relative;
-
-			z-index: 9;
-
-		}
-		&__item {
-			@include margin( top 1em bottom 1em );
-
-			color: the_color( orange, grayish );
-			text-overflow: ellipsis;
-    		white-space: nowrap;
-    		overflow: hidden;
-
-			svg {
-				@extend .d-inline-block;
-				@include margin( right 9px );
-
-				max-width: 9px;
-				max-height: 5px;
-				fill: currentColor;
-			}
-
-			&:first-child {
-				svg {
-					@extend %Transition-ease;
-
-					max-height: 2px;
-					transform: translate3d( 0, 0, 0 );
-				}
-
-				&:hover {
-					svg {
-						transform: translate3d( ( $grid-gutter-width / -4 ), 0, 0 );
-					}
-				}
-			}
-
-			&.title {
-
-				@extend %font-semibold;
-
-				color: the_color( orange, mostly-desaturated-dark );
-			}
-		}
-	}
-
-
-	/**
-	 * Aside
-	 *
-	 * @uses .Single-aside
-	 */
+	// .Single-aside
 	&-aside {
-		@extend %Transition-ease, %Position-fixed-center;
-		@include margin( left percentage( 83 / 480 ) );
-
-		transform: translate3d( 100%, 0, 0 );
-		z-index: 50;
-
-
-		@include media-breakpoint-between( 'xs', 'sm' ) {
-			@include padding( right 0 left 0 );
-
-			@at-root .aside--is-open & {
-				transform: translate3d( 0, 0, 0 );
-			}
-		}
-
-		@include media-breakpoint-up( md ) {
-			@include margin( left 0 );
-
-			transform: translate3d( 0, 0, 0 );
-			z-index: auto;
-		}
+		@extend %Transition-ease;
+		position: sticky;
+		top: 0;
 
 		&::before {
 			@extend %Position-absolute-center, .d-block, %Transition-ease;

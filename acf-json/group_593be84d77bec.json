@@ -1,0 +1,325 @@
+{
+    "key": "group_593be84d77bec",
+    "title": "Recette",
+    "fields": [
+        {
+            "key": "field_59b3ba20d683c",
+            "label": "Mise en page",
+            "name": "layout",
+            "type": "true_false",
+            "instructions": "Cocher cette case pour activer la mise en page en slider",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25%",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_593c05964d94b",
+            "label": "Nombre de personne",
+            "name": "person_number",
+            "type": "number",
+            "instructions": "Indiquer le nombre de personne de la recette",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25%",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "personne(s)",
+            "min": 1,
+            "max": "",
+            "step": 1
+        },
+        {
+            "key": "field_593c06c3ad887",
+            "label": "Temps de préparation",
+            "name": "preparation_time",
+            "type": "number",
+            "instructions": "Indiquer le temps de préparation de la recette",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25%",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "min",
+            "min": "",
+            "max": "",
+            "step": ""
+        },
+        {
+            "key": "field_593c072d38a3f",
+            "label": "Temps de cuisson",
+            "name": "cooking_time",
+            "type": "number",
+            "instructions": "Indiquer le temps de cuisson",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "min",
+            "min": "",
+            "max": "",
+            "step": ""
+        },
+        {
+            "key": "field_5944ec3cba004",
+            "label": "La préparation",
+            "name": "collection",
+            "type": "repeater",
+            "instructions": "Ajouter une collection d'ingrédients, puis les ingrédients composant la recette, puis les étapes de préparation de la recette",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Ajouter une collection",
+            "sub_fields": [
+                {
+                    "key": "field_5945469581383",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "instructions": "Description de la collection d'ingrédient (la valeur par défaut est <strong>Pour commencer tu as besoin de :<\/strong>)",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 4,
+                    "new_lines": "wpautop"
+                },
+                {
+                    "key": "field_59b3c5367aae6",
+                    "label": "Image",
+                    "name": "image",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_59b3ba20d683c",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "thumbnail",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": ""
+                },
+                {
+                    "key": "field_594546a781384",
+                    "label": "Ingrédients",
+                    "name": "ingredients",
+                    "type": "repeater",
+                    "instructions": "Ajouter le ou les ingrédient(s)",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "",
+                    "min": 0,
+                    "max": 0,
+                    "layout": "table",
+                    "button_label": "Ajouter un ingrédient",
+                    "sub_fields": [
+                        {
+                            "key": "field_594546d381385",
+                            "label": "Ingrédient",
+                            "name": "ingredient",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        }
+                    ]
+                },
+                {
+                    "key": "field_5946454057b19",
+                    "label": "Étapes",
+                    "name": "steps",
+                    "type": "repeater",
+                    "instructions": "Ajouter la ou les étape(s)",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "collapsed": "",
+                    "min": 0,
+                    "max": 0,
+                    "layout": "block",
+                    "button_label": "Ajouter une étape",
+                    "sub_fields": [
+                        {
+                            "key": "field_594646ea73edf",
+                            "label": "Description",
+                            "name": "description",
+                            "type": "wysiwyg",
+                            "instructions": "Description de l'étape",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_59b3ba0ad683b",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "Image de l'étape",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_59b3ba20d683c",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_59abdb201a2b3",
+            "label": "Galerie",
+            "name": "gallery",
+            "type": "gallery",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59b3ba20d683c",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": "",
+            "max": "",
+            "insert": "append",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "return_format": "array",
+            "preview_size": "medium"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "recipe"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "Les détails d'une recette",
+    "modified": 1570911744
+}

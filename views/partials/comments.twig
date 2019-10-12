@@ -6,7 +6,7 @@
 
 #}
 
-<div class="Comments js-comments">
+<div class="Comments{{ post.comments | length > 0 ? " js-comments" }}">
 
 	<div class="l-container js-accordion-panel" data-accordion-open="false" data-accordion-deselect="true">
 

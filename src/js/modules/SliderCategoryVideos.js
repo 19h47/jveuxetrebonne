@@ -1,6 +1,6 @@
-/* global $, wp */
+/* global $ */
 
-import plyr from 'plyr';
+import Plyr from 'plyr';
 
 import 'slick-carousel';
 
@@ -12,37 +12,45 @@ export default class SliderCategoryVideos {
 	}
 
 	init() {
-		this.initSlick();
 		this.initPlyr();
+
+		if (this.players) {
+			this.initSlick();
+		}
 	}
 
 
 	initPlyr() {
-		this.players = plyr.setup({
-			iconUrl: wp.current_url,
-		});
+		const $players = document.querySelectorAll('.js-category-video');
+
+		if (0 === $players.length) {
+			return false;
+		}
+
+		this.players = new Plyr.setup($players); // eslint-disable-line new-cap
 
 		let i = 1;
-		if (this.players) {
-			this.players.forEach((instance) => {
-				instance.on('ready', () => {
-					const current = instance;
 
-					current.getContainer().setAttribute('id', `plyId-${i}`);
-					current.plyId = `plyr-${i}`;
+		this.players.forEach((instance) => {
+			instance.on('ready', () => {
+				const current = instance;
 
-					i += 1;
-				});
-				instance.on('play', () => {
-					const currentPid = instance.plyId;
-					this.players.forEach((player) => {
-						if (currentPid !== player.plyId) {
-							player.pause();
-						}
-					});
+				current.elements.container.setAttribute('id', `plyId-${i}`);
+				current.plyId = `plyr-${i}`;
+
+				i += 1;
+			});
+			instance.on('play', () => {
+				const currentPid = instance.plyId;
+				this.players.forEach((player) => {
+					if (currentPid !== player.plyId) {
+						player.pause();
+					}
 				});
 			});
-		}
+		});
+
+		return true;
 	}
 
 
@@ -71,7 +79,7 @@ export default class SliderCategoryVideos {
 					breakpoint: 992,
 					settings: {
 						centerMode: true,
-						centerPadding: `${(297 * 100) / 1440}%`,
+						centerPadding: `${(285 * 100) / 1440}%`,
 					},
 				}],
 			});

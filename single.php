@@ -27,13 +27,15 @@ foreach ( $categories as $category ) {
 	if ( cat_is_ancestor_of( 445, $category->term_id ) ) {
 		$context['is_ancestor_of_food'] = true;
 		array_unshift( $templates, 'singles/cat-is-ancestor-of-food.twig' );
-	}
 
+		break;
+	}
 
 	if ( 445 === $category->term_id ) {
 		array_unshift( $templates, 'singles/category-food.twig' );
+
+		break;
 	}
 }
-
 
 Timber::render( $templates, $context );

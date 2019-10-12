@@ -13,31 +13,28 @@
 	<div class="Single-header{{ post.color_header ? ' color-black' : ' color-white' }}">
 		<div class="l-container">
 
-			<button class="Menu-search-button js-search-button">
+			<button type="button" class="Menu-search-button js-search-button">
 			    {% include 'svg/use.html.twig' with { icon: 'magnifying-glass', classes: [ 'Icon', 'magnifying-glass' ] } %}
 			</button>
 
-			<div class="row">
-
+			<div class="row d-flex align-items-center">
 				<div class="col-4 offset-4 col-md-1 offset-md-0">
 					<div class="Header-logo">
-						{%
-							include 'components/header-logo.twig'
-						%}
+						{% include 'components/header-logo.twig' %}
 					</div>
 				</div>
 				<div class="col-4 col-md-10 offset-md-1">
 
-					<ul class="Menu" role="navigation">
+					<ul class="Menu d-flex align-items-center flex-row-reverse" role="navigation">
 						{%
 							include 'components/menu.twig'
 							with {
-								'menu' : menu.categories,
-								'language': true,
-								'search': true,
-								'layout': {
-									'desktop': false,
-									'single': true
+								menu: menu.categories,
+								language: true,
+								search: true,
+								layout: {
+									desktop: false,
+									single: true
 								}
 							}
 						%}
@@ -48,30 +45,24 @@
 	</div>
 
 
-	<div class="Single-introduction" style="background-image: url('{{ TimberImage( post.thumbnail ).src }}');">
-		{# <img src="{{ TimberImage( post.thumbnail ).src }}"> #}
-
+	<div class="Single-introduction">
 		<img
-			class="hidden-md hidden-lg hidden-hd"
-			src="{{ TimberImage( post.thumbnail ).src }}"
-			alt="{{ TimberImage( post.thumbnail ).alt }}"
-			width="{{ TimberImage( post.thumbnail ).width }}"
-			height="{{ TimberImage( post.thumbnail ).height }}"
+			src="{{ Image( post.thumbnail ).src( 'large' ) }}"
+			alt="{{ Image( post.thumbnail ).alt }}"
+			width="{{ Image( post.thumbnail ).width }}"
+			height="{{ Image( post.thumbnail ).height }}"
 		/>
 	</div>
 
-	<div class="l-container js-sticky-container">
+	<div class="l-container">
 		<div class="row">
-
-			<div class="col-md-2 js-sticky">
-				<aside class="Single-aside position-md-static">
-
-					{# {{ post|print_r}} #}
+			<div class="col-md-2 d-print-none">
+				<aside class="Single-aside">
 
 					{# Breadcrumb #}
-					<div class="Single-breadcrumb hidden-xs hidden-md">
-						<ul class="Single-breadcrumb__items">
-							<li class="Single-breadcrumb__item">
+					<div class="Breadcrumb hidden-xs hidden-md">
+						<ul class="Breadcrumb__items">
+							<li class="Breadcrumb__item">
 								{% spaceless %}
 
 								<a href="{{- site.url -}}">
@@ -83,13 +74,13 @@
 							</li>
 
 							{% if is_ancestor_of_food %}
-								<li class="Single-breadcrumb__item">
+								<li class="Breadcrumb__item">
 
 									{% spaceless %}
 
 									{% include 'svg/use.html.twig' with { icon: 'list-style-type' } %}
 
-									<span class="display-xs-inline-block" title="{{ categoriesString }}">
+									<span class="d-inline-block" title="{{ categoriesString }}">
 
 										{{ pll__( 'Food' ) }}
 
@@ -99,7 +90,7 @@
 								</li>
 							{% endif %}
 
-							<li class="Single-breadcrumb__item">
+							<li class="Breadcrumb__item">
 
 								{% spaceless %}
 
@@ -114,7 +105,7 @@
 										{% endif %}
 								{% endfor %}
 
-								<span class="display-xs-inline-block" title="{{ categoriesString }}">
+								<span class="d-inline-block" title="{{ categoriesString }}">
 
 									{{-
 										categoriesString | length > 21 ?
@@ -126,7 +117,7 @@
 								{% endspaceless %}
 
 							</li>
-							<li class="Single-breadcrumb__item title">
+							<li class="Breadcrumb__item title">
 								{% include 'svg/use.html.twig' with { icon: 'list-style-type' } %}
 								{{- post.title | length > 21 ? post.title | slice( 0, 21 ) ~ '&hellip;' : post.title -}}
 							</li>
@@ -145,20 +136,15 @@
 										{% if rich_content.img %}
 										<img
 											class="img"
-											src="{{ TimberImage( rich_content.img ).src }}"
-											width="{{ TimberImage( rich_content.img ).width }}"
-											height="{{ TimberImage( rich_content.img ).height }}"
-											alt="{{ TimberImage( rich_content.img ).alt }}"
+											src="{{ Image( rich_content.img ).src }}"
+											width="{{ Image( rich_content.img ).width }}"
+											height="{{ Image( rich_content.img ).height }}"
+											alt="{{ Image( rich_content.img ).alt }}"
 										>
 										{% endif %}
 
-										<h3 class="title">
-											{{ rich_content.title | raw }}
-										</h3>
-
-										<div class="content">
-											{{ rich_content.content }}
-										</div>
+										<h3 class="title">{{ rich_content.title | raw }}</h3>
+										<div class="content">{{ rich_content.content }}</div>
 
 										{% if rich_content.link %}
 											<a class="link Link-readmore Link-marker Link-marker--white" href="{{ rich_content.link }}" target="_blank">
@@ -171,7 +157,7 @@
 
 							</ul>
 
-							{% if post.get_field( 'rich_content' )|length > 1 %}
+							{% if post.get_field( 'rich_content' ) | length > 1 %}
 
 								<div class="Slider-rich-content__progressbar js-slider-rich-content-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
 
@@ -182,7 +168,7 @@
 
 		        					<span class="count">
 		    							<i class="count-inner js-slider-rich-content-count" data-count="1">
-		    								/{{ post.get_field( 'rich_content' )|length }}
+		    								/ {{ post.get_field( 'rich_content' ) | length -}}
 		    							</i>
 		    						</span>
 		        				</div>
@@ -194,51 +180,44 @@
 			</div>
 
 			<div class="col-12 col-md-10 print-w-100">
+				<div style="margin: 0 -15px;">
+					<article class="Single-article js-single-content">
 
-				<article class="Single-article js-single-content">
-
-					{# {{ post|print_r}} #}
-					<h1 class="title">{{- post.title -}}</h1>
-
-
-					{# Date #}
-					<p class="date">
-						{{- pll__( 'Publié le' ) -}}&nbsp;{{- post.post_date | date( 'd\.m\.Y' ) -}}
-					</p>
+						<h1 class="title">{{- post.title -}}</h1>
 
 
-					{# Preview #}
-					{% if post.get_field( 'preview' ) %}
-					<p class="preview">
-						{{- post.get_field( 'preview' ) | nl2br | raw -}}
-					</p>
-					{% endif %}
+						{# Date #}
+						<p class="date">
+							{{- pll__( 'Publié le' ) -}}&nbsp;{{- post.post_date | date( 'd\.m\.Y' ) -}}
+						</p>
 
 
-					{# Content #}
-					{% if post.content %}
-					<div class="content">
-						{{ post.content }}
-					</div>
-					{% endif %}
+						{# Preview #}
+						{% if post.get_field( 'preview' ) %}
+							<p class="preview">
+								{{- post.get_field( 'preview' ) | nl2br | raw -}}
+							</p>
+						{% endif %}
 
 
-					{# Recipe #}
-					{% block recipe %}{% endblock %}
+						{# Content #}
+						{{ post.content ? "<div class=\"content\">#{ post.content }</div>" | raw : '' -}}
 
 
-					{%
-						include 'components/aside.twig'
-						with {
-							'context': 'single',
-							'shares': true,
-							'socials': false,
-							'subscribe': true
+						{# Recipe #}
+						{% block recipe %}{% endblock %}
+
+						{%
+							include 'components/aside.twig'
+							with {
+								context: 'single',
+						'shares': true,
+						'socials': false,
+						'subscribe': true
 						}
-					%}
-
-				</article>
-
+						%}
+					</article>
+				</div>
 			</div>
 		</div>
 	</div>
