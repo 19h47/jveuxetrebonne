@@ -330,6 +330,7 @@ class App extends Timber {
 		$context['relationship_post'] = Timber::get_sidebar('component-relationship-post.php');
 
 		$context['manifest'] = $this->theme_manifest;
+		$context['comments_per_page'] = get_option( 'comments_per_page' );
 
 		return $context;
 	}

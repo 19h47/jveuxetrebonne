@@ -8,7 +8,6 @@
 	@extend .d-flex;
 
 	@extend .background-white;
-	@include margin( bottom #{ $base-line-height }px );
 	@include padding(
 		top #{ $base-line-height }px
 		right $grid-gutter-width
@@ -31,7 +30,7 @@
 		@extend %list-unstyled;
 
 		& > li {
-			@include margin( right $grid-gutter-width / -2 left $grid-gutter-width / -2 );
+			@include margin( top #{ $base-line-height / 2 }px right $grid-gutter-width / -2  bottom #{ $base-line-height / 2 }px left $grid-gutter-width / -2 );
 		}
 	}
 

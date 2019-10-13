@@ -32,7 +32,7 @@
 
 		<div id="comments" class="js-accordion-body" style="overflow: hidden; max-height: 0;">
 			<ol class="js-accordion-inner Comment-list">
-				{% for comment in post.comments %}
+				{% for comment in post.comments %}{# | slice( 1, comments_per_page ) #}
 					<li>{% include 'components/comment-thread.twig' with { post: comment } %}</li>
 				{% endfor %}
 			</ol>
