@@ -6,20 +6,13 @@
 .Search {
 	$this: &;
 
-	@extend %Position-fixed-center, %Transition-ease;
+	@extend %Position-fixed-center, %Transition-ease, %padding-top-5;
 	@include padding(
-		top ( ( ( 130 * 100 ) / 900 ) * 1vh )
-		bottom ( ( ( 130 * 100 ) / 900 ) * 1vh )
+		bottom #{ $base-line-height * 5 }px
 	);
-	@include size( 100vw, 100vh );
-	// background: linear-gradient(
-	// 	33deg,
-	// 	the_color( orange, light-grayish-01 ) 0%,
-	// 	the_color( orange, light-grayish-02 ) 100%
-	// );
-	background: {
-		color: the_color( orange, very-soft-03 );
-	}
+	min-height: 100vh;
+
+	background-color: the_color( orange, very-soft-03 );
 
 	opacity: 0;
 	overflow-y: scroll;
@@ -27,22 +20,13 @@
 	z-index: 40;
 
 	@at-root .#{ map-get( $state-classes, search-open ) } & {
-
 		opacity: 1;
 		visibility: visible;
 	}
 
 
-	/**
-	 * Inner
-	 *
-	 * @uses .Search-inner
-	 */
+	// .Search-inner
 	&-inner {
-		@include padding(
-			right percentage( 76 / 1240 )
-			left percentage( 76 / 1240 )
-		);
 		@include margin( bottom #{ $base-line-height * 1.5 }px );
 	}
 
@@ -100,20 +84,13 @@
 	 * @uses .Search .close
 	 */
 	.close {
-		$size: 23;
-
-		@include absolute( top 0 right 0 );
-		@include margin(
-			top percentage( 63 / $psd-width-unitless )
-			right percentage( 100 / $psd-width-unitless )
-		);
-		@include size( $size * 1px );
+		@include size( #{ $base-line-height }px, #{ $base-line-height * 2 }px );
+		@extend %vertical-align-middle;
 
 		z-index: 10;
 
 		svg {
-			max-width: $size * 1px;
-			max-height: $size * 1px;
+			@include size( 100% );
 
 			fill: the_color( white );
 		}
@@ -178,25 +155,20 @@
 	}
 
 
-	/**
-	 * Input
-	 *
-	 * @uses .Search .input
-	 */
+	// .Search .input
 	.input {
 		$font-size: 60;
 		$line-height: $base-line-height;
 		$color: the_color( orange, very-soft-02 );
 
 		@extend .d-block, %font-title, %font-semibold;
-		// @include padding( top 16px right 18px bottom 16px left 18px );
-		// @include margin( bottom $grid-gutter-width );
 		@include reset-placeholder( $color );
 		@include responsive-font( ( ( $font-size * 100 ) / $psd-width-unitless ) * 1vw, 16px, ( $font-size * 1px ) );
 
 		color: the_color( white );
 
-		box-shadow:0px 1px 1px the_color( white );
+		box-shadow: 0px 1px 1px the_color( white );
+		border: none;
 
 		line-height: #{ $base-line-height }px;
 		width: 100%;

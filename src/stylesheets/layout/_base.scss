@@ -10,8 +10,8 @@
 	&-container {
 		@extend %position-relative;
 		@include padding(
-			right $grid-gutter-width-mobile
-			left $grid-gutter-width-mobile
+			right $grid-gutter-width
+			left $grid-gutter-width
 		);
 		@include margin( top 0 right auto bottom 0 left auto );
 
@@ -42,21 +42,5 @@
 		@include media-breakpoint-up( md ) {
 			@include margin( bottom #{ $base-line-height * 20 }px );
 		}
-	}
-}
-
-@include media-breakpoint-between( xs, sm) {
-	.row {
-		@include margin(
-			right ( $grid-gutter-width-mobile * -1 )
-			left ( $grid-gutter-width-mobile * -1 )
-		);
-	}
-
-	*[class^="col-"] {
-		@include padding(
-			right $grid-gutter-width-mobile
-			left $grid-gutter-width-mobile
-		);
 	}
 }

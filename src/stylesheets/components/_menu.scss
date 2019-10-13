@@ -10,23 +10,30 @@
 	$padding: 10;
 
 	@extend %list-unstyled;
-	@extend .clearfix;
+	@extend .d-flex, .flex-column, .flex-md-row, .justify-content-center, .justify-content-md-start;
 
 	color: currentColor;
-	height: #{ $base-line-height }px;
+
+	@at-root .Single &, .About &, .error404 & {
+		justify-content: end;
+	}
 
 	@at-root .Footer & {
 		@include margin( top #{ $base-line-height }px bottom #{ $base-line-height }px );
+		@extend .justify-content-center;
 
 		@include media-breakpoint-between( xs, md ) {
-			@include margin( bottom #{ $base-line-height }px ); }
+			@include margin( bottom #{ $base-line-height }px );
+		}
 	}
 
+	@include media-breakpoint-up( md ) {
+		height: #{ $base-line-height }px;
+	}
 
 	&-button {
-		@include absolute( top 0 right 0 );
-		@include margin( top $grid-gutter-width right $grid-gutter-width );
-		@include size( 36px );
+		@include size( #{ $base-line-height }px );
+		@extend %vertical-align-middle;
 
 		background: {
 			image: url( '#{ map-get( $directories, svg ) }hamburger.svg' );
@@ -37,91 +44,29 @@
 		z-index: 39;
 
 		@at-root .#{ map-get( $state-classes, 'menu-open' ) } & {
-			background: {
-				image: url( '#{ map-get( $directories, svg ) }close.svg' );
-			}
+			background-image: url( '#{ map-get( $directories, svg ) }close.svg' );
 		}
 	}
 
 	// .Menu-item-search
 	&-search-button {
-		@extend .hidden-md, .hidden-lg, .hidden-hd;
-		@include absolute( top 0 left 0 );
-		// Magic number is a shame!
-		@include margin( left #{ $base-line-height }px );
 		@include size( #{ $base-line-height }px );
+		@extend %vertical-align-middle;
 
 		.Icon {
-			@extend .d-inline-block;
 			@include size( 100% );
-
-			@include media-breakpoint-up( md ) {
-				vertical-align: middle;
-			}
 		}
 	}
 
 
-	/**
-	 * Front page header
-	 * Category page header
-	 *
-	 * @uses .Front-page-header .Menu
-	 * @uses .Category-header .Menu
-	 */
-	@at-root
-		.Category-header &,
-		.Front-page-header &,
-		.About-header & {
-
-		@extend %Position-fixed-center, %Transition-ease;
-		@extend %margin-y-0;
-		@include size( 100% );
-
-		transform: translate3d( -100%, 0, 0 );
-		background: { color: the_color( white ); }
-		z-index: 30;
-
-		@at-root .#{ map-get( $state-classes, 'menu-open' ) } & {
-			transform: translate3d( 0, 0, 0 );
-		}
-
-		@include media-breakpoint-up( md ) {
-			@include margin( left ( ( $margin / 2 ) * -1px ) );
-			@include size( auto );
-
-			position: static;
-			top: auto;
-			right: auto;
-			bottom: auto;
-			left: auto;
-			background: { color: transparent; }
-			transform: translate3d( 0, 0, 0 );
-			z-index: auto;
-		}
-	}
-
-
-
-	/**
-	 * Single header
-	 *
-	 * @uses .Single-header .Menu
-	 */
+	// .Single-header .Menu
 	@at-root .Single-header & {}
 
 
-	/**
-	 * Item
-	 *
-	 * @uses .Menu .item
-	 */
+	// .Menu .item
 	.item {
 
-		@extend
-			.d-block,
-			.d-md-inline-block,
-			%position-relative;
+		@extend .d-md-inline-block, %position-relative;
 
 		/**
 		 * Link
@@ -196,8 +141,6 @@
 		 * @uses .Menu .item.menu-item-object-category
 		 */
 		&.menu-item-object-category {
-			$font-size: 40;
-
 			@extend
 				%font-title,
 				%font-semibold,
@@ -211,12 +154,12 @@
 				left ( ( ( $margin / 2 ) - $padding ) * 1px )
 			);
 
-			font-size: ( $font-size / $base-font-size ) * 1em;
+			font-size: 40px;
 			line-height: #{ $base-line-height }px;
 
 			@include media-breakpoint-between( 'md', 'lg' ) {
 				font: {
-					size: ( ( $font-size / 1.5 ) / $base-font-size ) * 1em;
+					size: ( ( 40 / 1.5 ) / $base-font-size ) * 1em;
 				}
 				@include margin(
 					top 0
@@ -247,27 +190,18 @@
 		}
 
 
-		/**
-		 * Lang
-		 */
 		&.menu-item-lang {
-			@extend .d-flex, .align-items-center;
+			@include margin( top 0 bottom 0 left #{ $base-line-height * 2 }px );
+			@extend .d-none, .d-md-flex, .align-items-md-center;
+			@extend %font-title, %font-semibold, %text-transform-uppercase;
 
-			@extend
-				%font-title,
-				%font-semibold,
-				%float-md-right,
-				%text-transform-uppercase,
-				%margin-0;
 
 			color: the_color( blue, light-grayish );
-			font-size: 13;
 			line-height: #{ $base-line-height }px;
-
 
 			@at-root .Single-header & {
 				@include media-breakpoint-up( md ) {
-					color: the_color( white );
+					color: currentColor;
 				}
 			}
 
@@ -290,14 +224,13 @@
 		 * Search
 		 */
 		&.menu-item-search {
-			@extend %margin-0, %float-right;
+			@extend %margin-y-0, %margin-left-md-auto;
 
 			line-height: #{ $base-line-height }px;
 
 			.menu-item-search__button {
 				@extend %vertical-align-middle, .d-inline-block;
-				@include margin( right #{ $base-line-height * 2 }px );
-				@include size( #{ $base-line-height * 0.75 }px );
+				@include size( #{ $base-line-height }px );
 
 				.Icon {
 					@include size( 100% );
@@ -312,29 +245,29 @@
 		 * Button
 		 */
 		&.menu-item-button {
-			$size: (
-				width: 36,
-				height: 36
-			);
+			@extend %margin-0;
 
-			@extend %margin-0, %float-right;
+			@at-root .Single &, .About &, .page &, .error404 & {
+				@include margin( left auto );
 
-			line-height: ( 42 / 15 );
+				@include media-breakpoint-up( md ) {
+					@include margin( left #{ $base-line-height * 2 }px );
+				}
+			}
+
+			line-height: #{ $base-line-height }px;
+			height: #{ $base-line-height }px;
 
 			button {
-
-				@include margin( left 50px );
-
+				@include size( #{ $base-line-height }px );
 				.Icon {
+					@include size( 100% );
 					@extend .d-inline-block;
 
-					max-width: ( map-get( $size, width ) * 1px );
-					max-height: ( map-get( $size, height ) * 1px );
 					fill: currentColor;
 
 					@include media-breakpoint-up( md ) {
-						max-width: 23px;
-						max-height: 16px;
+						@include size( 100% );
 
 						vertical-align: middle;
 					}
@@ -350,21 +283,24 @@
 	 * @uses .Footer .Menu .menu-item
 	 */
 	@at-root .Footer & .menu-item {
-
 		@extend %font-title, %font-semibold;
-		@include margin( top #{ $base-line-height }px right $grid-gutter-width bottom #{ $base-line-height }px left $grid-gutter-width );
+		@include margin( top 0 right $grid-gutter-width bottom 0 left $grid-gutter-width );
+
 		font-size: 19px;
 		line-height: #{ $base-line-height }px;
 
 		color: the_color( gray, very-dark );
 
-		&:first-child { @include margin( top 0 ); }
-		&:last-child { @include margin( bottom 0 ); }
-
 		@include media-breakpoint-up( md ) {
-			@include margin( top 0 bottom 0 );
 			font-size: 13px;
 			line-height: #{ $base-line-height }px;
+
+			&:first-child {
+				@include margin( left 0 );
+			}
+			&:last-child {
+				@include margin( right 0 );
+			}
 		}
 
 		a {

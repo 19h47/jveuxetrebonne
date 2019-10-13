@@ -1,15 +1,13 @@
 /**
- * Page about
+ * About
  *
- * @uses .Page-about
+ * @uses .About
  */
 .About {
-
-	// .About-page-header
-	&-header {
-		@include padding( top #{ $base-line-height * 2 }px bottom #{ $base-line-height * 4 }px );
+	// .About .Single-header
+	.Single-header {
+		@extend %padding-top-5, %padding-bottom-7;
 	}
-
 
 	// .About .Sticky-post
 	.Sticky-post {

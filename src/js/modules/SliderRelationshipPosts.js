@@ -20,11 +20,8 @@ export default class SliderRelationshipPosts {
 	 */
 	initPlugins() {
 		this.$slider.find('.js-relationship-posts-container').slick({
-			// arrows: false,
 			nextArrow: this.$slider.find('.js-relationship-posts-next'),
 			prevArrow: this.$slider.find('.js-relationship-posts-previous'),
-			// centerMode: true,
-			// centerPadding: ( 53 * 100 ) / 1440 + '%',
 			mobileFirst: true,
 
 			responsive: [{

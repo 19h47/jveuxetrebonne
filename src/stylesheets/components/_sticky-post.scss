@@ -36,16 +36,7 @@
 
 	// .Sticky-post-footer
 	&-footer {
-		$size: (
-			parent: (
-				width: 500,
-			),
-			width: 318,
-			height: 223,
-			overlap: 106
-		);
-
-		@extend %position-relative;
+		@extend %position-relative, %margin-top-md-2;
 
 		@include size(
 			percentage( 300 / 500 ),
@@ -97,9 +88,7 @@
 					@extend .d-block;
 					@include absolute( top 0 right 0 bottom 0 left 0 );
 
-					background: {
-						color: the_color( orange, light-grayish-01 );
-					}
+					background-color: the_color( orange, light-grayish-01 );
 					content: '';
 
 					animation-duration: 1.15s;
@@ -108,7 +97,6 @@
 				}
 
 				@at-root .slick-current & {
-
 					img {
 						transition-delay: ( 1.15s / 2 );
 						transform: translate3d( 0, 0, 0 );
@@ -125,7 +113,6 @@
 			}
 
 			img {
-				// @extend .img-full;
 				@extend %Position-absolute-center;
 				@include size( 100% );
 
@@ -147,9 +134,8 @@
 
 				svg {
 					@extend .d-inline-block, %vertical-align-middle;
+					@include size( 100% );
 
-					width: 100%;
-					height: 100%;
 					fill: the_color( white );
 					filter: drop-shadow( 0 0 $grid-gutter-width rgba( the_color( gray, very-dark ), .55 ) );
 				}
@@ -163,8 +149,6 @@
 		@extend .d-block;
 		@include size( 100% );
 
-		transform: translate3d( $grid-gutter-width * -1, 0, 0 );
-
 		img {
 			@extend .d-inline-block, %vertical-align-middle;
 			@include size( 100% );
@@ -172,6 +156,10 @@
 			object-fit: cover;
 			object-position: center;
 			box-shadow: 1px 3px #{ $base-line-height / 2 }px 0px rgba( the_color( gray, very-dark ), 0.15 );
+		}
+
+		@include media-breakpoint-up( md ) {
+			transform: translate3d( $grid-gutter-width * -1, 0, 0 );
 		}
 	}
 

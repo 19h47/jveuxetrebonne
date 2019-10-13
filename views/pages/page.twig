@@ -11,39 +11,7 @@
 
 	{# Banner #}
 	{% include 'components/banner.twig' %}
-
-	<div class="Front-page-header">
-		<div class="l-container">
-
-			<button class="Menu-button js-toggle-menu-button hidden-md hidden-lg hidden-hd"></button>
-
-			<div class="row">
-				<div class="col-12 col-md-1">
-					<div class="Header-logo">
-						{% include 'components/header-logo.twig' %}
-					</div>
-				</div>
-				<div class="col-12 col-md-10 offset-md-1">
-
-
-					<ul class="Menu" role="navigation">
-						{%
-							include 'components/menu.twig'
-							with {
-								'menu' : menu.categories,
-								'language': true,
-								'search': true,
-								'layout': {
-									'desktop': true,
-									'marker': true
-								}
-							}
-						%}
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	{% include 'partials/menu-single.html.twig' %}
 
 	<div class="l-container page-content {{ post.class }}" id="{{ post.id }}">
 		<div class="row">

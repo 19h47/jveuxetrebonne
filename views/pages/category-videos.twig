@@ -9,35 +9,8 @@
 
 	{{ parent() }}
 
-	{# Player controls #}
 	{% include 'partials/plyr.svg' %}
-
-	<div class="Category-header l-container">
-		<div class="row">
-			<div class="col-12 col-md-1">
-				<div class="Header-logo">
-					{% include 'components/header-logo.twig' %}
-				</div>
-			</div>
-			<div class="col-12 col-md-10 offset-md-1">
-				<ul class="Menu" role="navigation">
-					{%
-						include 'components/menu.twig'
-						with {
-							'menu' : menu.categories,
-							'language': true,
-							'search': true,
-							'layout': {
-								'desktop': true,
-								'marker': true
-							}
-						}
-					%}
-				</ul>
-			</div>
-		</div>
-	</div>
-
+	{% include 'partials/menu.html.twig' %}
 	{% include 'components/heading.twig' with { 'title': category.description  } %}
 
 	<div class="l-container">

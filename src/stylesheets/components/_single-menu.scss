@@ -15,9 +15,7 @@
 	@at-root .#{ map-get( $state-classes, single-menu-open ) } & { @include autoAlpha( 1 ); }
 
 	&.is-hover {
-		
 		@include media-breakpoint-up( md ) {
-
 			#{ $this }__item:not(:hover) { opacity: .07; }
 		}
 	}
@@ -31,7 +29,7 @@
 
 
 	&__background { @extend %Position-absolute-center; }
-	
+
 
 	/**
 	 * Item
@@ -40,17 +38,18 @@
 	 */
 	&__item {
 		$font-size: 60;
-		$line-height: 41.94;
+		$line-height: $base-line-height * 2;
 
-		@extend 
-			.d-block, 
-			.d-md-inline-block, 
-			%font-title, 
-			%font-semibold, 
-			%Transition-ease;
-			
+		@extend
+			.d-block,
+			.d-md-inline-block,
+			%font-title,
+			%font-semibold,
+			%Transition-ease,
+			%text-align-center;
+
 		@include font( 40, 42 );
-		@include margin( 
+		@include margin(
 			top ( ( 68 / 2 ) * 1px )
 			right ( ( ( 68 / 2 ) - 10 ) * 1px )
 			bottom ( ( 68 / 2 ) * 1px )
@@ -66,9 +65,10 @@
 		}
 
 		@include media-breakpoint-up( md ) {
-			@include font( $font-size, $line-height );
+			font-size: 60px;
+			line-height: #{ $base-line-height }px;
 
-			@include margin( 
+			@include margin(
 				top 0
 				right $grid-gutter-width
 				bottom 0
@@ -84,7 +84,7 @@
 
 		// opacity: 0;
 		// transform: translateY( ( $grid-gutter-width * -1 ) );
-		
+
 		@at-root .#{ map-get( $state-classes, single-menu-open ) } & {
 			animation: {
 				play-state: running;
@@ -104,9 +104,9 @@
 				@extend %position-relative, %Transition-ease;
 
 				&::before {
-					@extend 
-						%Position-absolute-center, 
-						.d-inline-block,  
+					@extend
+						%Position-absolute-center,
+						.d-inline-block,
 						%Pointer-events-none;
 					@include autoAlpha( 0 );
 
@@ -130,7 +130,7 @@
 
 
 				&:hover {
-					
+
 					color: the_color( white );
 
 					&::before {
@@ -145,24 +145,24 @@
 	}
 
 	&__thumbnail {
-		$height: 403;
+		$height: $base-line-height * 14;
 		@extend %position-relative;
 
 		height: ( $height * 1px );
 		max-height: ( ( $height * 100 ) / 900 ) * 1vh;
-		
-		
+
+
 		img {
 			@extend %Position-absolute-center, .d-inline-block;
 			@include size( 100% );
 			@include autoAlpha( 0 );
 
 			transition: .3s ease;
-
+			object-position: center;
 			object-fit: cover;
 
 			transform: translate3d( ( $grid-gutter-width * -1 ), 0, 0 );
-	
+
 			&.is-active {
 				@include media-breakpoint-up( md ) {
 
@@ -174,7 +174,12 @@
 	}
 
 
-	&__button {}
+	&__header {
+		@extend %margin-top-5;
+		@include absolute( top 0 right 0 left 0 );
+
+		height: #{ $base-line-height * 2 }px;
+	}
 
 
 	/**
@@ -183,20 +188,13 @@
 	 * @uses .Search .close
 	 */
 	&__close {
-		$size: 23;
-
-		@include absolute( top 0 right 0 );
-		@include margin( 
-			top percentage( 63 / $psd-width-unitless )
-			right percentage( 100 / $psd-width-unitless ) 
-		);
-		@include size( $size * 1px );
+		@include size( #{ $base-line-height }px );
+		@extend %vertical-align-middle, %margin-left-auto;
 
 		z-index: 10;
 
 		svg {
-			max-width: $size * 1px;
-			max-height: $size * 1px;
+			@include size( 100% );
 
 			fill: the_color( gray, very-dark );
 		}

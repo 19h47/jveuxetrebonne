@@ -113,30 +113,28 @@
 	&-header {
 		z-index: 10;
 
-		@include media-breakpoint-between( xs, sm) {
+		@include media-breakpoint-between( xs, sm ) {
 			color: the_color( gray, very-dark )!important;
 		}
 
-		@include media-breakpoint-up( md ) {
-			@include absolute( top 0 right 0 left 0 );
+		@at-root .Single & {
+			@include media-breakpoint-up( md ) {
+				@include absolute( top 0 right 0 left 0 );
+			}
 		}
 	}
 
 
 	// .Single-introduction
 	&-introduction {
+		height: #{ $base-line-height * 20 }px;
+
 		img {
 			@extend .d-inline-block, %vertical-align-middle;
-
-			width: 100%;
-			height: 100%;
+			@include size( 100% );
 
 			object-fit: cover;
 			object-position: center;
-		}
-
-		@include media-breakpoint-up( md ) {
-			height: #{ $base-line-height * 20 }px;
 		}
 	}
 

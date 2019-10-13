@@ -27,16 +27,10 @@
 
 
 	.catchphrase {
-		$font-size: 15;
-		$line-height: 69.99;
-
 		@extend %font-semibold, %font-title;
 
 		color: the_color( white );
-		font: {
-			size: ( $font-size / $base-font-size ) * 1em;
-		}
-		// line-height: $line-height / $font-size;
+		font-size: 15px;
 	}
 
 
@@ -49,9 +43,7 @@
 		z-index: 1;
 
 		&.minus {
-			background: {
-				image: url('#{ map-get( $directories, svg ) }minus.svg' );
-			}
+			background-image: url( '#{ map-get( $directories, svg ) }minus.svg' );
 		}
 
 		&.plus {

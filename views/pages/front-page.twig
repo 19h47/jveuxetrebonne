@@ -9,44 +9,9 @@
 
 	{{ parent() }}
 
-	{# Banner #}
 	{% include 'components/banner.twig' %}
-
-	{# Player controls #}
 	{% include 'partials/plyr.svg' %}
-
-
-	<div class="Front-page-header">
-		<div class="l-container">
-			<button class="Menu-search-button js-search-button">
-			    {% include 'svg/use.html.twig' with { icon: 'magnifying-glass', classes: [ 'Icon', 'magnifying-glass' ] } %}
-			</button>
-
-			<button class="Menu-button js-toggle-menu-button hidden-md hidden-lg hidden-hd"></button>
-
-			<div class="row d-flex align-items-center">
-				<div class="col-4 offset-4 offset-md-0 col-md-1">
-					<div class="Header-logo">{% include 'components/header-logo.twig' %}</div>
-				</div>
-				<div class="col-12 col-md-10 offset-md-1">
-					<ul class="Menu" role="navigation">
-						{%
-							include 'components/menu.twig'
-							with {
-								menu : menu.categories,
-								language: true,
-								search: true,
-								layout: {
-									desktop: true,
-									marker: true
-								}
-							}
-						%}
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	{% include 'partials/menu.html.twig' %}
 
 	<div class="l-container">
 		<div class="Sticky-posts">

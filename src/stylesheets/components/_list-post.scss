@@ -21,7 +21,11 @@
 	// .List-post-meta
 	&-meta {
 		@extend %font-semibold, %font-title, %text-align-center;
-		@include margin( top #{ $base-line-height * 0.5 }px righ #{ $base-line-height }px left #{ $base-line-height }px );
+		@include margin(
+			top #{ $base-line-height * 0.5 }px
+			right #{ $base-line-height }px
+			left #{ $base-line-height }px
+		);
 		@include letter-spacing( 20 );
 
 		color: the_color( blue, light-grayish );

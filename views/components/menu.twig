@@ -1,25 +1,14 @@
 {#
 
-    /**
-     * /views/components/menu
-     *
-     * @author  Jérémy Levron <jeremylevron@19h47.fr
-     */
+/views/components/menu
+
+@author Jérémy Levron <jeremylevron@19h47.fr>
 
 #}
-
-{% spaceless %}
-
-{# Item single #}
 {% if layout.single %}{% include 'components/single-menu.twig' %}{% endif %}
 
-
-{# Item #}
 {% for item in menu.get_items if layout.desktop %}
-
-
     <li class="item{{ layout.marker ? ' has-stroke-marker' }} {{ item.class }}">
-
         <a
             class="{{ item.current ? ' is-current' }}"
             target="{{ item.target }}"
@@ -29,26 +18,18 @@
             {{- item.title -}}
             {{ layout.marker ? '</span>' }}
         </a>
-
     </li>
-
-
 {% endfor %}
 
-
-{# Single button #}
-{% if layout.single %}
-	<li class="menu-item-button item">
-	    <button class="js-single-menu-button">
-			{% include 'svg/use.html.twig' with { icon: 'hamburger', classes: [ 'Icon', 'magnifying-glass' ] } %}
+{% if search %}
+	<li class="d-none d-md-block item menu-item-search">
+	    <button type="button" class="menu-item-search__button js-search-button">
+			{% include 'svg/use.html.twig' with { icon: 'magnifying-glass', classes: [ 'Icon', 'magnifying-glass' ] } %}
 	    </button>
 	</li>
 {% endif %}
 
-
-{# Language #}
 {% if language %}
-
     {% set languages = pll_the_languages( { 'raw': true } ) %}
 
     <li class="item menu-item-lang">
@@ -59,20 +40,12 @@
             {{ loop.last ? '' : '&nbsp;•&nbsp;' | raw }}
 		{%- endfor -%}
     </li>
-
 {% endif %}
 
-
-{# Search #}
-{% if search %}
-
-<li class="d-none d-md-block item menu-item-search">
-    <button class="menu-item-search__button js-search-button">
-		{% include 'svg/use.html.twig' with { icon: 'magnifying-glass', classes: [ 'Icon', 'magnifying-glass' ] } %}
-    </button>
-</li>
-
+{% if layout.single %}
+	<li class="menu-item-button item">
+	    <button type="button" class="js-single-menu-button">
+			{% include 'svg/use.html.twig' with { icon: 'hamburger', classes: [ 'Icon', 'magnifying-glass' ] } %}
+	    </button>
+	</li>
 {% endif %}
-
-
-{% endspaceless %}

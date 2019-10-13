@@ -1,4 +1,5 @@
 {#
+
 404
 
 @file   views/pages/404
@@ -11,50 +12,14 @@
 
 	{{ parent() }}
 
-	{# Banner #}
 	{% include 'components/banner.twig' %}
-
-	<div class="Front-page-header">
-		<div class="l-container">
-
-			<button class="Menu-search-button js-search-button">
-				{%
-					include 'svg/use.html.twig'
-					with { classes: [ 'Icon' ], icon: 'magnifying-glass' }
-					only
-				%}
-			</button>
-
-			<div class="row d-flex align-items-center">
-				<div class="col-4 offset-4 col-md-1 offset-md-0">
-					<div class="Header-logo">
-						{% include 'components/header-logo.twig' %}
-					</div>
-				</div>
-				<div class="col-4 col-md-10 offset-md-1">
-					<ul class="Menu" role="navigation">
-						{%
-							include 'components/menu.twig'
-							with {
-								menu: menu.categories,
-								language: true,
-								search: true,
-								layout: { 'desktop': true, 'marker': true }
-							}
-						%}
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	{% include 'partials/menu-single.html.twig' %}
 
 	<div class="l-container error404-content">
 		<div class="row">
 			<div class="col-12 col-md-8 col-md-offset-2">
 				<h1 class="font-bold">{{- pll__( 'Oops! Cette page ne peut être trouvée.' ) -}}</h1>
-				<p>
-					{{- pll__( "Il semble que rien n'ait été trouvé à cet endroit. Peut-être essayer une recherche ?" ) -}}
-				</p>
+				<p>{{- pll__( 'Il semble que rien n\'ait été trouvé à cet endroit. Peut-être essayer une recherche ?' ) -}}</p>
 			</div>
 		</div>
 	</div>

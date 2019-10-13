@@ -1,66 +1,63 @@
 {#
-	views/components/search
- #}
+
+Search
+
+views/components/search
+
+#}
 <div class="Search js-search">
 
-	<button class="close js-search-button">
-		{% include 'svg/use.html.twig' with { icon: 'close' }  %}
-	</button>
-
-	<div class="d-table w-100 h-100">
-		<div class="d-table-cell vertical-align-middle">
-			<div class="l-container">
-				<div class="row">
-					<div class="col-12">
-
-						<div class="Search-inner">
-							{# <h2 class="title">{{- pll__(' dis moi ce que tu recherches' ) -}}</h2> #}
-							<input
-								class="js-search-input input"
-								type="text"
-								placeholder="{{- pll__('dis moi ce que tu recherches' ) -}}"
-								autofocus
-							>
-
-							<div class="position-relative">
-
-								{% set informations_label = pll__( 'Chargement' ) %}
-								{% set informations_length = informations_label | length %}
-								{% set informations_array = informations_label | split( '' ) %}
-
-								<div class="loader">
-									{% spaceless %}
-										{% for character in pll__( 'Chargement' ) | split('') %}
-											<span style="animation-delay: {{ loop.index / loop.length }}s">
-												{{- character -}}
-											</span>
-										{% endfor %}
-									{% endspaceless %}
-								</div>
-
-								<div
-									class="informations js-search-informations"
-									data-total="false"
-									data-success="{{- pll__( 'article%s correspond%s à votre recherche' ) -}}"
-									data-error="{{- pll__( 'Aucun résultat trouvé pour votre recherche 😔') -}}"
-								>
-									<span>Recherche par catégorie, titre d’article, date, etc</span>
-									<span></span>
-									<span></span>
-								</div>
-
-							</div>
-
-
-						</div>
-
-					</div>
-				</div>
-
-				<div class="js-search-suggest suggest row"></div>
-
+	<div class="l-container">
+		<div class="row">
+			<div class="col-12 d-flex justify-content-end">
+				<button class="close js-search-button" type="button">
+					{% include 'svg/use.html.twig' with { icon: 'close' }  %}
+				</button>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-12 col-md-10 offset-md-1">
+				<div class="Search-inner">
+					<input
+						class="js-search-input input"
+						type="text"
+						placeholder="{{- pll__('dis moi ce que tu recherches' ) -}}"
+						autofocus
+					>
+
+					<div class="position-relative">
+
+						{% set informations_label = pll__( 'Chargement' ) %}
+						{% set informations_length = informations_label | length %}
+						{% set informations_array = informations_label | split( '' ) %}
+
+						<div class="loader">
+							{% spaceless %}
+								{% for character in pll__( 'Chargement' ) | split('') %}
+									<span style="animation-delay: {{ loop.index / loop.length }}s">
+										{{- character -}}
+									</span>
+								{% endfor %}
+							{% endspaceless %}
+						</div>
+
+						<div
+							class="informations js-search-informations"
+							data-total="false"
+							data-success="{{- pll__( 'article%s correspond%s à votre recherche' ) -}}"
+							data-error="{{- pll__( 'Aucun résultat trouvé pour votre recherche 😔') -}}"
+						>
+							<span>Recherche par catégorie, titre d’article, date, etc</span>
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="js-search-suggest suggest row"></div>
+
 	</div>
 
 

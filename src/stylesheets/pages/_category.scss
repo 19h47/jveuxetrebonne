@@ -57,24 +57,30 @@
 		}
 
 		.next {
-			@include absolute( top 50% right 0 );
-			@include margin( top 0 right $grid-gutter-width-mobile );
+			@include absolute( top 0 right 0 );
+			@include margin( top #{ $base-line-height * 3 }px right #{ $base-line-height }px );
 
 			background: {
 				image: url( '#{ map-get( $directories, svg ) }arrow-right-white.svg' );
 			}
-			transform: translate3d( 0, calc( -50% - #{ $base-line-height * 2 }px ), 0 );
+
+			@include media-breakpoint-up( md ) {
+				@include margin( top #{ $base-line-height * 7 }px );
+			}
 		}
 
 
 		.previous {
-			@include absolute( top 50% left 0 );
-			@include margin( top 0 left $grid-gutter-width-mobile );
+			@include absolute( top 0 left 0 );
+			@include margin( top #{ $base-line-height * 3 }px left #{ $base-line-height }px );
 
 			background: {
 				image: url( '#{ map-get( $directories, svg ) }arrow-left-white.svg' );
 			}
-			transform: translate3d( 0, calc( -50% - #{ $base-line-height * 2 }px ), 0 );
+
+			@include media-breakpoint-up( md ) {
+				@include margin( top #{ $base-line-height * 7 }px );
+			}
 		}
 
 

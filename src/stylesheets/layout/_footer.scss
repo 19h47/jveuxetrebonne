@@ -10,23 +10,19 @@
 		box-shadow: 0 -1px 1px -1px the_color( blue, light-grayish );
 	}
 
-	/**
-	 * Copyright
-	 *
-	 * @uses .Footer-copyright
-	 */
+	// .Footer-copyright
 	&-copyright {
-		$font-size: 12;
-		$color: the_color( blue, light-grayish );
-
 		@extend %text-align-center, %font-title;
-		height: #{ $base-line-height * 2 }px;
 
+		line-height: #{ $base-line-height }px;
 		box-shadow: 0 -1px 1px -1px the_color( blue, light-grayish );
-		color: $color;
+		color: the_color( blue, light-grayish );;
 		font: { size: 15px; }
 
-		@include media-breakpoint-up( md ) { @include font( $font-size, 33 ); }
+		@include media-breakpoint-up( md ) {
+			height: #{ $base-line-height * 2 }px;
+			font-size: 12px;
+		}
 
 		i {
 			@extend %font-semibold;
@@ -57,7 +53,7 @@
 		a {
 			@extend %Transition-ease;
 
-			&:hover { color: shade( $color, 30% ); }
+			&:hover { color: shade( the_color( blue, light-grayish ), 30% ); }
 		}
 	}
 
@@ -130,6 +126,15 @@
 		&__item {
 			@extend .d-inline-block, %vertical-align-middle;
 			@include margin( top 0 right $grid-gutter-width / 2 bottom 0  left $grid-gutter-width / 2 );
+
+			@include media-breakpoint-up( md ) {
+				&:first-child {
+					@include margin( left 0 );
+				}
+				&:last-child {
+					@include margin( right 0 );
+				}
+			}
 
 			a {
 				@extend .d-block, %font-title, %font-semibold;

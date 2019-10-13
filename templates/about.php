@@ -12,6 +12,8 @@ $context          = Timber::context();
 $context['post']  = Timber::query_post();
 $context['links'] = Timber::get_sidebar( 'component-link.php' );
 
+$context['post']->color_header = true;
+
 $templates = array( 'pages/about.html.twig' );
 
 Timber::render( $templates, $context );
