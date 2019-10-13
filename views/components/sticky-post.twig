@@ -21,7 +21,8 @@ Sticky post
                 <p class="date">{{- pll__( 'Le' ) -}}&nbsp;{{- post.date -}}</p>
 
                 <span class="color-blue-light-grayish d-inline-block font-title">&nbsp;&bull;&nbsp;</span>
-                <p class="category lowercase"><em>{{- post.terms('category') | join( ', ' ) -}}</em></p>
+
+                <p class="category lowercase"><em>{{- post.terms( 'category' ) | map( term => "<a href=\"#{term.link}\">#{term.name}</a>" ) | join( ', ' ) -}}</em></p>
                 <h2 class="title"><a href="{{ post.link }}">{{- post.post_title -}}</a></h2>
             </header>
 

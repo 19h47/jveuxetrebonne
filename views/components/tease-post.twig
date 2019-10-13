@@ -51,25 +51,22 @@
             <header class="Tease-post-header">
 
                 <div class="Tease-post-header__meta">
-                    {% spaceless %}
 
-                    {# {{ post|print_r}} #}
-                	{# Date #}
                     <p class="date">
-                        {{- pll__( 'Publié le' ) -}}&nbsp;{{- post.post_date|date( 'd.m.Y' ) -}}
+                        {{- pll__( 'Publié le' ) -}}&nbsp;{{- post.post_date | date( 'd.m.Y' ) -}}
                     </p>
 
                     <span class="d-inline-block font-title">&nbsp;&bull;&nbsp;</span>
 
                     {# Category #}
                     <p class="category">
-                        <em class="lowercase">{{- post.terms( 'category' ) | join(', ') -}}</em>
+                        <em class="lowercase">
+							{{- post.terms( 'category' ) | map( term => term.name ) | join( ', ' ) -}}
+						</em>
                     </p>
 
-                    {% endspaceless %}
                 </div>
 
-                {# Title #}
                 <h2 class="title">{{- post.title -}}</h2>
 
             </header>
