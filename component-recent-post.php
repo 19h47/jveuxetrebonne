@@ -24,4 +24,4 @@ $context['posts'] = Timber::get_posts(
 );
 
 
-Timber::render( 'components/recent-post.twig', $context );
+Timber::render( 'components/recent-post.html.twig', $context );

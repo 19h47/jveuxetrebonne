@@ -8,7 +8,6 @@
 	&-row {
 
 		@include media-breakpoint-up( md ) {
-
 			@include margin( bottom #{ $base-line-height }px );
 
 		    &::before,

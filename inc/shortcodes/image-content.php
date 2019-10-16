@@ -1,5 +1,6 @@
 <?php
 
+use Timber\{ Timber };
 
 add_action( 'init', 'image_content_shortcode_init' );
 
@@ -18,36 +19,54 @@ function image_content_shortcode_init() {
 function image_content_shortcode_handler( $atts ) {
 
 	// normalize attribute keys, lowercase
-	$atts = array_change_key_case( (array)$atts, CASE_LOWER );
+	$atts = array_change_key_case( (array) $atts, CASE_LOWER );
 
-	extract( 
+	extract(
 		shortcode_atts(
 			array(
-				'content'	=> '',
-				'url'		=> ''
+				'content' => '',
+				'url'     => '',
 			),
 			$atts,
 			'image_content'
-		) 
+		)
 	);
 
 	$letters = str_split_unicode( $content );
-	$i = 0;
-	for ( $i; $i < count( $letters ); $i++) { 
+	$i       = 0;
+	$count   = count( $letters );
 
-		if ( $letters[$i] === ' ' ) {
-			$letters[$i] = '&nbsp;';
+	for ( $i; $i < $count; $i++ ) {
+		if ( ' ' === $letters[ $i ] ) {
+			$letters[ $i ] = '&nbsp;';
 		}
-		
-		$letters[$i] = '<i style="animation-delay:' . $i / count( $letters ) . 's;">' . $letters[$i] . '</i>';
+
+		$letters[ $i ] = '<i style="animation-delay:' . $i / count( $letters ) . 's;">' . $letters[ $i ] . '</i>';
 	}
 
+	$context = Timber::get_context();
 
-	$output  = "<span class=\"image-content-link js-image-content-link\">";
-	$output .= "<span class=\"image js-image-content-link-image\">";
-	$output .= "<img src=\"{$url}\" data-no-lazy=\"1\"></span>";
-	$output .= "<span class=\"letters\">" . implode( $letters ) . "</span>";
-	$output .= "</span>";
+	$context['url']     = $url;
+	$context['letters'] = $letters;
 
-	return $output;
+	return Timber::compile( 'partials/image-content.html.twig', $context );
+
+	// $i = 0;
+	// for ( $i; $i < count( $letters ); $i++) {
+	//
+	// 	if ( $letters[$i] === ' ' ) {
+	// 		$letters[$i] = '&nbsp;';
+	// 	}
+	//
+	// 	$letters[$i] = '<i style="animation-delay:' . $i / count( $letters ) . 's;">' . $letters[$i] . '</i>';
+	// }
+	//
+	//
+	// $output  = "<span class=\"image-content-link js-image-content-link\">";
+	// $output .= "<span class=\"image js-image-content-link-image\">";
+	// $output .= "<img src=\"{$url}\" data-no-lazy=\"1\"></span>";
+	// $output .= "<span class=\"letters\">" . implode( $letters ) . "</span>";
+	// $output .= "</span>";
+	//
+	// return $output;
 }

@@ -25,7 +25,7 @@
 				<ul class="Menu" role="navigation">
 
 					{%
-						include 'components/menu.twig'
+						include 'components/menu.html.twig'
 						with {
 							'menu' : menu.main,
 							'language': false,
@@ -63,12 +63,12 @@
 		<div class="l-container h-100">
 			<div class="row d-flex align-items-center h-100">
 				<div class="col-12">
-
+					{% apply spaceless %}
 					<span><i>© JVEB&nbsp;{{ 'now' | date( 'Y' ) -}}</i></span>
 					<span>Design, <i><a href="http://lesindiens.fr/" target="_blank">Studio Les Indiens</a></i></span>
 					<span>&nbsp;&#124;&nbsp;</span>
 					<span>Développement, <i><a href="https://19h47.fr/" target="_blank">19h47</a></i></span>
-
+					{% endapply %}
 				</div>
 			</div>
 		</div>

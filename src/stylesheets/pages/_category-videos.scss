@@ -4,11 +4,13 @@
  * @uses .Category videos
  */
 .Category-videos {
-	
+
 	/**
 	 * Slider category videos
 	 *
 	 * @uses .Category-videos .Slider-category-videos
 	 */
-	.Slider-category-videos { @include margin( top ( $grid-gutter-width * -2 ) ); }
+	.Slider-category-videos {
+		@include margin( top #{ $base-line-height * -2 }px bottom #{ $base-line-height * 2 }px );
+	}
 }

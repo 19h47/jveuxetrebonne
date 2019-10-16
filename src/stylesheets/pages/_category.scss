@@ -18,10 +18,10 @@
 	 * @uses .Category .List-posts
 	 */
 	.List-posts {
-		@include margin( top #{ $base-line-height * -1 }px );
+		@include margin( top #{ $base-line-height * -1 }px bottom #{ $base-line-height * 1 }px );
 
 		@include media-breakpoint-up( md ) {
-			@include margin( top #{ $base-line-height * -3 }px );
+			@include margin( top #{ $base-line-height * -3 }px bottom #{ $base-line-height * 3 }px );
 		}
 	}
 

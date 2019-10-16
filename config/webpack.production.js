@@ -63,11 +63,36 @@ module.exports = merge(
 				filename: 'css/main.[chunkhash:8].css'
 			}),
 			new CompressionPlugin(),
-			// new PurgecssPlugin({
-			// 	paths: glob.sync(path.join(__dirname, '..', 'views/**/*.html.twig')),
-			// 	whitelist: [ 'Archive', 'Front-page', 'Single-residence', 'Single', 'is-disabled', 'is-off', 'is-focus', 'is-current', 'menu--is-open', 'is-loading', 'ajax-loader' ],
-			// 	whitelistPatternsChildren: [/^leaflet-/, /^wp-block-/, /^flickity-/, /^wpcf7-/]
-			// }),
+			new PurgecssPlugin({
+				paths: glob.sync(path.join(__dirname, '..', 'views/**/*.html.twig')),
+				whitelist: [
+					'error404',
+					'Front-page',
+					'Tease-posts',
+					'List-posts',
+					'Menu',
+					'search--is-open',
+					'single-menu--is-open',
+					'menu--is-open',
+					'has-stroke-marker',
+					'is-active',
+					'is-loading',
+					'is-current',
+					'is-hover',
+					'lazyloaded',
+					'menu-item-object-category',
+					'lang-item',
+					'menu-item',
+					'Category',
+					'Category-videos',
+					'Category-food',
+					'Single',
+					'About',
+					'Link-blogrolls',
+					'Link-blogroll'
+				],
+				whitelistPatternsChildren: [/^wp-block-/, /^slick-/, /^plyr/, /^mc4wp-/, /^Tease-post/, /^Link-blogroll/]
+			}),
         ]
     },
 );

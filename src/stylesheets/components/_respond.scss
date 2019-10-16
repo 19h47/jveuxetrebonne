@@ -30,11 +30,8 @@
 	.email,
 	.author,
 	.url {
+		@extend %padding-2;
 		@include margin( top #{ $base-line-height / 2 }px );
-		@include padding(
-			top #{ $base-line-height / 2 }px
-			bottom #{ $base-line-height / 2 }px
-		);
 	}
 
 	.email {
@@ -77,17 +74,27 @@
 	.cancel {
 		@extend .d-inline-block, %font-semibold, %font-title;
 
+		color: the_color( white );
 		font-size: 13px;
 		line-height: #{ $base-line-height }px;
+		width: 100%;
 
-		color: the_color( white );
-		width: calc( 50% - #{ $grid-gutter-width / 2 } );
+		@include media-breakpoint-up( md ) {
+			width: calc( 50% - #{ $grid-gutter-width / 2 } );
+		}
 	}
 
 	.submit {
 		button {
 			@extend .Link-readmore, .Link-marker, .Link-marker--orange-soft;
-			@include margin( top #{ $base-line-height / 2 }px left $grid-gutter-width );
+			@include margin( top #{ $base-line-height / 2 }px bottom 0 );
+
+			width: 100%;
+
+			@include media-breakpoint-up( md ) {
+				@include margin( left $grid-gutter-width );
+				width: auto;
+			}
 
 			&:hover { &::before { opacity: .45!important; } }
 		}

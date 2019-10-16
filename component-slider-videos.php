@@ -29,4 +29,4 @@ $post = new TimberPost();
 $context['post'] = $post;
 
 
-Timber::render( 'partials/slider-videos.twig', $context );
+Timber::render( 'partials/slider-videos.html.twig', $context );

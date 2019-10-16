@@ -45,7 +45,7 @@ class Post {
 		$this->theme_version = $theme_version;
 
 		add_filter( 'manage_posts_columns', array( $this, 'add_custom_columns' ) );
-		add_action( 'manage_posts_custom_column' , array( $this, 'render_custom_columns' ), 10, 2 );
+		add_action( 'manage_posts_custom_column', array( $this, 'render_custom_columns' ), 10, 2 );
 
 		add_action( 'admin_head', array( $this, 'css' ) );
 
@@ -85,21 +85,17 @@ class Post {
 	 * @param $columns
 	 */
 	public function add_custom_columns( $columns ) {
-
-		// unset( $columns['title'] );
-
 		$new_columns = array();
 
-		  foreach( $columns as $key => $value ) {
-
-			if ( $key === 'title' ){
-				  $new_columns['thumbnail'] = pll__( 'Image à la une' );
+		foreach ( $columns as $key => $value ) {
+			if ( 'title' === $key ) {
+				$new_columns['thumbnail'] = pll__( 'Image à la une' );
 			}
 
-			  $new_columns[$key] = $value;
-		  }
+			$new_columns[ $key ] = $value;
+		}
 
-		  return $new_columns;
+		return $new_columns;
 	}
 
 
@@ -113,19 +109,18 @@ class Post {
 
 		switch ( $column_name ) {
 
-			case 'thumbnail' :
+			case 'thumbnail':
 
 				if ( get_the_post_thumbnail( $post_id ) ) {
 
-					   echo '<a href="' . get_edit_post_link( $post_id ) . '">';
+					echo '<a href="' . get_edit_post_link( $post_id ) . '">';
 					echo the_post_thumbnail( 'thumbnail' );
 					echo '</a>';
-
 				} else {
 					echo '—';
 				}
 
-			break;
+				break;
 		}
 	}
 
@@ -160,25 +155,22 @@ class Post {
 			$args['meta_query']	= array(
 				'relation' 	=> 'OR',
 				array(
-					'key'		=> 'exclude_from_loop',
-					'value'		=> 0,
-					'type' 		=> 'BOOLEAN'
+					'key'   => 'exclude_from_loop',
+					'value'	=> 0,
+					'type' 	=> 'BOOLEAN'
 				),
 				array(
-					'key' 		=> 'exclude_from_loop',
-					'compare' 	=> 'NOT EXISTS',
-					'type' 		=> 'BOOLEAN'
-				)
+					'key' 	  => 'exclude_from_loop',
+					'compare' => 'NOT EXISTS',
+					'type' 	  => 'BOOLEAN'
+				),
 			);
 		}
 
 
-		// var_dump($args);
-
-
 		$context          = Timber::get_context();
 		$context['posts'] = new PostQuery( $args );
-		Timber::render( "components/${ post_template }-posts.twig", $context );
+		Timber::render( "components/${ post_template }-posts.html.twig", $context );
 		wp_die();
 	}
 

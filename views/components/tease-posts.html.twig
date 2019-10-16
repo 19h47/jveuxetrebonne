@@ -1,0 +1,41 @@
+{#
+
+    /**
+     * components/tease-posts
+     *
+     * @author  Jérémy Levron <jeremylevron@19h47.fr
+     */
+
+#}
+
+{% for post in posts %}
+
+	{% if loop.first %}
+
+		<div class="row">
+			<div class="col-12">
+				<div class="Tease-posts-row">
+
+	{% endif %}
+
+
+	{% if ( loop.index ) % 5 == 4 %}
+	    		</div>
+	    	</div>
+	    </div>
+	    <div class="row">
+	    	<div class="col-12">
+	    		<div class="Tease-posts-row">
+	{% endif %}
+
+	{% include 'components/tease-post.html.twig' with { 'post' : post } %}
+
+	{% if loop.last %}
+
+				</div>
+			</div>
+		</div>
+
+	{% endif %}
+
+{% endfor %}

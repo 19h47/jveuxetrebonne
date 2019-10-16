@@ -1,0 +1,32 @@
+{#
+
+partials/load-more
+
+@author  Jérémy Levron <jeremylevron@19h47.fr>
+
+#}
+
+<div class="{{ post_template_name | capitalize }}-posts js-load-more">
+
+	<div class="{{ post_template_name | capitalize }}-posts-container js-load-more-container{{ post_template_name == 'list' ? ' row'}}">
+		{% include "components/#{ post_template_name }-posts.html.twig" with { 'video': video ? true } %}
+	</div>
+
+	<footer class="{{ post_template_name | capitalize }}-posts-footer row">
+		<div class="col-12 text-align-center">
+
+			<button
+				class="Link-readmore js-load-more-button Link-marker Link-marker--orange"
+				data-tag="{{ category.term_id }}"
+				data-count="{{ found_posts }}"
+				data-posts-per-page="{{ post_per_page }}"
+				data-template="{{ post_template_name }}"
+				data-offset=""
+				{{ exclude ? 'data-exclude="1"' : '' }}
+			>
+				<span>{{- load_more_label -}}</span>
+			</button>
+
+		</div>
+	</footer>
+</div>

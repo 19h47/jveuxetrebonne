@@ -2,6 +2,15 @@
  * Media print
  */
 @media print {
+	html, body {
+    	width: 210mm;
+    	height: 297mm;
+  	}
+
+	p {
+    	page-break-inside: avoid;
+  	}
+
 	.print-w-100 {
 		flex: 0 0 100%;
 		max-width: 100%;
@@ -34,7 +43,6 @@
 		.Single-article .preview,
 		.Single-article .content,
 
-		.Recipe-header,
 		.Recipe-description,
 		.Recipe-steps,
 		.Recipe-gallery,
@@ -46,7 +54,17 @@
 		.Relationship-posts,
 		.Comments,
 		.Footer,
-		.Contact { display: none; }
+		.Contact {
+			display: none!important;
+		}
+
+		.Recipe-header {
+			@include margin( top 0 );
+
+			.Link-readmore {
+				display: none;
+			}
+		}
 
 		.Single-article {
 			@include padding( right 0 left 0 );
@@ -73,10 +91,22 @@
 				font-family: 'Poppins', sans-serif;
 			}
 
+			.thumbnail {
+				height: 300pt;
+				width: 100%;
+
+				img {
+					@include size( 100% );
+					object-fit: cover;
+					object-position: center;
+				}
+			}
+
 			.date {
 				@include margin( top 11.8pt bottom 21.4pt );
 				@include letter-spacing( 25 );
-				display: block;
+
+				display: block!important;
 				font-size: 8.57pt;
 				font-family: 'Poppins', sans-serif;
 				font-weight: 600;
@@ -95,7 +125,7 @@
 			.summary {
 				@include margin( top 22.3pt );
 				@include padding( top 10.3pt bottom 10.3pt );
-				display: inline-block;
+				display: inline-block!important;
 				border: {
 					top: {
 						color: currentColor;
@@ -124,7 +154,7 @@
 				&::before {
 					@include size( 13.9pt, 14.6pt );
 					@include margin( right 18.75pt );
-					display: inline-block;
+					display: inline-block!important;
 					vertical-align: middle;
 					background: {
 						position: center;
@@ -204,7 +234,7 @@
 				@include padding( top 10.8pt bottom 18.7pt );
 
 				align-items: center;
-				display: flex;
+				display: flex!important;
 				justify-content: space-between;
 
 				border-top: {
@@ -213,7 +243,6 @@
 					width: 1px;
 				}
 
-				position: relative;
 				.logo {
 					@include size( 37.4pt, 28.8pt );
 				}

@@ -11,7 +11,7 @@
 }
 
 .page-header {
-	@extend %padding-top-5, %padding-bottom-7;
+	@extend %padding-top-5, %padding-bottom-5, %padding-bottom-md-7;
 
 	.Menu {
 		@extend %Position-fixed-center, %Transition-ease, %margin-y-0;

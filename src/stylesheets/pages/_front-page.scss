@@ -11,7 +11,7 @@
 
 	// .Front-page .Sticky-posts
 	.Sticky-posts {
-		@extend %margin-bottom-5, %margin-bottom-md-7;
+		@extend %padding-top-5, %padding-bottom-5, %padding-bottom-md-7;
 	}
 
 

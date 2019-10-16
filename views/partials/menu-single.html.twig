@@ -8,13 +8,13 @@
 			</div>
 			<div class="col-4 col-md-1">
 				<div class="Header-logo">
-					{% include 'components/header-logo.twig' %}
+					{% include 'components/header-logo.html.twig' %}
 				</div>
 			</div>
 			<div class="col-4 col-md-10 offset-md-1">
 				<ul class="Menu d-flex align-items-center" role="navigation">
 					{%
-						include 'components/menu.twig'
+						include 'components/menu.html.twig'
 						with {
 							menu: menu.categories,
 							language: true,

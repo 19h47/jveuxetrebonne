@@ -34,14 +34,13 @@ class acf_location_rule {
 	/**
 	 * Add rule to section
 	 *
-	 * @param  	Array 	$choices
-	 * @return 	array 	$choices 	Populate choice
+	 * @param array $choices
+	 * @return array $choices Populate choice
 	 */
-	function types( $choices ) {
-
-	    // Add choice
-	    // @TODO set in english then later translate to french
-	    $choices['Catégorie'][$this->rule_name] = __( 'Catégorie parente' );
+	public function types( array $choices ) {
+		// Add choice.
+		// @TODO set in english then later translate to french.
+		$choices['Catégorie'][ $this->rule_name ] = __( 'Catégorie parente' );
 
 		return $choices;
 	}
@@ -50,26 +49,22 @@ class acf_location_rule {
 	/**
 	 * Populate list with options
 	 *
-	 * @param  Array $choices
+	 * @param  array $choices
 	 */
-	function values( $choices ) {
+	function values( array $choices ) {
 
-		// Retrieve all categories
+		// Retrieve all categories.
 		$categories = get_categories();
 
-
 		foreach( $categories as $category ) {
-
-			if ( $category->category_parent != 0 ) {
+			if ( 0 !== $category->category_parent ) {
 				continue;
 			}
 
 			$choices[$category->cat_ID] = $category->cat_name;
-
 		}
 
-
-	    return $choices;
+		return $choices;
 	}
 
 
@@ -110,11 +105,11 @@ class acf_location_rule {
 		}
 
 		if ( ! is_array( $terms ) ) {
-			$terms = array($terms);
+			$terms = array( $terms );
 		}
+
 		$terms = array_filter( $terms );
 		$match = false;
-
 
 		// collect a list of ancestors
 		$ancestors = array();
@@ -124,18 +119,16 @@ class acf_location_rule {
 			}
 		}
 
-
-		// see if the rule matches any term ancetor
+		// See if the rule matches any term ancetor
 		if ( $term && in_array( $term->term_id, $ancestors ) ) {
 			$match = true;
 		}
 
-		if ( $rule['operator'] == '!=' ) {
-			// reverse the result
+		if ( '!=' === $rule['operator'] ) {
+			// Reverse the result.
 			$match = !$match;
 		}
 
 		return $match;
-
 	}
 }

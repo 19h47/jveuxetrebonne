@@ -1,0 +1,63 @@
+{#
+
+    /**
+     * components/list-post
+     *
+     * @author  Jérémy Levron <jeremylevron@19h47.fr
+     */
+
+#}
+
+<article
+	class="List-post js-load-more-post{{ video ? ' List-post-category-videos js-category-videos' }}{{ relationship ? ' List-post-relationship' }}"
+	itemtype="http://schema.org/Article"
+	itemscope
+>
+	<meta itemprop="url" content="{{ post.link }}">
+	<meta itemprop="datePublished" content="{{ post.post_date( 'y-m-d' ) }}">
+	<meta itemprop="dateModified" content="{{ post.post_modified( 'y-m-d' ) }}">
+	<meta itemprop="author publisher" content="{{ post.author }}">
+	<meta itemprop="image" content="{{ post.thumbnail.src }}">
+	<meta itemprop="headline" content="{{ post.title }}">
+
+	{% if video %}
+		{% if post.videos starts with 'https://www.youtube.com/' %}
+			{% set provider = 'youtube' %}
+
+			<div
+				class="thumbnail js-category-video"
+				data-plyr-provider="youtube"
+				data-plyr-embed-id="{{ post.videos }}"
+			></div>
+
+		{% else %}
+			<div class="thumbnail native-video">
+				<video poster="{{ post.thumbnail }}" controls preload="auto">
+			  		<source src="{{ post.videos }}" type="video/mp4">
+				</video>
+			</div>
+		{% endif %}
+
+	{% else %}
+		<a class="link" href="{{ post.link }}">
+			<img class="thumbnail" src="{{ Image( post.thumbnail ).src( 'medium' ) }}" width="{{ Image( post.thumbnail ).width }}" height="{{ Image( post.thumbnail ).height }}">
+		</a>
+	{% endif %}
+
+	<div class="List-post-meta">
+		{# Date #}
+		<time class="date">{{- post.date -}}</time>
+
+		{% if post.categories %}
+			<span class="d-inline-block">&nbsp;&bull;&nbsp;</span>
+		 	<em class="categories">
+				{{- post.categories | map( term => "<a href=\"#{term.link}\">#{term.name}</a>" ) | join( ', ' ) -}}
+			</em>
+		{% endif %}
+
+		{{ video ? '' : '<a class="link" href="' ~ post.link ~'" title="' ~ post.title  ~ '">' }}
+			{{- post.title ? "<h3 class=\"title\">#{ post.title }</h3>" : '' -}}
+		{{ video ? '' : '</a>' }}
+	</div>
+
+</article>

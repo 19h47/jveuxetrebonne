@@ -4,7 +4,7 @@
  * @uses .List-post
  */
 .List-post {
-	@include margin( bottom 40px );
+	@include margin( bottom #{ $base-line-height }px );
 
 	@include media-breakpoint-up( md ) {
 		@include margin( bottom #{ $base-line-height * 2.5 }px );

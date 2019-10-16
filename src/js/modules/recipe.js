@@ -61,6 +61,7 @@ export default class Recipe {
 		const data = {
 			action: 'ajax_load_recipes',
 			id: this.id,
+			nonce: wp.nonce,
 		};
 
 		// lock everything before the request

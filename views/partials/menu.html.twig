@@ -12,7 +12,7 @@ Partials: menu
 				</button>
 			</div>
 			<div class="col-4 col-md-1">
-				<div class="Header-logo">{% include 'components/header-logo.twig' %}</div>
+				<div class="Header-logo">{% include 'components/header-logo.html.twig' %}</div>
 			</div>
 			<div class="col-4 d-flex d-md-none justify-content-end">
 				<button type="button" class="Menu-button js-toggle-menu-button"></button>
@@ -20,7 +20,7 @@ Partials: menu
 			<div class="col-12 col-md-10 offset-md-1">
 				<ul class="Menu" role="navigation">
 					{%
-						include 'components/menu.twig'
+						include 'components/menu.html.twig'
 						with {
 							menu : menu.categories,
 							language: true,

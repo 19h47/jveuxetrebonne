@@ -13,8 +13,10 @@
 		@extend %position-relative, %text-align-center, %text-align-md-left;
 
 		@include margin( bottom #{ $base-line-height * 2 }px );
-		// @include padding( right $grid-gutter-width / 2 left $grid-gutter-width / 2 );
 
+		@include media-breakpoint-down( md ) {
+			overflow: hidden;
+		}
 
 		@include media-breakpoint-up( md ) {
 			@include margin(
@@ -58,11 +60,11 @@
 
 
 	.next {
-		@include margin( right #{ $base-line-height }px );
 
 		background-image: url( '#{ map-get( $directories, svg ) }arrow-right.svg' );
 
 		@include media-breakpoint-up( md ) {
+			@include margin( right #{ $base-line-height }px );
 			@include absolute( top 0 right 0);
 		}
 

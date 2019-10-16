@@ -1,0 +1,66 @@
+{#
+
+/views/components/aside
+
+@package JVEB
+@author  Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
+
+#}
+<aside class="Aside d-none d-md-block d-print-none">
+    <div class="Aside-inner">
+
+        {% if email %}
+        	<div class="Aside-email">
+	            <a href="mailto:{{ site.admin_email }}">
+					{%- if context == 'about' -%}
+						<span class="color-orange-very-soft-01">{{- pll__( 'Me contacter' ) -}}</span>&nbsp;&nbsp;&bull;&nbsp;&nbsp;
+					{%- endif -%}
+	                {{- site.admin_email -}}
+	            </a>
+
+	        </div>
+        {% endif %}
+
+        {% if email and socials %}
+            <span class="Aside-bull">&bull;</span>
+        {% endif %}
+
+        {% if socials or shares %}
+	        <ul class="Aside-socials">
+	            {% if shares %}
+		            {% for share in contact.shares %}
+		                <li class="Aside-socials__item">
+		                    <a
+		                        href="{{ share.url ~ permalink.current_url }}"
+		                        title="{{ share.name }}"
+		                        {{ share.slug == 'envelope' ? '' : 'target="_blank"' }}
+		                    >
+								{% include 'svg/use.html.twig' with { classes: [ share.slug ], icon: share.slug } %}
+		                    </a>
+		                </li>
+		            {% endfor %}
+	            {% endif %}
+
+	            {% if socials %}
+		            {% for social in contact.socials %}
+		                <li class="Aside-socials__item">
+		                    <a href="{{ social.url }}" title="{{ social.name }}">
+								{% include 'svg/use.html.twig' with { classes: [ social.slug ], icon: social.slug } %}
+		                    </a>
+		                </li>
+		            {% endfor %}
+	            {% endif %}
+	        </ul>
+        {% endif %}
+
+
+
+        {% if subscribe %}
+	        <span class="Aside-bull">&bull;</span>
+	        <div class="Aside-subscribe">
+	            <button type="button" class="js-scroll-to" data-offset="bottom"><span>{{- pll__( 'Abonne-toi' ) -}}</span></button>
+	        </div>
+        {% endif %}
+
+    </div>
+</aside>

@@ -1,0 +1,42 @@
+{#
+
+/views/partials/comments
+
+@author  Jérémy Levron <jeremylevron@19h47.fr>
+
+#}
+
+<div class="Comments{{ post.comments | length > 0 ? " js-comments" }}">
+
+	<div class="l-container js-accordion-panel" data-accordion-open="false" data-accordion-deselect="true">
+
+		<header class="Comments-header">
+			{% if post.comments | length > 0 %}
+				<h3 class="title js-comments-title">{{- pll__( 'montrer' ) -}}</h3>
+				<button aria-expanded="true" aria-controls="comments" class="js-accordion-header expand plus"></button>
+			{% endif %}
+
+			<p class="catchphrase">
+				{{-
+					fn(
+						'comments_number',
+						pll__( 'Il n\'y a aucun commentaire sur cet article' ),
+						pll__( 'Il y a un commentaire sur cet article' ),
+						pll__( 'Il y a % commentaires sur cet article' )
+					)
+				-}}
+			</p>
+		</header>
+
+		{% include 'components/comment-form.html.twig' %}
+
+		<div id="comments" class="js-accordion-body" style="overflow: hidden; max-height: 0;">
+			<ol class="js-accordion-inner Comment-list">
+				{% for comment in post.comments %}{# | slice( 1, comments_per_page ) #}
+					<li>{% include 'components/comment-thread.html.twig' with { post: comment } %}</li>
+				{% endfor %}
+			</ol>
+		</div>
+
+	</div>
+</div>

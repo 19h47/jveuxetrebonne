@@ -21,4 +21,4 @@ $context['links'] = Timber::get_posts(
 );
 
 
-Timber::render( 'components/links.twig', $context );
+Timber::render( 'components/links.html.twig', $context );

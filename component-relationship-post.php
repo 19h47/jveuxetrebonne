@@ -29,4 +29,4 @@ $context['post'] = new TimberPost();
 $context['relationship'] = true;
 
 
-Timber::render( 'components/relationship-posts.twig', $context );
+Timber::render( 'components/relationship-posts.html.twig', $context );

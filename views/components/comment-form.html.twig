@@ -1,0 +1,74 @@
+<section class="Respond" id="respond">
+    {# <pre>{{ post|print_r}}</pre> #}
+    {% if post.comment_status == 'open' %}
+
+        <form action="{{ site.url }}/wp-comments-post.php" method="post" id="commentform">
+            {% spaceless %}
+
+            <input
+                class="author"
+                type="text"
+                name="author"
+                id="author"
+                value=""
+                tabindex="1"
+                aria-required="true"
+                placeholder="{{- pll__( 'Ton nom et prénom' ) -}}"
+            />
+
+            <input
+                class="email"
+                type="text"
+                name="email"
+                id="email"
+                value=""
+                tabindex="2"
+                aria-required="true"
+                placeholder="{{- pll__( 'N\'oublie pas ton email' ) -}}"
+            />
+
+
+            <input
+                class="url"
+                type="text"
+                name="url"
+                id="url"
+                value=""
+                size="22"
+                tabindex="3"
+                placeholder="{{- pll__( 'Une adresse web ?' ) -}}"
+            >
+
+            <textarea
+                class="comment"
+                name="comment"
+                id="comment"
+                tabindex="4"
+                placeholder="{{- pll__( 'Aller n\'hésite pas, lâche un com' ) -}}"
+            ></textarea>
+
+            <p class="submit">
+                <button
+                    type="submit"
+                    id="submit"
+                    tabindex="5"
+                >
+                    <span>{{- pll__( 'Envoyer mon message' ) -}}</span>
+                </button>
+            </p>
+
+            {# <p class="cancel cancel-comment-reply">
+                {{- fn( 'cancel_comment_reply_link' ) -}}
+            </p> #}
+
+            {% endspaceless %}
+
+            {{ fn( 'comment_id_fields' ) }}
+
+            {% do action( 'comment_form', post.id ) %}
+
+        </form>
+
+    {% endif %}
+
+</section>

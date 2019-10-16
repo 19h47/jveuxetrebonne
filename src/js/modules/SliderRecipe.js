@@ -1,6 +1,7 @@
 /* global $ */
 
 import 'slick-carousel';
+import sliderNavigation from 'Utils/sliderNavigation';
 
 export default class SliderRecipe {
 	constructor() {
@@ -22,9 +23,9 @@ export default class SliderRecipe {
 
 			const slider = {
 				progressbar: $slider.find('.js-slider-recipe-progressbar'),
-				count: $slider.find('.js-slider-recipe-count'),
-				next: $slider.find('.js-slider-recipe-next'),
-				previous: $slider.find('.js-slider-recipe-previous'),
+				count: $slider.find('.js-slider-count') || false,
+				next: $slider.find('.js-slider-next'),
+				previous: $slider.find('.js-slider-previous'),
 			};
 
 			// console.log($slider);
@@ -32,18 +33,7 @@ export default class SliderRecipe {
 			$slider
 				.find('.js-slider-recipe-container')
 				.on('init afterChange', (event, slick) => {
-					const count = slick.slideCount;
-					const current = slick.currentSlide;
-
-					const calc = (current / (count - 1)) * 100;
-
-					slider.progressbar
-						.css('background-size', `${calc}% 100%`)
-						.attr('aria-valuenow', calc);
-
-					slider.count[0].dataset.count = current + 1;
-
-					slider.count[0].innerHTML = `/${count}`;
+					sliderNavigation({ slider, count: slick.slideCount, current: slick.currentSlide });
 				})
 
 				.slick({

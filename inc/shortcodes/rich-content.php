@@ -38,8 +38,10 @@ function rich_content_shortcode_handler( array $atts, string $content = null, st
 		)
 	);
 
-	$output  = "<span class=\"rich-content-link js-rich-content-link\" data-id=\"{$id}\">";
-	$output .= '<span></span><i>' . html_entity_decode( $content ) . '</i></span>';
+	$context = Timber::get_context();
 
-	return $output;
+	$context['id']      = $id;
+	$context['content'] = $content;
+
+	return Timber::compile( 'partials/rich-content.html.twig', $context );
 }

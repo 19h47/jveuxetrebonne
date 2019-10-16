@@ -8,10 +8,10 @@
 {% block content %}
 	{{ parent() }}
 
-	{% include 'components/banner.twig' %}
+	{% include 'components/banner.html.twig' %}
 	{% include 'partials/menu-single.html.twig' %}
 
-	{% include 'components/heading.twig' with { title: post.title } %}
+	{% include 'components/heading.html.twig' with { title: post.title } %}
 
 	<div class="l-container">
 		<div class="Sticky-posts">
@@ -58,7 +58,7 @@
 		        </div>
 
 		        {%
-		            include 'components/aside.twig'
+		            include 'components/aside.html.twig'
 		            with {
 		            	'context':	'about',
 		                'socials': false,

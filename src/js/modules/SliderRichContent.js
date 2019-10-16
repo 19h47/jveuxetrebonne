@@ -1,7 +1,7 @@
 /* global $, feature */
 
-
 import 'slick-carousel';
+import sliderNavigation from 'Utils/sliderNavigation';
 
 
 export default class SliderRichContent {
@@ -94,24 +94,14 @@ export default class SliderRichContent {
 				})
 
 				.on('init afterChange', (event, slick) => {
-					const count = slick.slideCount;
-					const current = slick.currentSlide;
-					const calc = (current / (count - 1)) * 100;
+					sliderNavigation({ slider, count: slick.slideCount, current: slick.currentSlide });
 
 					$links.each((index, link) => {
 						$(link).removeClass('is-active');
 					});
 
-					if ($links[current]) {
-						$links[current].classList.add('is-active');
-					}
-
-					slider.progressbar
-						.css('background-size', `${calc}% 100%`)
-						.attr('aria-valuenow', calc);
-
-					if (slider.count[0]) {
-						slider.count[0].dataset.count = current + 1;
+					if ($links[slick.currentSlide]) {
+						$links[slick.currentSlide].classList.add('is-active');
 					}
 				})
 				.slick({

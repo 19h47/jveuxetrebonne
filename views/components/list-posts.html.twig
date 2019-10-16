@@ -1,0 +1,17 @@
+{#
+    
+    /**
+     * components/list-posts
+     * 
+     * @author  Jérémy Levron <jeremylevron@19h47.fr
+     */
+    
+#}
+
+{% for post in posts %}
+	
+	<div class="col-12 col-md-4">
+		{% include 'components/list-post.html.twig' with { 'post' : post } %}
+	</div>	
+	
+{% endfor %}

@@ -236,7 +236,7 @@
 			@extend %margin-0, %text-align-center, %text-align-md-left;
 
 			button {
-				@extend %font-title, %font-bold, %position-relative, %Transition-ease;
+				@extend %font-title, %font-bold, %position-relative, %Transition-ease, %Cursor-pointer;
 				@include padding( top #{ $base-line-height / 2 }px right $grid-gutter-width / 3 bottom #{ $base-line-height / 2 }px left $grid-gutter-width / 3 );
 
 				font-size: 20px;

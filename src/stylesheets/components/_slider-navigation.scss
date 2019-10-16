@@ -1,0 +1,55 @@
+.Slider__navigation {
+	@extend .d-flex, .justify-content-center, .justify-content-md-end;
+	@include margin( top #{ $base-line-height * 0.8 }px );
+
+	.next, .previous {
+		@extend .d-inline-block, %vertical-align-middle;
+		@include size( #{ $base-line-height * 1.5 }px );
+
+		@include media-breakpoint-up( md ) {
+			@include size( #{ $base-line-height }px );
+		}
+	}
+
+	.next {
+		@include margin( right 0 left #{ $base-line-height / 3 }px );
+
+		background: {
+			image: url( '#{ map-get( $directories, svg ) }arrow-right.svg' );
+			position: center;
+			size: 100%;
+		}
+	}
+
+	.previous {
+		@include margin( right #{ $base-line-height / 3 }px left 0 );
+
+		background: {
+			image: url( '#{ map-get( $directories, svg ) }arrow-left.svg' );
+			position: center;
+			size: 100%;
+		}
+	}
+
+	.count {
+		@extend .d-inline-block, %font-title, %font-body, %position-relative, %vertical-align-middle;
+		@include margin( left 20px );
+		@include size( 44px );
+
+		@include media-breakpoint-up( md ) { @include size( $grid-gutter-width ); }
+	}
+
+	.count-inner {
+		@include font( 17.9, 44 );
+
+		color: the_color( blue, light-grayish );
+
+		@include media-breakpoint-up( md ) { @include font( 12, 21 ); }
+
+		&::before {
+			@extend .d-inline-block;
+
+			content: attr( data-count );
+		}
+	}
+}

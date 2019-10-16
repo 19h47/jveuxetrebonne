@@ -13,6 +13,6 @@ $context['post'] = new Post();
 
 $context['post']->color_header = true;
 
-$templates = array( 'pages/page.twig' );
+$templates = array( 'pages/page.html.twig' );
 
 Timber::render( $templates, $context );

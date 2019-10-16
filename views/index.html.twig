@@ -5,7 +5,7 @@
 #}
 
 {# Header #}
-{% include 'header/base.twig' %}
+{% include 'header/base.html.twig' %}
 
 
 <main class="l-wrapper">
@@ -13,7 +13,7 @@
 	{# Content #}
 	{% block content %}
 
-		{% include 'components/search.twig' %}
+		{% include 'components/search.html.twig' %}
 
 	{% endblock %}
 
@@ -22,7 +22,7 @@
 
 </main>
 
-{% include 'partials/contact.twig' %}
+{% include 'partials/contact.html.twig' %}
 
 {# Footer #}
 {% include 'footer/base.html.twig' %}

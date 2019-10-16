@@ -7,9 +7,9 @@
 
 namespace JVEB;
 
-use Timber\{ Timber, Menu };
+use Timber\{ Timber, Menu, Helper };
 
-use JVEB\{ Admin, Helpers };
+use JVEB\{ Admin, Helpers, Transients };
 use JVEB\PostTypes\{ Post, Recipe };
 use JVEB\Taxonomies\{ ProjectTag };
 
@@ -87,19 +87,21 @@ class App extends Timber {
 		require_once get_template_directory() . '/inc/wp-rocket.php';
 		require_once get_template_directory() . '/inc/customizer/_includes.php';
 		require_once get_template_directory() . '/inc/post-template.php';
-		require_once get_template_directory() . '/inc/shortcodes/gallery.php';
 		require_once get_template_directory() . '/inc/shortcodes/rich-content.php';
 		require_once get_template_directory() . '/inc/shortcodes/image-content.php';
+		require_once get_template_directory() . '/inc/blocks/gallery.php';
 		require_once get_template_directory() . '/inc/reset.php';
+
+		if ( is_admin() ) {
+			Transients::get_posts();
+			new Admin( $this->get_theme_name(), $this->get_theme_version() );
+		}
 
 		new acf_location_rule( 'category_parents' );
 		new Post( $this->get_theme_name(), $this->get_theme_version() );
 		new Recipe( $this->get_theme_name(), $this->get_theme_version() );
 		new ProjectTag( $this->get_theme_name(), $this->get_theme_version() );
 
-		if ( is_admin() ) {
-			new Admin ($this->get_theme_name(), $this->get_theme_version() );
-		}
 	}
 
 
@@ -242,7 +244,6 @@ class App extends Timber {
 	 * @access  public
 	 */
 	public function add_to_context( $context ) {
-
 		// Menus.
 		$menus = get_registered_nav_menus();
 		foreach ( $menus as $menu => $value ) {
@@ -477,7 +478,7 @@ class App extends Timber {
 
 		$cat_is_ancestor_of_food_array = array();
 		foreach ($cat_is_ancestor_of_food as $cat) {
-			array_push($cat_is_ancestor_of_food_array, $cat->term_id);
+			array_push( $cat_is_ancestor_of_food_array, $cat->term_id );
 		}
 
 		wp_localize_script(
@@ -494,9 +495,14 @@ class App extends Timber {
 				'cat_is_ancestor_of_food' => $cat_is_ancestor_of_food_array,
 				'nonce'                   => wp_create_nonce( 'security' ),
 				'template_instagram'      => file_get_contents(
-					Timber::compile_string(
-						get_template_directory_uri() . '/views/components/instagram-post.twig',
-						array()
+					Helper::transient(
+						'jveb_template_instagram',
+						function () {
+							return Timber::compile_string(
+								get_template_directory_uri() . '/views/components/instagram-post.html.twig',
+								array()
+							);
+						}
 					)
 				),
 			)

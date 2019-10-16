@@ -11,84 +11,9 @@
 		display: none;
 	}
 
-	// .Single .Breadcrumb
-	.Breadcrumb {
-		@extend %font-title, %font-medium, %position-relative;
-		@include padding( top #{ $base-line-height }px bottom #{ $base-line-height }px );
-
-		font-size: 13px;
-		line-height: #{ $base-line-height }px;
-
-		&::before {
-			@extend .d-block;
-			@include absolute( top 0 right 0 bottom 0 );
-			width: 50vw;
-			transform: translate3d( $grid-gutter-width, 0, 0 );
-
-			content: '';
-			background:
-		        linear-gradient(
-		        	-135deg,
-		        	rgba( the_color( orange, light-grayish-03 ), 1 ) 0%,
-		        	rgba( the_color( orange, very-soft-05 ), 1 ) 100%
-		        );
-			box-shadow: 0px 0px 1px rgba( the_color( orange, dark-grayish ), .15 );
-		    z-index: 5;
-
-		}
-
-		&__items {
-			@extend %list-unstyled, %margin-0, %position-relative;
-
-			z-index: 9;
-
-		}
-		&__item {
-			@include margin( top #{ $base-line-height / 2 }px bottom #{ $base-line-height / 2 }px );
-
-			color: the_color( orange, grayish );
-			text-overflow: ellipsis;
-    		white-space: nowrap;
-    		overflow: hidden;
-
-			&:first-child { @include margin( top 0 ); }
-			&:last-child { @include margin( bottom 0 ); }
-
-			svg {
-				@extend .d-inline-block;
-				@include margin( right #{ $base-line-height * 0.3 }px );
-
-				max-width: #{ $base-line-height * 0.3 }px;
-				max-height: 5px;
-				fill: currentColor;
-			}
-
-			&:first-child {
-				svg {
-					@extend %Transition-ease;
-
-					max-height: 2px;
-					transform: translate3d( 0, 0, 0 );
-				}
-
-				&:hover {
-					svg {
-						transform: translate3d( #{ $base-line-height * -0.3 }px, 0, 0 );
-					}
-				}
-			}
-
-			&.title {
-				@extend %font-semibold;
-
-				color: the_color( orange, mostly-desaturated-dark );
-			}
-		}
-	}
-
 	// .Single-page-header
 	&-header {
-		@extend %padding-top-5, %padding-bottom-7;
+		@extend %padding-top-5, %padding-bottom-5, %padding-bottom-md-7;
 
 		.Menu {
 			@extend %margin-0;
@@ -223,6 +148,14 @@
 
 			.wp-block-image {
 				@include margin( bottom #{ $base-line-height }px );
+
+				a {
+					@extend .d-block;
+
+					&::after {
+						content: normal;
+					}
+				}
 			}
 
 			strong, b, a {

@@ -1,0 +1,181 @@
+{#
+
+/views/singles/index
+
+#}
+
+{% extends 'index.html.twig' %}
+
+{% block content %}
+	{{ parent() }}
+
+	{% include 'partials/menu-single.html.twig' %}
+
+	<div class="Single-introduction">
+		<img
+			src="{{ Image( post.thumbnail ).src( 'large' ) }}"
+			alt="{{ Image( post.thumbnail ).alt }}"
+			width="{{ Image( post.thumbnail ).width }}"
+			height="{{ Image( post.thumbnail ).height }}"
+		/>
+	</div>
+
+	<div class="l-container">
+		<div class="row">
+			<div class="col-md-2 d-print-none d-none d-md-block">
+				<aside class="Single-aside">
+
+					<div class="Breadcrumb d-none d-md-block">
+						<ul class="Breadcrumb__items" itemscope itemtype="https://schema.org/BreadcrumbList">
+							<li class="Breadcrumb__item Breadcrumb__item--parent" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<a href="{{- site.url -}}" itemtype="https://schema.org/Thing">
+									{% include 'svg/use.html.twig' with { icon: 'list-style-type-dash' } %}
+									<span itemprop="name">{{- pll__( 'Accueil' ) -}}</span>
+								</a>
+								<meta itemprop="item" content="{{- site.url -}}" />
+								<meta itemprop="position" content="1" />
+							</li>
+
+							{% for term in post.terms( 'category' ) %}
+								<li class="Breadcrumb__item{{ term.children or not term.parent ? ' Breadcrumb__item--parent' : '' }}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+									<a href="{{ term.link }}" class="d-inline-block" title="{{ term.name }}" itemtype="https://schema.org/Thing" itemprop="item">
+										{% if term.parent %}
+											{% include 'svg/use.html.twig' with { icon: 'list-style-type' } %}
+										{% else %}
+											{% include 'svg/use.html.twig' with { icon: 'list-style-type-dash' } %}
+										{% endif %}
+										<span itemprop="name">{{- term.name -}}</span>
+									</a>
+									<meta itemprop="item" content="{{ term.link }}" />
+									<meta itemprop="position" content="{{ 2 + ( term.children or not term.parent ? 0 : 1 ) }}" />
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+
+					{% if post.get_field( 'rich_content' ) %}
+						<div class="Slider-rich-content js-slider-rich-content">
+
+							<button class="Slider-rich-content__close hidden-md hidden-lg hidden-hd js-slider-rich-content-close"></button>
+							<ul class="Slider-rich-content__items js-slider-rich-content-container">
+
+								{% for rich_content in post.get_field( 'rich_content' ) %}
+									<li class="Slider-rich-content__item" data-id="{{ rich_content.id }}">
+
+										{% if rich_content.img %}
+										<img
+											class="img"
+											src="{{ Image( rich_content.img ).src }}"
+											width="{{ Image( rich_content.img ).width }}"
+											height="{{ Image( rich_content.img ).height }}"
+											alt="{{ Image( rich_content.img ).alt }}"
+										>
+										{% endif %}
+
+										<h3 class="title">{{ rich_content.title | raw }}</h3>
+										<div class="content">{{ rich_content.content }}</div>
+
+										{% if rich_content.link %}
+											<a class="link Link-readmore Link-marker Link-marker--white" href="{{ rich_content.link }}" target="_blank">
+												<span>{{ rich_content.label ? rich_content.label : pll__( 'Découvrir' ) }}</span>
+											</a>
+										{% endif %}
+
+									</li>
+								{% endfor %}
+
+							</ul>
+
+							{% if post.get_field( 'rich_content' ) | length > 1 %}
+
+								<div class="Slider-rich-content__progressbar js-slider-rich-content-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+
+								<div class="Slider__navigation">
+		        					<button type="button" class="previous js-slider-rich-content-previous"></button>
+		        					<button type="button" class="next js-slider-rich-content-next"></button>
+
+		        					<span class="count">
+		    							<i class="count-inner js-slider-rich-content-count" data-count="1">
+		    								/&nbsp;{{ post.get_field( 'rich_content' ) | length -}}
+		    							</i>
+		    						</span>
+		        				</div>
+
+							{% endif %}
+						</div>
+					{% endif %}
+				</aside>
+			</div>
+
+			<div class="col-12 col-md-10 print-w-100">
+				<div style="margin: 0 -15px;">
+					<article class="Single-article js-single-content">
+
+						<h1 class="title">{{- post.title -}}</h1>
+
+						<p class="date">
+							{{- pll__( 'Publié le' ) -}}&nbsp;{{- post.post_date | date( 'd\.m\.Y' ) -}}
+						</p>
+
+						{{- post.get_field( 'preview' ) ? "<p class=\"preview\">#{ post.get_field( 'preview' ) | nl2br | raw }</p>" -}}
+						{{- post.content ? "<div class=\"content\">#{ post.content }</div>" | raw : '' -}}
+
+						{% if post.get_field( 'recipes' ) %}
+							<header class="Recipe-header Recipe-header--category-food">
+								<h2>
+									{{- post.get_field( 'recipes' ) | length > 1 ? pll__( 'Les recettes pas à pas' ) : pll__( 'La recette pas à pas' )  -}}
+								</h2>
+								<button type="button" class="Link-readmore Link-marker Link-marker--blue print js-print">
+									<span>{{- pll__( 'Imprimer' ) -}}</span>
+								</button>
+							</header>
+
+							<div class="Recipe-child js-recipes">
+								{% if post.get_field( 'recipes' ) %}
+									<ul class="items js-recipes-buttons">
+										{% for child_recipe in post.get_field( 'recipes' ) %}
+											<li class="item">
+												<button type="button" class="js-recipes-button{{ loop.index == 1 ? ' is-active' }}" data-id="{{ child_recipe.id }}">
+													<span>{{- child_recipe.title -}}</span>
+												</button>
+											</li>
+										{% endfor %}
+									</ul>
+								{% endif %}
+
+								<div class="js-recipes-container Recipe-container"></div>
+							</div>
+						{% endif %}
+
+						{%
+							include 'components/aside.html.twig'
+							with {
+								context: 'single',
+								shares: true,
+								socials: false,
+								subscribe: true
+							}
+						%}
+					</article>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% include 'components/heading.html.twig' with { title: pll__( 'Tu aimeras peut-être aussi' ) } %}
+
+	<div class="Relationship-posts js-relationship-posts">
+		<div class="l-container">
+			<div class="row">
+				<div class="Relationship-posts__inner">
+					<ul class="items js-relationship-posts-container">{{- relationship_post -}}</ul>
+					<button type="button" class="previous js-relationship-posts-previous"></button>
+					<button type="button" class="next js-relationship-posts-next"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% include 'partials/comments.html.twig' %}
+
+{% endblock %}

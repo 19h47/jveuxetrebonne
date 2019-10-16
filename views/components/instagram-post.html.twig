@@ -1,0 +1,12 @@
+<li id="Instagram-post-{{model.id}}" class="Instagram-post">
+    <a class="" href="{{model.link}}" target="_blank">
+        <img
+            class="thumbnail"
+            src="{{model.images.standard_resolution.url}}"
+            alt="{{model.caption.text}}"
+            width="{{model.images.standard_resolution.width}}"
+            height="{{model.images.standard_resolution.height}}"
+        />
+        <span class="count">{{model.likes.count}}</span>
+    </a>
+</li>

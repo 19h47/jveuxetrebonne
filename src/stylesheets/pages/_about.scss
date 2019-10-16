@@ -6,7 +6,7 @@
 .About {
 	// .About .Single-header
 	.Single-header {
-		@extend %padding-top-5, %padding-bottom-7;
+		@extend %padding-top-5, %padding-bottom-5, %padding-bottom-md-7;
 	}
 
 	// .About .Sticky-post
@@ -18,7 +18,7 @@
 		}
 
 		.Sticky-post-header {
-			@include margin( top #{ $base-line-height } * 2 );
+			@include margin( top #{ $base-line-height * 2 }px );
 
 		}
 		.excerpt {

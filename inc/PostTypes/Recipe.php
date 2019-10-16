@@ -10,7 +10,7 @@
 
 namespace JVEB\PostTypes;
 
-use Timber;
+use Timber\{ Timber };
 
 /**
  * Recipe class
@@ -45,6 +45,78 @@ class Recipe {
 
 		add_action( 'wp_ajax_nopriv_ajax_load_recipes', array( $this, 'ajax_load_recipes' ) );
 		add_action( 'wp_ajax_ajax_load_recipes', array( $this, 'ajax_load_recipes' ) );
+
+		add_filter( 'manage_recipe_posts_columns', array( $this, 'add_custom_columns' ) );
+		add_action( 'manage_recipe_posts_custom_column', array( $this, 'render_custom_columns' ), 10, 2 );
+	}
+
+
+	/**
+	* Add custom columns
+	*
+	* @param array $columns Array of columns.
+	* @link https://developer.wordpress.org/reference/hooks/manage_post_type_posts_columns/
+	 */
+	public function add_custom_columns( array $columns ) {
+		$new_columns = array();
+
+		foreach ( $columns as $key => $value ) {
+
+			$new_columns[ $key ] = $value;
+
+			if ( 'title' === $key ) {
+				$new_columns['relation'] = pll__( 'Relation' );
+			}
+		}
+
+		return $new_columns;
+	}
+
+
+	/**
+	 * Render custom columns
+	 *
+	 * @param string $column_name The column name.
+	 * @param int    $post_id The ID of the post.
+	 */
+	public function render_custom_columns( string $column_name, int $post_id ) {
+
+		switch ( $column_name ) {
+			case 'relation':
+				$posts = get_transient( 'jveb_posts' );
+				$html  = array();
+
+				foreach ( $posts as $post ) {
+					$recipes = get_field( 'recipes', $post->ID );
+
+					if ( null === $recipes ) {
+						continue;
+					}
+
+					if ( ! is_array( $recipes ) ) {
+						continue;
+					}
+
+					foreach ( $recipes as $recipe ) {
+						if ( $recipe->ID !== $post_id ) {
+							continue;
+						}
+
+						array_push(
+							$html,
+							'<a href="' . get_edit_post_link( $post->ID ) . '">' . $post->post_title . '</a>'
+						);
+					}
+				}
+
+				if ( empty( $html ) ) {
+					echo '—';
+				} else {
+					echo join( ', ', $html );
+				}
+
+				break;
+		}
 	}
 
 
@@ -95,7 +167,7 @@ class Recipe {
 			'label'               => __( 'Recette', 'JVEB' ),
 			'description'         => __( 'Description de la recette', 'JVEB' ),
 			'labels'              => $labels,
-			'supports'            => array( 'title', 'thumbnail' ),
+			'supports'            => array( 'title', 'thumbnail', 'custom-fields' ),
 			'taxonomies'          => array(),
 			'hierarchical'        => false,
 			'public'              => true,
@@ -121,22 +193,25 @@ class Recipe {
 	 * Load recipes with AJAX request.
 	 */
 	public function ajax_load_recipes() {
+		if ( ! isset( $_GET['nonce'] ) && ! wp_verify_nonce( sanitize_key( $_GET['nonce'] ), 'security' ) ) {
+			return false;
+		}
 
-		$id = isset( $_GET['id'] ) ? $_GET['id'] : 0;
+		$id = isset( $_GET['id'] ) ? sanitize_text_field( wp_unslash( $_GET['id'] ) ) : 0;
 
 		if ( 0 === $id ) {
 			return;
 		}
 
 		$args = array(
-			'post_type'	=> 'recipe',
+			'post_type' => 'recipe',
 			'p'         => $id,
 		);
 
-		$context = Timber::get_context();
-		$context['post'] = Timber::get_post($args);
+		$context         = Timber::get_context();
+		$context['post'] = Timber::get_post( $args );
 
-		Timber::render( 'partials/recipe.twig', $context );
+		Timber::render( 'partials/recipe.html.twig', $context );
 
 		wp_die();
 	}

@@ -56,6 +56,6 @@ $count_query = new WP_Query(
 $context['post_per_page'] = 9;
 $context['found_posts'] = $count_query->found_posts;
 
-$templates = array( 'pages/category.twig' );
+$templates = array( 'pages/category.html.twig' );
 
 Timber::render( $templates, $context );
