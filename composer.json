@@ -2,7 +2,7 @@
     "name": "19h47/jveuxetrebonne",
     "require": {
         "timber/timber": "^1.11",
-        "vlucas/phpdotenv": "^3.3",
+        "vlucas/phpdotenv": "^3.6",
         "19h47/set-glance-items": "dev-master",
         "19h47/link": "dev-master"
     },

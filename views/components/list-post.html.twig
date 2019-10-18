@@ -20,12 +20,14 @@
 	<meta itemprop="image" content="{{ post.thumbnail.src }}">
 	<meta itemprop="headline" content="{{ post.title }}">
 
+
 	{% if video %}
-		{% if post.videos starts with 'https://www.youtube.com/' %}
+		{{ post.get_field( 'video' ) }}
+		{# {% if post.videos starts with 'https://www.youtube.com/' %}
 			{% set provider = 'youtube' %}
 
 			<div
-				class="thumbnail js-category-video"
+				class="thumbnail js-player"
 				data-plyr-provider="youtube"
 				data-plyr-embed-id="{{ post.videos }}"
 			></div>
@@ -36,7 +38,7 @@
 			  		<source src="{{ post.videos }}" type="video/mp4">
 				</video>
 			</div>
-		{% endif %}
+		{% endif %} #}
 
 	{% else %}
 		<a class="link" href="{{ post.link }}">

@@ -8,17 +8,13 @@
 {% include 'header/base.html.twig' %}
 
 
-<main class="l-wrapper">
+<main id="page-content" class="l-wrapper page-content" data-node-type="{{ node_type | default( 'default-page' ) }}">
 
-	{# Content #}
 	{% block content %}
-
-		{% include 'components/search.html.twig' %}
-
+		{% include 'blocks/search.html.twig' %}
 	{% endblock %}
 
 	{% include 'partials/footer.html.twig' %}
-
 
 </main>
 

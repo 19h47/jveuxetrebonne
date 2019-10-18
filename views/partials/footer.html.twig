@@ -27,12 +27,12 @@
 					{%
 						include 'components/menu.html.twig'
 						with {
-							'menu' : menu.main,
-							'language': false,
-							'search': false,
-							'layout': {
-								'desktop': true,
-								'marker': false
+							menu : menu.main,
+							language: false,
+							search: false,
+							layout: {
+								desktop: true,
+								marker: false
 							}
 						}
 					%}
@@ -51,7 +51,8 @@
 			</div>
 
 			<div class="col-12 col-md-1 text-align-center">
-				<button class="Footer-button js-scroll-to" data-offset="top">
+
+				<button id="scroll-to-footer" class="Footer-button page-block" data-offset="top" data-node-type="ScrollTo">
 					{% include 'svg/use.html.twig' with { icon: 'arrow-top' } %}
 				</button>
 			</div>

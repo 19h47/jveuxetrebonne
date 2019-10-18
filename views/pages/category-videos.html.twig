@@ -16,7 +16,7 @@
 	<div class="l-container">
 
 		{%
-			include 'partials/load-more.html.twig'
+			include 'blocks/load-more.html.twig'
 			with {
 				'post_template_name': 'list',
 				'load_more_label': pll__( "Afficher plus d'article" ),
@@ -29,6 +29,6 @@
 	{# {{ slider_videos }} #}
 
 
-	{% include 'partials/instagram.html.twig' %}
+	{% include 'blocks/instagram-posts.html.twig' %}
 
 {% endblock %}

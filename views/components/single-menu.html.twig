@@ -3,7 +3,7 @@
 Single menu
 
 #}
-<div class="Single-menu js-single-menu">
+<div id="single-menu" class="Single-menu page-block" data-node-type="SingleMenu">
 
 	<div class="Single-menu__header">
 		<div class="l-container h-100">
@@ -25,7 +25,7 @@ Single menu
                         {% for item in menu.get_items %}
                             {% set thumbnail = function( 'get_field', 'thumbnail', 'term_' ~ item.object_id ) %}
                             <img
-                                class="js-single-menu-thumbnail"
+                                class="js-thumbnail"
                                 src="{{ thumbnail.url }}"
                                 width="{{ thumbnail.width }}"
                                 height="{{ thumbnail.height }}"
@@ -44,7 +44,7 @@ Single menu
             <div class="col-12">
                 <ul class="Single-menu__items">
                     {% for item in menu.get_items %}
-                        <li class="Single-menu__item has-stroke-marker js-single-menu-item {{ item.class }}{{ item.current ? ' is-current' }}" style="animation-delay: {{ loop.index / loop.length }}s">
+                        <li class="Single-menu__item has-stroke-marker js-single-menu-item {{ item.class }}{{ item.current ? ' is-current' }}" style="animation-delay: {{ loop.index / 100 }}s">
                             <a class="" target="{{ item.target }}" href="{{ item.link }}" data-id="{{ item.object_id }}">
                                 <span>{{- item.title -}}</span>
                             </a>

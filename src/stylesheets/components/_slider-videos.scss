@@ -1,0 +1,107 @@
+/**
+ * Slider category videos
+ *
+ * @uses .Slider-category-videos
+ */
+.Slider-videos {
+	@extend %position-relative, %text-align-center;
+	@include padding( top #{ $base-line-height * 2.5 }px bottom #{ $base-line-height * 2.5 }px );
+
+	background: linear-gradient(
+		to bottom,
+		rgba( the_color( orange, very-soft ), 1 ) 0%,
+		rgba( the_color( orange, light-grayish-01 ), 1 ) 100%
+	);
+
+	@include media-breakpoint-up( md ) {
+		background: linear-gradient(
+			to bottom,
+			rgba( the_color( orange, very-soft ), 1 ) 0%,
+			rgba( the_color( orange, light-grayish-01 ), 1 ) #{ $base-line-height * 12 }px,
+			rgba( the_color( white ), 0 ) #{ $base-line-height * 12 }px
+		);
+	}
+
+
+	.items { @extend %list-unstyled, %margin-0, %padding-0; }
+	.item {
+		@extend %margin-0, %vertical-align-middle;
+	}
+	.List-post { @include margin( bottom 0 ); }
+
+	/**
+	 * Slider category videos
+	 *
+	 * @uses .Slider-category-videos .List-post-category-videos
+	 */
+	.List-post-category-videos {
+		// @extend .d-inline-block;
+		@include margin(
+			right $grid-gutter-width-mobile
+			left $grid-gutter-width-mobile
+		);
+
+		@include media-breakpoint-up( md ) {
+			@include padding( right $grid-gutter-width left $grid-gutter-width );
+			@include margin(
+				right percentage( 1 / 12 )
+				left percentage( 1 / 12 )
+			);
+		}
+	}
+
+
+	.next {
+		@include margin( left #{ $base-line-height }px );
+
+		background: {
+			image: url( '#{ map-get( $directories, svg ) }arrow-right-white.svg' );
+		}
+
+		@include media-breakpoint-up( md ) {
+			@include margin( right percentage( 285 / $psd-width-unitless ) left auto );
+			top: 0;
+			right: 0;
+		}
+	}
+
+
+	.previous {
+		@include margin( right #{ $base-line-height }px );
+
+		background: {
+			image: url( '#{ map-get( $directories, svg ) }arrow-left-white.svg' );
+		}
+
+		@include media-breakpoint-up( md ) {
+			@include margin( right auto left percentage( 285 / $psd-width-unitless ) );
+			top: 0;
+			left: 0;
+		}
+	}
+
+
+	.next,
+	.previous {
+		@extend .d-inline-block, %vertical-align-middle, %Cursor-pointer, %Transition-ease, %position-relative, %position-md-absolute;
+		@include margin( top #{ $base-line-height * 2 }px );
+		@include size( #{ $base-line-height * 2 }px );
+
+		background: {
+			position: center;
+			size: 100%;
+		}
+		opacity: 1;
+		z-index: 1;
+
+		@include media-breakpoint-up( md ) {
+			@include margin( top #{ $base-line-height * 8 }px );
+			@include size( #{ $base-line-height }px );
+		}
+
+		&.slick-disabled {
+			@extend %Cursor-auto;
+			opacity: 0;
+		}
+	}
+}

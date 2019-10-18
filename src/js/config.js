@@ -14,6 +14,10 @@ export default {
 			top: 0,
 		},
 	},
+	scroll: {
+		left: 0,
+		top: 0,
+	},
 	html: document.documentElement,
 	is: {
 		touch: feature.touch,

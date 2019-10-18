@@ -7,57 +7,62 @@
      */
 
 #}
-<div class="Recipe-description" itemscope itemtype="http://schema.org/Recipe">
+<div itemscope itemtype="http://schema.org/Recipe">
+	<div class="Recipe-description">
 
-	{% if post.person_number or post.preparation_time or post.cooking_time %}
-		<div class="Recipe-ingredients">
-			<div class="summary">
-				{{- post.person_number ? "<p class=\"person-number\">#{ post.person_number } pers.</p>" | raw -}}
-				{{- post.preparation_time ? "<p class=\"preparation-time\">#{ post.preparation_time } min</p>" | raw -}}
-				{{- post.cooking_time ? "<p class=\"cooking-time\" itemprop=\"cookTime\" content=\"PT#{ post.cooking_time }M\">#{ post.cooking_time } min</p>" | raw -}}
+		<meta itemprop="name" content="{{ post.title }}">
+		<meta itemprop="datePublished" content="{{ post.post_date }}">
+
+		{% if post.person_number or post.preparation_time or post.cooking_time %}
+			<div class="Recipe-ingredients">
+				<div class="summary">
+					{{- post.person_number ? "<p class=\"person-number\">#{ post.person_number } pers.</p>" | raw -}}
+					{{- post.preparation_time ? "<p class=\"preparation-time\" itemprop=\"prepTime\">#{ post.preparation_time } min</p>" | raw -}}
+					{{- post.cooking_time ? "<p class=\"cooking-time\" itemprop=\"cookTime\" content=\"PT#{ post.cooking_time }M\">#{ post.cooking_time } min</p>" | raw -}}
+				</div>
 			</div>
-		</div>
-	{% endif %}
+		{% endif %}
 
+
+		{% if post.get_field( 'collection' ) %}
+			<div class="Recipe-collection">
+				{% for collection in post.get_field( 'collection' ) %}
+					{% if collection.ingredients %}
+
+						<h3 class="description" itemprop="recipeInstructions">
+							{{- collection.description ? collection.description : pll__( 'Tu as besoin de …' ) -}}
+						</h3>
+
+						<div class="ingredients">
+							<ul>
+								{% for item in collection.ingredients %}
+									<li class="ingredient" itemprop="recipeIngredient">{{ item.ingredient }}</li>
+								{% endfor %}
+							</ul>
+						</div>
+
+					{% endif %}
+				{% endfor %}
+			</div>
+		{% endif %}
+
+	</div>
 
 	{% if post.get_field( 'collection' ) %}
-		<div class="Recipe-collection">
+		<div class="Recipe-steps">
 			{% for collection in post.get_field( 'collection' ) %}
-				{% if collection.ingredients %}
-
-					<h3 class="description" itemprop="recipeInstructions">
-						{{- collection.description ? collection.description : pll__( 'Tu as besoin de …' ) -}}
-					</h3>
-
-					<div class="ingredients">
-						<ul>
-							{% for item in collection.ingredients %}
-								<li class="ingredient" itemprop="recipeIngredient" >{{ item.ingredient }}</li>
-							{% endfor %}
-						</ul>
-					</div>
-
+				{% if collection.steps %}
+					{% for step in collection.steps %}
+						<span itemprop="step">{{- step.description -}}</span>
+					{% endfor %}
 				{% endif %}
 			{% endfor %}
 		</div>
 	{% endif %}
 
+	{% if post.gallery %}
+		<div class="Recipe-gallery">
+			{% include 'partials/slider-post.html.twig' %}
+		</div>
+	{% endif %}
 </div>
-
-{% if post.get_field( 'collection' ) %}
-	<div class="Recipe-steps">
-		{% for collection in post.get_field( 'collection' ) %}
-			{% if collection.steps %}
-				{% for step in collection.steps %}
-					{{- step.description -}}
-				{% endfor %}
-			{% endif %}
-		{% endfor %}
-	</div>
-{% endif %}
-
-{% if post.gallery %}
-	<div class="Recipe-gallery">
-		{% include 'partials/slider-post.html.twig' %}
-	</div>
-{% endif %}

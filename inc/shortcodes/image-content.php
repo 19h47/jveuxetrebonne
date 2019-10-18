@@ -48,25 +48,7 @@ function image_content_shortcode_handler( $atts ) {
 
 	$context['url']     = $url;
 	$context['letters'] = $letters;
+	$context['id']      = uniqid();
 
 	return Timber::compile( 'partials/image-content.html.twig', $context );
-
-	// $i = 0;
-	// for ( $i; $i < count( $letters ); $i++) {
-	//
-	// 	if ( $letters[$i] === ' ' ) {
-	// 		$letters[$i] = '&nbsp;';
-	// 	}
-	//
-	// 	$letters[$i] = '<i style="animation-delay:' . $i / count( $letters ) . 's;">' . $letters[$i] . '</i>';
-	// }
-	//
-	//
-	// $output  = "<span class=\"image-content-link js-image-content-link\">";
-	// $output .= "<span class=\"image js-image-content-link-image\">";
-	// $output .= "<img src=\"{$url}\" data-no-lazy=\"1\"></span>";
-	// $output .= "<span class=\"letters\">" . implode( $letters ) . "</span>";
-	// $output .= "</span>";
-	//
-	// return $output;
 }

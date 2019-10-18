@@ -58,7 +58,9 @@
         {% if subscribe %}
 	        <span class="Aside-bull">&bull;</span>
 	        <div class="Aside-subscribe">
-	            <button type="button" class="js-scroll-to" data-offset="bottom"><span>{{- pll__( 'Abonne-toi' ) -}}</span></button>
+	            <button id="scroll-to-aside" type="button" class="page-block" data-offset="bottom" data-node-type="ScrollTo">
+					<span>{{- pll__( 'Abonne-toi' ) -}}</span>
+				</button>
 	        </div>
         {% endif %}
 

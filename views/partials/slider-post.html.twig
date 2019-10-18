@@ -6,12 +6,12 @@ partials/slider-post
 
 #}
 
-<div class="Slider-post js-slider-post">
+<div id="slider-post-{{ id }}" class="Slider-post page-block" data-node-type="SliderPost">
 
     <ul class="Slider-post__items js-slider-post-container">
         {% for image in post.gallery %}
 	        <li class="Slider-post__item">
-	        	<img class="Slider-post__img" src="{{ TimberImage( image ).src( 'large' ) }}" alt="{{ TimberImage( image ).alt }}" width="{{ TimberImage( image ).width }}" height="{{ TimberImage( image ).height }}">
+	        	<img itemprop="image" class="Slider-post__img" src="{{ TimberImage( image ).src( 'large' ) }}" alt="{{ TimberImage( image ).alt | default( post.title ) }}" width="{{ TimberImage( image ).width }}" height="{{ TimberImage( image ).height }}">
 	        </li>
     	{% endfor %}
     </ul>

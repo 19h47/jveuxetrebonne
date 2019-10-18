@@ -8,7 +8,7 @@
  * @author      Jérémy Levron <jeremylevron@19h47.fr> (http://19h47.fr)
  */
 
-use Timber\{ Timber };
+use Timber\{ Timber, Helper };
 
 $context = Timber::get_context();
 
@@ -30,15 +30,23 @@ foreach ( $socials_name as $name ) {
 
 $context['contact']['socials'] = $socials;
 
-$context['posts'] = Timber::get_posts(
-	array(
-		'ignore_sticky_posts' => 1,
-		'order'               => 'DESC',
-		'orderby'             => 'date',
-		'post_type'           => 'post',
-		'post__in'            => get_option( 'sticky_posts' ),
-		'posts_per_page'      => 1,
-	)
+$context['posts'] = Helper::transient(
+	'jveb_sticky_posts',
+	function() {
+		$sticky_posts = Timber::get_posts(
+			array(
+				'order'               => 'DESC',
+				'orderby'             => 'date',
+				'post_type'           => 'post',
+				'post__in'            => get_option( 'sticky_posts' ),
+				'posts_per_page'      => 1,
+			)
+		);
+
+		return $sticky_posts;
+	},
+	86400
 );
+
 
 Timber::render( 'components/sticky-post.html.twig', $context );

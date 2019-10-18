@@ -34,4 +34,25 @@ class Transients {
 
 		set_transient( 'jveb_posts', $posts, DAY_IN_SECONDS );
 	}
+
+
+	/**
+	 * Get template instagram
+	 *
+	 * @return $template_instagram
+	 */
+	public static function get_template_instagram() {
+		$transient = get_transient( 'jveb_template_instagram' );
+
+		if ( $transient ) {
+			return $transient;
+		}
+
+		$template_instagram = Timber::compile(
+			'components/instagram-post.html.twig',
+			array()
+		);
+
+		set_transient( 'jveb_template_instagram', $template_instagram, DAY_IN_SECONDS );
+	}
 }

@@ -1,16 +1,13 @@
 {#
-	/**
-	 * /views/footer/base
-	 *
-	 * @package WordPress
-	 * @subpackage 19h47
-	 * @author Jérémy Levron jeremylevron@19h47.fr
-	 */
+
+/views/footer/base
+
+@package JVEB
+@author Jérémy Levron <jeremylevron@19h47.fr>
 
 #}
-
+		{% if production == 'false' %}{% include 'components/guid.html.twig' %}{% endif %}
 		{{ wp_footer }}
-		{% include 'components/guid.html.twig' %}
 
 	</body>
 </html>

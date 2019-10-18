@@ -5,59 +5,18 @@
  */
 .Instagram-post {
 	$opacity: .15;
-	@extend %float-left, %position-relative, %margin-0;
-	@include padding(
-		left $grid-gutter-width
-		right $grid-gutter-width
-	);
 
-	@include media-breakpoint-up( md ) {
-		@include padding(
-			left $grid-gutter-width / 2
-			right $grid-gutter-width / 2
-		);
-	}
+	@extend %margin-0;
 
-	width: percentage( ( $container-width-unitless / 6 ) / $container-width-unitless );
-
-	&::after {
-		@extend .d-block;
-		@include padding( top 100% );
-
-		content: '';
-	}
+	height: #{ $base-line-height * 5.5 }px;
 
 	a {
-		@extend %Position-absolute-center;
+		@extend %position-relative;
 		@extend .d-block;
-
-		@include margin(
-			left $grid-gutter-width
-			right $grid-gutter-width
-		);
-
-		@include media-breakpoint-up( md ) {
-			@include margin(
-				left $grid-gutter-width / 2
-				right $grid-gutter-width / 2
-			);
-		}
-
-		&::after {
-			@extend %Position-absolute-center, .d-block, %Transition-ease;
-
-			background: {
-				color: rgba( the_color( gray, very-dark ), $opacity * 3 );
-			}
-			content: '';
-
-			opacity: 0;
-			visibility: hidden;
-		}
+		@include size( 100% );
 
 		&:hover {
-			.count,
-			&::after {
+			.count {
 				opacity: 1;
 				visibility: visible;
 			}
@@ -71,11 +30,12 @@
 	 * @uses .Instagram .count
 	 */
 	.count {
+		@include absolute( top 0 right 0 bottom 0 left 0 );
 		@extend %font-bold, %font-title, %Transition-ease;
-		@include absolute( top 50% right 0 left 0 );
-		@extend %text-align-center;
+		@extend .d-flex, .align-items-center, .justify-content-center;
+		@include size( 100% );
 
-		transform: translate3d( 0, -50%, 0 );
+		background-color: rgba( the_color( gray, very-dark ), $opacity * 3 );
 		z-index: 1;
 
 		opacity: 0;
@@ -112,6 +72,7 @@
 		@include size( 100% );
 
 		object-fit: cover;
+		object-position: center;
 
 		box-shadow:
 			0px

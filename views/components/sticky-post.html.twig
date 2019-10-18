@@ -42,9 +42,8 @@ Sticky post
             {# Footer #}
             {% if post.get_field( 'gallery' ) %}
 				<div class="row d-none d-md-flex">
-		            <footer class="Sticky-post-footer js-slider-sticky-container">
+		            <footer id="slider-introduction" class="Sticky-post-footer page-block" data-node-type="SliderIntroduction">
 		                <div class="Sticky-post-footer__inner">
-
 		                    <ul class="Sticky-post-footer__gallery js-slider-sticky">
 		                        {% for image in post.get_field( 'gallery' ) %}
 		                            <li class="Sticky-post-footer__gallery__item">
@@ -53,7 +52,7 @@ Sticky post
 		                        {% endfor %}
 		                    </ul>
 
-		                    <button class="Sticky-post-footer__gallery__button js-slider-sticky-next" type="button" >
+		                    <button class="Sticky-post-footer__gallery__button js-next" type="button" >
 		                        {% include 'svg/use.html.twig' with { classes: [ 'Icon', 'next' ], icon: 'next' }  %}
 		                    </button>
 

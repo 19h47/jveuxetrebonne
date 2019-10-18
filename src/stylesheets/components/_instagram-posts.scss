@@ -25,6 +25,7 @@
 
 	// .Instagram-posts-container
 	&-container {
+		@extend .d-flex;
 		@extend %list-unstyled;
 		@include margin( top 0 bottom 0 );
 

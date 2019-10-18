@@ -89,9 +89,11 @@ module.exports = merge(
 					'Single',
 					'About',
 					'Link-blogrolls',
-					'Link-blogroll'
+					'Link-blogroll',
+					'fb-video',
+					'iframe'
 				],
-				whitelistPatternsChildren: [/^wp-block-/, /^slick-/, /^plyr/, /^mc4wp-/, /^Tease-post/, /^Link-blogroll/]
+				whitelistPatternsChildren: [/^wp-block-/, /^slick-/, /^plyr/, /^mc4wp-/, /^Tease-post/, /^Link-blogroll/, /^List-posts/]
 			}),
         ]
     },

@@ -220,9 +220,7 @@
 
 			&.is-active span,
 			&:hover span {
-				background: {
-					image: url( '#{ map-get( $directories, svg ) }marker-stroke-orange.svg' );
-				}
+				background-image: url( '#{ map-get( $directories, svg ) }marker-stroke-orange.svg' );
 
 				transform: translate3d( 5px, -3px, 0 );
 			}
@@ -280,7 +278,7 @@
 
 			.image {
 
-				@include padding( top 2em bottom 2em );
+				@include padding( top #{ $base-line-height }px bottom #{ $base-line-height }px );
 				@include absolute( left 0 bottom 100% );
 				@extend %overflow-hidden, .d-inline-block;
 
@@ -297,7 +295,7 @@
 				&::after {
 					@extend .d-block;
 					@include absolute( top 0 right 0 bottom 0 left 0 );
-					@include margin( top 2em bottom 2em );
+					@include margin( top #{ $base-line-height }px bottom #{ $base-line-height }px );
 
 					background: { color: the_color( orange, light-grayish-01 ); }
 					content: '';
@@ -311,7 +309,7 @@
 			&::before {
 				@extend %Position-fixed-center, .d-block, %Pointer-events-none, %Transition-ease;
 
-				background: { color: rgba( the_color( white ), .9 ) }
+				background-color: rgba( the_color( white ), .9 );
 				content: '';
 
 				opacity: 0;

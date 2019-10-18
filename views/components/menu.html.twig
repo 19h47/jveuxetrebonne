@@ -14,7 +14,7 @@
             {{- item.target ? " target=\"#{ item.target }\"" : '' }}
             href="{{ item.url }}"
         >
-            {{ layout.marker ? '<span>' -}}{{- item.title -}}{{- layout.marker ? '</span>' }}
+            {{- layout.marker ? '<span>' -}}{{- item.title -}}{{- layout.marker ? '</span>' -}}
         </a>
     </li>
 {% endfor %}

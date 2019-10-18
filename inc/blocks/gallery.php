@@ -3,10 +3,15 @@
 use Timber\{ Timber };
 
 function gallery_render( array $attributes, $content ) {
+	if ( is_admin() ) {
+		return false;
+	}
+
 	$context = Timber::get_context();
 
 	$context['post']            = array();
 	$context['post']['gallery'] = array();
+	$context['id']              = uniqid();
 
 	foreach ( $attributes['ids'] as $id ) {
 		array_push( $context['post']['gallery'], $id );
