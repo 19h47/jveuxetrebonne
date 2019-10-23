@@ -8,8 +8,20 @@ partials/slider-recipe
 
 {% for collection in post.get_field( 'collection' ) %}
 	<div id="slider-recipe-{{ random( 1, 100 ) }}" class="Slider-recipe page-block d-none d-md-block" data-node-type="SliderRecipe" itemscope itemtype="http://schema.org/Recipe">
+		<meta itemprop="author" content="{{ post.author }}">
 		<meta itemprop="name" content="{{ post.title }}">
 		<meta itemprop="datePublished" content="{{ post.post_date }}">
+		<meta itemprop="recipeCuisine" content="{{ post.cuisine | default( 'France' ) }}">
+
+		{% if post.thumbnail %}
+			<meta itemprop="image" content="{{ Image( post.thumbnail ).src }}">
+		{% endif %}
+
+		{% if post.description %}
+			<meta itemprop="description" content="{{ post.description }}">
+		{% endif %}
+
+		<meta itemprop="recipeCategory" content="{{ post.terms( 'recipe_category' ) | map( term => term.name ) | join( ', ' ) }}">
 
 		<ul class="items js-container">
 
@@ -71,9 +83,7 @@ partials/slider-recipe
 		{% endif %}
 	</div>
 
-	<div id="slider-recipe-{{ random( 1, 100 ) }}" class="Slider-recipe page-block d-md-none" data-node-type="SliderRecipe" itemscope itemtype="http://schema.org/Recipe">
-		<meta itemprop="name" content="{{ post.title }}">
-		<meta itemprop="datePublished" content="{{ post.date }}">
+	<div id="slider-recipe-{{ random( 1, 100 ) }}" class="Slider-recipe page-block d-md-none" data-node-type="SliderRecipe">
 
 		<ul class="items js-container">
 
@@ -82,7 +92,7 @@ partials/slider-recipe
 			<li class="item">
 				<div class="item__inner image-mobile">
 					{% if collection.image | length %}
-						<img src="{{ TimberImage( collection.image ).src }}" itemprop="image">
+						<img src="{{ TimberImage( collection.image ).src }}">
 					{% endif %}
 				</div>
 			</li>
@@ -114,7 +124,7 @@ partials/slider-recipe
 				<li class="item">
 					<div class="item__inner image-mobile">
 						{% if step.image | length %}
-							<img src="{{ TimberImage( step.image ).src }}" itemprop="image">
+							<img src="{{ TimberImage( step.image ).src }}">
 						{% endif %}
 					</div>
 				</li>
@@ -134,7 +144,7 @@ partials/slider-recipe
 			{% endspaceless %}
 		</ul>
 
-	    {% if collection.steps|length > 0 %}
+	    {% if collection.steps | length > 0 %}
 
 		    <div class="Slider-recipe__progressbar js-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
 			{% include 'partials/slider-navigation.html.twig' with { count: collection.steps|length + 1 } %}

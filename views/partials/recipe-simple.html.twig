@@ -10,8 +10,21 @@
 <div itemscope itemtype="http://schema.org/Recipe">
 	<div class="Recipe-description">
 
+		<meta itemprop="author" content="{{ post.author }}">
 		<meta itemprop="name" content="{{ post.title }}">
 		<meta itemprop="datePublished" content="{{ post.post_date }}">
+
+		<meta itemprop="recipeCuisine" content="{{ post.cuisine | default( 'France' ) }}">
+
+		{% if post.thumbnail %}
+			<meta itemprop="image" content="{{ Image( post.thumbnail ).src }}">
+		{% endif %}
+
+		{% if post.description %}
+			<meta itemprop="description" content="{{ post.description }}">
+		{% endif %}
+
+		<meta itemprop="recipeCategory" content="{{ post.terms( 'recipe_category' ) | map( term => term.name ) | join( ', ' ) }}">
 
 		{% if post.person_number or post.preparation_time or post.cooking_time %}
 			<div class="Recipe-ingredients">

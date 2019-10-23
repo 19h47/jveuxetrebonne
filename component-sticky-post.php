@@ -17,7 +17,7 @@ $context = Timber::get_context();
 $socials      = array();
 $socials_name = array( 'YouTube', 'Facebook', 'Twitter', 'Instagram' );
 
-// TODO: get socials from functions.php, and remove duplicate.
+// @TODO: get socials from functions.php, and remove duplicate.
 foreach ( $socials_name as $name ) {
 	${ strtolower( $name ) } = array(
 		'slug' => strtolower( $name ),

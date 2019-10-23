@@ -23,23 +23,6 @@
 
 	{% if video %}
 		{{ post.get_field( 'video' ) }}
-		{# {% if post.videos starts with 'https://www.youtube.com/' %}
-			{% set provider = 'youtube' %}
-
-			<div
-				class="thumbnail js-player"
-				data-plyr-provider="youtube"
-				data-plyr-embed-id="{{ post.videos }}"
-			></div>
-
-		{% else %}
-			<div class="thumbnail native-video">
-				<video poster="{{ post.thumbnail }}" controls preload="auto">
-			  		<source src="{{ post.videos }}" type="video/mp4">
-				</video>
-			</div>
-		{% endif %} #}
-
 	{% else %}
 		<a class="link" href="{{ post.link }}">
 			<img class="thumbnail" src="{{ Image( post.thumbnail ).src( 'medium' ) }}" width="{{ Image( post.thumbnail ).width }}" height="{{ Image( post.thumbnail ).height }}">

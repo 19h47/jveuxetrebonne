@@ -167,7 +167,7 @@ class Recipe {
 			'label'               => __( 'Recette', 'JVEB' ),
 			'description'         => __( 'Description de la recette', 'JVEB' ),
 			'labels'              => $labels,
-			'supports'            => array( 'title', 'thumbnail', 'custom-fields' ),
+			'supports'            => array( 'title', 'thumbnail', 'custom-fields', 'author' ),
 			'taxonomies'          => array(),
 			'hierarchical'        => false,
 			'public'              => true,

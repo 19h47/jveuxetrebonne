@@ -17,22 +17,6 @@
             },
             "width": "",
             "height": ""
-        },
-        {
-            "key": "field_5da8b7da536b5",
-            "label": "Vidéos",
-            "name": "videos",
-            "type": "url",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": ""
         }
     ],
     "location": [
@@ -54,5 +38,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1571338209
+    "modified": 1571480541
 }

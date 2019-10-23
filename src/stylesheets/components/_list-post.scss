@@ -96,21 +96,20 @@
 
 	iframe {
 		@include size( 100%, #{ $base-line-height * 10.5 }px );
+		@extend %vertical-align-middle;
 
 		@at-root .List-posts-container & {
 			@include size( 100%, #{ $base-line-height * 9.5 }px );
+
+			max-width: 100%;
 		}
 	}
 
 	.fb-video {
-		@include size( 100%, #{ $base-line-height * 10.5 }px );
-
-		> span {
-			height: 100%!important;
-		}
+		height: #{ $base-line-height * 10.5 }px;
 
 		iframe {
-			height: 100%!important;
+			// height: 100%!important;
 		}
 
 		@at-root .List-posts-container & {

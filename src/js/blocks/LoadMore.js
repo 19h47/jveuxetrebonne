@@ -16,9 +16,9 @@ export default class LoadMore extends AbstractBlock {
 
 		this.filters = [...document.querySelectorAll('.js-filters-button')] || [];
 
-		this.term_id = this.$button.getAttribute('data-term-id') || false;
-		this.count = this.$button.getAttribute('data-count');
-		this.posts_per_page = this.$button.getAttribute('data-posts-per-page') || 3;
+		this.term_id = JSON.parse(this.$button.getAttribute('data-term-id')) || false;
+		this.count = JSON.parse(this.$button.getAttribute('data-count'));
+		this.posts_per_page = JSON.parse(this.$button.getAttribute('data-posts-per-page')) || 3;
 		this.post_template = this.$button.getAttribute('data-template') || 'tease';
 		this.offset = this.$button.getAttribute('data-offset') || 9;
 		this.exclude = this.$button.getAttribute('data-exclude');
@@ -36,7 +36,7 @@ export default class LoadMore extends AbstractBlock {
 
 		this.$button.addEventListener('click', () => {
 			this.load()
-				.then(response => response.text())
+				.then((response) => response.text())
 				.then(this.append.bind(this))
 				.finally(this.update.bind(this));
 		});
@@ -57,18 +57,18 @@ export default class LoadMore extends AbstractBlock {
 			el.classList.add('is-active');
 
 			this.offset = 0;
-			this.term_id = el.getAttribute('data-term-id');
-			this.slug = el.getAttribute('data-slug');
-			this.count = el.getAttribute('data-count');
-			this.posts_per_page = el.getAttribute('data-post-per-page');
+			this.term_id = JSON.parse(el.getAttribute('data-term-id'));
+			this.count = JSON.parse(el.getAttribute('data-count'));
+			this.posts_per_page = JSON.parse(el.getAttribute('data-post-per-page'));
 			this.description = el.getAttribute('data-description');
+			this.slug = el.getAttribute('data-slug');
 
 			window.history.pushState('', '', `${wp.current_url}/${this.slug}`);
 
 			this.$heading.querySelector('span').innerHTML = 'Loading';
 
 			return this.load()
-				.then(response => response.text())
+				.then((response) => response.text())
 				// then replace result to the container
 				.then(this.replace.bind(this))
 				// finally update things
@@ -81,7 +81,7 @@ export default class LoadMore extends AbstractBlock {
 	 * LoadMore.load
 	 */
 	load() {
-		const url = new URL(window.wp.ajax_url);
+		const url = new URL(wp.ajax_url);
 		const params = {
 			action: 'ajax_load_posts',
 			offset: this.offset,
@@ -101,7 +101,7 @@ export default class LoadMore extends AbstractBlock {
 			params.post_template = this.post_template;
 		}
 
-		Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+		Object.keys(params).forEach((key) => url.searchParams.append(key, params[key]));
 
 		const init = {
 			method: 'post',
@@ -148,12 +148,12 @@ export default class LoadMore extends AbstractBlock {
 		this.$button.setAttribute('data-term-id', this.term_id);
 		this.$button.setAttribute('data-count', this.count);
 
-		if (this.$button && (this.offset < this.count)) {
-			this.$containerFooter.style.setProperty('display', 'block');
+		if (this.$button && (this.offset >= this.count)) {
+			this.$containerFooter.style.setProperty('display', 'none');
 		}
 
 		// ensure everything is unlocked
-		this.off.call(this);
+		this.off();
 	}
 
 

@@ -12,7 +12,7 @@ use Timber\{ Timber, Menu, Helper };
 
 use JVEB\{ Admin, Helpers, Transients };
 use JVEB\PostTypes\{ Post, Recipe };
-use JVEB\Taxonomies\{ ProjectTag };
+use JVEB\Taxonomies\{ RecipeCategory };
 
 use Twig_SimpleFunction;
 
@@ -108,7 +108,7 @@ class App extends Timber {
 		new acf_location_rule( 'category_parents' );
 		new Post( $this->get_theme_name(), $this->get_theme_version() );
 		new Recipe( $this->get_theme_name(), $this->get_theme_version() );
-		new ProjectTag( $this->get_theme_name(), $this->get_theme_version() );
+		new RecipeCategory( $this->get_theme_name(), $this->get_theme_version() );
 
 	}
 

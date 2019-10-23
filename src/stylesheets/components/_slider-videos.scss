@@ -26,66 +26,51 @@
 	.items { @extend %list-unstyled, %margin-0, %padding-0; }
 	.item {
 		@extend %margin-0, %vertical-align-middle;
+
+		max-width: 100%;
 	}
 	.List-post { @include margin( bottom 0 ); }
 
-	/**
-	 * Slider category videos
-	 *
-	 * @uses .Slider-category-videos .List-post-category-videos
-	 */
+	// .Slider-category-videos .List-post-category-videos
 	.List-post-category-videos {
-		// @extend .d-inline-block;
 		@include margin(
-			right $grid-gutter-width-mobile
-			left $grid-gutter-width-mobile
+			right $grid-gutter-width
+			left $grid-gutter-width
 		);
+
+		max-width: 100%;
 
 		@include media-breakpoint-up( md ) {
 			@include padding( right $grid-gutter-width left $grid-gutter-width );
-			@include margin(
-				right percentage( 1 / 12 )
-				left percentage( 1 / 12 )
-			);
+			// @include margin(
+			// 	right percentage( 1 / 12 )
+			// 	left percentage( 1 / 12 )
+			// );
 		}
 	}
-
 
 	.next {
-		@include margin( left #{ $base-line-height }px );
-
-		background: {
-			image: url( '#{ map-get( $directories, svg ) }arrow-right-white.svg' );
-		}
+		background-image: url( '#{ map-get( $directories, svg ) }arrow-right-white.svg' );
 
 		@include media-breakpoint-up( md ) {
-			@include margin( right percentage( 285 / $psd-width-unitless ) left auto );
-			top: 0;
-			right: 0;
+			background-image: url( '#{ map-get( $directories, svg ) }arrow-right.svg' );
 		}
 	}
 
-
 	.previous {
-		@include margin( right #{ $base-line-height }px );
-
-		background: {
-			image: url( '#{ map-get( $directories, svg ) }arrow-left-white.svg' );
-		}
+		background-image: url( '#{ map-get( $directories, svg ) }arrow-left-white.svg' );
 
 		@include media-breakpoint-up( md ) {
-			@include margin( right auto left percentage( 285 / $psd-width-unitless ) );
-			top: 0;
-			left: 0;
+			background-image: url( '#{ map-get( $directories, svg ) }arrow-left.svg' );
 		}
 	}
 
 
 	.next,
 	.previous {
-		@extend .d-inline-block, %vertical-align-middle, %Cursor-pointer, %Transition-ease, %position-relative, %position-md-absolute;
-		@include margin( top #{ $base-line-height * 2 }px );
+		@extend .d-inline-block, %vertical-align-middle, %Cursor-pointer, %Transition-ease;
 		@include size( #{ $base-line-height * 2 }px );
+		@include margin( top #{ $base-line-height }px );
 
 		background: {
 			position: center;
@@ -95,7 +80,6 @@
 		z-index: 1;
 
 		@include media-breakpoint-up( md ) {
-			@include margin( top #{ $base-line-height * 8 }px );
 			@include size( #{ $base-line-height }px );
 		}
 

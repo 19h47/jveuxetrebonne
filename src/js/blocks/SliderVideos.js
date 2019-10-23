@@ -71,11 +71,13 @@ export default class SliderVideos extends AbstractBlock {
 				prevArrow: $container.find('.js-previous'),
 				mobileFirst: true,
 				accessibility: true,
+				centerMode: true,
+				centerPadding: 0,
 				responsive: [{
 					breakpoint: 992,
 					settings: {
-						centerMode: true,
-						centerPadding: `${(285 * 100) / 1440}%`,
+						variableWidth: true,
+						// centerPadding: `${(285 * 100) / 1440}%`,
 					},
 				}],
 			});

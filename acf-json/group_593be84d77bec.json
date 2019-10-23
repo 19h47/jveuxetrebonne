@@ -3,6 +3,25 @@
     "title": "Recette",
     "fields": [
         {
+            "key": "field_5daad8137fd95",
+            "label": "Description",
+            "name": "description",
+            "type": "textarea",
+            "instructions": "Indiquer une courte description de la recette (utile pour les moteurs de recherche)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Description",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": ""
+        },
+        {
             "key": "field_59b3ba20d683c",
             "label": "Mise en page",
             "name": "layout",
@@ -83,6 +102,47 @@
             "min": "",
             "max": "",
             "step": ""
+        },
+        {
+            "key": "field_5daad77996eed",
+            "label": "Pays d'origine de la recette",
+            "name": "cuisine",
+            "type": "text",
+            "instructions": "Indiquer le pays d'origine de la recette (par exemple France ou Éthiopie) (par défaut France)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "France",
+            "placeholder": "Origine",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5daad86b034ac",
+            "label": "Catégorie",
+            "name": "category",
+            "type": "taxonomy",
+            "instructions": "Indiquer une catégorie de recette (par exemple apéritif ou entrée) (Utile pour les moteurs de recherche)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "recipe_category",
+            "field_type": "multi_select",
+            "allow_null": 0,
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "object",
+            "multiple": 0
         },
         {
             "key": "field_5944ec3cba004",
@@ -321,5 +381,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "Les détails d'une recette",
-    "modified": 1570911744
+    "modified": 1571478198
 }

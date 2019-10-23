@@ -115,48 +115,34 @@
 
 		.person-number,
 		.preparation-time {
-			border: {
-				right: {
-					color: rgba( the_color( white ), .45  );
-					style: solid;
-					width: 1px;
-				}
+			border-right: {
+				color: rgba( the_color( white ), .45  );
+				style: solid;
+				width: 1px;
 			}
 		}
 
 		.person-number {
 			width: 100%;
 
-			@include media-breakpoint-up( md ) { width: percentage( ( 742 / 3 ) / 742 ); }
-
 			&::before {
-				background: {
-					image: url('#{ map-get( $directories, svg )}person-number.svg' );
-				}
+				background-image: url('#{ map-get( $directories, svg )}person-number.svg' );
 			}
 		}
 
 		.preparation-time {
 			width: 100%;
 
-			@include media-breakpoint-up( md ) { width: percentage( ( 742 / 3 ) / 742 ); }
-
 			&::before {
-				background: {
-					image: url('#{ map-get( $directories, svg )}preparation-time.svg' );
-				}
+				background-image: url('#{ map-get( $directories, svg )}preparation-time.svg' );
 			}
 		}
 
 		.cooking-time {
 			width: 100%;
 
-			@include media-breakpoint-up( md ) { width: percentage( ( 742 / 3 ) / 742 ); }
-
 			&::before {
-				background: {
-					image: url('#{ map-get( $directories, svg )}cooking-time.svg' );
-				}
+				background-image: url('#{ map-get( $directories, svg )}cooking-time.svg' );
 			}
 		}
 	}

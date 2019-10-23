@@ -1,8 +1,10 @@
 {#
 
-partials/load-more
+Blocks: load more
 
-@author  Jérémy Levron <jeremylevron@19h47.fr>
+blocks/load-more
+
+@author  Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
 
 #}
 
@@ -17,7 +19,7 @@ partials/load-more
 
 			<button
 				class="Link-readmore js-button Link-marker Link-marker--orange"
-				data-term-id="{{ category.term_id }}"
+				{{- category.term_id ? " data-term-id=\"#{ category.term_id }\"" | raw : '' -}}
 				data-count="{{ found_posts }}"
 				data-posts-per-page="{{ post_per_page }}"
 				data-template="{{ post_template_name }}"

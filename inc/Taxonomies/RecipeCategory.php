@@ -5,26 +5,26 @@ namespace JVEB\taxonomies;
 /**
  * Project tag class
  */
-class ProjectTag {
+class RecipeCategory {
 
 	/**
-     * The unique identifier of this theme.
-     *
-     * @since    1.0.0
-     * @access   protected
-     * @var      string    $plugin_name    The string used to uniquely identify this theme.
-     */
-    protected $theme_name;
+	 * The unique identifier of this theme.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $plugin_name    The string used to uniquely identify this theme.
+	 */
+	protected $theme_name;
 
 
-    /**
-     * The version of the theme.
-     *
-     * @since    1.0.0
-     * @access   private
-     * @var      string    $version    The current version of this theme.
-     */
-    private $theme_version;
+	/**
+	 * The version of the theme.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $version    The current version of this theme.
+	 */
+	private $theme_version;
 
 
 	/**
@@ -32,11 +32,11 @@ class ProjectTag {
 	 *
 	 * @access public
 	 */
-	public function __construct( $theme_name, $theme_version ) {
-		$this->theme_name = $theme_name;
-        $this->theme_version = $theme_version;
+	public function __construct( string $theme_name, string $theme_version ) {
+		$this->theme_name    = $theme_name;
+		$this->theme_version = $theme_version;
 
-        add_action( 'init', array( $this, 'register_taxonomy' ) );
+		add_action( 'init', array( $this, 'register_taxonomy' ) );
 	}
 
 
@@ -65,16 +65,17 @@ class ProjectTag {
 			'items_list'                 => __( 'Liste des catégories', 'JVEB' ),
 			'items_list_navigation'      => __( 'Liste de navigation des catégories', 'JVEB' ),
 		);
-		$args = array(
-			'labels'                     => $labels,
-			'hierarchical'               => false,
-			'public'                     => true,
-			'show_ui'                    => true,
-			'show_admin_column'          => true,
-			'show_in_nav_menus'          => true,
-			'show_tagcloud'              => true,
-		);
-		register_taxonomy( 'project_tag', array( 'project' ), $args );
 
+		$args = array(
+			'labels'            => $labels,
+			'hierarchical'      => false,
+			'public'            => true,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'show_in_nav_menus' => true,
+			'show_tagcloud'     => true,
+		);
+
+		register_taxonomy( 'recipe_category', array( 'recipe' ), $args );
 	}
 }
