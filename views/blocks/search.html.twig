@@ -62,34 +62,26 @@ views/components/search
 
 
 	{# Template #}
-	<script id="suggest" type="x-tmpl-mustache">
+	<script type="text/html" id="tmpl-suggest">
 		{% verbatim %}
 
-		<div class="col-12 col-md-4">
-			<article class="List-post">
-
-				<a class="link" href="{{ link }}">
-					{{#thumbnail}}
-						<img class="thumbnail" src="{{ thumbnail }}">
-					{{/thumbnail}}
-				</a>
-
-				<div class="List-post-meta">
-
-					<p class="date">{{ date }}</p><!--
-
-				 --><span class="d-inline-block">&nbsp;&bull;&nbsp;</span><!--
-
-				 --><em class="categories">{{ categories}}</em>
-
-					<a class="link" href="{{ link }}" title="{{ title }}">
-						<h3 class="title">{{ title }}</h3>
+			<div class="col-12 col-md-4">
+				<article class="List-post">
+					<a class="link" href="{{ data.link }}">
+						<# if ( data.thumbnail ) { #>
+							<img class="thumbnail" src="{{ data.thumbnail }}">
+						<# } #>
 					</a>
-
-				</div>
-
-			</article>
-		</div>
+					<div class="List-post-meta">
+						<p class="date">{{ data.date }}</p><!--
+						--><span class="d-inline-block">&nbsp;&bull;&nbsp;</span><!--
+				 		--><em class="categories">{{ data.categories}}</em>
+						<a class="link" href="{{ data.link }}" title="{{ data.title }}">
+							<h3 class="title">{{ data.title }}</h3>
+						</a>
+					</div>
+				</article>
+			</div>
 
 		{% endverbatim %}
 	</script>

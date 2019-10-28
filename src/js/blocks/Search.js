@@ -2,7 +2,6 @@
 
 import { AbstractBlock } from 'starting-blocks';
 import Scroll from 'Utils/Scroll';
-import Mustache from 'mustache';
 import config from 'js/config';
 import { sprintf } from 'sprintf-js';
 
@@ -25,6 +24,8 @@ export default class Search extends AbstractBlock {
 
 		this.success = this.$informations[0].dataset.success;
 		this.error = this.$informations[0].dataset.error;
+
+		this.template = wp.template('suggest');
 
 		// Add error message
 		this.$informations.find('span:eq( 2 )').html(this.error);
@@ -84,7 +85,7 @@ export default class Search extends AbstractBlock {
 				}
 
 				$.ajax({
-					url: wp.search_api,
+					url: jveb.search_api,
 					data: {
 						term: request.term,
 						lang: this.language,
@@ -214,23 +215,18 @@ export default class Search extends AbstractBlock {
 		// Update total
 		this.total = suggests.length;
 
-		const template = $('#suggest').html();
 		let output = '';
 		let i = 0;
 
-		Mustache.parse(template);
-
 		for (i; i < this.total; i += 1) {
-			output += Mustache.render(
-				template, {
-					// Stock each value to render in template
-					title: suggests[i].post_title,
-					date: suggests[i].post_date_format,
-					link: suggests[i].link,
-					categories: suggests[i].post_categories.map((el) => el.name).join(', '),
-					thumbnail: suggests[i].post_thumbnail_url || '',
-				},
-			);
+			output += this.template({
+				// Stock each value to render in template
+				title: suggests[i].post_title,
+				date: suggests[i].post_date_format,
+				link: suggests[i].link,
+				categories: suggests[i].post_categories.map((el) => el.name).join(', '),
+				thumbnail: suggests[i].post_thumbnail_url || '',
+			});
 		}
 
 		return output;

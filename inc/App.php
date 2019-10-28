@@ -218,7 +218,7 @@ class App extends Timber {
 			);
 		};
 
-		if (function_exists('wp_logout_url')) {
+		if ( function_exists('wp_logout_url')) {
 			$twig->addFunction(
 				new Twig_SimpleFunction(
 					'wp_logout_url',
@@ -472,14 +472,14 @@ class App extends Timber {
 		wp_register_script(
 			$this->theme_name . '-main',
 			get_template_directory_uri() . '/' . $this->theme_manifest['main.js'],
-			array( 'jquery', 'jquery-ui', 'feature' ),
+			array( 'jquery', 'jquery-ui', 'feature', 'wp-util' ),
 			$this->get_theme_version(),
 			true
 		);
 
 		wp_localize_script(
 			$this->theme_name . '-main',
-			'wp',
+			'jveb',
 			array(
 				'template_directory_uri' => get_template_directory_uri(),
 				'base_url'               => site_url(),

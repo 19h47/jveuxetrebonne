@@ -1,4 +1,4 @@
-/* global $, wp */
+/* global $, jveb */
 
 import { AbstractBlock } from 'starting-blocks';
 
@@ -54,13 +54,13 @@ export default class Recipes extends AbstractBlock {
 		const data = {
 			action: 'ajax_load_recipes',
 			id: this.id,
-			nonce: wp.nonce,
+			nonce: jveb.nonce,
 		};
 
 		// lock everything before the request
 		this.on.call(this);
 
-		return $.get(wp.ajax_url, data);
+		return $.get(jveb.ajax_url, data);
 	}
 
 

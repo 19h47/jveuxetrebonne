@@ -1,13 +1,13 @@
 {#
 
-partials/slider-recipe
+partials/carousel-recipe
 
 @author  Jérémy Levron <jeremylevron@19h47.fr
 
 #}
 
 {% for collection in post.get_field( 'collection' ) %}
-	<div id="slider-recipe-{{ random( 1, 100 ) }}" class="Slider-recipe page-block d-none d-md-block" data-node-type="SliderRecipe" itemscope itemtype="http://schema.org/Recipe">
+	<div id="carousel-recipe-{{ random( 1, 100 ) }}" class="Carousel-recipe page-block d-none d-md-block" data-node-type="CarouselRecipe" itemscope itemtype="http://schema.org/Recipe">
 		<meta itemprop="author" content="{{ post.author }}">
 		<meta itemprop="name" content="{{ post.title }}">
 		<meta itemprop="datePublished" content="{{ post.post_date }}">
@@ -35,7 +35,7 @@ partials/slider-recipe
 
 					<div class="item__inner">
 
-						<h3 class="Slider-recipe__title">
+						<h3 class="Carousel-recipe__title">
 							{{- collection.description | default( pll__( 'Pour commencer <br> tu as besoin de :' ) ) -}}
 						</h3>
 
@@ -48,7 +48,7 @@ partials/slider-recipe
 						{% endif %}
 
 						{% if collection.ingredients %}
-							<ul class="Slider-recipe__ingredients">
+							<ul class="Carousel-recipe__ingredients">
 								{{- collection.ingredients | map(item => "<li itemprop=\"recipeIngredient\">#{ item.ingredient }</li>") | join -}}
 							</ul>
 						{% endif %}
@@ -64,7 +64,7 @@ partials/slider-recipe
 							{% endif %}
 						</div>
 						<div class="item__inner">
-							<p class="Slider-recipe__title title-step">
+							<p class="Carousel-recipe__title title-step">
 								{{- pll__( 'Étape' ) -}}&nbsp;{{ loop.index }}
 							</p>
 							{{- step.description -}}
@@ -76,14 +76,14 @@ partials/slider-recipe
 
 	    {% if collection.steps | length > 0 %}
 
-		    <div class="Slider-recipe__progressbar js-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+		    <div class="Carousel-recipe__progressbar js-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
 
 		    {% include 'partials/slider-navigation.html.twig' with { count: collection.steps | length + 1 } %}
 
 		{% endif %}
 	</div>
 
-	<div id="slider-recipe-{{ random( 1, 100 ) }}" class="Slider-recipe page-block d-md-none" data-node-type="SliderRecipe">
+	<div id="carousel-recipe-{{ random( 1, 100 ) }}" class="Carousel-recipe page-block d-md-none" data-node-type="SliderRecipe">
 
 		<ul class="items js-container">
 
@@ -98,7 +98,7 @@ partials/slider-recipe
 			</li>
 			<li class="item">
 				<div class="item__inner ingredients-mobile">
-					<h3 class="Slider-recipe__title">
+					<h3 class="Carousel-recipe__title">
 						{{- collection.description | default( pll__( 'Pour commencer <br> tu as besoin de :' ) ) -}}
 					</h3>
 
@@ -111,7 +111,7 @@ partials/slider-recipe
 					{% endif %}
 
 					{% if collection.ingredients %}
-						<ul class="Slider-recipe__ingredients">
+						<ul class="Carousel-recipe__ingredients">
 							{{- collection.ingredients | map(item => "<li itemprop=\"recipeIngredient\">#{ item.ingredient }</li>" ) | join -}}
 						</ul>
 					{% endif %}
@@ -131,7 +131,7 @@ partials/slider-recipe
 				<li class="item">
 					<div class="item__inner ingredients-mobile">
 
-						<p class="Slider-recipe__title title-step">
+						<p class="Carousel-recipe__title title-step">
 							{{- pll__( 'Étape' ) -}}&nbsp;{{ loop.index }}
 						</p>
 						{{- step.description -}}
@@ -146,7 +146,7 @@ partials/slider-recipe
 
 	    {% if collection.steps | length > 0 %}
 
-		    <div class="Slider-recipe__progressbar js-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+		    <div class="Carousel-recipe__progressbar js-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
 			{% include 'partials/slider-navigation.html.twig' with { count: collection.steps|length + 1 } %}
 
 		{% endif %}

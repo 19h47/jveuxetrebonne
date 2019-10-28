@@ -1,4 +1,4 @@
-/* global wp */
+/* global jveb */
 import { AbstractBlock } from 'starting-blocks';
 
 export default class LoadMore extends AbstractBlock {
@@ -63,7 +63,7 @@ export default class LoadMore extends AbstractBlock {
 			this.description = el.getAttribute('data-description');
 			this.slug = el.getAttribute('data-slug');
 
-			window.history.pushState('', '', `${wp.current_url}/${this.slug}`);
+			window.history.pushState('', '', `${jveb.current_url}/${this.slug}`);
 
 			this.$heading.querySelector('span').innerHTML = 'Loading';
 
@@ -81,12 +81,12 @@ export default class LoadMore extends AbstractBlock {
 	 * LoadMore.load
 	 */
 	load() {
-		const url = new URL(wp.ajax_url);
+		const url = new URL(jveb.ajax_url);
 		const params = {
 			action: 'ajax_load_posts',
 			offset: this.offset,
 			exclude: this.exclude,
-			nonce: wp.nonce,
+			nonce: jveb.nonce,
 		};
 
 		if (this.term_id) {

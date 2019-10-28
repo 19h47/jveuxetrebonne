@@ -79,6 +79,7 @@ module.exports = merge(
 					'is-loading',
 					'is-current',
 					'is-hover',
+					'not-found',
 					'lazyloaded',
 					'menu-item-object-category',
 					'lang-item',

@@ -4,9 +4,9 @@ import { AbstractBlock } from 'starting-blocks';
 import 'slick-carousel';
 import sliderNavigation from 'Utils/sliderNavigation';
 
-export default class SliderRecipe extends AbstractBlock {
+export default class CarouselRecipe extends AbstractBlock {
 	constructor(container) {
-		super(container, 'SliderRecipe');
+		super(container, 'CarouselRecipe');
 	}
 
 	async init() {

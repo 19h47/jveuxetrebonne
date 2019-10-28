@@ -1,9 +1,9 @@
 /**
- * Slider recipe
+ * Carousel recipe
  *
- * @uses .Slider-recipe
+ * @uses .Carousel-recipe
  */
-.Slider-recipe {
+.Carousel-recipe {
 
 	$this: &;
 
@@ -19,11 +19,7 @@
 	}
 
 
-	/**
-	 * Title
-	 *
-	 * @uses .Slider-recipe__title
-	 */
+	// .Carousel-recipe__title
 	&__title {
 		@extend %font-title, %font-bold, %text-align-center;
 		@include margin( top #{ $base-line-height }px bottom 0 );
@@ -79,7 +75,7 @@
 	}
 
 
-	// .Slider-recipe .items
+	// .Carousel-recipe .items
 	.items {
 		@extend %list-unstyled, %margin-y-0;
 
@@ -95,7 +91,7 @@
 		}
 	}
 
-	// .Slider-recipe .item
+	// .Carousel-recipe .item
 	.item {
 		@extend %margin-y-0;
 

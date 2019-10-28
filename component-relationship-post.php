@@ -1,12 +1,11 @@
 <?php
-
 /**
  *
  * Display last recent post in same category as the current post
  *
  * @file        component-relationship-post
  * @package     jveb
- * @author      Jérémy Levron <jeremylevron@19h47.fr> (http://19H47.fr)
+ * @author      Jérémy Levron <jeremylevron@19h47.fr> (https://19H47.fr)
  */
 
 use Timber\{ Timber, Post, Helper };

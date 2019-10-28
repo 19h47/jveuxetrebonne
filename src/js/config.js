@@ -1,4 +1,4 @@
-/* global $ feature wp */
+/* global $, feature, jveb */
 
 /**
  * Config object
@@ -23,8 +23,8 @@ export default {
 		touch: feature.touch,
 		first_load: true,
 	},
-	api: `${wp.api_url}wp/v2/`,
-	nonce: wp.api_nonce,
+	api: `${jveb.api_url}wp/v2/`,
+	nonce: jveb.api_nonce,
 	// Ease
 	// easeInOutQuart: CustomEase.create('easeInOutQuart', '0.77, 0, 0.175, 1'),
 	// easeOutSine: CustomEase.create('easeOutSine', '0.39, 0.575, 0.565, 1'),

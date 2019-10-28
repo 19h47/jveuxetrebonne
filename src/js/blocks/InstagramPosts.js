@@ -1,4 +1,4 @@
-/* global $, wp */
+/* global $, jveb */
 
 import { AbstractBlock } from 'starting-blocks';
 
@@ -29,7 +29,7 @@ export default class Instagram extends AbstractBlock {
 			accessToken: this.accessToken,
 			sortBy: 'most-recent',
 			limit: 6,
-			template: wp.template_instagram,
+			template: jveb.template_instagram,
 			after: this.initPlugins,
 			error: () => {
 				this.rootElement.style.setProperty('display', 'none');
