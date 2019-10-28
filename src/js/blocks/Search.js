@@ -28,7 +28,7 @@ export default class Search extends AbstractBlock {
 		this.template = wp.template('suggest');
 
 		// Add error message
-		this.$informations.find('span:eq( 2 )').html(this.error);
+		this.$informations.find('span:eq(2)').html(this.error);
 
 		this.response = null;
 
@@ -275,11 +275,11 @@ export default class Search extends AbstractBlock {
 			.data('total', this.total);
 
 		if (1 === this.total) {
-			this.$informations.find('span:eq( 1 )').html(this.success.replace(/s/g, ''));
+			this.$informations.find('span:eq(1)').html(this.success.replace(/s/g, ''));
 		}
 
 		if (1 < this.total) {
-			this.$informations.find('span:eq( 1 )').html(sprintf(this.success, 's', 'ent'));
+			this.$informations.find('span:eq(1)').html(sprintf(this.success, 's', 'ent'));
 		}
 
 		this.unlock();

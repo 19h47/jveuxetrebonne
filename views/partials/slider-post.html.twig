@@ -18,7 +18,7 @@ partials/slider-post
 
     {% if post.gallery | length > 1 %}
 
-	    <div class="Slider-post__progressbar js-slider-post-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+	    <div class="Slider-post__progressbar js-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
 
 		{% include 'partials/slider-navigation.html.twig' with { count: post.gallery | length } %}
 
