@@ -23,7 +23,11 @@
 
 		@extend %margin-0, %position-relative, %vertical-align-middle;
 
-		height: #{ $base-line-height * 16 }px;
+		height: #{ $base-line-height * 8 }px;
+
+		@include media-breakpoint-up( md ) {
+			height: #{ $base-line-height * 16 }px;
+		}
 
 		&::after {
 			@extend .d-block;
@@ -53,6 +57,7 @@
 		}
 	}
 
+	// .Slider-post__img
 	&__img {
 		@extend %Position-absolute-center, .d-inline-block, %vertical-align-middle;
 		@include size( 100% );

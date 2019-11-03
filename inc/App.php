@@ -27,9 +27,9 @@ $dotenv->load();
 define( 'CONTACT_FORM_ID', 63 );
 
 
- /**
-  * Class App
-  */
+/**
+ * Class App
+ */
 class App extends Timber {
 
 	/**
@@ -87,9 +87,10 @@ class App extends Timber {
 	/**
 	 * Load dependencies description
 	 *
+	 * @return void
 	 * @access private
 	 */
-	private function load_dependencies() {
+	private function load_dependencies() : void {
 		require_once get_template_directory() . '/inc/utilities.php';
 		require_once get_template_directory() . '/inc/acf-location.php';
 		require_once get_template_directory() . '/inc/wp-rocket.php';
@@ -116,26 +117,27 @@ class App extends Timber {
 	/**
 	 * Add to Twig
 	 *
-	 * @param obj $twig The Twig object.
+	 * @return object $twig
+	 * @param object $twig The Twig object.
 	 */
-	public function add_to_twig($twig) {
-		if (function_exists('pll__')) {
+	public function add_to_twig( object $twig ) : object {
+		if ( function_exists( 'pll__' ) ) {
 			$twig->addFunction(
 				new Twig_SimpleFunction(
 					'pll__',
-					function ($string) {
-						return pll__($string);
+					function ( string $string ) : string {
+						return pll__( $string );
 					}
 				)
 			);
 		}
 
-		if (function_exists('pll_e')) {
+		if ( function_exists( 'pll_e' ) ) {
 			$twig->addFunction(
 				new Twig_SimpleFunction(
 					'pll_e',
-					function ($string) {
-						return pll_e($string);
+					function ( $string ) {
+						return pll_e( $string );
 					}
 				)
 			);
@@ -145,8 +147,8 @@ class App extends Timber {
 			$twig->addFunction(
 				new Twig_SimpleFunction(
 					'pll_the_languages',
-					function ($args = '') {
-						return pll_the_languages($args);
+					function ( $args = '' ) {
+						return pll_the_languages( $args );
 					}
 				)
 			);
@@ -156,85 +158,85 @@ class App extends Timber {
 			$twig->addFunction(
 				new Twig_SimpleFunction(
 					'post_class',
-					function ($args = '') {
-						return post_class($args);
+					function ( $args = '' ) {
+						return post_class( $args );
 					}
 				)
 			);
 		}
 
-		if (function_exists('body_class')) {
+		if ( function_exists( 'body_class' ) ) {
 			$twig->addFunction(
 				new Twig_SimpleFunction(
 					'body_class',
-					function ($args = '') {
-						return body_class($args);
+					function ( $args = '' ) {
+						return body_class( $args );
 					}
 				)
 			);
 		}
 
-		if (function_exists('html_class')) {
+		if ( function_exists( 'html_class' ) ) {
 			$twig->addFunction(
 				new Twig_SimpleFunction(
 					'html_class',
-					function ($args = '') {
-						return html_class($args);
+					function ( $args = '' ) {
+						return html_class( $args );
 					}
 				)
 			);
 		}
 
-		if (function_exists('comment_class')) {
+		if ( function_exists( 'comment_class' ) ) {
 			$twig->addFunction(
 				new Twig_SimpleFunction(
 					'comment_class',
-					function ($args = '') {
-						return comment_class($args);
+					function ( $args = '' ) {
+						return comment_class( $args );
 					}
 				)
 			);
 		}
 
-		if (function_exists('get_avatar')) {
+		if ( function_exists( 'get_avatar' ) ) {
 			$twig->addFunction(
 				new Twig_SimpleFunction(
 					'get_avatar',
-					function ($args = '') {
+					function ( $args = '' ) {
 						return get_avatar( $args );
 					}
 				)
 			);
 		}
 
-		if (function_exists('wp_login_url')) {
+		if ( function_exists( 'wp_login_url' ) ) {
 			$twig->addFunction(
 				new Twig_SimpleFunction(
 					'wp_login_url',
-					function ($args = '') {
-						return wp_login_url($args);
+					function ( $args = '' ) {
+						return wp_login_url( $args );
 					}
 				)
 			);
 		};
 
-		if ( function_exists('wp_logout_url')) {
+		if ( function_exists( 'wp_logout_url' ) ) {
 			$twig->addFunction(
 				new Twig_SimpleFunction(
 					'wp_logout_url',
-					function ($args = '') {
-						return wp_logout_url($args);
+					function ( $args = '' ) {
+						return wp_logout_url( $args );
 					}
 				)
 			);
 		};
 
-		if (! function_exists('youtube_id')) {
+		if ( ! function_exists( 'youtube_id' ) ) {
 			$twig->addFunction(
 				new Twig_SimpleFunction(
 					'youtube_id',
-					function ($args = '') {
-						return youtube_id($args);
+					function ( $args = '' ) {
+						return youtube_id( $args );
 					}
 				)
 			);
@@ -247,11 +249,11 @@ class App extends Timber {
 	/**
 	 * Add to context
 	 *
-	 * @param arr $context The array context.
-	 * @return $context
+	 * @param array $context The array context.
+	 * @return array $context
 	 * @access  public
 	 */
-	public function add_to_context( $context ) {
+	public function add_to_context( array $context ) : array {
 		// Menus.
 		$menus = get_registered_nav_menus();
 		foreach ( $menus as $menu => $value ) {
@@ -260,15 +262,15 @@ class App extends Timber {
 
 		// Add socials to context.
 		$socials      = array();
-		$socials_name = [ 'YouTube', 'Facebook', 'Twitter', 'Instagram' ];
+		$socials_name = array( 'YouTube', 'Facebook', 'Twitter', 'Instagram' );
 
-		foreach ($socials_name as $name) {
-			${ strtolower($name) } = array(
-				'slug' => strtolower($name),
+		foreach ( $socials_name as $name ) {
+			${ strtolower( $name ) }        = array(
+				'slug' => strtolower( $name ),
 				'name' => $name,
-				'url'  => get_option(strtolower($name)),
+				'url'  => get_option( strtolower( $name ) ),
 			);
-			$socials[ strtolower($name) ] = ${ strtolower($name) };
+			$socials[ strtolower( $name ) ] = ${ strtolower( $name ) };
 		}
 
 		// Add $socials to $context.
@@ -338,7 +340,7 @@ class App extends Timber {
 		// Block for relationship post.
 		$context['relationship_post'] = Timber::get_sidebar( 'component-relationship-post.php' );
 
-		$context['manifest']          = $this->theme_manifest;
+		$context['manifest']          = $this->get_theme_manifest();
 		$context['comments_per_page'] = get_option( 'comments_per_page' );
 		$context['current_language']  = pll_current_language();
 		$context['production']        = getenv( 'PRODUCTION' );
@@ -350,9 +352,10 @@ class App extends Timber {
 	/**
 	 * Setup
 	 *
+	 * @return void
 	 * @access public
 	 */
-	public function setup() {
+	public function setup() : void {
 
 		// Let WordPress manage the document title.
 		add_theme_support( 'title-tag' );
@@ -390,8 +393,8 @@ class App extends Timber {
 		// Widget.
 		register_sidebar(
 			array(
-				'name' => __( 'Newsletter', $this->theme_name ),
-				'id'   => 'newsletter'
+				'name' => __( 'Newsletter', 'JVEB' ),
+				'id'   => 'newsletter',
 			)
 		);
 
@@ -423,8 +426,8 @@ class App extends Timber {
 
 		// Theme stylesheet.
 		wp_register_style(
-			$this->theme_name . '-main',
-			get_template_directory_uri() . '/' . $this->theme_manifest['main.css'],
+			"$this->theme_name-main",
+			get_template_directory_uri() . '/' . $this->get_theme_manifest()['main.css'],
 			$webfonts,
 			'1.0.0'
 		);
@@ -471,7 +474,7 @@ class App extends Timber {
 
 		wp_register_script(
 			$this->theme_name . '-main',
-			get_template_directory_uri() . '/' . $this->theme_manifest['main.js'],
+			get_template_directory_uri() . '/' . $this->get_theme_manifest()['main.js'],
 			array( 'jquery', 'jquery-ui', 'feature', 'wp-util' ),
 			$this->get_theme_version(),
 			true
@@ -536,5 +539,16 @@ class App extends Timber {
 	 */
 	public function get_theme_name() {
 		return $this->theme_name;
+	}
+
+
+	/**
+	 * Retrieve the manifest of the theme.
+	 *
+	 * @since  1.0.0
+	 * @return array The manifest of the plugin.
+	 */
+	private function get_theme_manifest() : array {
+		return $this->theme_manifest;
 	}
 }

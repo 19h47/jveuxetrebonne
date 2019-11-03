@@ -22,6 +22,8 @@
 
 	&__items {
 		@extend %list-unstyled, %margin-0;
+		@extend .d-md-flex, .justify-content-md-center;
+
 
 		color: the_color( gray, very-dark );
 		white-space: nowrap;

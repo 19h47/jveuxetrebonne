@@ -1,4 +1,4 @@
-/* global $, wp */
+/* global $, jveb */
 
 import { AbstractBlock } from 'starting-blocks';
 import Scroll from 'Utils/Scroll';

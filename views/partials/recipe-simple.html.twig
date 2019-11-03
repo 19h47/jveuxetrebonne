@@ -29,8 +29,8 @@
 		{% if post.person_number or post.preparation_time or post.cooking_time %}
 			<div class="Recipe-ingredients">
 				<div class="summary">
-					{{- post.person_number ? "<p class=\"person-number\">#{ post.person_number } pers.</p>" | raw -}}
-					{{- post.preparation_time ? "<p class=\"preparation-time\" itemprop=\"prepTime\">#{ post.preparation_time } min</p>" | raw -}}
+					{{- post.person_number ? "<p class=\"person-number\" itemprop=\"recipeYield\">#{ post.person_number } pers.</p>" | raw -}}
+					{{- post.preparation_time ? "<p class=\"preparation-time\" itemprop=\"prepTime\" content=\"PT#{ post.preparation_time }M\">#{ post.preparation_time } min</p>" | raw -}}
 					{{- post.cooking_time ? "<p class=\"cooking-time\" itemprop=\"cookTime\" content=\"PT#{ post.cooking_time }M\">#{ post.cooking_time } min</p>" | raw -}}
 				</div>
 			</div>

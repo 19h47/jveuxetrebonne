@@ -92,7 +92,8 @@ module.exports = merge(
 					'Link-blogrolls',
 					'Link-blogroll',
 					'fb-video',
-					'iframe'
+					'iframe',
+					'figure'
 				],
 				whitelistPatternsChildren: [/^wp-block-/, /^slick-/, /^plyr/, /^mc4wp-/, /^Tease-post/, /^Link-blogroll/, /^List-posts/]
 			}),

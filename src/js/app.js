@@ -7,11 +7,15 @@ import Menu from 'Common/Menu';
 
 import DefaultPage from 'Pages/DefaultPage';
 
+import objectFitImages from 'object-fit-images';
+
 const production = 'production' === process.env.NODE_ENV;
+
 
 (() => {
 	// Declare polyfills.
 	polyfills();
+	objectFitImages(null, { watchMQ: true });
 
 	const startingBlocks = new StartingBlocks({ debug: production ? 0 : 1 });
 
