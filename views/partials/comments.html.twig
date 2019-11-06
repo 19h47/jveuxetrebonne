@@ -13,7 +13,7 @@
 		<header class="Comments-header">
 			{% if post.comments | length > 0 %}
 				<h3 class="title js-comments-title">{{- pll__( 'montrer' ) -}}</h3>
-				<button aria-expanded="true" aria-controls="comments" class="js-accordion-header expand plus"></button>
+				<button aria-expanded="true" aria-controls="comments" aria-label="{{ pll__( 'Ouvrir' ) }}" class="js-accordion-header expand plus"></button>
 			{% endif %}
 
 			<p class="catchphrase">

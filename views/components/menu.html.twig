@@ -21,7 +21,7 @@
 
 {% if search %}
 	<li class="d-none d-md-block item menu-item-search">
-	    <button type="button" class="menu-item-search__button js-search-button">
+	    <button type="button" class="menu-item-search__button js-search-button" aria-label="{{ pll__( 'Rechercher' ) }}">
 			{% include 'svg/use.html.twig' with { icon: 'magnifying-glass', classes: [ 'Icon', 'magnifying-glass' ] } %}
 	    </button>
 	</li>
@@ -42,7 +42,7 @@
 
 {% if layout.single %}
 	<li class="menu-item-button item">
-	    <button type="button" class="js-single-menu-button">
+	    <button type="button" class="js-single-menu-button" aria-label="{{ pll__( 'Ouvrir le menu' ) }}">
 			{% include 'svg/use.html.twig' with { icon: 'hamburger', classes: [ 'Icon', 'magnifying-glass' ] } %}
 	    </button>
 	</li>

@@ -41,8 +41,8 @@
             <img
                 class="thumbnail"
                 {# | resize( width, height ) #}
-                src="{{ post.thumbnail.src }}"
-                alt=""
+                src="{{ Image( post.thumbnail ).src }}"
+                alt="{{ Image( post.thumbnail ).alt | default( post.title ) }}"
                 width="{{ width }}"
                 height="{{ height }}"
             />

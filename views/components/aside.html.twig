@@ -33,7 +33,8 @@
 		                    <a
 		                        href="{{ share.url ~ permalink.current_url }}"
 		                        title="{{ share.name }}"
-		                        {{ share.slug == 'envelope' ? '' : 'target="_blank"' }}
+								rel="noopener"
+		                        {{ share.slug == 'envelope' ? '' : ' target="_blank"' }}
 		                    >
 								{% include 'svg/use.html.twig' with { classes: [ share.slug ], icon: share.slug } %}
 		                    </a>
