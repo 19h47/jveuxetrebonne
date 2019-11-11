@@ -1,4 +1,4 @@
-/* global jveb */
+/* global jveb, wp */
 import { AbstractBlock } from 'starting-blocks';
 
 export default class LoadMore extends AbstractBlock {
@@ -16,12 +16,14 @@ export default class LoadMore extends AbstractBlock {
 
 		this.filters = [...document.querySelectorAll('.js-filters-button')] || [];
 
-		this.term_id = JSON.parse(this.$button.getAttribute('data-term-id')) || false;
+		this.term_id = this.$button.getAttribute('data-term-id') || false;
 		this.count = JSON.parse(this.$button.getAttribute('data-count'));
-		this.posts_per_page = JSON.parse(this.$button.getAttribute('data-posts-per-page')) || 3;
+		this.per_page = JSON.parse(this.$button.getAttribute('data-per-page')) || 3;
 		this.post_template = this.$button.getAttribute('data-template') || 'tease';
 		this.offset = this.$button.getAttribute('data-offset') || 9;
-		this.exclude = this.$button.getAttribute('data-exclude');
+		this.language = this.$button.getAttribute('data-language');
+
+		this.template = wp.template(this.post_template);
 
 		this.update();
 
@@ -36,7 +38,8 @@ export default class LoadMore extends AbstractBlock {
 
 		this.$button.addEventListener('click', () => {
 			this.load()
-				.then((response) => response.text())
+				.then((response) => response.json())
+				.then(this.prepare.bind(this))
 				.then(this.append.bind(this))
 				.finally(this.update.bind(this));
 		});
@@ -59,16 +62,18 @@ export default class LoadMore extends AbstractBlock {
 			this.offset = 0;
 			this.term_id = JSON.parse(el.getAttribute('data-term-id'));
 			this.count = JSON.parse(el.getAttribute('data-count'));
-			this.posts_per_page = JSON.parse(el.getAttribute('data-post-per-page'));
+			this.per_page = JSON.parse(el.getAttribute('data-post-per-page'));
 			this.description = el.getAttribute('data-description');
 			this.slug = el.getAttribute('data-slug');
 
 			window.history.pushState('', '', `${jveb.current_url}/${this.slug}`);
 
 			this.$heading.querySelector('span').innerHTML = 'Loading';
+			this.$containerFooter.style.setProperty('display', 'block');
 
 			return this.load()
-				.then((response) => response.text())
+				.then((response) => response.json())
+				.then(this.prepare.bind(this))
 				// then replace result to the container
 				.then(this.replace.bind(this))
 				// finally update things
@@ -77,70 +82,65 @@ export default class LoadMore extends AbstractBlock {
 	}
 
 
-	/**
-	 * LoadMore.load
-	 */
 	load() {
-		const url = new URL(jveb.ajax_url);
+		const url = new URL(`${jveb.api_url}/wp/v2/posts`);
 		const params = {
-			action: 'ajax_load_posts',
 			offset: this.offset,
-			exclude: this.exclude,
 			nonce: jveb.nonce,
+			categories_exclude: 1411,
+			lang: this.language,
+			status: 'publish',
+			sticky: false,
 		};
 
 		if (this.term_id) {
-			params.term_id = this.term_id;
+			params.categories = this.term_id;
 		}
 
-		if (this.posts_per_page) {
-			params.posts_per_page = this.posts_per_page;
-		}
-
-		if (this.post_template) {
-			params.post_template = this.post_template;
+		if (this.per_page) {
+			params.per_page = this.per_page;
 		}
 
 		Object.keys(params).forEach((key) => url.searchParams.append(key, params[key]));
 
 		const init = {
-			method: 'post',
+			method: 'get',
 		};
 
-		// lock everything before the request
 		this.on();
 
 		return fetch(url, init);
 	}
 
 
-	replace(html) {
-		if (!html) {
-			return false;
+	prepare(data) {
+		let output = '';
+
+		for (let i = 0; i < data.length; i += 1) {
+			output += this.template({
+				title: data[i].title.rendered,
+				date: data[i].post_date_format,
+				link: data[i].link,
+				categories: data[i].post_categories.map((category) => `<a href="${category.link}">${category.name}</a>`).join(', '),
+				thumbnail: data[i].post_thumbnail_url || '',
+			});
 		}
 
+		return output;
+	}
+
+
+	replace(output) {
 		this.$heading.querySelector('span').innerHTML = this.description;
-		this.$container.innerHTML = html;
-
-		return true;
+		this.$container.innerHTML = output;
 	}
 
 
-	/**
-	 * LoadMore.append
-	 */
-	append(html) {
-		if (!html) {
-			return;
-		}
-
-		this.$container.innerHTML += html;
+	append(output) {
+		this.$container.innerHTML += output;
 	}
 
 
-	/**
-	 * LoadMore.update
-	 */
 	update() {
 		this.offset = this.$container.querySelectorAll('.js-load-more-post').length;
 

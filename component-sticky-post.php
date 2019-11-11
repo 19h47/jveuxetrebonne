@@ -35,11 +35,11 @@ $context['posts'] = Helper::transient(
 	function() {
 		$sticky_posts = Timber::get_posts(
 			array(
-				'order'               => 'DESC',
-				'orderby'             => 'date',
-				'post_type'           => 'post',
-				'post__in'            => get_option( 'sticky_posts' ),
-				'posts_per_page'      => 1,
+				'order'          => 'DESC',
+				'orderby'        => 'date',
+				'post_type'      => 'post',
+				'post__in'       => get_option( 'sticky_posts' ),
+				'posts_per_page' => 1,
 			)
 		);
 

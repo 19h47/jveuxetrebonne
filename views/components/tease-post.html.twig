@@ -1,77 +1,31 @@
 {#
 
-    /**
-     * /views/components/tease-post
-     *
-     * @package WordPress
-     * @author  Jérémy Levron <jeremylevron@19h47.fr
-     */
+/views/components/tease-post
+
+@package WordPress
+@author  Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
 
 #}
+<article class="Tease-post js-load-more-post">
+    <div class="Tease-post-inner">
+		<a href="{{ post.link }}" aria-label="{{ post.title }}">
+        	<img class="thumbnail" src="{{ post.thumbnail }}" alt="{{ post.title }}"/>
+		</a>
 
-{% if ( loop.index ) % 5 == 1 %}
-    {% set width, height, class = 817, 866, 'first' %}
-{% endif %}
+        {# Header #}
+        <header class="Tease-post-header">
+            <div class="Tease-post-header__meta">
 
+                <p class="date">
+                    {{- pll__( 'Publié le' ) -}}&nbsp;{{- post.date -}}
+                </p>
 
-{% if ( loop.index ) % 5 == 2 %}
-    {% set width, height, class = 393, 319, 'second' %}
-{% endif %}
+                <span class="d-inline-block font-title">&nbsp;&bull;&nbsp;</span>
 
+                <p class="category"><em class="lowercase">{{ post.categories }}</em></p>
 
-{% if ( loop.index ) % 5 == 3 %}
-    {% set width, height, class = 393, 315, 'third' %}
-{% endif %}
-
-{% if ( loop.index ) % 5 == 4 %}
-    {% set width, height, class = 393, 315, 'fourth' %}
-{% endif %}
-
-{% if ( loop.index ) % 5 == 0 %}
-    {% set width, height, class = 393, 315, 'fifth' %}
-{% endif %}
-
-
-<article id="Tease-post-{{ post.ID }}"class="Tease-post js-load-more-post Tease-post--{{ class }} js-load-more-post" data-index="{{ loop.index }}">
-    <a href="{{ post.link }}">
-
-        <div class="Tease-post-inner">
-
-            {# Thumbnail #}
-            <img
-                class="thumbnail"
-                {# | resize( width, height ) #}
-                src="{{ Image( post.thumbnail ).src }}"
-                alt="{{ Image( post.thumbnail ).alt | default( post.title ) }}"
-                width="{{ width }}"
-                height="{{ height }}"
-            />
-
-            {# Header #}
-            <header class="Tease-post-header">
-
-                <div class="Tease-post-header__meta">
-
-                    <p class="date">
-                        {{- pll__( 'Publié le' ) -}}&nbsp;{{- post.post_date | date( 'd.m.Y' ) -}}
-                    </p>
-
-                    <span class="d-inline-block font-title">&nbsp;&bull;&nbsp;</span>
-
-                    {# Category #}
-                    <p class="category">
-                        <em class="lowercase">
-							{{- post.terms( 'category' ) | map( term => term.name ) | join( ', ' ) -}}
-						</em>
-                    </p>
-
-                </div>
-
-                <h2 class="title">{{- post.title -}}</h2>
-
-            </header>
-
-        </div>
-
-    </a>
+            </div>
+            <h2 class="title"><a href="{{ post.link }}">{{ post.title }}</a></h2>
+        </header>
+    </div>
 </article>

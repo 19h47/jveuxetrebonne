@@ -8,67 +8,30 @@
 
 use Timber\{ Timber, Helper };
 
-$post_per_page = 5;
-$context       = Timber::get_context();
+$context = Timber::get_context();
 
-$context['posts'] = Helper::transient(
-	'jveb_front_page_posts',
-	function () use ( $post_per_page ) {
-		return Timber::get_posts(
-			array(
-				'post_type'        => 'post',
-				'category__not_in' => array( 1335 ),
-				'posts_per_page'   => $post_per_page,
-				'post__not_in'     => get_option( 'sticky_posts' ),
-				'post_status'      => 'publish',
-				'meta_query'       => array( // phpcs:ignore
-					'relation' => 'OR',
-					array(
-						'key'   => 'exclude_from_loop',
-						'value' => 0,
-						'type'  => 'BOOLEAN',
-					),
-					array(
-						'key'     => 'exclude_from_loop',
-						'compare' => 'NOT EXISTS',
-						'type'    => 'BOOLEAN',
-					),
-				),
-			)
-		);
-	},
-	3600
-);
-
-$count_query = new WP_Query(
+$context['posts'] = Timber::get_posts(
 	array(
-		'post_type' 		=> 'post',
-		'category__not_in'	=> array( 1335 ),
-		'posts_per_page'	=> -1,
-		// 'ignore_sticky_posts' 	=> 1,
-		'post__not_in' 		=>	get_option( 'sticky_posts' ),
-		'post_status'		=> 'publish',
-		'meta_query'		=> array(
-			'relation' 		=> 'OR',
-			array(
-				'key'		=> 'exclude_from_loop',
-				'value'		=> 0,
-				'type' 		=> 'BOOLEAN'
-			),
-			array(
-				'key' 		=> 'exclude_from_loop',
-				'compare' 	=> 'NOT EXISTS',
-				'type' 		=> 'BOOLEAN'
-			)
-		)
+		'post_type'        => 'post',
+		'category__not_in' => array( 1411 ),
+		'posts_per_page'   => 5,
+		'post__not_in'     => get_option( 'sticky_posts' ),
+		'post_status'      => 'publish',
 	)
 );
 
+$query = new WP_Query(
+	array(
+		'post_type'        => 'post',
+		'category__not_in' => array( 1411 ),
+		'posts_per_page'   => -1,
+		'post__not_in'     => get_option( 'sticky_posts' ),
+		'post_status'      => 'publish',
+	)
+);
 
-$context['post_per_page'] = $post_per_page;
-$context['found_posts'] = $count_query->found_posts;
-$context['exclude'] = 1;
-
+$context['per_page']    = 5;
+$context['found_posts'] = $query->found_posts;
 
 $templates = array( 'pages/front-page.html.twig' );
 

@@ -1,4 +1,4 @@
-/* global $, jveb */
+/* global $, jveb, wp */
 
 import { AbstractBlock } from 'starting-blocks';
 import Scroll from 'Utils/Scroll';
@@ -224,7 +224,7 @@ export default class Search extends AbstractBlock {
 				title: suggests[i].post_title,
 				date: suggests[i].post_date_format,
 				link: suggests[i].link,
-				categories: suggests[i].post_categories.map((el) => el.name).join(', '),
+				categories: suggests[i].post_categories,
 				thumbnail: suggests[i].post_thumbnail_url || '',
 			});
 		}

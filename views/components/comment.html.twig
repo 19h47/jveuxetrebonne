@@ -1,43 +1,43 @@
 {#
-    
+
     /**
      * /views/components/comment
      *
      * @package WordPress
      * @author  Jérémy Levron <jeremylevron@19h47.fr
      */
-    
+
 #}
 <article class="Comment{{ comment.comment_type ? ' ' ~ comment.comment_type }}" id="comment-{{ comment.id }}">
-	{% spaceless %}
-		
-	<aside class="Comment-aside hidden-xs hidden-md">
-		{{ get_avatar( comment, 60 ) }}
-	</aside>
+	{% apply spaceless %}
 
-	<div class="Comment-inner">
+		<aside class="Comment-aside hidden-xs hidden-md">
+			{{ get_avatar( comment, 60 ) }}
+		</aside>
 
-		<h4 class="author">
-		    {{- fn( 'get_comment_author_link', comment.id ) -}}
-		</h4>
+		<div class="Comment-inner">
 
-		<p class="date">
-			{{- pll__( 'le' ) -}}&nbsp;
-			{{- comment.comment_date|date('d F Y') -}}&nbsp;
-			{{- pll__( 'à' ) -}}&nbsp;
-			{{- comment.comment_date|date( 'G' ) -}}
-			{{- pll__( 'h' ) -}}
-			{{- comment.comment.date|date( 'i' ) -}}
-		</p>
+			<h4 class="author">
+			    {{- fn( 'get_comment_author_link', comment.id ) -}}
+			</h4>
 
-		<p class="content">
-			{{ comment.comment_content }}
-		</p>
-		
-		<p class="reply">
-		 	{{ comment.reply_link( pll__( 'Répondre' ) ) }}
-		</p>
-	</div>
+			<p class="date">
+				{{- pll__( 'le' ) -}}&nbsp;
+				{{- comment.comment_date|date('d F Y') -}}&nbsp;
+				{{- pll__( 'à' ) -}}&nbsp;
+				{{- comment.comment_date|date( 'G' ) -}}
+				{{- pll__( 'h' ) -}}
+				{{- comment.comment.date|date( 'i' ) -}}
+			</p>
 
-	{% endspaceless %}
+			<p class="content">
+				{{ comment.comment_content }}
+			</p>
+
+			<p class="reply">
+			 	{{ comment.reply_link( pll__( 'Répondre' ) ) }}
+			</p>
+		</div>
+
+	{% endapply %}
 </article>

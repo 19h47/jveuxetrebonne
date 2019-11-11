@@ -14,7 +14,7 @@ use JVEB\{ Admin, Helpers, Transients };
 use JVEB\PostTypes\{ Post, Recipe };
 use JVEB\Taxonomies\{ RecipeCategory };
 
-use Twig_SimpleFunction;
+use Twig\{ TwigFunction };
 
 // @TODO include in namespace JVEB
 use acf_location_rule;
@@ -94,6 +94,7 @@ class App extends Timber {
 		require_once get_template_directory() . '/inc/utilities.php';
 		require_once get_template_directory() . '/inc/acf-location.php';
 		require_once get_template_directory() . '/inc/wp-rocket.php';
+		require_once get_template_directory() . '/inc/mc4wp.php';
 		require_once get_template_directory() . '/inc/customizer/_includes.php';
 		require_once get_template_directory() . '/inc/post-template.php';
 		require_once get_template_directory() . '/inc/shortcodes/rich-content.php';
@@ -123,7 +124,7 @@ class App extends Timber {
 	public function add_to_twig( object $twig ) : object {
 		if ( function_exists( 'pll__' ) ) {
 			$twig->addFunction(
-				new Twig_SimpleFunction(
+				new TwigFunction(
 					'pll__',
 					function ( string $string ) : string {
 						return pll__( $string );
@@ -134,7 +135,7 @@ class App extends Timber {
 
 		if ( function_exists( 'pll_e' ) ) {
 			$twig->addFunction(
-				new Twig_SimpleFunction(
+				new TwigFunction(
 					'pll_e',
 					function ( $string ) {
 						return pll_e( $string );
@@ -145,7 +146,7 @@ class App extends Timber {
 
 		if ( function_exists( 'pll_the_languages' ) ) {
 			$twig->addFunction(
-				new Twig_SimpleFunction(
+				new TwigFunction(
 					'pll_the_languages',
 					function ( $args = '' ) {
 						return pll_the_languages( $args );
@@ -156,7 +157,7 @@ class App extends Timber {
 
 		if ( function_exists( 'post_class' ) ) {
 			$twig->addFunction(
-				new Twig_SimpleFunction(
+				new TwigFunction(
 					'post_class',
 					function ( $args = '' ) {
 						return post_class( $args );
@@ -167,7 +168,7 @@ class App extends Timber {
 
 		if ( function_exists( 'body_class' ) ) {
 			$twig->addFunction(
-				new Twig_SimpleFunction(
+				new TwigFunction(
 					'body_class',
 					function ( $args = '' ) {
 						return body_class( $args );
@@ -178,7 +179,7 @@ class App extends Timber {
 
 		if ( function_exists( 'html_class' ) ) {
 			$twig->addFunction(
-				new Twig_SimpleFunction(
+				new TwigFunction(
 					'html_class',
 					function ( $args = '' ) {
 						return html_class( $args );
@@ -189,7 +190,7 @@ class App extends Timber {
 
 		if ( function_exists( 'comment_class' ) ) {
 			$twig->addFunction(
-				new Twig_SimpleFunction(
+				new TwigFunction(
 					'comment_class',
 					function ( $args = '' ) {
 						return comment_class( $args );
@@ -200,7 +201,7 @@ class App extends Timber {
 
 		if ( function_exists( 'get_avatar' ) ) {
 			$twig->addFunction(
-				new Twig_SimpleFunction(
+				new TwigFunction(
 					'get_avatar',
 					function ( $args = '' ) {
 						return get_avatar( $args );
@@ -211,7 +212,7 @@ class App extends Timber {
 
 		if ( function_exists( 'wp_login_url' ) ) {
 			$twig->addFunction(
-				new Twig_SimpleFunction(
+				new TwigFunction(
 					'wp_login_url',
 					function ( $args = '' ) {
 						return wp_login_url( $args );
@@ -222,7 +223,7 @@ class App extends Timber {
 
 		if ( function_exists( 'wp_logout_url' ) ) {
 			$twig->addFunction(
-				new Twig_SimpleFunction(
+				new TwigFunction(
 					'wp_logout_url',
 					function ( $args = '' ) {
 						return wp_logout_url( $args );
@@ -233,7 +234,7 @@ class App extends Timber {
 
 		if ( ! function_exists( 'youtube_id' ) ) {
 			$twig->addFunction(
-				new Twig_SimpleFunction(
+				new TwigFunction(
 					'youtube_id',
 					function ( $args = '' ) {
 						return youtube_id( $args );
@@ -449,7 +450,7 @@ class App extends Timber {
 
 		// Remove native version of jQuery and use custom CDN version instead.
 		wp_deregister_script( 'jquery' );
-		wp_register_script( 'jquery', '//code.jquery.com/jquery-3.1.1.min.js', false, $this->get_theme_version(), true );
+		wp_register_script( 'jquery', '//code.jquery.com/jquery-3.4.1.min.js', false, $this->get_theme_version(), true );
 
 		// jQuery Auto Complete.
 		wp_register_script(

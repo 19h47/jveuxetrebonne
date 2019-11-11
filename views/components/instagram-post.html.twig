@@ -1,4 +1,4 @@
-{% spaceless %}
+{% apply spaceless %}
 {% verbatim %}
 <li id="Instagram-post-{{model.id}}" class="Instagram-post col-12 col-md-2">
     <a class="" href="{{model.link}}" target="_blank">
@@ -7,4 +7,4 @@
     </a>
 </li>
 {% endverbatim %}
-{% endspaceless %}
+{% endapply %}

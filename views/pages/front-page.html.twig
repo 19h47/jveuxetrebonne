@@ -32,4 +32,33 @@
 
 	{% include 'blocks/instagram-posts.html.twig' %}
 
+	<script type="text/html" id="tmpl-tease">
+		{% apply spaceless %}
+		{% verbatim %}
+		<article class="Tease-post js-load-more-post">
+			<div class="Tease-post-inner">
+				<a href="{{ data.link }}">
+			    	<img class="thumbnail" src="{{ data.thumbnail }}"/>
+				</a>
+
+			    <header class="Tease-post-header">
+			        <div class="Tease-post-header__meta">
+
+			            <p class="date">
+			                Publié le&nbsp;{{ data.date }}
+			            </p>
+
+			            <span class="d-inline-block font-title">&nbsp;&bull;&nbsp;</span>
+
+			            <p class="category"><em class="lowercase">{{{ data.categories }}}</em></p>
+
+			        </div>
+			        <h2 class="title"><a href="{{ data.link }}">{{ data.title }}</a></h2>
+			    </header>
+			</div>
+		</article>
+		{% endverbatim %}
+		{% endapply %}
+	</script>
+
 {% endblock %}

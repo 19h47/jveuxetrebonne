@@ -16,15 +16,14 @@ blocks/load-more
 
 	<footer class="{{ post_template_name | capitalize }}-posts-footer js-container-footer row">
 		<div class="col-12 text-align-center">
-
 			<button
 				class="Link-readmore js-button Link-marker Link-marker--orange"
-				{{- category.term_id ? " data-term-id=\"#{ category.term_id }\"" | raw : '' -}}
+				{{- category ? " data-term-id=\"#{ category.term_id ~ ( category.children ? ',' ~ (category.children | map(c => c.term_id) | join( ',' )) : '' ) }\"" | raw : '' -}}
 				data-count="{{ found_posts }}"
-				data-posts-per-page="{{ post_per_page }}"
+				data-per-page="{{ per_page }}"
 				data-template="{{ post_template_name }}"
+				data-language="{{ current_language }}"
 				data-offset=""
-				{{ exclude ? 'data-exclude="1"' : '' }}
 			>
 				<span>{{- load_more_label -}}</span>
 			</button>

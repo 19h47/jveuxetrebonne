@@ -9,6 +9,7 @@ namespace JVEB\PostTypes;
 
 use Timber\{ Timber, PostQuery };
 use WP_Post;
+use WP_REST_Request;
 
 /**
  * Post
@@ -58,6 +59,77 @@ class Post {
 		add_action( 'wp_ajax_ajax_load_posts', array( $this, 'ajax_load_posts' ) );
 
 		add_action( 'rest_api_init', array( $this, 'rest_api_register_routes' ) );
+		add_action( 'rest_api_init', array( $this, 'register_rest_fields' ) );
+	}
+
+
+	function register_rest_fields() {
+		register_rest_field(
+			array( 'post' ),
+			'post_thumbnail_url',
+			array(
+				'get_callback'    => array( $this, 'get_rest_featured_image' ),
+				'update_callback' => null,
+				'schema'          => null,
+			)
+		);
+		register_rest_field(
+			array( 'post' ),
+			'post_categories',
+			array(
+				'get_callback'    => array( $this, 'get_rest_categories' ),
+				'update_callback' => null,
+				'schema'          => null,
+			)
+		);
+		register_rest_field(
+			array( 'post' ),
+			'post_date_format',
+			array(
+				'get_callback'    => array( $this, 'get_rest_date' ),
+				'update_callback' => null,
+				'schema'          => null,
+			)
+		);
+	}
+
+	public function get_rest_date( array $post, string $attr, object $request, string $object_type ) {
+		return get_the_date( 'd\.m\.Y', $post['id'] );
+	}
+
+
+	public function get_rest_categories( array $post, string $attr, object $request, string $object_type ) {
+		if ( ! $post['categories'] ) {
+			return;
+		}
+
+		$post_categories = array();
+		$categories      = get_the_terms( $post['id'], 'category' );
+
+		foreach ( $categories as $term ) {
+			$term_link = get_term_link( $term );
+
+			if ( is_wp_error( $term_link ) ) {
+				continue;
+			}
+
+			$post_categories[] = array(
+				'term_id' => $term->term_id,
+				'name'    => $term->name,
+				'link'    => $term_link,
+			);
+		}
+
+		return $post_categories;
+	}
+
+
+	public function get_rest_featured_image( $post, string $attr, object $request, string $object_type ) {
+		if ( ! $post['featured_media'] ) {
+			return;
+		}
+
+		return wp_get_attachment_image_src( $post['featured_media'], 'large' )[0];
 	}
 
 
@@ -172,7 +244,7 @@ class Post {
 			// 'ignore_sticky_posts' 	=> 1,
 			'post__not_in'     => get_option( 'sticky_posts' ),
 			'post_status'      => 'publish',
-			'category__not_in' => array( 1335, 1383 ),
+			'category__not_in' => array( 1411, 1383 ),
 		);
 
 		// Exclude some article on front page.
@@ -237,7 +309,7 @@ class Post {
 				'posts_per_page'   => -1,
 				's'                => $request['term'],
 				// Exclude video category.
-				'category__not_in' => array( 1335 ),
+				'category__not_in' => array( 1411 ),
 				'lang'             => $_GET['lang'],
 			)
 		);
@@ -250,7 +322,7 @@ class Post {
 			$post->post_date_format = get_the_date( 'd\.m\.Y', $post->ID );
 
 			$post_categories = array();
-			$categories       = wp_get_post_terms( $post->ID, 'category', array( 'fields' => 'all' ) );
+			$categories      = wp_get_post_terms( $post->ID, 'category', array( 'fields' => 'all' ) );
 
 			foreach ( $categories as $term ) {
 

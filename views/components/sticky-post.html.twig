@@ -10,7 +10,7 @@ Sticky post
     <article id="Sticky-post-{{ post.ID }}" class="Sticky-post row">
 
         <div class="col-12 col-md-6 margin-bottom-3 margin-bottom-md-7">
-            <a class="thumbnail" href="{{ post.link }}">
+            <a class="thumbnail" href="{{ post.link }}" aria-label="{{ Image( post.thumbnail ).alt | default( post.title ) }}">
                 <img class="img-full" src="{{ Image( post.thumbnail ).src( 'large' ) }}" alt="{{ Image( post.thumbnail ).alt }}" width="{{ Image( post.thumbnail ).width }}" height="{{ Image( post.thumbnail ).height }}"/>
             </a>
         </div>
@@ -44,13 +44,13 @@ Sticky post
 				<div class="row d-none d-md-flex">
 		            <footer id="slider-introduction" class="Sticky-post-footer page-block" data-node-type="SliderIntroduction">
 		                <div class="Sticky-post-footer__inner">
-		                    <ul class="Sticky-post-footer__gallery js-slider-sticky">
+		                    <div class="Sticky-post-footer__gallery js-slider-sticky">
 		                        {% for image in post.get_field( 'gallery' ) %}
-		                            <li class="Sticky-post-footer__gallery__item">
-		                                <img src="{{ TimberImage( image ) }}" />
-		                            </li>
+		                            <div class="Sticky-post-footer__gallery__item">
+		                                <img src="{{ TimberImage( image ).src }}" alt="{{ TimberImage( image ).alt | default( post.title ) }}" />
+		                            </div>
 		                        {% endfor %}
-		                    </ul>
+		                    </div>
 
 		                    <button class="Sticky-post-footer__gallery__button js-next" type="button" >
 		                        {% include 'svg/use.html.twig' with { classes: [ 'Icon', 'next' ], icon: 'next' }  %}

@@ -16,7 +16,7 @@ function custom_body_class( $classes ) {
 	}
 
 	// Category videos
-	if ( in_category( 1335 ) ) {
+	if ( in_category( 1445 ) ) {
 		$classes[] = 'Category-videos';
 	}
 

@@ -1,0 +1,10 @@
+{#
+
+Form
+
+#}
+<input class="js-contact-input" type="email" name="EMAIL" placeholder="Votre adresse email" required aria-label="{{ pll__( 'Votre adresse email' ) }}"/>
+<button class="button" type="submit">
+	{% include 'svg/use.html.twig' with { classes: [ 'button__decor' ], icon: 'paper-plane' } %}
+	<span class="button__label">{{- pll__( 'Allez viens, on est bien !' ) -}}</span>
+</button>

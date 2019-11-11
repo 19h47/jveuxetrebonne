@@ -24,8 +24,8 @@
 	{% if video %}
 		{{ post.get_field( 'video' ) }}
 	{% else %}
-		<a class="link" href="{{ post.link }}">
-			<img class="thumbnail" src="{{ Image( post.thumbnail ).src( 'medium' ) }}" width="{{ Image( post.thumbnail ).width }}" height="{{ Image( post.thumbnail ).height }}">
+		<a class="link" href="{{ post.link }}" aria-label="{{ Image( post.thumbnail ).alt | default( post.title ) }}">
+			<img class="thumbnail" src="{{ Image( post.thumbnail ).src( 'medium' ) }}" width="{{ Image( post.thumbnail ).width }}" height="{{ Image( post.thumbnail ).height }}" alt="{{ Image( post.thumbnail ).alt | default( post.title ) }}">
 		</a>
 	{% endif %}
 

@@ -11,7 +11,7 @@
 	<h1>{{- post.title -}}</h1>
 	<p class="date">{{- pll__( 'Publié le' ) -}}&nbsp;{{- post.post_date | date( 'd\.m\.Y' ) -}}</p>
 
-	{% spaceless %}
+	{% apply spaceless %}
 
 		{% if post.thumbnail %}
 			<div class="thumbnail">
@@ -46,7 +46,7 @@
 				</div>
 			{% endfor %}
 		</div>
-	{% endspaceless %}
+	{% endapply %}
 
 	{% if post.get_field( 'collection' ) %}
 		<div class="steps">

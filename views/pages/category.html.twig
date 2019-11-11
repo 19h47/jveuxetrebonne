@@ -78,4 +78,31 @@
 
 	{% include 'blocks/instagram-posts.html.twig' %}
 
+	<script type="text/html" id="tmpl-list">
+		{% verbatim %}
+			<div class="col-12 col-md-4">
+				<article class="List-post js-load-more-post">
+
+					<a class="link" href="{{ data.link }}">
+						<# if ( data.thumbnail ) { #>
+							<img class="thumbnail" src="{{ data.thumbnail }}">
+						<# } #>
+					</a>
+
+					<div class="List-post-meta">
+						<time class="date">{{ data.date }}</time><!--
+						--><span class="d-inline-block">&nbsp;&bull;&nbsp;</span><!--
+						--><em class="categories">{{{ data.categories }}}</em>
+
+						<a class="link" href="{{ data.link }}" title="{{ data.title }}">
+							<h3 class="title">{{ data.title }}</h3>
+						</a>
+					</div>
+
+				</article>
+			</div>
+
+		{% endverbatim %}
+	</script>
+
 {% endblock %}

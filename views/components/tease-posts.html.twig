@@ -1,41 +1,22 @@
 {#
 
-    /**
-     * components/tease-posts
-     *
-     * @author  Jérémy Levron <jeremylevron@19h47.fr
-     */
+components/tease-posts
+
+@author  Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
 
 #}
 
 {% for post in posts %}
-
-	{% if loop.first %}
-
-		<div class="row">
-			<div class="col-12">
-				<div class="Tease-posts-row">
-
-	{% endif %}
-
-
-	{% if ( loop.index ) % 5 == 4 %}
-	    		</div>
-	    	</div>
-	    </div>
-	    <div class="row">
-	    	<div class="col-12">
-	    		<div class="Tease-posts-row">
-	{% endif %}
-
-	{% include 'components/tease-post.html.twig' with { 'post' : post } %}
-
-	{% if loop.last %}
-
-				</div>
-			</div>
-		</div>
-
-	{% endif %}
-
+	{%
+		include 'components/tease-post.html.twig'
+		with {
+			post: {
+				link: post.link,
+				thumbnail: Image( post.thumbnail ).src,
+				categories: post.terms( 'category' ) | map( term => "<a href=\"#{term.link}\">#{term.name}</a>" ) | join( ', ' ),
+				title: post.title,
+				date: post.post_date | date( 'd.m.Y' )
+			}
+		}
+	%}
 {% endfor %}

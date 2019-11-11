@@ -20,9 +20,8 @@ $context['posts'] = Helper::transient(
 	function() {
 		$videos = Timber::get_posts(
 			array(
-				'posts_per_page'      => 5,
 				'post_type'           => 'post',
-				'category__in'        => 1335,
+				'category__in'        => 1411,
 				'posts_per_page'      => 5,
 				'ignore_sticky_posts' => 1,
 			),

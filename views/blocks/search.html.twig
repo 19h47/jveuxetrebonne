@@ -32,13 +32,13 @@ views/components/search
 						{% set informations_array = informations_label | split( '' ) %}
 
 						<div class="loader">
-							{% spaceless %}
+							{% apply spaceless %}
 								{% for character in pll__( 'Chargement' ) | split('') %}
 									<span style="animation-delay: {{ loop.index / loop.length }}s">
 										{{- character -}}
 									</span>
 								{% endfor %}
-							{% endspaceless %}
+							{% endapply %}
 						</div>
 
 						<div
@@ -73,9 +73,9 @@ views/components/search
 						<# } #>
 					</a>
 					<div class="List-post-meta">
-						<p class="date">{{ data.date }}</p><!--
+						<time class="date">{{ data.date }}</time><!--
 						--><span class="d-inline-block">&nbsp;&bull;&nbsp;</span><!--
-				 		--><em class="categories">{{ data.categories}}</em>
+				 		--><em class="categories"><# data.categories.map(category => `<a href="{category.link}">{category.name}</a>`).join(', ') #></em>
 						<a class="link" href="{{ data.link }}" title="{{ data.title }}">
 							<h3 class="title">{{ data.title }}</h3>
 						</a>
