@@ -1,0 +1,62 @@
+{
+    "key": "group_59bd83087df18",
+    "title": "Options de l'article",
+    "fields": [
+        {
+            "key": "field_59bd83105b859",
+            "label": "Couleur du header",
+            "name": "color_header",
+            "type": "true_false",
+            "instructions": "Le header est-il noir ? (Défaut blanc)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5dd2caf7b6f15",
+            "label": "Exclure",
+            "name": "exclude_from_feed",
+            "type": "true_false",
+            "instructions": "Exclure l'article du flux RSS",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1574095922
+}

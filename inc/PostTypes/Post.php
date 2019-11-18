@@ -8,8 +8,7 @@
 namespace JVEB\PostTypes;
 
 use Timber\{ Timber, PostQuery };
-use WP_Post;
-use WP_REST_Request;
+use WP_Post, WP_Query, WP_REST_Request;
 
 /**
  * Post
@@ -57,6 +56,39 @@ class Post {
 
 		add_action( 'rest_api_init', array( $this, 'rest_api_register_routes' ) );
 		add_action( 'rest_api_init', array( $this, 'register_rest_fields' ) );
+
+		add_filter( 'pre_get_posts', array( $this, 'exclude_posts_from_feed' ) );
+	}
+
+
+	/**
+	 * Exclude posts from feed
+	 *
+	 * @param WP_Query $query The query.
+	 * @return WP_Query
+	 */
+	public function exclude_posts_from_feed( WP_Query $query ) : WP_Query {
+		if ( ! $query->is_feed ) {
+			return $query;
+		}
+
+		$posts = get_posts(
+			array(
+				'numberposts' => -1,
+				'post_type'   => 'post',
+				'meta_query'  => array( // phpcs:ignore
+					array(
+						'key'     => 'exclude_from_feed',
+						'value'   => '1',
+						'compare' => '==',
+					),
+				),
+			)
+		);
+
+		$query->set( 'post__not_in', wp_list_pluck( $posts, 'ID' ) );
+
+		return $query;
 	}
 
 
@@ -153,8 +185,10 @@ class Post {
 
 	/**
 	 * CSS
+	 *
+	 * @return void
 	 */
-	public function css() {
+	public function css() : void {
 		?>
 		<style>
 
