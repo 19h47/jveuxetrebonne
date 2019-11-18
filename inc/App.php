@@ -10,7 +10,7 @@ namespace JVEB;
 use Dotenv\{ Dotenv };
 use Timber\{ Timber, Menu, Helper };
 
-use JVEB\{ Admin, Helpers, Transients };
+use JVEB\{ Admin, Helpers, Transients, Settings };
 use JVEB\PostTypes\{ Post, Recipe };
 use JVEB\Taxonomies\{ RecipeCategory };
 
@@ -111,6 +111,7 @@ class App extends Timber {
 		new Post( $this->get_theme_name(), $this->get_theme_version() );
 		new Recipe( $this->get_theme_name(), $this->get_theme_version() );
 		new RecipeCategory( $this->get_theme_name(), $this->get_theme_version() );
+		new Settings( $this->get_theme_name(), $this->get_theme_version() );
 
 	}
 

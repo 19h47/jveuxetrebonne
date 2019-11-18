@@ -30,11 +30,7 @@
 		}
 	}
 
-	/**
-	 * Header
-	 *
-	 * @uses .Single-header
-	 */
+	// @uses .Single-header
 	&-header {
 		z-index: 10;
 
@@ -97,13 +93,8 @@
 		}
 
 
-		/**
-		 * Date
-		 *
-		 * @uses .Single-article .date
-		 */
+		//.Single-article .date
 		.date {
-			$font-size: 13;
 			$line-height: 80.86;
 
 			@extend %font-semibold, %margin-bottom-0, %margin-top-md-0, %font-title;
@@ -114,9 +105,7 @@
 			}
 
 			@include media-breakpoint-up( md ) {
-				font: {
-					size: ( $font-size * 1px );
-				}
+				font-size: 13px;
 			}
 			// line-height: ( $line-height / $font-size );
 		}
@@ -151,7 +140,7 @@
 			}
 
 			.wp-block-image {
-				@include margin( bottom #{ $base-line-height }px );
+				@include margin( bottom #{ $base-line-height / 4 }px );
 
 				a {
 					@extend .d-block;
@@ -190,25 +179,23 @@
 
 				max-width: 100%;
 				width: 100%;
-				height: #{ $base-line-height * 7 }px;
+				// height: #{ $base-line-height * 7 }px;
+				height: auto;
 				object-fit: cover;
 				object-position: center;
 
-				@include media-breakpoint-up( md ) {
-					height: #{ $base-line-height * 14 }px;
-				}
+				// @include media-breakpoint-up( md ) {
+				// 	height: #{ $base-line-height * 14 }px;
+				// }
 			}
 
 			figure img {
              	transition: opacity .5s linear 0.2s;
 
-				/* Image with 'data' attribute is hidden */
 				&[data-lazy-src] {
-				/* we set the opacity to 0 */
 				   opacity: 0;
 				}
 
-				/* Image without 'data' attribute is (or becomes) visible */
 				&.lazyloaded {
 				   	opacity: 1;
 				}

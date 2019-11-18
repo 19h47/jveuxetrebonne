@@ -55,15 +55,12 @@ class Post {
 
 		add_action( 'admin_head', array( $this, 'css' ) );
 
-		add_action( 'wp_ajax_nopriv_ajax_load_posts', array( $this, 'ajax_load_posts' ) );
-		add_action( 'wp_ajax_ajax_load_posts', array( $this, 'ajax_load_posts' ) );
-
 		add_action( 'rest_api_init', array( $this, 'rest_api_register_routes' ) );
 		add_action( 'rest_api_init', array( $this, 'register_rest_fields' ) );
 	}
 
 
-	function register_rest_fields() {
+	function register_rest_fields() : void {
 		register_rest_field(
 			array( 'post' ),
 			'post_thumbnail_url',
@@ -223,62 +220,11 @@ class Post {
 
 
 	/**
-	 * Load posts with AJAX request.
-	 */
-	public function ajax_load_posts() {
-		if ( ! isset( $_GET['nonce'] ) && ! wp_verify_nonce( sanitize_key( $_GET['nonce'] ), 'security' ) ) {
-			return false;
-		}
-
-		$term_id        = sanitize_text_field( wp_unslash( $_GET['term_id'] ) ) ?? 0;
-		$offset         = sanitize_text_field( wp_unslash( $_GET['offset'] ) ) ?? 0;
-		$posts_per_page = sanitize_text_field( wp_unslash( $_GET['posts_per_page'] ) ) ?? 3;
-		$post_template  = sanitize_text_field( wp_unslash( $_GET['post_template'] ) ) ?? 'tease';
-		$exclude        = $_GET['exclude'];
-
-		$args = array(
-			'post_type'        => 'post',
-			'posts_per_page'   => (int) $posts_per_page,
-			'cat'              => (int) $term_id,
-			'offset'           => (int) $offset,
-			// 'ignore_sticky_posts' 	=> 1,
-			'post__not_in'     => get_option( 'sticky_posts' ),
-			'post_status'      => 'publish',
-			'category__not_in' => array( 1411, 1383 ),
-		);
-
-		// Exclude some article on front page.
-		if ( $exclude ) {
-			$args['meta_query']	= array( // phpcs:ignore
-				'relation' => 'OR',
-				array(
-					'key'   => 'exclude_from_loop',
-					'value' => 0,
-					'type'  => 'BOOLEAN',
-				),
-				array(
-					'key'     => 'exclude_from_loop',
-					'compare' => 'NOT EXISTS',
-					'type'    => 'BOOLEAN',
-				),
-			);
-		}
-
-		$context          = Timber::get_context();
-		$context['posts'] = new PostQuery( $args );
-
-		Timber::render( "components/${ post_template }-posts.html.twig", $context );
-		wp_die();
-	}
-
-
-
-	/**
 	 * WP REST API register custom endpoints
 	 *
 	 * @since 1.0.0
 	 */
-	public function rest_api_register_routes() {
+	public function rest_api_register_routes() : void {
 		register_rest_route(
 			'jveb/v2',
 			'/search',

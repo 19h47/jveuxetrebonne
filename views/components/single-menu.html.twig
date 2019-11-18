@@ -9,7 +9,7 @@ Single menu
 		<div class="l-container h-100">
 			<div class="row d-flex align-items-center h-100">
 				<div class="col-12 d-flex justify-content-end">
-					<button class="Single-menu__close js-single-menu-button">
+					<button class="Single-menu__close js-single-menu-button" type="button" aria-label="{{ pll__( 'Fermer' ) }}">
 						{% include 'svg/use.html.twig' with { icon: 'close' }  %}
 					</button>
 				</div>
@@ -23,15 +23,17 @@ Single menu
                 <div class="offset-3 col-6">
                     <div class="Single-menu__thumbnail">
                         {% for item in menu.get_items %}
-                            {% set thumbnail = function( 'get_field', 'thumbnail', 'term_' ~ item.object_id ) %}
-                            <img
-                                class="js-thumbnail"
-                                src="{{ thumbnail.url }}"
-                                width="{{ thumbnail.width }}"
-                                height="{{ thumbnail.height }}"
-                                alt="{{ thumbnail.alt }}"
-                                data-id="{{ item.object_id }}"
-                            >
+                            {% set thumbnail = function( 'get_field', 'thumbnail', item.object_id ) %}
+							{% if thumbnail %}
+	                            <img
+	                                class="js-thumbnail"
+	                                src="{{ thumbnail.url }}"
+	                                width="{{ thumbnail.width }}"
+	                                height="{{ thumbnail.height }}"
+	                                alt="{{ thumbnail.alt }}"
+	                                data-id="{{ item.object_id }}"
+	                            >
+							{% endif %}
                         {% endfor %}
                     </div>
                 </div>

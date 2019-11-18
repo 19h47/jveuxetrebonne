@@ -51,6 +51,7 @@
 				@extend .d-block;
 				@include size( 100% );
 
+				&:focus,
 				&:hover {
 					svg {
 						fill: the_color( orange, very-soft-01 );

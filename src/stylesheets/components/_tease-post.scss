@@ -93,20 +93,16 @@
 	}
 
 
-	/**
-	 * Thumbnail
-	 *
-	 * @uses .Tease-post .thumbnail
-	 */
+	// @uses .Tease-post .thumbnail
 	.thumbnail {
 		@extend %Transition-ease, %vertical-align-middle;;
-		@include size( 100%, #{ $base-line-height * 6 }px );
+		@include size( 100%, #{ $base-line-height * 8 }px );
 
 		object-fit: cover;
 		object-position: center;
 
 		@include media-breakpoint-up( sm ) {
-			height: #{ $base-line-height * 12 }px;
+			height: #{ $base-line-height * 14 }px;
 		}
 
 		@include media-breakpoint-up( md ) {

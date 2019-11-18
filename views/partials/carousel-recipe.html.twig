@@ -24,52 +24,53 @@ partials/carousel-recipe
 		<meta itemprop="recipeCategory" content="{{ post.terms( 'recipe_category' ) | map( term => term.name ) | join( ', ' ) }}">
 
 		<div class="items js-container">
-
-			<div class="item">
-				<div class="item__inner">
-					{% if collection.image | length %}
-						<img src="{{ TimberImage( collection.image ).src( 'large' ) }}">
-					{% endif %}
-				</div>
-
-				<div class="item__inner">
-
-					<h3 class="Carousel-recipe__title">
-						{{- collection.description | default( pll__( 'Pour commencer <br> tu as besoin de :' ) ) -}}
-					</h3>
-
-					{% if post.person_number or post.preparation_time or post.cooking_time %}
-						<ul class="d-flex margin-y-5 align-items-center padding-0 justify-content-center" style="list-style-type: none;">
-							{{ post.person_number ? "<li class=\"person-number\" itemprop=\"recipeYield\">#{ post.person_number } pers.</li>" }}
-							{{ post.preparation_time ? "<li class=\"preparation-time\" itemprop=\"prepTime\" content=\" PT#{ post.preparation_time }M\">#{ post.preparation_time } min</li>" }}
-							{{ post.cooking_time ? "<li class=\"cooking-time\" itemprop=\"cookTime\">#{ post.cooking_time } min</li>" }}
-						</ul>
-					{% endif %}
-
-					{% if collection.ingredients %}
-						<ul class="Carousel-recipe__ingredients">
-							{{- collection.ingredients | map(item => "<li itemprop=\"recipeIngredient\">#{ item.ingredient }</li>") | join -}}
-						</ul>
-					{% endif %}
-				</div>
-
-			</div>
-
-			{% for step in collection.steps %}
+			{% apply spaceless %}
 				<div class="item">
 					<div class="item__inner">
-						{% if step.image|length %}
-							<img src="{{ TimberImage( step.image ).src }}">
+						{% if collection.image | length %}
+							<img src="{{ TimberImage( collection.image ).src( 'large' ) }}">
 						{% endif %}
 					</div>
+
 					<div class="item__inner">
-						<p class="Carousel-recipe__title title-step">
-							{{- pll__( 'Étape' ) -}}&nbsp;{{ loop.index }}
-						</p>
-						{{- step.description -}}
+
+						<h3 class="Carousel-recipe__title">
+							{{- collection.description | default( pll__( 'Pour commencer <br> tu as besoin de :' ) ) -}}
+						</h3>
+
+						{% if post.person_number or post.preparation_time or post.cooking_time %}
+							<ul class="d-flex margin-y-5 align-items-center padding-0 justify-content-center" style="list-style-type: none;">
+								{{ post.person_number ? "<li class=\"person-number\" itemprop=\"recipeYield\">#{ post.person_number } pers.</li>" }}
+								{{ post.preparation_time ? "<li class=\"preparation-time\" itemprop=\"prepTime\" content=\" PT#{ post.preparation_time }M\">#{ post.preparation_time } min</li>" }}
+								{{ post.cooking_time ? "<li class=\"cooking-time\" itemprop=\"cookTime\">#{ post.cooking_time } min</li>" }}
+							</ul>
+						{% endif %}
+
+						{% if collection.ingredients %}
+							<ul class="Carousel-recipe__ingredients">
+								{{- collection.ingredients | map(item => "<li itemprop=\"recipeIngredient\">#{ item.ingredient }</li>") | join -}}
+							</ul>
+						{% endif %}
 					</div>
+
 				</div>
-			{% endfor %}
+
+				{% for step in collection.steps %}
+					<div class="item">
+						<div class="item__inner">
+							{% if step.image|length %}
+								<img src="{{ TimberImage( step.image ).src }}">
+							{% endif %}
+						</div>
+						<div class="item__inner">
+							<p class="Carousel-recipe__title title-step">
+								{{- pll__( 'Étape' ) -}}&nbsp;{{ loop.index }}
+							</p>
+							{{- step.description -}}
+						</div>
+					</div>
+				{% endfor %}
+			{% endapply %}
 		</div>
 
 	    {% if collection.steps | length > 0 %}

@@ -30,8 +30,9 @@ $query = new WP_Query(
 	)
 );
 
-$context['per_page']    = 5;
-$context['found_posts'] = $query->found_posts;
+$context['per_page']            = 5;
+$context['found_posts']         = $query->found_posts;
+$context['posts_on_front_page'] = get_option( 'posts_on_front_page' );
 
 $templates = array( 'pages/front-page.html.twig' );
 
