@@ -3,10 +3,10 @@
 /views/footer/base
 
 @package JVEB
-@author Jérémy Levron <jeremylevron@19h47.fr>
+@author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
 
 #}
-		{% if production == 'false' %}{% include 'components/guid.html.twig' %}{% endif %}
+		{% if production == false %}{% include 'components/guid.html.twig' %}{% endif %}
 		{{ wp_footer }}
 
 	</body>

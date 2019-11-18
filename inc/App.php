@@ -342,10 +342,11 @@ class App extends Timber {
 		// Block for relationship post.
 		$context['relationship_post'] = Timber::get_sidebar( 'component-relationship-post.php' );
 
-		$context['manifest']          = $this->get_theme_manifest();
-		$context['comments_per_page'] = get_option( 'comments_per_page' );
-		$context['current_language']  = pll_current_language();
-		$context['production']        = getenv( 'PRODUCTION' );
+		$context['manifest']                    = $this->get_theme_manifest();
+		$context['comments_per_page']           = get_option( 'comments_per_page' );
+		$context['background_image_newsletter'] = get_option( 'background_image_newsletter' );
+		$context['current_language']            = pll_current_language();
+		$context['production']                  = getenv( 'PRODUCTION' ) === 'false' ? false : true;
 
 		return $context;
 	}
