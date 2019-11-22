@@ -12,21 +12,45 @@ $context = Timber::get_context();
 
 $context['posts'] = Timber::get_posts(
 	array(
-		'post_type'        => 'post',
-		'category__not_in' => array( 1411 ),
-		'posts_per_page'   => 5,
-		'post__not_in'     => get_option( 'sticky_posts' ),
-		'post_status'      => 'publish',
+		'post_type'      => 'post',
+		'posts_per_page' => 5,
+		'post__not_in'   => get_option( 'sticky_posts' ),
+		'post_status'    => 'publish',
+		'meta_query'  => array( // phpcs:ignore
+			'relation' => 'OR',
+			array(
+				'key'     => 'exclude_from_front_page',
+				'value'   => '',
+				'compare' => 'NOT EXISTS',
+			),
+			array(
+				'key'     => 'exclude_from_front_page',
+				'value'   => '0',
+				'compare' => '==',
+			),
+		),
 	)
 );
 
 $query = new WP_Query(
 	array(
-		'post_type'        => 'post',
-		'category__not_in' => array( 1411 ),
-		'posts_per_page'   => -1,
-		'post__not_in'     => get_option( 'sticky_posts' ),
-		'post_status'      => 'publish',
+		'post_type'      => 'post',
+		'posts_per_page' => -1,
+		'post__not_in'   => get_option( 'sticky_posts' ),
+		'post_status'    => 'publish',
+		'meta_query'  => array( // phpcs:ignore
+			'relation' => 'OR',
+			array(
+				'key'     => 'exclude_from_front_page',
+				'value'   => '',
+				'compare' => 'NOT EXISTS',
+			),
+			array(
+				'key'     => 'exclude_from_front_page',
+				'value'   => '0',
+				'compare' => '==',
+			),
+		),
 	)
 );
 

@@ -23,10 +23,29 @@
         },
         {
             "key": "field_5dd2caf7b6f15",
-            "label": "Exclure",
+            "label": "Exclure l'article du flux RSS",
             "name": "exclude_from_feed",
             "type": "true_false",
-            "instructions": "Exclure l'article du flux RSS",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5dd3ba895df7c",
+            "label": "Exclure l'article de la page d'accueil",
+            "name": "exclude_from_front_page",
+            "type": "true_false",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -58,5 +77,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1574095922
+    "modified": 1574156963
 }

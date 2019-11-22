@@ -57,38 +57,40 @@ class Post {
 		add_action( 'rest_api_init', array( $this, 'rest_api_register_routes' ) );
 		add_action( 'rest_api_init', array( $this, 'register_rest_fields' ) );
 
-		add_filter( 'pre_get_posts', array( $this, 'exclude_posts_from_feed' ) );
+		add_action( 'pre_get_posts', array( $this, 'exclude_posts_from_feed' ) );
 	}
 
 
 	/**
 	 * Exclude posts from feed
 	 *
-	 * @param WP_Query $query The query.
-	 * @return WP_Query
+	 * @param WP_Query $query The WP_Query instance (passed by reference).
+	 * @return void
 	 */
-	public function exclude_posts_from_feed( WP_Query $query ) : WP_Query {
+	public function exclude_posts_from_feed( WP_Query $query ) : void {
 		if ( ! $query->is_feed ) {
-			return $query;
+			return;
 		}
 
-		$posts = get_posts(
+		if ( 'post' !== $query->get( 'post_type' ) ) {
+			return;
+		}
+
+		$meta_query = array(
+			'relation' => 'OR',
 			array(
-				'numberposts' => -1,
-				'post_type'   => 'post',
-				'meta_query'  => array( // phpcs:ignore
-					array(
-						'key'     => 'exclude_from_feed',
-						'value'   => '1',
-						'compare' => '==',
-					),
-				),
-			)
+				'key'     => 'exclude_from_feed',
+				'value'   => '',
+				'compare' => 'NOT EXISTS',
+			),
+			array(
+				'key'     => 'exclude_from_feed',
+				'value'   => '0',
+				'compare' => '==',
+			),
 		);
 
-		$query->set( 'post__not_in', wp_list_pluck( $posts, 'ID' ) );
-
-		return $query;
+		$query->set( 'meta_query', $meta_query );
 	}
 
 
