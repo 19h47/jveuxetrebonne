@@ -1,23 +1,27 @@
-# J'veux être bonne
+# JVEB
 
-## Docker
+The WordPress theme for JVEB blog.
 
-```bash
-docker-compose down --volumes
-```
+The site has been designed by [__Les Indiens__](http://lesindiens.fr/)
 
-```bash
-docker-compose up -d
-```
+![Screenshot](screenshot.png)
 
-## Make an url point to localhost
+## Install
 
 ```bash
-sudo nano /etc/hosts
+npm install
 ```
 
-```
-127.0.0.1 jveuxetrebonne.test www.jveuxetrebonne.test
+## Run Gulp
+
+```bash
+gulp
 ```
 
-Then type `ctrl + x`, and `y` to save and exit nano. Now, the custom url points to `localhost`.
+## Dependencies
+
+- [ACF plugin](https://www.advancedcustomfields.com/)
+
+## TODO
+
+- [ ] Add a Ajax comment system (via a plugin maybe?)
