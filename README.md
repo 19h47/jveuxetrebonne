@@ -1,4 +1,4 @@
-# JVEB
+# J'veux être bonne
 
 The WordPress theme for JVEB blog.
 
@@ -10,12 +10,6 @@ The site has been designed by [__Les Indiens__](http://lesindiens.fr/)
 
 ```bash
 npm install
-```
-
-## Run Gulp
-
-```bash
-gulp
 ```
 
 ## Dependencies
