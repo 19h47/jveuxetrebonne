@@ -9,7 +9,9 @@
 <article class="Tease-post js-load-more-post">
     <div class="Tease-post-inner">
 		<a href="{{ post.link }}" aria-label="{{ post.title }}">
-        	<img class="thumbnail" src="{{ post.thumbnail }}" alt="{{ post.title }}"/>
+			{% if post.thumbnail %}
+        		<img class="thumbnail" src="{{ Image( post.thumbnail ).src }}" alt="{{ Image( post.thumbnail ).alt | default( post.title ) }}" width="{{ Image( post.thumbnail ).width }}" height="{{ Image( post.thumbnail ).height }}"/>
+			{% endif %}
 		</a>
 
         {# Header #}
@@ -21,11 +23,10 @@
                 </p>
 
                 <span class="d-inline-block font-title">&nbsp;&bull;&nbsp;</span>
-
-                <p class="category"><em class="lowercase">{{ post.categories }}</em></p>
+                <p class="category"><em class="lowercase">{{- post.categories -}}</em></p>
 
             </div>
-            <h2 class="title"><a href="{{ post.link }}">{{ post.title }}</a></h2>
+            <h2 class="title"><a href="{{ post.link }}">{{- post.title -}}</a></h2>
         </header>
     </div>
 </article>
