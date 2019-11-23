@@ -224,7 +224,7 @@ export default class Search extends AbstractBlock {
 				title: suggests[i].post_title,
 				date: suggests[i].post_date_format,
 				link: suggests[i].link,
-				categories: suggests[i].post_categories,
+				categories: suggests[i].post_categories.map(c => `<a href="${c.link}">${c.name}</a>`).join(', '),
 				thumbnail: suggests[i].post_thumbnail_url || '',
 			});
 		}

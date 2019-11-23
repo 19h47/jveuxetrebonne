@@ -148,11 +148,7 @@
 	}
 
 
-	/**
-	 * Steps
-	 *
-	 * @uses .Recipe-steps
-	 */
+	// .Recipe-steps
 	&-steps {
 
 		color: the_color( gray, very-dark-01 );
@@ -165,6 +161,15 @@
 		}
 
 		b, strong { @extend .color-orange-very-soft-01; }
+
+		img {
+			@extend .d-inline-block;
+			@extend %vertical-align-middle;
+
+			max-width: 100%;
+			width: 100%;
+			height: auto;
+		}
 	}
 
 

@@ -49,6 +49,7 @@
 	// .Single-introduction
 	&-introduction {
 		height: #{ $base-line-height * 10 }px;
+		background-color: the_color( blue, light-grayish );
 
 		@include media-breakpoint-up( md ) {
 			height: #{ $base-line-height * 20 }px;
@@ -181,8 +182,8 @@
 				width: 100%;
 				// height: #{ $base-line-height * 7 }px;
 				height: auto;
-				object-fit: cover;
-				object-position: center;
+				// object-fit: cover;
+				// object-position: center;
 
 				// @include media-breakpoint-up( md ) {
 				// 	height: #{ $base-line-height * 14 }px;

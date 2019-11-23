@@ -33,7 +33,7 @@
 		{# Date #}
 		<time class="date">{{- post.date -}}</time>
 
-		{% if post.categories %}
+		{% if post.categories is iterable %}
 			<span class="d-inline-block">&nbsp;&bull;&nbsp;</span>
 		 	<em class="categories">
 				{{- post.categories | map( term => "<a href=\"#{term.link}\">#{term.name}</a>" ) | join( ', ' ) -}}

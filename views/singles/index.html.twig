@@ -12,12 +12,14 @@
 	{% include 'partials/menu-single.html.twig' %}
 
 	<div class="Single-introduction">
-		<img
-			src="{{ Image( post.thumbnail ).src }}"
-			alt="{{ Image( post.thumbnail ).alt }}"
-			width="{{ Image( post.thumbnail ).width }}"
-			height="{{ Image( post.thumbnail ).height }}"
-		/>
+		{% if post.thumbnail %}
+			<img
+				src="{{ Image( post.thumbnail ).src }}"
+				alt="{{ Image( post.thumbnail ).alt | default( post.title ) }}"
+				width="{{ Image( post.thumbnail ).width }}"
+				height="{{ Image( post.thumbnail ).height }}"
+			/>
+		{% endif %}
 	</div>
 
 	<div class="l-container">
