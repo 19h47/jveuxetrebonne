@@ -45,7 +45,6 @@ $context['posts'] = Helper::transient(
 
 		return $sticky_posts;
 	},
-	86400
 );
 
 

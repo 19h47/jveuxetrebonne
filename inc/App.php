@@ -103,7 +103,6 @@ class App extends Timber {
 		require_once get_template_directory() . '/inc/reset.php';
 
 		if ( is_admin() ) {
-			Transients::get_posts();
 			new Admin( $this->get_theme_name(), $this->get_theme_version() );
 		}
 

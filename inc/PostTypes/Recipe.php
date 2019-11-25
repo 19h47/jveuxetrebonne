@@ -11,6 +11,7 @@
 namespace JVEB\PostTypes;
 
 use Timber\{ Timber };
+use JVEB\{ Transients };
 
 /**
  * Recipe class
@@ -83,7 +84,7 @@ class Recipe {
 
 		switch ( $column_name ) {
 			case 'relation':
-				$posts = get_transient( 'jveb_posts' );
+				$posts = Transients::posts();
 				$html  = array();
 
 				foreach ( $posts as $post ) {

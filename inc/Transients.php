@@ -8,17 +8,20 @@
 namespace JVEB;
 
 use Timber\{ Timber };
+use WP_Query;
 
 /**
  * Transients class
  */
 class Transients {
 	/**
-	 * Get posts
+	 * Posts
+	 *
+	 * Get or set posts
 	 *
 	 * @return $transient
 	 */
-	public static function get_posts() {
+	public static function posts() : array {
 		$transient = get_transient( 'jveb_posts' );
 
 		if ( $transient ) {
@@ -32,7 +35,9 @@ class Transients {
 			)
 		);
 
-		set_transient( 'jveb_posts', $posts, DAY_IN_SECONDS );
+		set_transient( 'jveb_posts', $posts );
+
+		return $posts;
 	}
 
 
@@ -54,5 +59,39 @@ class Transients {
 		);
 
 		set_transient( 'jveb_template_instagram', $template_instagram, DAY_IN_SECONDS );
+	}
+
+	public static function front_page_posts_count() : string {
+		$transient = get_transient( 'jveb_front_page_posts_count' );
+
+		if ( $transient ) {
+			return $transient;
+		}
+
+		$posts = new WP_Query(
+			array(
+				'post_type'      => 'post',
+				'posts_per_page' => -1,
+				'post__not_in'   => get_option( 'sticky_posts' ),
+				'post_status'    => 'publish',
+				'meta_query'  => array( // phpcs:ignore
+					'relation' => 'OR',
+					array(
+						'key'     => 'exclude_from_front_page',
+						'value'   => '',
+						'compare' => 'NOT EXISTS',
+					),
+					array(
+						'key'     => 'exclude_from_front_page',
+						'value'   => '0',
+						'compare' => '==',
+					),
+				),
+			)
+		);
+
+		set_transient( 'jveb_front_page_posts_count', $posts->found_posts );
+
+		return $posts->found_posts;
 	}
 }

@@ -40,7 +40,6 @@ $context['posts'] = Helper::transient(
 
 		return $relationship_post;
 	},
-	86400
 );
 
 $context['post']         = new Post();

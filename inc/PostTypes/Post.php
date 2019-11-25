@@ -180,9 +180,12 @@ class Post {
 			return;
 		}
 
+		delete_transient( 'jveb_posts' );
 		delete_transient( 'jveb_slider_videos' );
 		delete_transient( "jveb_relationship_post_$post_id" );
+		delete_transient( 'jveb_front_page_posts' );
 		delete_transient( 'jveb_sticky_posts' );
+		delete_transient( 'jveb_front_page_posts_count' );
 	}
 
 	/**

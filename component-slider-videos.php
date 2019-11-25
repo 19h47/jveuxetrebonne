@@ -9,7 +9,6 @@
  */
 
 use Timber\{ Timber, Helper };
-// use JVEB\Lib\{ VideoPost };
 
 $context = Timber::get_context();
 
@@ -30,7 +29,6 @@ $context['posts'] = Helper::transient(
 
 		return $videos;
 	},
-	86400
 );
 
 Timber::render( 'blocks/slider-videos.html.twig', $context );
