@@ -14,32 +14,6 @@ use WP_Query;
  * Transients class
  */
 class Transients {
-	/**
-	 * Posts
-	 *
-	 * Get or set posts
-	 *
-	 * @return $transient
-	 */
-	public static function posts() : array {
-		$transient = get_transient( 'jveb_posts' );
-
-		if ( $transient ) {
-			return $transient;
-		}
-
-		$posts = Timber::get_posts(
-			array(
-				'post_type'      => 'post',
-				'posts_per_page' => -1,
-			)
-		);
-
-		set_transient( 'jveb_posts', $posts );
-
-		return $posts;
-	}
-
 
 	/**
 	 * Get template instagram

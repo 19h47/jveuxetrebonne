@@ -31,7 +31,7 @@ foreach ( $socials_name as $name ) {
 $context['contact']['socials'] = $socials;
 
 $context['posts'] = Helper::transient(
-	'jveb_sticky_posts',
+	'jveb_sticky_posts_' . pll_current_language( 'slug' ),
 	function() {
 		$sticky_posts = Timber::get_posts(
 			array(
