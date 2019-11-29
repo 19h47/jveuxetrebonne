@@ -5,7 +5,12 @@
         "vlucas/phpdotenv": "^3.6",
         "19h47/set-glance-items": "dev-master",
         "19h47/link": "dev-master"
-    },
+	},
+	"require-dev": {
+		"squizlabs/php_codesniffer": "^3.5",
+		"wp-coding-standards/wpcs": "^2.2",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0"
+	},
     "repositories": [{
             "type": "git",
             "url": "https://github.com/19h47/set-glance-items.git"

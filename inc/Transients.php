@@ -62,7 +62,7 @@ class Transients {
 	}
 
 	public static function front_page_posts_count() : string {
-		$transient = get_transient( 'jveb_front_page_posts_count' );
+		$transient = get_transient( 'jveb_front_page_posts_count_' . pll_current_language( 'slug' ) );
 
 		if ( $transient ) {
 			return $transient;
@@ -90,7 +90,7 @@ class Transients {
 			)
 		);
 
-		set_transient( 'jveb_front_page_posts_count', $posts->found_posts );
+		set_transient( 'jveb_front_page_posts_count_' . pll_current_language( 'slug' ), $posts->found_posts );
 
 		return $posts->found_posts;
 	}

@@ -13,7 +13,7 @@ use JVEB\{ Transients };
 $context = Timber::get_context();
 
 $context['posts'] = Helper::transient(
-	'jveb_front_page_posts',
+	'jveb_front_page_posts_' . pll_current_language( 'slug' ),
 	function() {
 		return Timber::get_posts(
 			array(
