@@ -63,7 +63,7 @@ $titles: (
     ),
 
     h4: (
-        24,
+        24px,
         #{ $base-line-height }px,
         map-get( map-get( $font, weights ), medium ),
         map-get( map-get( $font, families ), title ),

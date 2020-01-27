@@ -28,31 +28,29 @@ export default class CarouselRecipe extends AbstractBlock {
 	initEvents() {
 		super.initEvents();
 
-		this.$rootElement.on('beforeChange', (event, slick, currentSlide, nextSlide) => {
-			const currentVideo = $(slick.$slides.get(currentSlide)).find('.js-video');
-			const nextVideo = $(slick.$slides.get(nextSlide)).find('.js-video');
+		this.$rootElement.on('beforeChange', (event, slick, currentSlide) => {
+			const video = $(slick.$slides.get(currentSlide)).find('.js-video');
 
+			if (video.length) {
+				const promise = video[0].play();
 
-			if (currentVideo.length) {
-				const currentPromise = currentVideo[0].play();
-				currentVideo[0].classList.add('is-loading');
-
-				if (undefined !== currentPromise) {
-					currentPromise.then(() => {
-						currentVideo[0].classList.remove('is-loading');
-						currentVideo[0].pause();
+				if (undefined !== promise) {
+					promise.then(() => {
+						video[0].pause();
 					});
 				}
 			}
+		});
 
-			if (nextVideo.length) {
-				const nextPromise = nextVideo[0].play();
-				nextVideo[0].classList.add('is-loading');
+		this.$rootElement.on('afterChange', (event, slick, currentSlide) => {
+			const video = $(slick.$slides.get(currentSlide)).find('.js-video');
 
-				if (undefined !== nextPromise) {
-					nextPromise.then(() => {
-						nextVideo[0].classList.remove('is-loading');
-						nextVideo[0].play();
+			if (video.length) {
+				const promise = video[0].play();
+
+				if (undefined !== promise) {
+					promise.then(() => {
+						video[0].play();
 					});
 				}
 			}
@@ -81,7 +79,6 @@ export default class CarouselRecipe extends AbstractBlock {
 			next: $(this.rootElement).find('.js-next'),
 			previous: $(this.rootElement).find('.js-previous'),
 		};
-
 
 		return this.$container
 			.on('init afterChange', (event, slick) => {

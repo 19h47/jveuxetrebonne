@@ -13,6 +13,10 @@
 		flex: 1;
 	}
 
+	.padding-print-24 {
+		padding: 0#{ $base-line-height }px!important;
+	}
+
 	.Single {
 		.Aside,
 		.Comments,
@@ -141,13 +145,14 @@
 		}
 
 		&__ingredients {
+
 			ul {
 				@include padding( left $grid-gutter-width );
 				@include margin( top 0 bottom 0 );
 
 				font-size: 14px;
 				line-height: #{ $base-line-height }px;
-				color: the_color( gray, very-dark-01 );
+				color: the_color( orange, light-grayish-01 );
 			}
 		}
 		&__ingredient {
@@ -237,7 +242,9 @@
 				@include margin( top 0 bottom 0 );
 
 				color: the_color( orange, very-dark-grayish-01 );
+				font-size: 12px;
 				font-weight: 600;
+				white-space: nowrap;
 			}
 		}
 	}

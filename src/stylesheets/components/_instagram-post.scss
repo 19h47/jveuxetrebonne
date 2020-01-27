@@ -6,20 +6,24 @@
 .Instagram-post {
 	$opacity: .15;
 
-	@extend %margin-0;
+	@extend %margin-0, %text-align-center;
 
 	height: #{ $base-line-height * 5.5 }px;
 
 	a {
 		@extend %position-relative;
-		@extend .d-block;
-		@include size( 100% );
+		@extend .d-inline-block, .d-md-block;
+		@include size( auto, 100% );
 
 		&:hover {
 			.count {
 				opacity: 1;
 				visibility: visible;
 			}
+		}
+
+		@include media-breakpoint-up( md ) {
+			@include size( 100% );
 		}
 	}
 
@@ -68,18 +72,23 @@
 	 * @uses .Instagram-post .thumbnail
 	 */
 	.thumbnail {
-		@extend .d-inline-block, %vertical-align-middle;
-		@include size( 100% );
+		@extend .d-block;
+		@include margin( right auto left auto );
+		@include size( auto, 100% );
 
-		object-fit: cover;
 		object-position: center;
 
 		box-shadow:
-			0px
-			#{ $base-line-height / 10 }px
-			#{ $base-line-height / 2 }px
-			0px
-			rgba( the_color( red, bright ), $opacity )
+		0px
+		#{ $base-line-height / 10 }px
+		#{ $base-line-height / 2 }px
+		0px
+		rgba( the_color( red, bright ), $opacity )
 		;
+
+		@include media-breakpoint-up( md ) {
+			@include size( 100% );
+			object-fit: cover;
+		}
 	}
 }

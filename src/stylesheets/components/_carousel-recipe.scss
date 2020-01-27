@@ -69,6 +69,20 @@
 	}
 
 
+	&__precisions {
+		@extend %font-weight-regular;
+		@include margin( top #{ $base-line-height }px bottom #{ $base-line-height }px );
+
+		& > *:first-child {
+			@include margin( top 0 );
+		}
+
+		& > *:last-child {
+			@include margin( bottom 0 );
+		}
+	}
+
+
 	// .Carousel-recipe .items
 	.items {
 		@extend %list-unstyled, %margin-y-0;
@@ -93,6 +107,10 @@
 
 		&__inner {
 			$animation-duration: 1.15s;
+
+			& * {
+				font-size: 16px;
+			}
 
 			@extend .d-inline-block, %vertical-align-middle, %position-relative;
 			@include size( 100% );

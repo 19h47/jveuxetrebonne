@@ -1,5 +1,7 @@
 export default function (options) {
-	const calc = (options.current / (options.count - 1)) * 100;
+	const calc = ((options.current + 1) / options.count) * 100;
+
+	console.log({ calc, options });
 
 	options.slider.progressbar
 		.css('background-size', `${calc}% 100%`)
