@@ -36,7 +36,7 @@ export default class SliderRichContent extends AbstractBlock {
 
 		if (window.matchMedia) {
 			const mediaQueryList = window.matchMedia('print');
-			mediaQueryList.addListener((mql) => {
+			mediaQueryList.addListener(mql => {
 				if (mql.matches) {
 					beforePrint();
 				} else {

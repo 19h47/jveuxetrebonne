@@ -70,12 +70,14 @@
 		@extend %position-relative;
 		@include padding( top #{ $base-line-height * 1.5 }px );
 
-		background: {
-			color: the_color( white );
-		}
+		background-color: the_color( white );
 
 		@include media-breakpoint-up( md ) {
-			@include margin( top #{ $base-line-height * -3 }px right $grid-gutter-width / 2 left $grid-gutter-width / 2 );
+			@include margin(
+				top #{ $base-line-height * -3 }px
+				right #{ $grid-gutter-width / 2 }
+				left #{ $grid-gutter-width / 2 }
+			);
 			@include padding(
 				right calc( #{ percentage( 2 / 10 ) } )
 				left calc( #{ percentage( 1 / 10 ) } )
@@ -84,7 +86,7 @@
 
 		// .Single-article .preview
 		.preview {
-			@extend %font-title, %font-bold;
+			@extend %font-family-title, %font-weight-bold;
 
 			color: the_color( gray, very-dark );
 			font-size: 20px;
@@ -98,23 +100,20 @@
 		.date {
 			$line-height: 80.86;
 
-			@extend %font-semibold, %margin-bottom-0, %margin-top-md-0, %font-title;
+			@extend %font-weight-semibold, %margin-bottom-0, %margin-top-md-0, %font-family-title;
 
 			color: the_color( blue, light-grayish );
-			font: {
-				size: 18px;
-			}
+			font-size: 18px;
 
 			@include media-breakpoint-up( md ) {
 				font-size: 13px;
 			}
-			// line-height: ( $line-height / $font-size );
 		}
 
 
 		// .Single-article .title
 		.title {
-			@extend %font-body, %margin-0;
+			@extend %font-family-body, %margin-0;
 			@include letter-spacing( 20 );
 
 			font-size: 35px;
@@ -130,7 +129,7 @@
 		.content {
 			color: the_color( gray, very-dark-01 );
 
-			h3, strong, b { @extend %font-bold; }
+			h3, strong, b { @extend %font-weight-bold; }
 
 			p { @include letter-spacing( 15 ); }
 

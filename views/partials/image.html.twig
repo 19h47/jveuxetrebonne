@@ -1,0 +1,21 @@
+{#
+ # Image
+ #
+ # @param array classes
+ # @param string loading
+ # @param array image
+ # @param array attributes
+ #
+ # @package jveuwetrebonne
+ #}
+{% if image %}
+	<img
+		class="{{ classes ? classes | join( ' ' ) }}"
+		loading="{{ loading | default( 'lazy' ) }}"
+		src="{{ Image( image ).src }}"
+		alt="{{ Image( image ).alt }}"
+		width="{{ Image( image ).width }}"
+		height="{{ Image( image ).height }}"
+		{{ attributes ? attributes | map( ( value, key ) => "#{key}=\"#{value}\"" ) | join( ' ' )  | raw }}
+	>
+{% endif %}

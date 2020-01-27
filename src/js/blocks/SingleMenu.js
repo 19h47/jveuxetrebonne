@@ -1,7 +1,7 @@
 /* global $ */
 
-import config from 'js/config';
-import Scroll from 'Utils/Scroll';
+import { elements } from 'js/config';
+import { disableScroll, enableScroll } from 'Utils/scroll';
 import { AbstractBlock } from 'starting-blocks';
 
 export default class SingleMenu extends AbstractBlock {
@@ -12,7 +12,7 @@ export default class SingleMenu extends AbstractBlock {
 	async init() {
 		super.init();
 
-		this.isOpen = config.body.$.hasClass('single-menu--is-open');
+		this.isOpen = elements.body.$.hasClass('single-menu--is-open');
 		this.items = this.rootElement.querySelectorAll('.js-single-menu-item');
 		this.thumbnails = this.rootElement.querySelectorAll('.js-thumbnail');
 	}
@@ -23,20 +23,20 @@ export default class SingleMenu extends AbstractBlock {
 
 		$(document)
 			.on('click.single-menu', '.js-single-menu-button', () => this.toggle())
-			.on('keydown.single-menu', (e) => {
-				if (27 === e.which) {
+			.on('keydown.single-menu', event => {
+				if (27 === event.which) {
 					this.close();
 				}
 			});
 
-		this.items.forEach((el) => {
+		this.items.forEach(el => {
 			const target = el.children[0];
 			const { id } = target.dataset;
 
 			el.addEventListener('mouseenter', () => {
 				this.rootElement.classList.add('is-hover');
 
-				this.thumbnails.forEach((thumbnail) => {
+				this.thumbnails.forEach(thumbnail => {
 					if (thumbnail.dataset.id === id) {
 						thumbnail.classList.add('is-active');
 					}
@@ -46,7 +46,7 @@ export default class SingleMenu extends AbstractBlock {
 			el.addEventListener('mouseleave', () => {
 				this.rootElement.classList.remove('is-hover');
 
-				this.thumbnails.forEach((thumbnail) => thumbnail.classList.remove('is-active'));
+				this.thumbnails.forEach(thumbnail => thumbnail.classList.remove('is-active'));
 			});
 		});
 	}
@@ -68,11 +68,11 @@ export default class SingleMenu extends AbstractBlock {
 
 		this.isOpen = false;
 
-		config.body.$
+		elements.body.$
 			.removeClass('single-menu--is-open')
 			.trigger('close.single-menu');
 
-		Scroll.enableScroll();
+		enableScroll();
 	}
 
 
@@ -83,9 +83,9 @@ export default class SingleMenu extends AbstractBlock {
 
 		this.isOpen = true;
 
-		Scroll.disableScroll();
+		disableScroll();
 
-		return config.body.$
+		return elements.body.$
 			.addClass('single-menu--is-open')
 			.trigger('open.single-menu');
 	}

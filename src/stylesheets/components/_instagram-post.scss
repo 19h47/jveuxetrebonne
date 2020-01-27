@@ -31,7 +31,7 @@
 	 */
 	.count {
 		@include absolute( top 0 right 0 bottom 0 left 0 );
-		@extend %font-bold, %font-title, %Transition-ease;
+		@extend %font-weight-bold, %font-family-title, %Transition-ease;
 		@extend .d-flex, .align-items-center, .justify-content-center;
 		@include size( 100% );
 

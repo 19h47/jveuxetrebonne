@@ -47,7 +47,7 @@
 
 	// .Instagram-posts-header .title
 	.title {
-		@extend %font-bold, %margin-0;
+		@extend %font-weight-bold, %margin-0;
 		@include letter-spacing( 15 );
 
 		color: the_color( white );
@@ -62,7 +62,7 @@
 	 * @uses .Instagram-posts-header .catchphrase
 	 */
 	.catchphrase {
-		@extend %font-semibold, %font-title;
+		@extend %font-weight-semibold, %font-family-title;
 		@include margin( top #{ $base-line-height * -1 }px bottom #{ $base-line-height * 0.5 }px );
 
 		color: the_color( orange, very-soft-01 );

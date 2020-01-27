@@ -17,16 +17,16 @@
         {# Header #}
         <header class="Tease-post-header">
             <div class="Tease-post-header__meta">
-
                 <p class="date">
                     {{- pll__( 'Publié le' ) -}}&nbsp;{{- post.date -}}
                 </p>
 
                 <span class="d-inline-block font-title">&nbsp;&bull;&nbsp;</span>
                 <p class="category"><em class="lowercase">{{- post.categories -}}</em></p>
-
             </div>
-            <h2 class="title"><a href="{{ post.link }}">{{- post.title -}}</a></h2>
+            <h2 class="title">
+				<a href="{{ post.link }}">{{- post.title | raw -}}</a>
+			</h2>
         </header>
     </div>
 </article>

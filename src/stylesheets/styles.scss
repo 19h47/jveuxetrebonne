@@ -7,6 +7,7 @@
 * Dependencies
 */
 @import 'vendors/bootstrap-imports';
+@import '~architecture/src/stylesheets/abstracts/easings';
 @import 'abstracts/variables';
 @import 'base/fonts';
 
@@ -18,8 +19,7 @@
 	'ress',
 	'vendors/slick-theme',
 	'vendors/slick',
-	'vendors/plyr'
-	;
+	'vendors/plyr';
 
 
 
@@ -109,11 +109,11 @@
  	'utilities/alignments',
  	'utilities/colors',
  	'~architecture/src/stylesheets/utilities/floats',
- 	'utilities/fonts',
+ 	'~architecture/src/stylesheets/utilities/fonts',
  	'~architecture/src/stylesheets/utilities/margins',
  	'~architecture/src/stylesheets/utilities/visibilities',
  	'utilities/opacities',
- 	'utilities/overflows',
+ 	'~architecture/src/stylesheets/utilities/overflows',
  	// 'utilities/overlaps',
  	'~architecture/src/stylesheets/utilities/paddings',
  	'~architecture/src/stylesheets/utilities/positions',

@@ -72,7 +72,7 @@
 			}
 
 			.title {
-				@extend %font-bold;
+				@extend %font-weight-bold;
 				@include margin( top #{ $base-line-height }px );
 
 				color: the_color( orange, mostly-desaturated-dark );
@@ -82,7 +82,7 @@
 
 			.content {
 				p {
-					@extend %font-title, %font-medium;
+					@extend %font-family-title, %font-weight-medium;
 
 					color: the_color( orange, slightly-desaturated );
 					font-size: 12px;
@@ -91,7 +91,7 @@
 			}
 
 			.link {
-				@extend %font-semibold, %font-title;
+				@extend %font-weight-semibold, %font-family-title;
 				@extend .d-inline-block;
 
 				font-size: 14px;

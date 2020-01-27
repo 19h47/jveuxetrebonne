@@ -90,11 +90,7 @@ class Recipe {
 				foreach ( $posts as $post ) {
 					$recipes = get_field( 'recipes', $post->ID );
 
-					if ( null === $recipes ) {
-						continue;
-					}
-
-					if ( ! is_array( $recipes ) ) {
+					if ( null === $recipes || ! is_array( $recipes ) ) {
 						continue;
 					}
 
@@ -210,7 +206,7 @@ class Recipe {
 		);
 
 		$context         = Timber::get_context();
-		$context['post'] = Timber::get_post( $args );
+		$context['post'] = Timber::get_post( $args, 'JVEB\Lib\RecipePost' );
 
 		Timber::render( 'partials/recipe.html.twig', $context );
 

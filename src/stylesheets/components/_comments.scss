@@ -17,7 +17,7 @@
 
 
 	.title {
-		@extend %font-bold, %margin-0;
+		@extend %font-weight-bold, %margin-0;
 		@include letter-spacing( 15 );
 
 		font-size: 45px;
@@ -27,7 +27,7 @@
 
 
 	.catchphrase {
-		@extend %font-semibold, %font-title;
+		@extend %font-weight-semibold, %font-family-title;
 
 		color: the_color( white );
 		font-size: 15px;

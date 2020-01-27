@@ -26,25 +26,16 @@
 
 		<meta itemprop="recipeCategory" content="{{ post.terms( 'recipe_category' ) | map( term => term.name ) | join( ', ' ) }}">
 
-		{% if post.person_number or post.preparation_time or post.cooking_time %}
-			<div class="Recipe-ingredients">
-				<div class="summary">
-					{{- post.person_number ? "<p class=\"person-number\" itemprop=\"recipeYield\">#{ post.person_number } pers.</p>" | raw -}}
-					{{- post.preparation_time ? "<p class=\"preparation-time\" itemprop=\"prepTime\" content=\"PT#{ post.preparation_time }M\">#{ post.preparation_time } min</p>" | raw -}}
-					{{- post.cooking_time ? "<p class=\"cooking-time\" itemprop=\"cookTime\" content=\"PT#{ post.cooking_time }M\">#{ post.cooking_time } min</p>" | raw -}}
-				</div>
-			</div>
-		{% endif %}
-
+		{% include 'partials/recipe-summary.html.twig' %}
 
 		{% if post.get_field( 'collection' ) %}
 			<div class="Recipe-collection">
 				{% for collection in post.get_field( 'collection' ) %}
 					{% if collection.ingredients %}
 
-						<h3 class="description" itemprop="recipeInstructions">
-							{{- collection.description ? collection.description : pll__( 'Tu as besoin de …' ) -}}
-						</h3>
+						<div class="description" itemprop="recipeInstructions">
+							{{- collection.description ? collection.description : "<p> #{ pll__( 'Tu as besoin de …' ) }</p>" -}}
+						</div>
 
 						<div class="ingredients">
 							<ul>

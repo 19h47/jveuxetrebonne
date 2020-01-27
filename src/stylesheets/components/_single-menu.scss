@@ -45,8 +45,8 @@
 		@extend
 			.d-block,
 			.d-md-inline-block,
-			%font-title,
-			%font-semibold,
+			%font-family-title,
+			%font-weight-semibold,
 			%Transition-ease,
 			%text-align-center;
 

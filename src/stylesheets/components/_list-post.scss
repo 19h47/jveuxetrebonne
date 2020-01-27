@@ -20,7 +20,7 @@
 
 	// .List-post-meta
 	&-meta {
-		@extend %font-semibold, %font-title, %text-align-center;
+		@extend %font-weight-semibold, %font-family-title, %text-align-center;
 		@include margin(
 			top #{ $base-line-height * 0.5 }px
 			right #{ $base-line-height }px
@@ -40,7 +40,7 @@
 
 	// .List-post .title
 	.title {
-		@extend %font-bold, %margin-0, %text-align-center;
+		@extend %font-weight-bold, %margin-0, %text-align-center;
 
 		color: the_color( gray, very-dark );
 		font-size: 15px;
@@ -72,7 +72,7 @@
 	 *
 	 * @uses .List-post .categories
 	 */
-	.categories { @extend %lowercase; }
+	.categories { @extend %text-transform-lowercase; }
 
 
 	/**

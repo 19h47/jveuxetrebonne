@@ -19,6 +19,10 @@
 			position: center;
 			size: 100%;
 		}
+
+		@at-root .Carousel-recipe & {
+			background-image: url( '#{ map-get( $directories, svg ) }chevron-right-orange.svg' );
+		}
 	}
 
 	.previous {
@@ -29,12 +33,18 @@
 			position: center;
 			size: 100%;
 		}
+
+		@at-root .Carousel-recipe & {
+			background-image: url( '#{ map-get( $directories, svg ) }chevron-left-orange.svg' );
+		}
 	}
 
 	.count {
-		@extend .d-inline-block, %font-title, %font-body, %position-relative, %vertical-align-middle;
+		@extend .d-inline-block, %font-family-title, %font-family-body, %position-relative, %vertical-align-middle;
 		@include margin( left 20px );
 		@include size( 44px );
+
+		white-space: nowrap;
 
 		@include media-breakpoint-up( md ) { @include size( $grid-gutter-width ); }
 	}
@@ -50,6 +60,10 @@
 			@extend .d-inline-block;
 
 			content: attr( data-count );
+		}
+
+		@at-root .Carousel-recipe & {
+			color: the_color( orange, very-soft-01 );
 		}
 	}
 }

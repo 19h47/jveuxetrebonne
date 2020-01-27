@@ -118,7 +118,7 @@
 		}
 
 		.count {
-			@extend %font-title, %font-body;
+			@extend %font-family-title, %font-family-body;
 			@include margin( left #{ $base-line-height }px );
 			@include size( #{ $base-line-height }px );
 		}

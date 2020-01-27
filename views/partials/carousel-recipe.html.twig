@@ -7,7 +7,7 @@ partials/carousel-recipe
 #}
 
 {% for collection in post.get_field( 'collection' ) %}
-	<div id="carousel-recipe-{{ random( 1, 100 ) }}" class="Carousel-recipe page-block d-none d-md-block" data-node-type="CarouselRecipe" itemscope itemtype="http://schema.org/Recipe">
+	<div id="carousel-recipe-{{ random( 1, 100 ) }}" class="Carousel-recipe page-block d-none d-md-block" data-node-type="CarouselRecipe"  data-carousel-desktop="true" itemscope itemtype="http://schema.org/Recipe">
 		<meta itemprop="author" content="{{ post.author }}">
 		<meta itemprop="name" content="{{ post.title }}">
 		<meta itemprop="datePublished" content="{{ post.post_date }}">
@@ -27,8 +27,12 @@ partials/carousel-recipe
 			{% apply spaceless %}
 				<div class="item">
 					<div class="item__inner">
-						{% if collection.image | length %}
-							<img src="{{ TimberImage( collection.image ).src( 'large' ) }}">
+						{% if collection.video %}
+							<video class="js-video" preload="auto" muted loop>
+								<source src="{{ collection.video }}" type="video/mp4">
+							</video>
+						{% elseif collection.image %}
+							{%- include 'partials/image.html.twig' with { image: collection.image } -%}
 						{% endif %}
 					</div>
 
@@ -38,13 +42,7 @@ partials/carousel-recipe
 							{{- collection.description | default( pll__( 'Pour commencer <br> tu as besoin de :' ) ) -}}
 						</h3>
 
-						{% if post.person_number or post.preparation_time or post.cooking_time %}
-							<ul class="d-flex margin-y-5 align-items-center padding-0 justify-content-center" style="list-style-type: none;">
-								{{ post.person_number ? "<li class=\"person-number\" itemprop=\"recipeYield\">#{ post.person_number } pers.</li>" }}
-								{{ post.preparation_time ? "<li class=\"preparation-time\" itemprop=\"prepTime\" content=\" PT#{ post.preparation_time }M\">#{ post.preparation_time } min</li>" }}
-								{{ post.cooking_time ? "<li class=\"cooking-time\" itemprop=\"cookTime\">#{ post.cooking_time } min</li>" }}
-							</ul>
-						{% endif %}
+						{% include 'partials/recipe-summary.html.twig' %}
 
 						{% if collection.ingredients %}
 							<ul class="Carousel-recipe__ingredients">
@@ -58,14 +56,20 @@ partials/carousel-recipe
 				{% for step in collection.steps %}
 					<div class="item">
 						<div class="item__inner">
-							{% if step.image|length %}
-								<img src="{{ TimberImage( step.image ).src }}">
+							{% if step.video %}
+								<video class="js-video" preload="auto" muted loop>
+									<source src="{{ step.video }}" type="video/mp4">
+								</video>
+							{% else %}
+								{%- include 'partials/image.html.twig' with { image: step.image } -%}
 							{% endif %}
 						</div>
 						<div class="item__inner">
-							<p class="Carousel-recipe__title title-step">
-								{{- pll__( 'Étape' ) -}}&nbsp;{{ loop.index }}
-							</p>
+							{% if step.title %}
+								<p class="Carousel-recipe__title title-step">
+									{{- step.title -}}
+								</p>
+							{% endif %}
 							{{- step.description -}}
 						</div>
 					</div>
@@ -82,14 +86,18 @@ partials/carousel-recipe
 		{% endif %}
 	</div>
 
-	<div id="carousel-recipe-{{ random( 1, 100 ) }}" class="Carousel-recipe page-block d-md-none" data-node-type="SliderRecipe">
+	<div id="carousel-recipe-{{ random( 1, 100 ) }}" class="Carousel-recipe page-block d-md-none" data-node-type="CarouselRecipe" data-carousel-desktop="false">
 
 		<div class="items js-container">
 
 			<div class="item">
 				<div class="item__inner image-mobile">
-					{% if collection.image | length %}
-						<img src="{{ TimberImage( collection.image ).src }}">
+					{% if collection.video %}
+						<video class="js-video" preload="auto" muted loop>
+							<source src="{{ collection.video }}" type="video/mp4">
+						</video>
+					{% elseif collection.image %}
+						{%- include 'partials/image.html.twig' with { image: collection.image } -%}
 					{% endif %}
 				</div>
 			</div>
@@ -99,13 +107,7 @@ partials/carousel-recipe
 						{{- collection.description | default( pll__( 'Pour commencer <br> tu as besoin de :' ) ) -}}
 					</h3>
 
-					{% if post.person_number or post.preparation_time or post.cooking_time %}
-						<ul class="d-flex align-items-center margin-y-5">
-							{{- post.person_number ? "<li class=\"person-number\">#{ post.person_number } pers.</li>" : '' -}}
-							{{- post.preparation_time ? "<li class=\"preparation-time\">#{ post.preparation_time } min</li>" : '' -}}
-							{{- post.cooking_time ? "<li class=\"cooking-time\">#{ post.cooking_time } min</li>" : '' -}}
-						</ul>
-					{% endif %}
+					{% include 'partials/recipe-summary.html.twig' %}
 
 					{% if collection.ingredients %}
 						<ul class="Carousel-recipe__ingredients">
@@ -114,23 +116,28 @@ partials/carousel-recipe
 					{% endif %}
 
 				</div>
-
 			</div>
 
 			{% for step in collection.steps %}
 				<div class="item">
 					<div class="item__inner image-mobile">
-						{% if step.image | length %}
-							<img src="{{ TimberImage( step.image ).src }}">
+						{% if step.video %}
+							<video class="js-video" preload="auto" muted loop>
+								<source src="{{ step.video }}" type="video/mp4">
+							</video>
+						{% else %}
+							{%- include 'partials/image.html.twig' with { image: step.image } -%}
 						{% endif %}
 					</div>
 				</div>
 				<div class="item">
 					<div class="item__inner ingredients-mobile">
 
-						<p class="Carousel-recipe__title title-step">
-							{{- pll__( 'Étape' ) -}}&nbsp;{{ loop.index }}
-						</p>
+						{% if step.title %}
+							<p class="Carousel-recipe__title title-step">
+								{{- step.title -}}
+							</p>
+						{% endif %}
 						{{- step.description -}}
 					</div>
 
@@ -141,7 +148,7 @@ partials/carousel-recipe
 	    {% if collection.steps | length > 0 %}
 
 		    <div class="Carousel-recipe__progressbar js-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-			{% include 'partials/slider-navigation.html.twig' with { count: collection.steps|length + 1 } %}
+			{% include 'partials/slider-navigation.html.twig' with { count: ( ( collection.steps | length ) * 2 ) + 2 } %}
 
 		{% endif %}
 	</div>

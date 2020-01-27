@@ -1,6 +1,10 @@
 /* global jveb, wp */
 import { AbstractBlock } from 'starting-blocks';
 
+
+const add = target => target.classList.add('is-loading');
+const remove = target => target.classList.remove('is-loading');
+
 export default class LoadMore extends AbstractBlock {
 	constructor(container) {
 		super(container, 'LoadMore');
@@ -27,7 +31,7 @@ export default class LoadMore extends AbstractBlock {
 
 		this.update();
 
-		this.filters.forEach((el) => {
+		this.filters.forEach(el => {
 			this.initFilters(el);
 		});
 	}
@@ -38,7 +42,7 @@ export default class LoadMore extends AbstractBlock {
 
 		this.$button.addEventListener('click', () => {
 			this.load()
-				.then((response) => response.json())
+				.then(response => response.json())
 				.then(this.prepare.bind(this))
 				.then(this.append.bind(this))
 				.finally(this.update.bind(this));
@@ -53,7 +57,7 @@ export default class LoadMore extends AbstractBlock {
 			}
 
 			// Remove all `is-active` classes
-			this.filters.forEach((filter) => {
+			this.filters.forEach(filter => {
 				filter.classList.remove('is-active');
 			});
 
@@ -72,7 +76,7 @@ export default class LoadMore extends AbstractBlock {
 			this.$containerFooter.style.setProperty('display', 'block');
 
 			return this.load()
-				.then((response) => response.json())
+				.then(response => response.json())
 				.then(this.prepare.bind(this))
 				// then replace result to the container
 				.then(this.replace.bind(this))
@@ -101,7 +105,7 @@ export default class LoadMore extends AbstractBlock {
 			params.per_page = this.per_page;
 		}
 
-		Object.keys(params).forEach((key) => url.searchParams.append(key, params[key]));
+		Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
 		const init = {
 			method: 'get',
@@ -121,7 +125,7 @@ export default class LoadMore extends AbstractBlock {
 				title: data[i].title.rendered,
 				date: data[i].post_date_format,
 				link: data[i].link,
-				categories: data[i].post_categories.map((category) => `<a href="${category.link}">${category.name}</a>`).join(', '),
+				categories: data[i].post_categories.map(category => `<a href="${category.link}">${category.name}</a>`).join(', '),
 				thumbnail: data[i].post_thumbnail_url || '',
 			});
 		}
@@ -159,14 +163,14 @@ export default class LoadMore extends AbstractBlock {
 
 	on() {
 		if (this.$container) {
-			this.$container.classList.add('is-loading');
+			add(this.$container);
 		}
 	}
 
 
 	off() {
 		if (this.$container) {
-			this.$container.classList.remove('is-loading');
+			remove(this.$container);
 		}
 	}
 }

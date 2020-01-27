@@ -13,7 +13,9 @@
         	<div class="Aside-email">
 	            <a href="mailto:{{ site.admin_email }}">
 					{%- if context == 'about' -%}
-						<span class="color-orange-very-soft-01">{{- pll__( 'Me contacter' ) -}}</span>&nbsp;&nbsp;&bull;&nbsp;&nbsp;
+						<span class="color-orange-very-soft-01">
+							{{- pll__( 'Me contacter' ) -}}
+						</span>&nbsp;&nbsp;&bull;&nbsp;&nbsp;
 					{%- endif -%}
 	                {{- site.admin_email -}}
 	            </a>
@@ -34,9 +36,9 @@
 		                        href="{{ share.url ~ permalink.current_url }}"
 		                        title="{{ share.name }}"
 								rel="noopener"
-		                        {{ share.slug == 'envelope' ? '' : ' target="_blank"' }}
+		                        {{ share.slug == 'envelope' ?: ' target="_blank"' }}
 		                    >
-								{% include 'svg/use.html.twig' with { classes: [ share.slug ], icon: share.slug } %}
+								{%- include 'svg/use.html.twig' with { classes: [ share.slug ], icon: share.slug } only -%}
 		                    </a>
 		                </li>
 		            {% endfor %}
@@ -45,8 +47,8 @@
 	            {% if socials %}
 		            {% for social in contact.socials %}
 		                <li class="Aside-socials__item">
-		                    <a href="{{ social.url }}" title="{{ social.name }}">
-								{% include 'svg/use.html.twig' with { classes: [ social.slug ], icon: social.slug } %}
+		                    <a href="{{ social.url }}" title="{{ social.name }}" rel="noopener">
+								{%- include 'svg/use.html.twig' with { classes: [ social.slug ], icon: social.slug } only -%}
 		                    </a>
 		                </li>
 		            {% endfor %}
@@ -59,7 +61,7 @@
         {% if subscribe %}
 	        <span class="Aside-bull">&bull;</span>
 	        <div class="Aside-subscribe">
-	            <button id="scroll-to-aside" type="button" class="page-block" data-offset="bottom" data-node-type="ScrollTo">
+	            <button id="scroll-to-aside" type="button" class="page-block" data-offset="bottom" data-node-type="ScrollToBlock">
 					<span>{{- pll__( 'Abonne-toi' ) -}}</span>
 				</button>
 	        </div>

@@ -144,7 +144,7 @@
 			$font-size: 13;
 			$line-height: 80.1;
 
-			@extend %font-title, %font-semibold, %margin-0;
+			@extend %font-family-title, %font-weight-semibold, %margin-0;
 
 			color: the_color( white );
 			font-size: 13px;

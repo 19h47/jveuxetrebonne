@@ -63,7 +63,7 @@
 		}
 
 		span {
-			@extend .d-inline-block, %font-title;
+			@extend .d-inline-block, %font-family-title;
 
 			animation: {
 				name: fade-out-up;
@@ -101,7 +101,7 @@
 	 * Title
 	 */
 	.title {
-		@extend %font-semibold, %font-title, %margin-0;
+		@extend %font-weight-semibold, %font-family-title, %margin-0;
 
 		color: the_color( gray, very-dark-02 );
 		font-size: 60px;
@@ -116,7 +116,7 @@
 	.informations {
 		$font-size: 16;
 
-		@extend %font-title, %font-medium;
+		@extend %font-family-title, %font-weight-medium;
 
 		@include letter-spacing( 40 );
 		@include margin( top 1em );
@@ -161,7 +161,7 @@
 		$line-height: $base-line-height;
 		$color: the_color( orange, very-soft-02 );
 
-		@extend .d-block, %font-title, %font-semibold;
+		@extend .d-block, %font-family-title, %font-weight-semibold;
 		@include reset-placeholder( $color );
 		@include responsive-font( ( ( $font-size * 100 ) / $psd-width-unitless ) * 1vw, 16px, ( $font-size * 1px ) );
 

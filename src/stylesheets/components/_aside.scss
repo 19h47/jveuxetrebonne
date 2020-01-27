@@ -87,7 +87,7 @@
 		height: #{ $base-line-height * 3 }px;
 
 		button {
-			@extend %font-semibold, %font-title;
+			@extend %font-weight-semibold, %font-family-title;
 
 			height: 100%;
 			font-size: 13px;
@@ -101,7 +101,7 @@
 
 
 	&-email {
-		@extend %font-semibold, %font-title, %Transition-ease, .d-inline-block;
+		@extend %font-weight-semibold, %font-family-title, %Transition-ease, .d-inline-block;
 
 		color: the_color( blue, light-grayish );
 		font-size: 13px;

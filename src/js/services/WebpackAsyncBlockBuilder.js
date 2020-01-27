@@ -17,7 +17,7 @@ export default class WebpackAsyncBlockBuilder extends AbstractBlockBuilder {
 				this.container.$register({
 					$name: nodeTypeName,
 					$type: 'instanceFactory',
-					$value: (c) => new Block(c),
+					$value: c => new Block(c),
 				});
 			}
 
@@ -30,6 +30,6 @@ export default class WebpackAsyncBlockBuilder extends AbstractBlockBuilder {
 
 	static async getModule(nodeTypeName) {
 		return import(`../blocks/${nodeTypeName}` /* webpackChunkName: "block-" */)
-			.then((block) => block.default);
+			.then(block => block.default);
 	}
 }

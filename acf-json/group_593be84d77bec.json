@@ -1,6 +1,6 @@
 {
     "key": "group_593be84d77bec",
-    "title": "Recette",
+    "title": "Options",
     "fields": [
         {
             "key": "field_5daad8137fd95",
@@ -70,7 +70,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "25%",
+                "width": "25",
                 "class": "",
                 "id": ""
             },
@@ -215,6 +215,30 @@
                     "mime_types": ""
                 },
                 {
+                    "key": "field_5e2b665daeeab",
+                    "label": "Video",
+                    "name": "video",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_59b3ba20d683c",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": ""
+                },
+                {
                     "key": "field_594546a781384",
                     "label": "Ingrédients",
                     "name": "ingredients",
@@ -255,6 +279,25 @@
                     ]
                 },
                 {
+                    "key": "field_5e2b1a57b61ca",
+                    "label": "Précisions",
+                    "name": "precisions",
+                    "type": "textarea",
+                    "instructions": "Si besoin ajouter des précisions sur les ingrédients",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "Précisions sur les ingrédients",
+                    "maxlength": "",
+                    "rows": "",
+                    "new_lines": "wpautop"
+                },
+                {
                     "key": "field_5946454057b19",
                     "label": "Étapes",
                     "name": "steps",
@@ -273,6 +316,25 @@
                     "layout": "block",
                     "button_label": "Ajouter une étape",
                     "sub_fields": [
+                        {
+                            "key": "field_5e2b0b4e702dd",
+                            "label": "Titre",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "Titre de l'étape (laisser vide si il n'y a pas de titre)",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
                         {
                             "key": "field_594646ea73edf",
                             "label": "Description",
@@ -323,6 +385,30 @@
                             "max_height": "",
                             "max_size": "",
                             "mime_types": ""
+                        },
+                        {
+                            "key": "field_5e2b1b5958ba8",
+                            "label": "Video",
+                            "name": "video",
+                            "type": "url",
+                            "instructions": "Après avoir téléverse la vidéo dans la partie média du site, en récupérer l'URL et la coller ici.",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_59b3ba20d683c",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": ""
                         }
                     ]
                 }
@@ -380,6 +466,6 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": "Les détails d'une recette",
-    "modified": 1571478198
+    "description": "Options d'une recette",
+    "modified": 1580058104
 }

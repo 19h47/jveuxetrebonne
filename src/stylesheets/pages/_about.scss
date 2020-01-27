@@ -39,7 +39,7 @@
 
 			h3 {
 				@extend .color-gray-very-dark;
-				@extend %font-title, %font-bold;
+				@extend %font-family-title, %font-weight-bold;
 
 				font-size: 20px;
 				line-height: #{ $base-line-height }px;

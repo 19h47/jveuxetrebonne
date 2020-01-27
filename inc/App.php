@@ -10,16 +10,14 @@ namespace JVEB;
 use Dotenv\{ Dotenv };
 use Timber\{ Timber, Menu, Helper };
 
-use JVEB\{ Admin, Helpers, Transients, Settings };
-use JVEB\PostTypes\{ Post, Recipe };
-use JVEB\Taxonomies\{ RecipeCategory };
+use JVEB\{ Admin, Helpers, Transients, Settings, PostTypes, Taxonomies, Lib };
 
 use Twig\{ TwigFunction };
 
 // @TODO include in namespace JVEB
 use acf_location_rule;
 
-Timber::$dirname = array( 'templates', 'views' );
+Timber::$dirname = array( 'dist', 'views' );
 
 $dotenv = Dotenv::create( get_template_directory() );
 $dotenv->load();
@@ -107,9 +105,9 @@ class App extends Timber {
 		}
 
 		new acf_location_rule( 'category_parents' );
-		new Post( $this->get_theme_name(), $this->get_theme_version() );
-		new Recipe( $this->get_theme_name(), $this->get_theme_version() );
-		new RecipeCategory( $this->get_theme_name(), $this->get_theme_version() );
+		new PostTypes\Post( $this->get_theme_name(), $this->get_theme_version() );
+		new PostTypes\Recipe( $this->get_theme_name(), $this->get_theme_version() );
+		new Taxonomies\RecipeCategory( $this->get_theme_name(), $this->get_theme_version() );
 		new Settings( $this->get_theme_name(), $this->get_theme_version() );
 
 	}
@@ -347,6 +345,8 @@ class App extends Timber {
 		$context['current_language']            = pll_current_language();
 		$context['production']                  = getenv( 'PRODUCTION' ) === 'false' ? false : true;
 
+		$context['mc4wp_form'] = mc4wp_show_form( 4609, array(), false );
+
 		return $context;
 	}
 
@@ -418,6 +418,7 @@ class App extends Timber {
 	 * @access public
 	 */
 	public function enqueue_style() {
+		wp_dequeue_style( 'wp-block-library' );
 
 		// Add custom fonts, used in the main stylesheet.
 		$webfonts = array();

@@ -1,8 +1,8 @@
 import { AbstractBlock } from 'starting-blocks';
 
-export default class Print extends AbstractBlock {
+export default class PrintBlock extends AbstractBlock {
 	constructor(container) {
-		super(container, 'LoadMore');
+		super(container, 'PrintBlock');
 	}
 
 	initEvents() {

@@ -120,8 +120,8 @@
 		 */
 		&.menu-item-object-category {
 			@extend
-				%font-title,
-				%font-semibold,
+				%font-family-title,
+				%font-weight-semibold,
 				%text-align-center,
 				%text-align-md-left;
 
@@ -157,7 +157,7 @@
 			}
 
 			a {
-				@extend %lowercase;
+				@extend %text-transform-lowercase;
 				@include padding(
 					top 0
 					right ( $padding * 1px )
@@ -171,7 +171,7 @@
 		&.menu-item-lang {
 			@include margin( top 0 bottom 0 left #{ $base-line-height * 2 }px );
 			@extend .d-none, .d-md-flex, .align-items-md-center;
-			@extend %font-title, %font-semibold, %text-transform-uppercase;
+			@extend %font-family-title, %font-weight-semibold, %text-transform-uppercase;
 
 
 			color: the_color( blue, light-grayish );
@@ -255,7 +255,7 @@
 	 * @uses .Footer .Menu .menu-item
 	 */
 	@at-root .Footer & .menu-item {
-		@extend %font-title, %font-semibold;
+		@extend %font-family-title, %font-weight-semibold;
 		@include margin( top 0 right $grid-gutter-width bottom 0 left $grid-gutter-width );
 
 		font-size: 19px;

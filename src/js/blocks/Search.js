@@ -1,8 +1,8 @@
 /* global $, jveb, wp */
 
 import { AbstractBlock } from 'starting-blocks';
-import Scroll from 'Utils/Scroll';
-import config from 'js/config';
+import { enableScroll, disableScroll } from 'Utils/scroll';
+import { elements } from 'js/config';
 import { sprintf } from 'sprintf-js';
 
 export default class Search extends AbstractBlock {
@@ -13,7 +13,7 @@ export default class Search extends AbstractBlock {
 	async init() {
 		super.init();
 
-		this.isOpen = config.body.$.hasClass('search--is-open');
+		this.isOpen = elements.body.$.hasClass('search--is-open');
 
 		this.$input = $(this.rootElement).find('.js-search-input');
 		this.$suggest = $(this.rootElement).find('.js-search-suggest');
@@ -46,7 +46,7 @@ export default class Search extends AbstractBlock {
 			this.update();
 		});
 
-		config.body.$.on('open.search', () => {
+		elements.body.$.on('open.search', () => {
 			// Weird behavior on Chrome
 			setTimeout(() => {
 				this.$input.focus();
@@ -56,8 +56,8 @@ export default class Search extends AbstractBlock {
 
 		$(document)
 			.on('click.search', '.js-search-button', this.toggle.bind(this))
-			.on('keydown.search', (e) => {
-				if (27 === e.which) {
+			.on('keydown.search', event => {
+				if (27 === event.which) {
 					this.close();
 				}
 			});
@@ -94,10 +94,10 @@ export default class Search extends AbstractBlock {
 					success(data) {
 						const transformed = $.map(
 							data,
-							(element) => ({
-								title: element.post_title,
+							element => ({
+								title: decodeURI(element.post_title),
 								date: element.post_date_format,
-								categories: element.post_categories.map((el) => el.name).join(', '),
+								categories: element.post_categories.map(el => el.name).join(', '),
 								content: element.post_content,
 							}),
 						);
@@ -143,11 +143,11 @@ export default class Search extends AbstractBlock {
 		this.$input.val('');
 		this.update();
 
-		config.body.$
+		elements.body.$
 			.removeClass('search--is-open')
 			.trigger('close.search');
 
-		Scroll.enableScroll();
+		enableScroll();
 	}
 
 
@@ -160,9 +160,9 @@ export default class Search extends AbstractBlock {
 
 		this.update();
 
-		Scroll.disableScroll();
+		disableScroll();
 
-		config.body.$
+		elements.body.$
 			.addClass('search--is-open')
 			.trigger('open.search');
 	}

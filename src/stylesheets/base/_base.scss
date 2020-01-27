@@ -90,7 +90,7 @@ iframe {
 
 blockquote {
     // Extend class
-    @extend .font-title, .font-regular;
+    @extend .font-family-title, .font-weight-regular;
 
     // Include margin
     @include margin (

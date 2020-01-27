@@ -2,6 +2,7 @@
 
 import { AbstractBlock } from 'starting-blocks';
 
+
 export default class Recipes extends AbstractBlock {
 	constructor(container) {
 		super(container, 'Recipes');
@@ -20,11 +21,12 @@ export default class Recipes extends AbstractBlock {
 	initEvents() {
 		super.initEvents();
 
-		this.$buttons.on('click', (e) => {
-			this.id = e.currentTarget.dataset.id;
+		this.$buttons.on('click', event => {
+			const $currentTarget = $(event.currentTarget);
+			this.id = event.currentTarget.dataset.id;
 
 			// Recipe is already load
-			if ($(e.currentTarget).hasClass('is-active')) {
+			if ($currentTarget.hasClass('is-active')) {
 				return;
 			}
 
@@ -39,7 +41,7 @@ export default class Recipes extends AbstractBlock {
 			});
 
 			// Add `is-active` on current element
-			$(e.currentTarget).addClass('is-active');
+			$currentTarget.addClass('is-active');
 
 			// load more LoadMore with AJAX
 			this.load()

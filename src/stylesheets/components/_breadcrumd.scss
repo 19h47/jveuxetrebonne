@@ -1,6 +1,6 @@
 // .Single .Breadcrumb
 .Breadcrumb {
-	@extend %font-title, %font-medium, %position-relative;
+	@extend %font-family-title, %font-weight-medium, %position-relative;
 	@include padding( top #{ $base-line-height }px bottom #{ $base-line-height }px );
 
 	font-size: 13px;
@@ -73,7 +73,7 @@
 		}
 
 		&.title {
-			@extend %font-semibold;
+			@extend %font-weight-semibold;
 
 			color: the_color( orange, mostly-desaturated-dark );
 		}

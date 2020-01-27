@@ -27,7 +27,7 @@
 
 		.title {
 			@extend .color-gray-very-dark;
-			@extend %font-bold;
+			@extend %font-weight-bold;
 			@include margin( top #{ $base-line-height * 1.5 }px bottom #{ $base-line-height * 1.5 }px );
 
 			font-size: 20px;
@@ -40,7 +40,7 @@
 
 		.description {
 			@extend .color-blue-light-grayish;
-			@extend %font-title, %font-semibold;
+			@extend %font-family-title, %font-weight-semibold;
 			@include margin( top #{ $base-line-height }px );
 			@include letter-spacing( 15 );
 

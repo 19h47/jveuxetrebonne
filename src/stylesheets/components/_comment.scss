@@ -5,7 +5,7 @@
  * @author 	Jérémy Levron
  */
 .Comment {
-	@extend .d-flex;
+	@extend .d-flex, .flex-column, .flex-md-row;
 
 	@extend .background-white;
 	@include padding(
@@ -43,8 +43,12 @@
 	&-inner {
 		@extend .d-inline-block, %vertical-align-top;
 
+		flex: 1;
+
 		@include media-breakpoint-up( md ) {
 			@include padding( right $grid-gutter-width left $grid-gutter-width );
+
+			flex: auto;
 		}
 	}
 
@@ -54,7 +58,16 @@
 	 *
 	 * @uses .Comment-aside
 	 */
-	&-aside { @extend .d-inline-block, %vertical-align-top; }
+	&-aside {
+		@extend .d-inline-block, %vertical-align-top;
+		@extend %margin-bottom-3, %margin-bottom-md-0;
+
+		flex: 1;
+
+		@include media-breakpoint-up( md ) {
+			flex: auto;
+		}
+	}
 
 
 	/**
@@ -63,7 +76,7 @@
 	 * @uses .Comment .author
 	 */
 	.author {
-		@extend %font-semibold, %margin-0;
+		@extend %font-weight-semibold, %margin-0;
 
 		font-size: 18px;
 		color: the_color( orange, very-soft-01 );
@@ -81,7 +94,7 @@
 	 */
 	.date {
 		@include margin( top 0 );
-		@extend %font-title, %font-regular;
+		@extend %font-family-title, %font-weight-regular;
 		// @include font( 12, 80 );
 
 		font-size: 15px;
@@ -99,7 +112,7 @@
 	 * @uses .Comment .content
 	 */
 	.content {
-		@extend %font-title;
+		@extend %font-family-title, %margin-top-2, %margin-top-md-3;
 		@include letter-spacing( 15 );
 
 		font-size: 16px;
@@ -119,6 +132,7 @@
 	.avatar {
 		@extend .d-inline-block, %vertical-align-middle;
 		@include size( #{ $base-line-height * 2 }px );
+
 		box-shadow: -1px 3px 15px 0px rgba( the_color( red, bright ), .15 );
 	}
 
@@ -131,7 +145,7 @@
 
 		a {
 			@extend .Link-readmore, .Link-marker, .Link-marker--orange-soft, .d-inline-block;
-			@extend %font-title, %font-semibold;
+			@extend %font-family-title, %font-weight-semibold;
 
 			font-size: 18px;
 			line-height: #{ $base-line-height }px;

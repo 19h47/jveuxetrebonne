@@ -12,7 +12,7 @@
 
 	// .Footer-copyright
 	&-copyright {
-		@extend %text-align-center, %font-title, %padding-y-2, %padding-y-md-0;
+		@extend %text-align-center, %font-family-title, %padding-y-2, %padding-y-md-0;
 
 		box-shadow: 0 -1px 1px -1px the_color( blue, light-grayish );
 		color: the_color( blue, light-grayish );;
@@ -24,7 +24,7 @@
 		}
 
 		i {
-			@extend %font-semibold;
+			@extend %font-weight-semibold;
 
 			font-style: normal;
 		}
@@ -150,7 +150,7 @@
 			}
 
 			a {
-				@extend .d-block, %font-title, %font-semibold;
+				@extend .d-block, %font-family-title, %font-weight-semibold;
 				font-size: 13px;
 				line-height: #{ $base-line-height }px;
 

@@ -1,96 +1,95 @@
-import config from 'js/config';
+import { elements, scroll } from 'js/config';
 
-export default class Scroll {
-	/**
-	 * resetScroll
-	 *
-	 * @param  positionX
-	 * @param  positionY
-	 * @public
-	 */
-	static resetScroll(positionX, positionY) {
-		// console.log('resetScroll');
 
-		if ('undefined' !== typeof positionX) {
-			config.scroll.left = parseInt(positionX, 10);
-		}
+/**
+ * reset
+ *
+ * @param  positionX
+ * @param  positionY
+ * @public
+ */
+const reset = (positionX, positionY) => {
+	// console.info('reset');
 
-		if ('undefined' !== typeof positionY) {
-			config.scroll.top = parseInt(positionY, 10);
-		}
-
-		window.scrollTo(
-			config.scroll.left,
-			config.scroll.top,
-		);
+	if ('undefined' !== typeof positionX) {
+		scroll.left = parseInt(positionX, 10);
 	}
 
+	if ('undefined' !== typeof positionY) {
+		scroll.top = parseInt(positionY, 10);
+	}
 
-	/**
-	 * disableScroll
-	 *
-	 * Lock scroll position, but retain settings for later
-	 *
-	 * @see  http://stackoverflow.com/a/3656618
-	 */
-	static disableScroll() {
-		// console.log('disableScroll');
+	window.scrollTo(
+		scroll.left,
+		scroll.top,
+	);
+};
 
-		const documentElementScrollLeft = config.html.scrollLeft;
-		const documentElementScrollTop = config.html.scrollTop;
 
-		const bodyScrollLeft = config.body.scrollLeft;
-		const bodyScrollTop = config.body.scrollTop;
+/**
+ * disableScroll
+ *
+ * Lock scroll position, but retain settings for later
+ *
+ * @see  http://stackoverflow.com/a/3656618
+ */
+export function disableScroll() {
+	// console.info('disableScroll');
 
-		// eslint-disable-next-line no-restricted-globals
-		config.scroll.left = self.pageXOffset || documentElementScrollLeft || bodyScrollLeft;
-		// eslint-disable-next-line no-restricted-globals
-		config.scroll.top = self.pageYOffset || documentElementScrollTop || bodyScrollTop;
+	const documentElementScrollLeft = elements.html.scrollLeft;
+	const documentElementScrollTop = elements.html.scrollTop;
 
-		config.html.style.setProperty('overflow', 'hidden');
-		config.html.style.setProperty('height', '100%');
+	const bodyScrollLeft = elements.body.scrollLeft;
+	const bodyScrollTop = elements.body.scrollTop;
 
-		document.ontouchmove = (event) => event.preventDefault();
+	// eslint-disable-next-line no-restricted-globals
+	scroll.left = self.pageXOffset || documentElementScrollLeft || bodyScrollLeft;
+	// eslint-disable-next-line no-restricted-globals
+	scroll.top = self.pageYOffset || documentElementScrollTop || bodyScrollTop;
 
+	elements.html.style.setProperty('overflow', 'hidden');
+	elements.html.style.setProperty('height', '100%');
+
+	// document.ontouchmove = (event) => event.preventDefault();
+
+	// eslint-disable-next-line
+	reset(scroll.left, scroll.top);
+}
+
+
+/**
+ * enableScroll
+ *
+ * @param  position
+ */
+export function enableScroll(position) {
+	// console.info('enableScroll');
+
+	let resumeScroll = true;
+	let currentPosition = position;
+
+	if ('undefined' === typeof currentPosition) {
+		currentPosition = scroll.top;
+	}
+
+	if ('boolean' === typeof currentPosition && false === currentPosition) {
+		resumeScroll = false;
+	}
+
+	// Enable scrolling.
+	document.ontouchmove = () => true;
+
+	// unlock scroll position
+	// http://stackoverflow.com/a/3656618
+	elements.html.style.setProperty('overflow', 'visible');
+	elements.html.style.setProperty('height', 'auto');
+
+	// resume scroll position if possible
+	if (resumeScroll) {
 		// eslint-disable-next-line
-		Scroll.resetScroll(config.scroll.left, config.scroll.top);
-	}
-
-
-	/**
-	 * enableScroll
-	 *
-	 * @param  position
-	 */
-	static enableScroll(position) {
-		// console.log('enableScroll');
-
-		let resumeScroll = true;
-		let currentPosition = position;
-
-		if ('undefined' === typeof currentPosition) {
-			currentPosition = config.scroll.top;
-		}
-
-		if ('boolean' === typeof currentPosition && false === currentPosition) {
-			resumeScroll = false;
-		}
-
-		// Enable scrolling.
-		document.ontouchmove = () => true;
-
-		// unlock scroll position
-		// http://stackoverflow.com/a/3656618
-		config.html.style.setProperty('overflow', 'visible');
-		config.html.style.setProperty('height', 'auto');
-
-		// resume scroll position if possible
-		if (resumeScroll) {
-			// eslint-disable-next-line
-			Scroll.resetScroll(
-				config.scroll.left,
-				currentPosition,
-			);
-		}
+		reset(
+			scroll.left,
+			currentPosition,
+		);
 	}
 }

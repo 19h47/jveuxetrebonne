@@ -8,11 +8,11 @@
 	$this: &;
 
 	@include margin(
-		right $grid-gutter-width * -1
+		// right $grid-gutter-width * -1
 		bottom #{ $base-line-height }px
-		left ( $grid-gutter-width * -1 )
+		// left ( $grid-gutter-width * -1 )
 	);
-	width: calc( 100% + #{ $grid-gutter-width * 2 } );
+	// width: calc( 100% + #{ $grid-gutter-width * 2 } );
 
 	@include media-breakpoint-up( md ) {
 		width: auto;
@@ -21,7 +21,7 @@
 
 	// .Carousel-recipe__title
 	&__title {
-		@extend %font-title, %font-bold, %text-align-center;
+		@extend %font-family-title, %font-weight-bold, %text-align-center;
 		@include margin( top #{ $base-line-height }px bottom 0 );
 
 		color: the_color( blue, light-grayish );
@@ -29,7 +29,7 @@
 		line-height: #{ $base-line-height }px;
 
 		@include media-breakpoint-up( md ) {
-			@include margin( top 70px bottom #{ $base-line-height / 3 }px  );
+			@include margin( top #{ $base-line-height * 2 } bottom #{ $base-line-height }px  );
 		}
 
 
@@ -38,19 +38,13 @@
 				top #{ $base-line-height }px
 				bottom #{ $base-line-height }px
 			);
-
-			@include media-breakpoint-up( md ) {
-				@include margin(
-					top #{ $base-line-height * 3 }px
-					bottom #{ $base-line-height * 3 }px
-				);
-			}
 		}
 	}
 
 
 	&__ingredients {
-		@extend %font-title, %font-medium, %margin-y-0, %padding-y-0;
+		@extend %font-family-title, %font-weight-medium;
+		@include margin( top #{ $base-line-height }px bottom #{ $base-line-height }px );
 		@include padding( left $grid-gutter-width );
 
 		font-size: 16px;
@@ -103,10 +97,22 @@
 			@extend .d-inline-block, %vertical-align-middle, %position-relative;
 			@include size( 100% );
 
+			&:nth-child( even ) {
+				@include padding( right $grid-gutter-width left $grid-gutter-width );
+			}
+
 			@include media-breakpoint-up( md ) {
+				@include padding( right 0 left 0 );
 				@include size( 50%, 100% );
 			}
 
+			& > *:first-child {
+				@include margin( top 0 );
+			}
+
+			& > *:last-child {
+				@include margin( bottom 0 );
+			}
 
 			&::after {
 				@extend .d-block;
@@ -121,7 +127,6 @@
 			}
 
 			@at-root .slick-current .item__inner {
-
 				img {
 					transition-delay: ( $animation-duration / 2 );
 					transform: translate3d( 0, 0, 0 );
@@ -129,7 +134,6 @@
 				}
 
 				@include media-breakpoint-up( md ) {
-
 					&::after {
 						animation-name: filler;
 						animation-iteration-count: 1;
@@ -140,7 +144,7 @@
 			}
 
 			&.ingredients-mobile {
-				@extend %font-title;
+				@extend %font-family-title;
 				@include padding( right $grid-gutter-width / 2 left $grid-gutter-width / 2 );
 				@include absolute( top 50% right 0 left 0 );
 
@@ -152,6 +156,7 @@
 				background-color: the_color( orange, light-grayish-01 );
 			}
 
+			// Left.
 			&:nth-child( 1 ) {
 				@extend .d-md-inline-block;
 
@@ -161,20 +166,28 @@
 					background: { color: the_color( orange, light-grayish-01 ); }
 				}
 
+				video,
 				img {
-					@extend .d-inline-block, %vertical-align-middle;
+					@extend .d-block;
 					@include size( 100% );
+					@extend %Transition-ease;
 
 					object-fit: cover;
 					object-position: center;
+					opacity: 1;
+				}
+
+				video.is-loading {
+					opacity: .3;
 				}
 			}
 
+			// Right.
 			&:nth-child( 2 ) {
-				@extend %font-semibold, %font-title, %overflow-hidden;
+				@extend %font-weight-semibold, %font-family-title, %overflow-hidden;
 				@include padding(
-					right $grid-gutter-width
-					left $grid-gutter-width
+					top #{ $base-line-height }px
+					bottom #{ $base-line-height }px
 				);
 
 				font-size: 16px;
@@ -182,38 +195,40 @@
 				background-color: the_color( white );
 				color: the_color( gray, very-dark-01 );
 
+				@include media-breakpoint-up( md ) {
+					@include padding(
+						right $grid-gutter-width
+						left $grid-gutter-width
+					);
+				}
 			}
 			p {
 				@extend %text-align-center;
+			}
+
+			.Recipe-summary {
+				@include margin( top #{ $base-line-height }px bottom #{ $base-line-height }px );
+				@extend .flex-column;
+				background-color: transparent;
+				height: auto;
+				color: the_color( gray, very-dark-01 );
 			}
 
 			.person-number,
 			.preparation-time,
 			.cooking-time {
 				@include margin( top 0 bottom 0 );
+				@extend %text-align-left;
+
 				font-size: 14px;
+				flex: 1;
 
 				&::before {
 					@include size( #{ $base-line-height * 0.5 }px );
-					@include margin( right $grid-gutter-width * 0.25 );
 					@extend .d-inline-block, %vertical-align-middle;
 
 					background-size: 100%;
 					content: '';
-				}
-			}
-
-			.person-number,
-			.preparation-time {
-				border-right: {
-					color: the_color( blue, light-grayish );
-					style: solid;
-					width: 1px;
-				}
-
-				@include media-breakpoint-up( md ) {
-					@include margin( right $grid-gutter-width / 4 );
-					@include padding( right $grid-gutter-width / 4 );
 				}
 			}
 
@@ -290,7 +305,7 @@
 
 
 		.count {
-			@extend .d-inline-block, %font-title, %font-body, %position-md-relative, %vertical-align-middle;
+			@extend .d-inline-block, %font-family-title, %font-family-body, %position-md-relative, %vertical-align-middle;
 			@include margin( left #{ $base-line-height }px );
 			@include size( #{ $base-line-height * 2 }px );
 

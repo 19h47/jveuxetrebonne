@@ -1,0 +1,26 @@
+{#
+ # Recipe information
+ #
+ #
+ #}
+{% if post.get_field( 'person_number' ) or post.preparation_time or post.cooking_time %}
+	<ul class="Recipe-summary">
+		{%- if post.person_number -%}
+			<li class="person-number" itemprop="recipeYield">
+				{{- post.get_field( 'person_number' ) -}}&nbsp;{{ pll__( 'pers.' ) -}}
+			</li>
+		{%- endif -%}
+
+		{%- if post.preparation_time.time -%}
+			<li class="preparation-time" itemprop="prepTime" content="PT{{ post.preparation_time.time }}M">
+				{{- post.preparation_time.output -}}
+			</li>
+		{%- endif -%}
+
+		{%- if post.cooking_time.time -%}
+			<li class="cooking-time" itemprop="cookTime" content="PT{{ post.preparation_time.time }}M">
+				{{- post.cooking_time.output -}}
+			</li>
+		{%- endif -%}
+	</ul>
+{% endif %}

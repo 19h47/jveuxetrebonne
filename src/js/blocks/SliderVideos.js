@@ -34,7 +34,7 @@ export default class SliderVideos extends AbstractBlock {
 
 		let i = 1;
 
-		this.players.forEach((instance) => {
+		this.players.forEach(instance => {
 			instance.on('ready', () => {
 				const current = instance;
 
@@ -45,7 +45,7 @@ export default class SliderVideos extends AbstractBlock {
 			});
 			instance.on('play', () => {
 				const currentPid = instance.plyId;
-				this.players.forEach((player) => {
+				this.players.forEach(player => {
 					if (currentPid !== player.plyId) {
 						player.pause();
 					}

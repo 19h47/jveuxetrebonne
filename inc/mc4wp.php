@@ -5,7 +5,6 @@
 
 use Timber\{ Timber };
 
-
 add_filter( 'mc4wp_form_content', 'jveb_form_content', 5, 3 );
 
 /**

@@ -17,7 +17,7 @@
 	.author,
 	.url,
 	.comment {
-		@extend %font-title, %font-medium;
+		@extend %font-family-title, %font-weight-medium;
 		@include reset-placeholder( the_color( white ) );
 
 		box-shadow: 0px 1px 1px the_color( white );
@@ -72,7 +72,7 @@
 
 	.submit,
 	.cancel {
-		@extend .d-inline-block, %font-semibold, %font-title;
+		@extend .d-inline-block, %font-weight-semibold, %font-family-title;
 
 		color: the_color( white );
 		font-size: 13px;

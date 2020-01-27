@@ -1,15 +1,16 @@
 /* global $ */
 import { AbstractBlock } from 'starting-blocks';
 
-export default class ScrollTo extends AbstractBlock {
+
+export default class ScrollToBlock extends AbstractBlock {
 	constructor(container) {
-		super(container, 'ScrollTo');
+		super(container, 'ScrollToBlock');
 	}
 
 	async init() {
 		super.init();
 
-		this.offset = this.rootElement.dataset.offset;
+		this.offset = this.rootElement.getAttribute('data-offset') || false;
 	}
 
 

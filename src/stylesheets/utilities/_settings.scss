@@ -54,7 +54,6 @@ $floats: 'left' 'right';
  */
 $import-utilities-fonts: true;
 $font-sizes: $base-font-size;
-$font-styles: 'normal';
 $letters-spacing: 0;
 
 
@@ -145,7 +144,7 @@ $size-dimensions: 50 100;
  */
 $text-aligns: center right left;
 $text-decorations: none;
-$text-transforms: uppercase;
+$text-transforms: uppercase, lowercase;
 
 
 /**

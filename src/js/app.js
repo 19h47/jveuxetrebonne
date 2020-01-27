@@ -1,3 +1,6 @@
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
 import StartingBlocks, {
 	polyfills,
 } from 'starting-blocks';
@@ -17,7 +20,9 @@ const production = 'production' === process.env.NODE_ENV;
 	polyfills();
 	objectFitImages(null, { watchMQ: true });
 
-	const startingBlocks = new StartingBlocks({ debug: production ? 0 : 1 });
+	const startingBlocks = new StartingBlocks({
+		debug: production ? 0 : 1,
+	});
 
 	if (!production) {
 		const guid = new Guid();
@@ -29,7 +34,7 @@ const production = 'production' === process.env.NODE_ENV;
 	menu.init();
 
 	startingBlocks.provider('BlockBuilder', WebpackAsyncBlockBuilder);
-	startingBlocks.instanceFactory('default-page', (c) => new DefaultPage(c));
+	startingBlocks.instanceFactory('default-page', c => new DefaultPage(c));
 
 	// Boot, boot, boot!
 	startingBlocks.boot();

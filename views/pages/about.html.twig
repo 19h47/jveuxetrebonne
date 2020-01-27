@@ -19,7 +19,7 @@
 
 		        <div class="col-12 col-md-5 offset-md-1 margin-bottom-7">
 		            <a class="thumbnail" href="{{ post.link }}">
-		                <img class="img-full" src="{{ post.thumbnail.src | tojpg | resize( 635, 550 ) }}" alt=""/>
+		                <img loading="lazy" class="img-full" src="{{ post.thumbnail.src | tojpg | resize( 635, 550 ) }}" alt="{{ post.thumbnail.alt }}" width="635" height="550"/>
 		            </a>
 		        </div>
 

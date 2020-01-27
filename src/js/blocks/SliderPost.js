@@ -6,7 +6,7 @@ import { AbstractBlock } from 'starting-blocks';
 
 export default class SliderPost extends AbstractBlock {
 	constructor(container) {
-		super(container, 'Recipes');
+		super(container, 'SliderPost');
 	}
 
 	async init() {

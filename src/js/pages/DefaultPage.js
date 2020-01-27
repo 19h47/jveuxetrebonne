@@ -1,16 +1,7 @@
-/**
- * Copyright © 2017, Rezo Zero
- *
- * @file DefaultPage.js
- * @author Maxime Bérard
- * @author Adrien Scholaert <adrien@rezo-zero.com>
- */
+/* global $ */
 import { AbstractPage } from 'starting-blocks';
 
-/**
- * Abstract class to do common actions on every pages (like custom lazyload
- * actions, etc.). Do not instanciate this class.
- */
+
 export default class DefaultPage extends AbstractPage {
 	constructor(container) {
 		super(container, 'DefaultPage');
@@ -18,5 +9,17 @@ export default class DefaultPage extends AbstractPage {
 
 	init() {
 		super.init();
+	}
+
+	initEvents() {
+		super.initEvents();
+
+		const $mc4wp = $('.mc4wp-form');
+
+		if ($mc4wp.hasClass('mc4wp-form-submitted')) {
+			$('html, body').animate({
+				scrollTop: document.body.scrollHeight,
+			}, 200);
+		}
 	}
 }

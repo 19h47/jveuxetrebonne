@@ -16,7 +16,7 @@
 	);
 
 	@mixin meta-style() {
-		@extend .d-inline-block, %font-title, %margin-0, %font-semibold;
+		@extend .d-inline-block, %font-family-title, %margin-0, %font-weight-semibold;
 		@include letter-spacing( 20 );
 
 		font: {
@@ -106,7 +106,7 @@
 					&::after {
 						animation-name: filler;
 						animation-iteration-count: 1;
-						animation-timing-function: cubic-bezier( 0.81, 0.15, 0.26, 0.99 );
+						animation-timing-function: map-get( $easings, ease-out-expo );
 					    animation-fill-mode: forwards;
 					}
 				}

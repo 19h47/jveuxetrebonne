@@ -2,259 +2,242 @@
  * Media print
  */
 @media print {
-	html, body {
-    	width: 210mm;
-    	height: 297mm;
-  	}
 
-	p {
-    	page-break-inside: avoid;
-  	}
-
+	//
 	.print-w-100 {
-		flex: 0 0 100%;
-		max-width: 100%;
+		padding-right: #{ $grid-gutter-width / 2 }!important;
+		padding-left: #{ $grid-gutter-width / 2 }!important;
+
+		width: 100%!important;
+		max-width: none;
+		flex: 1;
 	}
 
-	.Single,
-	.Category-food {
+	.Single {
+		.Aside,
+		.Comments,
+		.Contact,
+		.Footer,
+		.Recipe,
+		.Recipe-header,
+		.Relationship-posts,
+		.Search,
+		// .Single-aside,
+		.Single-header,
+		.Single-introduction,
+		.Heading {
+			display: none;
+		}
 
-		.l-wrapper {
-			margin-bottom: 0;
+		.page-content {
+			@include margin( bottom 0 );
+
 			box-shadow: none;
 		}
 
-		.l-container {
-			@include padding(
-				right ( $grid-gutter-width / 2 )
-				left ( $grid-gutter-width / 2 )
-			);
-		}
+		.Single-article {
+			@include margin( top 0 right 0 left 0 );
+			@include padding( top 0 right 0 left 0 );
 
-		.Aside,
-		.Search,
-
-		.Single-header,
-		.Single-introduction,
-		.Single-aside,
-		.Single-article .aside,
-		.Single-article .title,
-		.Single-article .date,
-		.Single-article .preview,
-		.Single-article .content,
-
-		.Recipe-description,
-		.Recipe-steps,
-		.Recipe-gallery,
-		.Recipe-child .items,
-
-		.Slider-recipe,
-
-		.Heading,
-		.Relationship-posts,
-		.Comments,
-		.Footer,
-		.Contact {
-			display: none!important;
-		}
-
-		.Recipe-header {
-			@include margin( top 0 );
-
-			.Link-readmore {
+			& > .title,
+			& > .date,
+			& > .preview,
+			& > .content {
 				display: none;
 			}
 		}
 
-		.Single-article {
-			@include padding( right 0 left 0 );
-			top: auto;
+		.Recipe-child {
+			& > .items {
+				display: none;
+			}
+		}
+	}
+
+	// .Recipe-print
+	.Recipe-print {
+		display: block!important;
+
+		&__header {
+			> *:last-child {
+				@include margin( bottom 0 );
+			}
 		}
 
+		&__title {
+			@include margin( top 0 bottom 0 );
+			font-size: 40px;
+			font-family: 'Lora', serif;
+			font-weight: 500;
+			line-height: 58px;
+		}
 
-		.Recipe-print {
+		&__collection {
+			@include margin( top #{ $base-line-height }px bottom #{ $base-line-height }px );
+			font-family: 'Poppins', sans-serif;
+		}
+
+		&__date {
+			@include margin( top 0!important bottom #{ $base-line-height }px );
+
+			color: the_color( blue, light-grayish );
+			font-size: 13px;
+			font-family: 'Poppins', sans-serif;
+			font-weight: 600;
+			line-height: 29px;
+		}
+
+		&__thumbnail {
+			@include margin( right auto left auto );
+
 			display: block;
+			width: auto;
+			height: #{ $base-line-height * 10 }px;
+			max-width: 100%;
 
-			h1 {
-				@include letter-spacing( 20 );
+			object-fit: contain;
+			object-position: center;
+		}
+
+		.Recipe-summary {
+			@include margin( top #{ $base-line-height }px bottom #{ $base-line-height }px );
+
+			height: auto;
+			flex-direction: column;
+			background-color: transparent;
+			color: the_color( gray, very-dark-01 );
+
+			li {
 				@include margin( top 0 bottom 0 );
-				@include padding( top 0 bottom 0 );
 
-				font-family: 'Lora', serif;
-				font-size: 26.37pt;
-				font-weight: 400;
-				color: the-color( orange, very-dark );
-				line-height: normal;
-			}
-
-			p {
-				font-family: 'Poppins', sans-serif;
-			}
-
-			.thumbnail {
-				height: 300pt;
-				width: 100%;
-				margin-bottom: 22.3pt;
-
-				img {
-					@include size( 100% );
-					object-fit: cover;
-					object-position: center;
-				}
-			}
-
-			.date {
-				@include margin( top 11.8pt bottom 21.4pt );
-				@include letter-spacing( 25 );
-
-				display: block!important;
-				font-size: 8.57pt;
-				font-family: 'Poppins', sans-serif;
-				font-weight: 600;
-				color: the_color( blue, light-grayish-02 );
-			}
-
-			.summary-title {
-				@include margin( top 30pt bottom 10pt );
-				font-size: 9.31pt;
-				line-height: 16.8pt;
-				font-weight: 600;
-
-				p { @include margin( top 0 bottom 0 ); }
-			}
-
-			.summary {
-				@include margin( top 22.3pt );
-				@include padding( top 10.3pt bottom 10.3pt );
-				display: inline-block!important;
-				border: {
-					top: {
-						color: currentColor;
-						style: solid;
-						width: 1px;
-					}
-
-					bottom: {
-						color: currentColor;
-						style: solid;
-						width: 1px;
-					}
-				}
-				width: 100%;
-			}
-
-
-			.person-number,
-			.preparation-time,
-			.cooking-time {
-				@include margin( right ( 26.9 / 2 ) * 1pt left ( 26.9 / 2 ) * 1pt );
-				font-size: 8.57pt;
-				line-height: 11.84 pt;
-				font-family: 'Poppins', sans-serif;
-
-				&::before {
-					@include size( 13.9pt, 14.6pt );
-					@include margin( right 18.75pt );
-					display: inline-block!important;
-					vertical-align: middle;
-					background: {
-						position: center;
-						size: 100%;
-					}
-					content: '';
-				}
+				text-align: left;
+				flex: 1;
 			}
 
 			.person-number {
-				@include margin( left 10.3pt );
 				&::before {
-					background: {
-						image: url('#{ map-get( $directories, svg )}person-number-orange.svg' );
-					}
+					background-image: url('#{ map-get( $directories, svg )}person-number-gray.svg' );
 				}
 			}
+
 			.preparation-time {
 				&::before {
-					background: {
-						image: url('#{ map-get( $directories, svg )}preparation-time-orange.svg' );
-					}
+					background-image: url('#{ map-get( $directories, svg )}preparation-time-gray.svg' );
 				}
 			}
+
 			.cooking-time {
 				&::before {
-					background: {
-						image: url('#{ map-get( $directories, svg )}cooking-time-orange.svg' );
-					}
+					background-image: url('#{ map-get( $directories, svg )}cooking-time-gray.svg' );
 				}
 			}
+		}
 
-			.ingredients {
-				@include margin( top 0 right 0 bottom 0 left 0 );
-				column-count: 3;
+		&__description {
+			@include margin( top 0 );
+			font-size: 16px;
+			font-weight: 600;
+			line-height: #{ $base-line-height }px;
+		}
 
-				li {
-					@include margin( top 15pt bottom 15pt );
-				}
+		&__ingredients {
+			ul {
+				@include padding( left $grid-gutter-width );
+				@include margin( top 0 bottom 0 );
 
-				ul {
-					@include padding( left 15pt );
-				}
+				font-size: 14px;
+				line-height: #{ $base-line-height }px;
+				color: the_color( gray, very-dark-01 );
+			}
+		}
+		&__ingredient {
+			@include margin( top 0 bottom 0 );
+		}
 
-				ul > :first-child {
-					@include margin( top  -15pt );
-				}
+		&__precisions {
+			@include margin( top #{ $base-line-height / 2 }px bottom #{ $base-line-height }px );
+			font-family: 'Poppins', sans-serif;
+			font-size: 14px;
+			line-height: #{ $base-line-height }px;
+			color: the_color( gray, very-dark-01 );
 
-
-				.ingredient {
-					font-size: 9pt;
-					line-height: 16.8pt;
-					font-family: 'Poppins', sans-serif;
-					font-weight: 500;
-
-				}
+			> *:first-child {
+				@include margin( top 0 );
 			}
 
-			.steps {
-				@include margin( top 30pt );
-				font-size: 9pt;
-				line-height: 14.96pt;
+			> *:last-child {
+				@include margin( bottom 0 );
+			}
+		}
 
-				strong {
-					font-size: 11.64pt;
-					line-height: 22.12pt;
-					color: the_color( orange, very-dark );
-				}
+		&__steps {
+			@include margin( top #{ $base-line-height * 2 }px bottom #{ $base-line-height * 2 }px );
 
-				p {
-					color: the_color( orange, very-dark-grayish );
-				}
+			font-family: 'Poppins', sans-serif;
+		}
+
+		&__step {
+			@include margin( top #{ $base-line-height }px bottom #{ $base-line-height }px );
+
+			font-family: 'Lora', serif;
+			font-size: 16px;
+			font-weight: 300;
+			line-height: 29px;
+
+			* {
+				color: the_color( gray, very-dark-01 );
 			}
 
-			footer {
-				@include margin( top 20pt );
-				@include padding( top 10.8pt bottom 18.7pt );
+			> *:first-child {
+				@include margin( top 0 );
+			}
 
-				align-items: center;
-				display: flex!important;
-				justify-content: space-between;
+			> *:last-child {
+				@include margin( bottom 0 );
+			}
 
-				border-top: {
-					color: the_color( blue, light-grayish-03 );
-					style: solid;
-					width: 1px;
+			&__title {
+				@include margin( top 0 bottom 0 );
+				color: the_color( gray, very-dark );
+
+				font-size: 20px;
+				font-weight: 700;
+				line-height: 29px;
+
+				& + * {
+					@include margin( top 0 );
 				}
+			}
+		}
 
-				.logo {
-					@include size( 37.4pt, 28.8pt );
-				}
+		// .Recipe-print__footer
+		&__footer {
+			@include margin( top #{ $base-line-height }px );
+			@include padding( top #{ $base-line-height }px bottom #{ $base-line-height }px );
 
-				.copyright {
-					@include margin( top 0 bottom 0 );
+			align-items: center;
+			display: flex!important;
+			justify-content: space-between;
+			font-family: 'Poppins', sans-serif;
 
-					color: the_color( orange, very-dark-grayish-01 );
-					font-size: 8pt;
-					font-weight: 600;
-				}
+			border-top: {
+				color: the_color( blue, light-grayish-03 );
+				style: solid;
+				width: 1px;
+			}
+
+			&__logo {
+				@include size( #{ $base-line-height * 2 }px );
+
+				object-position: center;
+				object-fit: scale-down;
+			}
+
+			&__copyright {
+				@include margin( top 0 bottom 0 );
+
+				color: the_color( orange, very-dark-grayish-01 );
+				font-weight: 600;
 			}
 		}
 	}

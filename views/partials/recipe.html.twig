@@ -7,11 +7,11 @@ partials/recipe
 #}
 
 <div class="Recipe">
-	{% include 'partials/recipe-print.html.twig' %}
-
 	{% if post.layout == 1 %}
 		{% include 'partials/carousel-recipe.html.twig' %}
 	{% else %}
 		{% include 'partials/recipe-simple.html.twig' %}
 	{% endif %}
 </div>
+
+{% include 'partials/recipe-print.html.twig' %}

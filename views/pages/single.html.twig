@@ -12,19 +12,12 @@
 	{% include 'partials/menu-single.html.twig' %}
 
 	<div class="Single-introduction">
-		{% if post.thumbnail %}
-			<img
-				src="{{ Image( post.thumbnail ).src }}"
-				alt="{{ Image( post.thumbnail ).alt | default( post.title ) }}"
-				width="{{ Image( post.thumbnail ).width }}"
-				height="{{ Image( post.thumbnail ).height }}"
-			/>
-		{% endif %}
+		{% include 'partials/image.html.twig' with { image: post.thumbnail, loading: 'eager' } %}
 	</div>
 
 	<div class="l-container">
 		<div class="row">
-			<div class="col-md-2 d-print-none d-none d-md-block">
+			<div class="col-md-2 d-none d-md-block d-print-none">
 				<aside class="Single-aside">
 
 					<div class="Breadcrumb d-none d-md-block">
@@ -109,63 +102,62 @@
 				</aside>
 			</div>
 
-			<div class="col-12 col-md-10 print-w-100">
-				<div style="margin: 0 -15px;">
+			<div class="col-12 col-md-10 print-w-100 padding-md-0">
 
-					<article class="Single-article js-single-content" itemscope itemtype="http://schema.org/Article">
-						<meta itemprop="author" content="{{ post.author }}">
-						<meta itemprop="datePublished" content="{{ post.post_date }}">
+				<article class="Single-article js-single-content" itemscope itemtype="http://schema.org/Article">
+					<meta itemprop="author" content="{{ post.author }}">
+					<meta itemprop="datePublished" content="{{ post.post_date }}">
 
-						<h1 class="title" itemprop="name">{{- post.title -}}</h1>
+					<h1 class="title" itemprop="name">{{- post.title -}}</h1>
 
-						<p class="date">
-							{{- pll__( 'Publié le' ) -}}&nbsp;{{- post.post_date | date( 'd\.m\.Y' ) -}}
-						</p>
+					<p class="date">
+						{{- pll__( 'Publié le' ) -}}&nbsp;{{- post.post_date | date( 'd\.m\.Y' ) -}}
+					</p>
 
-						{{- post.get_field( 'preview' ) ? "<p class=\"preview\">#{ post.get_field( 'preview' ) | nl2br | raw }</p>" -}}
-						{{- post.content ? "<div class=\"content\" itemprop=\"description\">#{ post.content }</div>" | raw : '' -}}
+					{{- post.get_field( 'preview' ) ? "<p class=\"preview\">#{ post.get_field( 'preview' ) | nl2br | raw }</p>" -}}
+					{{- post.content ? "<div class=\"content\" itemprop=\"description\">#{ post.content }</div>" | raw : '' -}}
 
-						{% if post.get_field( 'recipes' ) %}
-							<header class="Recipe-header Recipe-header--category-food">
-								<h2>
-									{{- post.get_field( 'recipes' ) | length > 1 ? pll__( 'Les recettes pas à pas' ) : pll__( 'La recette pas à pas' )  -}}
-								</h2>
-								<button id="print" type="button" class="Link-readmore Link-marker Link-marker--blue print page-block" data-node-type="Print">
-									<span>{{- pll__( 'Imprimer' ) -}}</span>
-								</button>
-							</header>
+					{% if post.get_field( 'recipes' ) %}
+						<header class="Recipe-header Recipe-header--category-food">
+							<h2>
+								{{- post.get_field( 'recipes' ) | length > 1 ? pll__( 'Les recettes pas à pas' ) : pll__( 'La recette pas à pas' )  -}}
+							</h2>
+							<button id="print" type="button" class="Link-readmore Link-marker Link-marker--blue print page-block" data-node-type="PrintBlock">
+								<span>{{- pll__( 'Imprimer' ) -}}</span>
+							</button>
+						</header>
 
-							<div id="recipes" class="Recipe-child page-block" data-node-type="Recipes">
-								{% if post.get_field( 'recipes' ) %}
-									<ul class="items">
-										{% for recipe in post.get_field( 'recipes' ) %}
-											<li class="item">
-												<button type="button" class="js-button{{ loop.index == 1 ? ' is-active' }}" data-id="{{ recipe.id }}">
-													<span>{{- recipe.title -}}</span>
-												</button>
-											</li>
-										{% endfor %}
-									</ul>
-								{% endif %}
+						<div id="recipes" class="Recipe-child page-block" data-node-type="Recipes">
+							{% if post.get_field( 'recipes' ) %}
+								<ul class="items">
+									{% for recipe in post.get_field( 'recipes' ) %}
+										<li class="item">
+											<button type="button" class="js-button{{ loop.index == 1 ? ' is-active' }}" data-id="{{ recipe.id }}">
+												<span>{{- recipe.title -}}</span>
+											</button>
+										</li>
+									{% endfor %}
+								</ul>
+							{% endif %}
 
-								<div class="js-container Recipe-container">
-									{% include 'partials/recipe.html.twig' with { post: post.get_field( 'recipes' )[0] } %}
-								</div>
-
+							<div class="js-container Recipe-container">
+								{% include 'partials/recipe.html.twig' with { post: post.recipes[0] } %}
 							</div>
-						{% endif %}
 
-						{%
-							include 'components/aside.html.twig'
-							with {
-								context: 'single',
-								shares: true,
-								socials: false,
-								subscribe: true
-							}
-						%}
-					</article>
-				</div>
+						</div>
+					{% endif %}
+
+					{%
+						include 'components/aside.html.twig'
+						with {
+							context: 'single',
+							shares: true,
+							socials: false,
+							subscribe: true
+						}
+					%}
+				</article>
+
 			</div>
 		</div>
 	</div>

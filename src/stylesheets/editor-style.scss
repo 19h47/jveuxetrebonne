@@ -10,14 +10,14 @@
 /**
  * Vendors
  */
-@import 
+@import
 	'ress',
 	'vendors/bootstrap-custom';
 
 /**
  * Abstracts
  */
-@import 
+@import
 	'abstracts/variables',
 	'abstracts/functions',
 	'abstracts/mixins',
@@ -50,14 +50,14 @@ body {
 
 @include reset-selection( get_color( black ), get_color( white ) );
 
-a, 
+a,
 button {
     cursor: pointer;
     outline: none;
 }
 
 a {
-	@extend %font-medium, %text-decoration-none;;
+	@extend %font-weight-medium, %text-decoration-none;;
 	color: ger_color( black );
 
 	&:active,
