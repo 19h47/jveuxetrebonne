@@ -7,7 +7,7 @@
 	<ul class="Recipe-summary">
 		{%- if post.person_number -%}
 			<li class="person-number" itemprop="recipeYield">
-				{{- post.get_field( 'person_number' ) -}}&nbsp;{{ pll__( 'pers.' ) -}}
+				{{- post.get_field( 'person_number' ) -}}&nbsp;{{ post.get_field( 'person_number' ) > 1 ? pll__( 'personnes' ) : pll__( 'personne' ) -}}
 			</li>
 		{%- endif -%}
 

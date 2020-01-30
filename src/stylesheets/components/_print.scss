@@ -3,6 +3,10 @@
  */
 @media print {
 
+	body {
+		-webkit-print-color-adjust: exact!important;
+	}
+
 	//
 	.print-w-100 {
 		padding-right: #{ $grid-gutter-width / 2 }!important;
@@ -99,8 +103,8 @@
 			height: #{ $base-line-height * 10 }px;
 			max-width: 100%;
 
-			object-fit: contain;
-			object-position: center;
+			// object-fit: contain;
+			// object-position: center;
 		}
 
 		.Recipe-summary {

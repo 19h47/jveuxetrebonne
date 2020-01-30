@@ -15,7 +15,7 @@
 			{{- pll__( 'Publié le' ) -}}&nbsp;{{- post.post_date | date( 'd\.m\.Y' ) -}}
 		</p>
 
-		{% include 'partials/image.html.twig' with { image: post.thumbnail, classes: [ 'Recipe-print__thumbnail' ], lazy: 'eager' } %}
+		{% include 'partials/image.html.twig' with { image: post.thumbnail, classes: [ 'Recipe-print__thumbnail' ], loading: 'eager' } %}
 		{% include 'partials/recipe-summary.html.twig' %}
 
 		{% for collection in post.get_field( 'collection' ) %}
