@@ -68,14 +68,11 @@
 	}
 
 
-	/**
-	 * Description
-	 *
-	 * @uses .Recipe-description
-	 */
+	// .Recipe-description
 	&-description { box-shadow: 0px 1px 15px 0px rgba( the_color( gray, very-dark ), .07 ); }
 
 
+	// .Recipe-summary
 	&-summary {
 		@extend %font-family-title, %font-weight-semibold, %padding-0, %margin-0;
 		@extend .background-orange-very-soft-04, .color-white, .d-flex, .align-items-center, .justify-content-center;
@@ -85,73 +82,49 @@
 		line-height: #{ $base-line-height }px;
 		height: #{ $base-line-height * 2 }px;
 
-		p {
-			@extend %margin-0;
-			@extend .d-flex, .justify-content-center, .align-items-center;
-
-			height: 100%;
-		}
-
 		.person-number,
 		.preparation-time,
 		.cooking-time {
-			@extend %text-align-center;
+			@extend %text-align-center, %margin-0;
+
+			flex: 1;
+
+			border-right: {
+				color: rgba( the_color( white ), .45  );
+				style: solid;
+				width: 1px;
+			}
 
 			&::before {
 				@include size( 25px );
 				@include margin( right 10px );
 				@extend .d-inline-block, %vertical-align-middle;
 
+				background-size: 100%;
 				content: '';
 			}
-		}
 
-		.person-number,
-		.preparation-time {
-			border-right: {
-				color: rgba( the_color( white ), .45  );
-				style: solid;
-				width: 1px;
+			&:last-child {
+				border-right: none;
 			}
 		}
 
-		.person-number {
-			width: 100%;
-
-			&::before {
-				background-image: url('#{ map-get( $directories, svg )}person-number.svg' );
-			}
-		}
-
-		.preparation-time {
-			width: 100%;
-
-			&::before {
-				background-image: url('#{ map-get( $directories, svg )}preparation-time.svg' );
-			}
-		}
-
-		.cooking-time {
-			width: 100%;
-
-			&::before {
-				background-image: url('#{ map-get( $directories, svg )}cooking-time.svg' );
+		@each $element in person-number, preparation-time, cooking-time {
+			.#{ $element } {
+				&::before {
+					background-image: url('#{ map-get( $directories, svg )}#{ $element }.svg' );
+				}
 			}
 		}
 	}
 
 
-	/**
-	 * Ingredients
-	 *
-	 * @uses .Recipe-ingredients
-	 */
-	&-ingredients {}
+	// .Recipe-ingredients
+	// &-ingredients {}
 
 
 	// .Recipe-steps
 	&-steps {
-
 		color: the_color( gray, very-dark-01 );
 
 		h3 {
@@ -174,11 +147,7 @@
 	}
 
 
-	/**
-	 * Collection
-	 *
-	 * @uses .Recipe-collection
-	 */
+	// .Recipe-collection
 	&-collection {
 		@extend .d-inline-block, %w-100;
 		@include padding(

@@ -226,7 +226,7 @@
 
 			.Recipe-summary {
 				@include margin( top #{ $base-line-height }px bottom #{ $base-line-height }px );
-				@extend .flex-column;
+
 				background-color: transparent;
 				height: auto;
 				color: the_color( gray, very-dark-01 );
@@ -239,7 +239,6 @@
 				@extend %text-align-left;
 
 				font-size: 14px;
-				flex: 1;
 
 				&::before {
 					@include size( #{ $base-line-height * 0.5 }px );

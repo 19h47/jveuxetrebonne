@@ -74,15 +74,18 @@ class RecipePost extends Post {
 		$putput = array();
 
 		if ( 0 < $days ) {
-			$output[] = $this->pluralize( $days, pll__( 'jour' ), pll__( 'jours' ) );
+			// $output[] = $this->pluralize( $days, pll__( 'jour' ), pll__( 'jours' ) );
+			$output[] = $days . ' ' . pll__( 'j' );
 		}
 
 		if ( 0 < $hours ) {
-			$output[] = $this->pluralize( $hours, pll__( 'heure' ), pll__( 'heures' ) );
+			// $output[] = $this->pluralize( $hours, pll__( 'heure' ), pll__( 'heures' ) );
+			$output[] = $hours . ' ' . pll__( 'h' );
 		}
 
 		if ( 0 < $minutes ) {
-			$output[] = $this->pluralize( $minutes, pll__( 'minute' ), pll__( 'minutes' ) );
+			// $output[] = $this->pluralize( $minutes, pll__( 'minute' ), pll__( 'minutes' ) );
+			$output[] = $minutes . ' ' . pll__( 'min' );
 		}
 
 		return $output;
