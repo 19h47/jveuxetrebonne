@@ -183,7 +183,7 @@ class Post {
 		delete_transient( 'jveb_slider_videos' );
 		delete_transient( "jveb_relationship_post_$post_id" );
 		delete_transient( 'jveb_front_page_posts_' . pll_get_post_language( $post_id, 'slug' ) );
-		delete_transient( 'jveb_sticky_posts' . pll_get_post_language( $post_id, 'slug' ) );
+		delete_transient( 'jveb_sticky_posts_' . pll_get_post_language( $post_id, 'slug' ) );
 		delete_transient( 'jveb_front_page_posts_count_' . pll_get_post_language( $post_id, 'slug' ) );
 	}
 

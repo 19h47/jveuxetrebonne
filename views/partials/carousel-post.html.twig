@@ -1,0 +1,28 @@
+{#
+
+partials/carousel-post
+
+@author  Jérémy Levron <jeremylevron@19h47.fr
+
+#}
+
+<div id="carousel-post-{{ id }}" class="Carousel-post page-block" data-node-type="CarouselPostBlock">
+
+    <div class="Carousel-post__items js-carousel-post-container">
+        {% for image in post.gallery %}
+	        <div class="Carousel-post__item">
+				{% include 'partials/image.html.twig' with { classes: [ 'Carousel-post__img' ], image: image, attributes: { itemprop : image } } %}
+	        	{# <img itemprop="image" class="Carousel-post__img" src="{{ TimberImage( image ).src( 'large' ) }}" alt="{{ TimberImage( image ).alt | default( post.title ) }}" width="{{ TimberImage( image ).width }}" height="{{ TimberImage( image ).height }}"> #}
+	        </div>
+    	{% endfor %}
+    </div>
+
+    {% if post.gallery | length > 1 %}
+
+	    <div class="Carousel-post__progressbar js-progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+
+		{% include 'partials/carousel-navigation.html.twig' with { count: post.gallery | length } %}
+
+	{% endif %}
+
+</div>

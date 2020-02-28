@@ -4,9 +4,9 @@ import 'slick-carousel';
 import sliderNavigation from 'Utils/sliderNavigation';
 import { AbstractBlock } from 'starting-blocks';
 
-export default class SliderPost extends AbstractBlock {
+export default class CarouselPostBlock extends AbstractBlock {
 	constructor(container) {
-		super(container, 'SliderPost');
+		super(container, 'CarouselPostBlock');
 	}
 
 	async init() {
@@ -24,7 +24,7 @@ export default class SliderPost extends AbstractBlock {
 		};
 
 		$(this.rootElement)
-			.find('.js-slider-post-container')
+			.find('.js-carousel-post-container')
 
 			.on('init afterChange', (event, slick) => {
 				sliderNavigation({ slider, count: slick.slideCount, current: slick.currentSlide });

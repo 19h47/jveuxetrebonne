@@ -1,11 +1,11 @@
 /**
-* Gallery WordPress
+* Carousel: post
 *
-* Gallery shortcode transformed into slider
+* Gallery shortcode transformed into carousel
 *
-* @uses .Slider-post
+* @uses .Carousel-post
 */
-.Slider-post {
+.Carousel-post {
 	$this: &;
 
 	@include margin(
@@ -57,7 +57,7 @@
 		}
 	}
 
-	// .Slider-post__img
+	// .Carousel-post__img
 	&__img {
 		@extend %Position-absolute-center, .d-inline-block, %vertical-align-middle;
 		@include size( 100% );

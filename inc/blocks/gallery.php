@@ -23,7 +23,7 @@ function gallery_render( array $attributes, $content ) {
 		$context['post']['count_attachments'] = $count_ids;
 	}
 
-	return Timber::compile( 'partials/slider-post.html.twig', $context );
+	return Timber::compile( 'partials/carousel-post.html.twig', $context );
 }
 
 function register_gallery() {

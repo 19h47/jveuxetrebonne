@@ -63,6 +63,7 @@
         "architecture": "github:19h47/architecture",
         "bootstrap": "^4.4.1",
         "core-js": "^3.6.4",
+        "dotenv": "^8.2.0",
         "instafeed.js": "^1.4.1",
         "object-fit-images": "^3.2.4",
         "plyr": "^3.5.6",

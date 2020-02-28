@@ -7,12 +7,6 @@
 // Node modules
 const path = require('path');
 
-// Plugins
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
-const WebpackNotifierPlugin = require('webpack-notifier');
-
 /**
  * Resolve
  *
@@ -23,6 +17,16 @@ function resolve(dir) {
 	return path.join(__dirname, '..', dir)
 }
 
+
+// Plugins
+const webpack = require('webpack');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const WebpackNotifierPlugin = require('webpack-notifier');
+const dotenv = require('dotenv').config({ path: resolve('.env') });
+
+
 // Manifest plugin
 const manifestPlugin = new ManifestPlugin({
 	publicPath: 'dist/'
@@ -31,6 +35,9 @@ const manifestPlugin = new ManifestPlugin({
 module.exports = {
 	externals: {
 		jquery: 'jQuery'
+	},
+	output: {
+		publicPath: process.env.PUBLIC_PATH
 	},
 	resolve: {
 		alias: {
@@ -189,6 +196,9 @@ module.exports = {
 			title: 'Webpack',
 			excludeWarnings: true,
 			alwaysNotify: true
+		}),
+		new webpack.DefinePlugin({
+			'process.env': dotenv.parsed
 		}),
 	],
 };

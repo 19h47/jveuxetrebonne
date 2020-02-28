@@ -23,6 +23,7 @@ $context['posts'] = Helper::transient(
 				'category__in'        => 1411,
 				'posts_per_page'      => 5,
 				'ignore_sticky_posts' => 1,
+				'post_status'         => 'publish',
 			),
 			// 'VideoPost'
 		);
@@ -31,4 +32,4 @@ $context['posts'] = Helper::transient(
 	},
 );
 
-Timber::render( 'blocks/slider-videos.html.twig', $context );
+Timber::render( 'blocks/carousel-videos.html.twig', $context );

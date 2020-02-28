@@ -9,9 +9,8 @@ class Helpers {
 	 * @return bool|array
 	 */
 	public static function get_theme_manifest() {
-		$request = wp_remote_get( get_template_directory_uri() . '/dist/manifest.json' );
-		$body    = wp_remote_retrieve_body( $request );
+		$file = get_template_directory() . '/dist/manifest.json';
 
-		return json_decode( $body, true );
+		return json_decode( file_get_contents( $file ), true );
 	}
 }
