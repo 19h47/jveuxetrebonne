@@ -60,7 +60,9 @@
 	// .Carousel-post__img
 	&__img {
 		@extend %Position-absolute-center, .d-inline-block, %vertical-align-middle;
-		@include size( 100% );
+
+		width: 100%;
+		height: 100%!important;
 
 		transform: translate3d( ( $grid-gutter-width * -1 ), 0, 0 );
 		transition: .6s ease;

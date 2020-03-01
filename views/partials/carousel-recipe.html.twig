@@ -28,7 +28,7 @@ partials/carousel-recipe
 				<div class="item">
 					<div class="item__inner">
 						{% if collection.video %}
-							<video class="js-video" preload="auto" muted loop playsinline>
+							<video class="js-video" preload="none" muted loop playsinline>
 								<source src="{{ collection.video }}" type="video/mp4">
 							</video>
 						{% elseif collection.image %}
@@ -60,7 +60,7 @@ partials/carousel-recipe
 					<div class="item">
 						<div class="item__inner">
 							{% if step.video %}
-								<video class="js-video" preload="auto" muted loop playsinline>
+								<video class="js-video" preload="none" muted loop playsinline>
 									<source src="{{ step.video }}" type="video/mp4">
 								</video>
 							{% else %}
@@ -96,7 +96,7 @@ partials/carousel-recipe
 			<div class="item">
 				<div class="item__inner image-mobile">
 					{% if collection.video %}
-						<video class="js-video" preload="auto" muted loop playsinline>
+						<video class="js-video" preload="none" muted loop playsinline>
 							<source src="{{ collection.video }}" type="video/mp4">
 						</video>
 					{% elseif collection.image %}
@@ -127,7 +127,7 @@ partials/carousel-recipe
 				<div class="item">
 					<div class="item__inner image-mobile">
 						{% if step.video %}
-							<video class="js-video" preload="auto" muted loop playsinline>
+							<video class="js-video" preload="none" muted loop playsinline>
 								<source src="{{ step.video }}" type="video/mp4">
 							</video>
 						{% else %}
