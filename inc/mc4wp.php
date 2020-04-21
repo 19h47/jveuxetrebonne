@@ -1,6 +1,8 @@
 <?php
 /**
  * MC4WP
+ *
+ * @package JVEB
  */
 
 use Timber\{ Timber };

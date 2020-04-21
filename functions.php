@@ -15,6 +15,6 @@
  */
 require_once get_template_directory() . '/vendor/autoload.php';
 
-use JVEB\App as App;
+use JVEB\{ App };
 
-$app = new App( 'JVEB', wp_get_theme()->Version ); // phpcs:ignore
+new App( 'JVEB', wp_get_theme()->Version );

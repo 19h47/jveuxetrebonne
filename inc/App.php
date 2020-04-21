@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore
 /**
  * App
  *
@@ -67,8 +67,6 @@ class App extends Timber {
 	public function __construct( string $theme_name, string $theme_version ) {
 		$this->theme_name    = $theme_name;
 		$this->theme_version = $theme_version;
-
-		Transients::get_template_instagram();
 
 		$this->setup();
 		$this->load_dependencies();
@@ -452,7 +450,7 @@ class App extends Timber {
 
 		// Remove native version of jQuery and use custom CDN version instead.
 		wp_deregister_script( 'jquery' );
-		wp_register_script( 'jquery', '//code.jquery.com/jquery-3.4.1.min.js', false, $this->get_theme_version(), true );
+		wp_register_script( 'jquery', '//code.jquery.com/jquery-3.5.0.min.js', false, $this->get_theme_version(), true );
 
 		// jQuery Auto Complete.
 		wp_register_script(
@@ -495,7 +493,7 @@ class App extends Timber {
 				'search_api'             => home_url( 'wp-json/jveb/v2/search' ),
 				'current_url'            => home_url( add_query_arg( array(), $wp->request ) ),
 				'nonce'                  => wp_create_nonce( 'security' ),
-				'template_instagram'     => get_transient( 'jveb_template_instagram' ),
+				'template_instagram'     => Transients::get_template_instagram(),
 			)
 		);
 

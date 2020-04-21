@@ -2,10 +2,11 @@
 /**
  * Display link from Link plugin
  *
- * @file        component-link
- * @package     jveb
+ * @package     JVEB
  * @author      Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
  */
+
+use Timber\{ Timber };
 
 $context = Timber::get_context();
 
@@ -18,6 +19,5 @@ $context['links'] = Timber::get_posts(
 		'order'          => 'ASC',
 	)
 );
-
 
 Timber::render( 'components/links.html.twig', $context );

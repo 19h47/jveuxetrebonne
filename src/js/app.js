@@ -1,11 +1,7 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-
-import StartingBlocks, {
-	polyfills,
-} from 'starting-blocks';
-import Guid from 'Common/Guid';
+import StartingBlocks, { polyfills } from 'starting-blocks';
 import WebpackAsyncBlockBuilder from 'Services/WebpackAsyncBlockBuilder';
+
+import Guid from 'Common/Guid';
 import Menu from 'Common/Menu';
 
 import DefaultPage from 'Pages/DefaultPage';
@@ -14,8 +10,9 @@ import objectFitImages from 'object-fit-images';
 
 const production = 'production' === process.env.NODE_ENV;
 
-
 (() => {
+	window.MAIN_EXECUTED = true;
+
 	// Declare polyfills.
 	polyfills();
 	objectFitImages(null, { watchMQ: true });
@@ -36,6 +33,5 @@ const production = 'production' === process.env.NODE_ENV;
 	startingBlocks.provider('BlockBuilder', WebpackAsyncBlockBuilder);
 	startingBlocks.instanceFactory('default-page', c => new DefaultPage(c));
 
-	// Boot, boot, boot!
 	startingBlocks.boot();
 })();

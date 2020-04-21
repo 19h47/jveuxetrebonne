@@ -1,6 +1,7 @@
 <?php
 /**
- * @file category-videos
+ * Category: videos
+ *
  * @package JVEB
  * @author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
  */
@@ -11,7 +12,7 @@ $context = Timber::get_context();
 
 $context['posts'] = Timber::get_posts();
 
-$category = $wp_query->get_queried_object();
+$category = get_queried_object();
 
 $context['category'] = array(
 	'term_id'     => $category->term_id,

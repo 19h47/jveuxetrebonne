@@ -15,17 +15,16 @@ $context = Timber::get_context();
 
 // Add socials to context.
 $socials      = array();
-$socials_name = array( 'YouTube', 'Facebook', 'Twitter', 'Instagram' );
 
 // @TODO: get socials from functions.php, and remove duplicate.
-foreach ( $socials_name as $name ) {
-	${ strtolower( $name ) } = array(
-		'slug' => strtolower( $name ),
-		'name' => $name,
-		'url'  => get_option( strtolower( $name ) ),
+foreach ( array( 'YouTube', 'Facebook', 'Twitter', 'Instagram' ) as $social ) {
+	${ strtolower( $social ) } = array(
+		'slug' => strtolower( $social ),
+		'name' => $social,
+		'url'  => get_option( strtolower( $social ) ),
 	);
 
-	$socials[ strtolower( $name ) ] = ${ strtolower( $name ) };
+	$socials[ strtolower( $social ) ] = ${ strtolower( $social ) };
 }
 
 $context['contact']['socials'] = $socials;

@@ -6,7 +6,7 @@ const Instafeed = require('instafeed.js');
 
 require('slick-carousel');
 
-export default class Instagram extends AbstractBlock {
+export default class InstagramPosts extends AbstractBlock {
 	constructor(container) {
 		super(container, 'InstagramPosts');
 	}

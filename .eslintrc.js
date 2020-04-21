@@ -4,31 +4,34 @@ module.exports = {
 		node: true,
 		browser: true,
 	},
-	extends: [
-		'standard',
-		'airbnb-base',
-	],
+	extends: ['standard', 'airbnb-base', 'prettier'],
 	rules: {
 		'arrow-parens': ['error', 'as-needed'],
 		'no-console': 'off',
 		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		'no-tabs': 0,
-		indent: ['error', 'tab', { SwitchCase: 1, ignoredNodes: ["TemplateLiteral"] }],
-		"template-curly-spacing": ["off"],
-		'no-param-reassign': ['error', { props: false }],
+		indent: ['error', 'tab', { SwitchCase: 1, ignoredNodes: ['TemplateLiteral'] }],
+		'template-curly-spacing': ['off'],
+		'no-param-reassign': [
+			'error',
+			{
+				props: true,
+				ignorePropertyModificationsFor: ['state'],
+			},
+		],
 		yoda: [2, 'always'],
-		"import/no-named-as-default": 0
+		'import/no-named-as-default': 0,
 	},
 	parser: 'babel-eslint',
 	parserOptions: {
 		sourceType: 'module',
-		allowImportExportEverywhere: true
+		allowImportExportEverywhere: true,
 	},
 	settings: {
 		'import/resolver': {
-			'webpack': {
-				'config': 'config/webpack.common.js'
+			webpack: {
+				config: 'config/webpack.common.js',
 			},
-		}
+		},
 	},
 };

@@ -1,9 +1,20 @@
 <?php
+/**
+ * Post template
+ *
+ * @package JVEB
+ */
 
-// Apply filter
 add_filter( 'body_class', 'custom_body_class' );
 
-function custom_body_class( $classes ) {
+/**
+ * Custom body class
+ *
+ * @param  array $classes Space-separated string or array of class names to add to the class list.
+ *
+ * @return array $classes
+ */
+function custom_body_class( array $classes ) : array {
 
 	if ( is_front_page() ) {
 		$classes[] = 'Front-page';

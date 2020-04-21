@@ -9,49 +9,44 @@
 
 	@extend .background-white;
 	@include padding(
-		top #{ $base-line-height }px
-		right $grid-gutter-width
-		bottom #{ $base-line-height }px
-		left $grid-gutter-width
+		top #{$base-line-height}px right $grid-gutter-width bottom #{$base-line-height}px left
+			$grid-gutter-width
 	);
 
-	box-shadow: -1px 3px 15px 0px rgba( the_color( orange, very-soft-01 ), .25 );
+	box-shadow: -1px 3px 15px 0px rgba(the_color(orange, very-soft-01), 0.25);
 
-	@include media-breakpoint-up( md ) {
+	@include media-breakpoint-up(md) {
 		@include margin(
-			right calc( #{ percentage( 1 / 12 ) } + #{ $grid-gutter-width / 2 } )
-			left calc( #{ percentage( 1 / 12 ) } + #{ $grid-gutter-width / 2 } )
+			right calc(#{percentage(1 / 12)} + #{$grid-gutter-width / 2}) left
+				calc(#{percentage(1 / 12)} + #{$grid-gutter-width / 2})
 		);
 	}
-
 
 	// .Comment-list
 	&-list {
 		@extend %list-unstyled;
 
 		& > li {
-			@include margin( top #{ $base-line-height / 2 }px right $grid-gutter-width / -2  bottom #{ $base-line-height / 2 }px left $grid-gutter-width / -2 );
+			@include margin(
+				top #{$base-line-height / 2}px right $grid-gutter-width / -2 bottom #{$base-line-height /
+					2}px left $grid-gutter-width / -2
+			);
 		}
 	}
 
-
-	/**
-	 * Comment inner
-	 *
-	 * @uses .Comment-inner
-	 */
+	// .Comment-inner
 	&-inner {
 		@extend .d-inline-block, %vertical-align-top;
 
 		flex: 1;
+		width: 100%;
 
-		@include media-breakpoint-up( md ) {
-			@include padding( right $grid-gutter-width left $grid-gutter-width );
+		@include media-breakpoint-up(md) {
+			@include padding(right $grid-gutter-width left $grid-gutter-width);
 
 			flex: auto;
 		}
 	}
-
 
 	/**
 	 * Comment aside
@@ -64,11 +59,10 @@
 
 		flex: 1;
 
-		@include media-breakpoint-up( md ) {
+		@include media-breakpoint-up(md) {
 			flex: auto;
 		}
 	}
-
 
 	/**
 	 * Author
@@ -79,13 +73,12 @@
 		@extend %font-weight-semibold, %margin-0;
 
 		font-size: 18px;
-		color: the_color( orange, very-soft-01 );
+		color: the_color(orange, very-soft-01);
 
-		@include media-breakpoint-up( md ) {
+		@include media-breakpoint-up(md) {
 			font-size: 16px;
 		}
 	}
-
 
 	/**
 	 * Date
@@ -93,18 +86,17 @@
 	 * @uses .Comment .date
 	 */
 	.date {
-		@include margin( top 0 );
+		@include margin(top 0);
 		@extend %font-family-title, %font-weight-regular;
 		// @include font( 12, 80 );
 
 		font-size: 15px;
-		color: the_color( blue, light-grayish );
+		color: the_color(blue, light-grayish);
 
-		@include media-breakpoint-up( md ) {
+		@include media-breakpoint-up(md) {
 			font-size: 12px;
 		}
 	}
-
 
 	/**
 	 * Content
@@ -113,16 +105,15 @@
 	 */
 	.content {
 		@extend %font-family-title, %margin-top-2, %margin-top-md-3;
-		@include letter-spacing( 15 );
+		@include letter-spacing(15);
 
 		font-size: 16px;
-		line-height: #{ $base-line-height }px;
+		line-height: #{$base-line-height}px;
 
-		@include media-breakpoint-up( md ) {
+		@include media-breakpoint-up(md) {
 			font-size: 13px;
 		}
 	}
-
 
 	/**
 	 * Avatar
@@ -131,33 +122,32 @@
 	 */
 	.avatar {
 		@extend .d-inline-block, %vertical-align-middle;
-		@include size( #{ $base-line-height * 2 }px );
+		@include size(#{$base-line-height * 2}px);
 
-		box-shadow: -1px 3px 15px 0px rgba( the_color( red, bright ), .15 );
+		box-shadow: -1px 3px 15px 0px rgba(the_color(red, bright), 0.15);
 	}
-
 
 	// .Comment .reply
 	.reply {
-		@include margin( bottom 0 );
+		@include margin(bottom 0);
 
-		height: #{ $base-line-height }px;
+		height: #{$base-line-height}px;
 
 		a {
 			@extend .Link-readmore, .Link-marker, .Link-marker--orange-soft, .d-inline-block;
 			@extend %font-family-title, %font-weight-semibold;
 
 			font-size: 18px;
-			line-height: #{ $base-line-height }px;
-			color: the_color( orange, very-soft-01 );
+			line-height: #{$base-line-height}px;
+			color: the_color(orange, very-soft-01);
 
-			@include media-breakpoint-up( md ) {
+			@include media-breakpoint-up(md) {
 				font-size: 13px;
 			}
 
 			&:hover {
 				&::before {
-					opacity: .3!important;
+					opacity: 0.3 !important;
 				}
 			}
 		}

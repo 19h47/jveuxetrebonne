@@ -1,17 +1,15 @@
-/*
- * Copyright © 2017, Rezo Zero
- *
- * @file WebpackAsyncBlockBuilder.js
- * @author Adrien Scholaert <adrien@rezo-zero.com>
- */
-
 import { AbstractBlockBuilder } from 'starting-blocks';
 
+function getModule(nodeTypeName) {
+	return import(`../blocks/${nodeTypeName}` /* webpackChunkName: "block-" */).then(
+		block => block.default,
+	);
+}
+
 export default class WebpackAsyncBlockBuilder extends AbstractBlockBuilder {
-	// Dynamic import
 	async getBlockInstance(nodeTypeName) {
 		try {
-			const Block = await WebpackAsyncBlockBuilder.getModule(nodeTypeName);
+			const Block = await getModule(nodeTypeName);
 
 			if (!this.hasService(nodeTypeName)) {
 				this.container.$register({
@@ -26,10 +24,5 @@ export default class WebpackAsyncBlockBuilder extends AbstractBlockBuilder {
 			console.error(e.message);
 			return null;
 		}
-	}
-
-	static async getModule(nodeTypeName) {
-		return import(`../blocks/${nodeTypeName}` /* webpackChunkName: "block-" */)
-			.then(block => block.default);
 	}
 }

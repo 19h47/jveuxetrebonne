@@ -4,7 +4,6 @@ import { AbstractBlock } from 'starting-blocks';
 import 'slick-carousel';
 import sliderNavigation from 'Utils/sliderNavigation';
 
-
 export default class SliderRichContent extends AbstractBlock {
 	constructor(container) {
 		super(container, 'SliderRichContent');
@@ -54,27 +53,29 @@ export default class SliderRichContent extends AbstractBlock {
 			previous: $(this.rootElement).find('.js-previous'),
 		};
 
-
-		$(this.rootElement).find('.js-slider-rich-content-container')
+		$(this.rootElement)
+			.find('.js-slider-rich-content-container')
 
 			.on('init', (event, slick) => {
 				if ($links[0]) {
 					$links[0].classList.add('is-active');
 				}
 
-				$links.each((i, link) => { // eslint-disable-line no-shadow
+				$links.each((i, link) => {
+					// eslint-disable-line no-shadow
 					const $link = $(link);
 					const { id } = $link[0].dataset;
 
 					$link[0].addEventListener('mouseenter', () => {
-						$links.each((i, link) => { // eslint-disable-line no-shadow
+						$links.each((i, link) => {
+							// eslint-disable-line no-shadow
 							$(link).removeClass('is-active');
 						});
 
 						$link.addClass('is-active');
 
 						const index = $(this.rootElement)
-							.find(`[data-id=${id}]`)
+							.find(`[data-id="${id}"]`)
 							.parent()
 							.parent()
 							.index();

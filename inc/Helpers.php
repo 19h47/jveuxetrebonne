@@ -1,7 +1,15 @@
-<?php
+<?php // phpcs:ignore
+/**
+ * Helpers
+ *
+ * @package JVEB
+ */
 
 namespace JVEB;
 
+/**
+ * Helpers
+ */
 class Helpers {
 	/**
 	 * Get theme manifest
@@ -11,6 +19,6 @@ class Helpers {
 	public static function get_theme_manifest() {
 		$file = get_template_directory() . '/dist/manifest.json';
 
-		return json_decode( file_get_contents( $file ), true );
+		return json_decode( file_get_contents( $file ), true ); // phpcs:ignore
 	}
 }

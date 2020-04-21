@@ -1,9 +1,7 @@
 <?php
 /**
- *
  * Display last recent post in same category as the current post
  *
- * @file        component-relationship-post
  * @package     jveb
  * @author      Jérémy Levron <jeremylevron@19h47.fr> (https://19H47.fr)
  */
@@ -12,9 +10,7 @@ use Timber\{ Timber, Post, Helper };
 
 $context = Timber::get_context();
 
-global $post;
-
-$current_post_id = $post->id;
+$current_post_id = get_queried_object_id();
 
 $context['posts'] = Helper::transient(
 	"jveb_relationship_post_$current_post_id",

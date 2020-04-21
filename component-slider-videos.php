@@ -1,18 +1,14 @@
 <?php
 /**
- * /component-slider-videos
- *
  * Display the last 5 recent post in the video category
  *
- * @package JVEB
+ * @package jveb
  * @author Jérémy Levron <jeremylevron@19h47.fr> (https://19h47.fr)
  */
 
 use Timber\{ Timber, Helper };
 
 $context = Timber::get_context();
-
-global $post;
 
 $context['posts'] = Helper::transient(
 	'jveb_slider_videos',
