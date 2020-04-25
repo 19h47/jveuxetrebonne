@@ -2,23 +2,26 @@
  * Media print
  */
 @media print {
-
 	body {
-		-webkit-print-color-adjust: exact!important;
+		-webkit-print-color-adjust: exact !important;
+	}
+
+	.row {
+		display: block !important;
 	}
 
 	//
 	.print-w-100 {
-		padding-right: #{ $grid-gutter-width / 2 }!important;
-		padding-left: #{ $grid-gutter-width / 2 }!important;
+		padding-right: #{$grid-gutter-width / 2} !important;
+		padding-left: #{$grid-gutter-width / 2} !important;
 
-		width: 100%!important;
+		width: 100% !important;
 		max-width: none;
 		flex: 1;
 	}
 
 	.padding-print-24 {
-		padding: 0#{ $base-line-height }px!important;
+		padding: 0#{$base-line-height}px !important;
 	}
 
 	.Single {
@@ -38,14 +41,14 @@
 		}
 
 		.page-content {
-			@include margin( bottom 0 );
+			@include margin(bottom 0);
 
 			box-shadow: none;
 		}
 
 		.Single-article {
-			@include margin( top 0 right 0 left 0 );
-			@include padding( top 0 right 0 left 0 );
+			@include margin(top 0 right 0 left 0);
+			@include padding(top 0 right 0 left 0);
 
 			& > .title,
 			& > .date,
@@ -64,16 +67,16 @@
 
 	// .Recipe-print
 	.Recipe-print {
-		display: block!important;
+		display: block !important;
 
 		&__header {
 			> *:last-child {
-				@include margin( bottom 0 );
+				@include margin(bottom 0);
 			}
 		}
 
 		&__title {
-			@include margin( top 0 bottom 0 );
+			@include margin(top 0 bottom 0);
 			font-size: 40px;
 			font-family: 'Lora', serif;
 			font-weight: 500;
@@ -81,14 +84,14 @@
 		}
 
 		&__collection {
-			@include margin( top #{ $base-line-height }px bottom #{ $base-line-height }px );
+			@include margin(top #{$base-line-height}px bottom #{$base-line-height}px);
 			font-family: 'Poppins', sans-serif;
 		}
 
 		&__date {
-			@include margin( top 0!important bottom #{ $base-line-height }px );
+			@include margin(top 0!important bottom #{$base-line-height}px);
 
-			color: the_color( blue, light-grayish );
+			color: the_color(blue, light-grayish);
 			font-size: 13px;
 			font-family: 'Poppins', sans-serif;
 			font-weight: 600;
@@ -96,11 +99,11 @@
 		}
 
 		&__thumbnail {
-			@include margin( right auto left auto );
+			@include margin(right auto left auto);
 
 			display: block;
 			width: auto;
-			height: #{ $base-line-height * 10 }px;
+			height: #{$base-line-height * 10}px;
 			max-width: 100%;
 
 			// object-fit: contain;
@@ -108,15 +111,15 @@
 		}
 
 		.Recipe-summary {
-			@include margin( top #{ $base-line-height }px bottom #{ $base-line-height }px );
+			@include margin(top #{$base-line-height}px bottom #{$base-line-height}px);
 
 			height: auto;
 			flex-direction: column;
 			background-color: transparent;
-			color: the_color( gray, very-dark-01 );
+			color: the_color(gray, very-dark-01);
 
 			li {
-				@include margin( top 0 bottom 0 );
+				@include margin(top 0 bottom 0);
 
 				text-align: left;
 				flex: 1;
@@ -124,69 +127,68 @@
 
 			.person-number {
 				&::before {
-					background-image: url('#{ map-get( $directories, svg )}person-number-gray.svg' );
+					background-image: url('#{ map-get( $directories, svg )}person-number-gray.svg');
 				}
 			}
 
 			.preparation-time {
 				&::before {
-					background-image: url('#{ map-get( $directories, svg )}preparation-time-gray.svg' );
+					background-image: url('#{ map-get( $directories, svg )}preparation-time-gray.svg');
 				}
 			}
 
 			.cooking-time {
 				&::before {
-					background-image: url('#{ map-get( $directories, svg )}cooking-time-gray.svg' );
+					background-image: url('#{ map-get( $directories, svg )}cooking-time-gray.svg');
 				}
 			}
 		}
 
 		&__description {
-			@include margin( top 0 );
+			@include margin(top 0);
 			font-size: 16px;
 			font-weight: 600;
-			line-height: #{ $base-line-height }px;
+			line-height: #{$base-line-height}px;
 		}
 
 		&__ingredients {
-
 			ul {
-				@include padding( left $grid-gutter-width );
-				@include margin( top 0 bottom 0 );
+				@include padding(left $grid-gutter-width);
+				@include margin(top 0 bottom 0);
 
 				font-size: 14px;
-				line-height: #{ $base-line-height }px;
-				color: the_color( orange, light-grayish-01 );
+				line-height: #{$base-line-height}px;
+				color: the_color(orange, light-grayish-01);
 			}
 		}
 		&__ingredient {
-			@include margin( top 0 bottom 0 );
+			@include margin(top 0 bottom 0);
 		}
 
 		&__precisions {
-			@include margin( top #{ $base-line-height / 2 }px bottom #{ $base-line-height }px );
+			@include margin(top #{$base-line-height / 2}px bottom #{$base-line-height}px);
 			font-family: 'Poppins', sans-serif;
 			font-size: 14px;
-			line-height: #{ $base-line-height }px;
-			color: the_color( gray, very-dark-01 );
+			line-height: #{$base-line-height}px;
+			color: the_color(gray, very-dark-01);
 
 			> *:first-child {
-				@include margin( top 0 );
+				@include margin(top 0);
 			}
 
 			> *:last-child {
-				@include margin( bottom 0 );
+				@include margin(bottom 0);
 			}
 		}
 
 		&__steps {
-			@include margin( top #{ $base-line-height * 2 }px bottom #{ $base-line-height * 2 }px );
+			@include margin(top #{$base-line-height * 2}px bottom #{$base-line-height * 2}px);
 
 			font-family: 'Poppins', sans-serif;
 		}
 
 		&__step {
-			@include margin( top #{ $base-line-height }px bottom #{ $base-line-height }px );
+			@include margin(top #{$base-line-height}px bottom #{$base-line-height}px);
 
 			font-family: 'Lora', serif;
 			font-size: 16px;
@@ -194,58 +196,58 @@
 			line-height: 29px;
 
 			* {
-				color: the_color( gray, very-dark-01 );
+				color: the_color(gray, very-dark-01);
 			}
 
 			> *:first-child {
-				@include margin( top 0 );
+				@include margin(top 0);
 			}
 
 			> *:last-child {
-				@include margin( bottom 0 );
+				@include margin(bottom 0);
 			}
 
 			&__title {
-				@include margin( top 0 bottom 0 );
-				color: the_color( gray, very-dark );
+				@include margin(top 0 bottom 0);
+				color: the_color(gray, very-dark);
 
 				font-size: 20px;
 				font-weight: 700;
 				line-height: 29px;
 
 				& + * {
-					@include margin( top 0 );
+					@include margin(top 0);
 				}
 			}
 		}
 
 		// .Recipe-print__footer
 		&__footer {
-			@include margin( top #{ $base-line-height }px );
-			@include padding( top #{ $base-line-height }px bottom #{ $base-line-height }px );
+			@include margin(top #{$base-line-height}px);
+			@include padding(top #{$base-line-height}px bottom #{$base-line-height}px);
 
 			align-items: center;
-			display: flex!important;
+			display: flex !important;
 			justify-content: space-between;
 			font-family: 'Poppins', sans-serif;
 
 			border-top: {
-				color: the_color( blue, light-grayish-03 );
+				color: the_color(blue, light-grayish-03);
 				style: solid;
 				width: 1px;
 			}
 
 			&__logo {
-				@include size( #{ $base-line-height * 2 }px );
+				@include size(#{$base-line-height * 2}px);
 
 				object-position: center;
 				object-fit: scale-down;
 			}
 
 			&__copyright {
-				@include margin( top 0 bottom 0 );
+				@include margin(top 0 bottom 0);
 
-				color: the_color( orange, very-dark-grayish-01 );
+				color: the_color(orange, very-dark-grayish-01);
 				font-size: 12px;
 				font-weight: 600;
 				white-space: nowrap;

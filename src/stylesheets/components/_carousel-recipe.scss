@@ -6,10 +6,7 @@
 .Carousel-recipe {
 	$this: &;
 
-	@include margin(
-		// right $grid-gutter-width * -1
-			bottom #{$base-line-height}px // left ( $grid-gutter-width * -1 )
-	);
+	@include margin(bottom #{$base-line-height}px);
 	// width: calc( 100% + #{ $grid-gutter-width * 2 } );
 
 	@include media-breakpoint-up(md) {
@@ -36,7 +33,7 @@
 
 	&__ingredients {
 		@extend %font-family-title, %font-weight-medium;
-		@include margin(top #{$base-line-height}px bottom #{$base-line-height}px);
+		@include margin(top #{$base-line-height / 2}px bottom #{$base-line-height/ 2}px);
 		@include padding(left $grid-gutter-width);
 
 		font-size: 16px;
@@ -50,6 +47,8 @@
 		}
 
 		@include media-breakpoint-up(md) {
+			@include margin(top #{$base-line-height}px bottom #{$base-line-height}px);
+
 			list-style-type: disc;
 		}
 
@@ -62,7 +61,7 @@
 
 	&__precisions {
 		@extend %font-weight-regular;
-		@include margin(top #{$base-line-height}px bottom #{$base-line-height}px);
+		@include margin(top #{$base-line-height/2}px bottom #{$base-line-height/2}px);
 
 		& > *:first-child {
 			@include margin(top 0);
@@ -71,13 +70,17 @@
 		& > *:last-child {
 			@include margin(bottom 0);
 		}
+
+		@include media-breakpoint-up(md) {
+			@include margin(top #{$base-line-height}px bottom #{$base-line-height}px);
+		}
 	}
 
 	// .Carousel-recipe .items
 	.items {
 		@extend %list-unstyled, %margin-y-0;
 
-		height: calc(100vh - #{(64 + 7 + 25 + 30)}px);
+		height: 100vh;
 		box-shadow: 0px 0px 15px 0px rgba(the_color(gray, very-dark), 0.07);
 
 		@include media-breakpoint-up(md) {
@@ -100,7 +103,7 @@
 			$animation-duration: 1.15s;
 
 			& * {
-				font-size: 16px;
+				font-size: 14px;
 			}
 
 			@extend .d-inline-block, %vertical-align-middle, %position-relative;
@@ -113,6 +116,10 @@
 			@include media-breakpoint-up(md) {
 				@include padding(right 0 left 0);
 				@include size(50%, 100%);
+
+				& * {
+					font-size: 16px;
+				}
 			}
 
 			& > *:first-child {
@@ -215,11 +222,15 @@
 			}
 
 			.Recipe-summary {
-				@include margin(top #{$base-line-height}px bottom #{$base-line-height}px);
+				@include margin(top #{$base-line-height/2}px bottom #{$base-line-height/2}px);
 
 				background-color: transparent;
 				height: auto;
 				color: the_color(gray, very-dark-01);
+
+				@include media-breakpoint-up(md) {
+					@include margin(top #{$base-line-height}px bottom #{$base-line-height}px);
+				}
 			}
 
 			.person-number,
